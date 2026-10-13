@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f6b3a">
+<title>কার্ড স্টুডিও - ফটো কার্ড ও নিউজ কার্ড মেকার</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;700;800&family=Baloo+Da+2:wght@500;800&family=Hind+Siguri:wght@400;600;700&family=Noto+Serif+Bengali:wght@500;800&family=Tiro+Bangla&display=swap" rel="stylesheet">
+<style>
+:root{--g:#0f6b3a;--g2:#0a4d2a;--bg:#f3f5f2;--card:#fff;--tx:#1b2420;--mut:#6b7770;--line:#e2e8e3;--gold:#e0a82e;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Hind Siguri','Noto Sans Bengali',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;padding-bottom:84px}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+header h1{font-size:20px;font-weight:700;display:flex;gap:10px;align-items:center}
+header .badge{background:var(--gold);color:#3b2a00;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;display:none}
+header .badge.on{display:inline-block}
+main{max-width:1100px;margin:0 auto;padding:16px}
+.view{display:none}.view.on{display:block}
+h2{font-size:18px;margin:6px 0 12px}
+.chips{display:flex;gap:8px;margin-bottom:14px;overflow:auto}
+.chip{border:1px solid var(--line);background:#fff;padding:7px 16px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--g);color:#fff;border-color:var(--g)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.tcard{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);cursor:pointer;position:relative;transition:transform .15s}
+.tcard:active{transform:scale(.97)}
+.tcard canvas{width:100%;display:block;background:#ddd}
+.tcard .nm{padding:9px 12px;font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.lock{position:absolute;top:8px;left:8px;background:var(--gold);color:#3b2a00;font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px}
+.free{position:absolute;top:8px;left:8px;background:rgba(15,107,58,.92);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px}
+.editor{display:grid;gap:16px}
+@media(min-width:900px){.editor{grid-template-columns:minmax(0,1fr) 430px;align-items:start}.prev{position:sticky;top:76px}}
+.prev,.panel{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+#cv{width:100%;border-radius:12px;display:block;box-shadow:0 4px 18px rgba(0,0,0,.15)}
+.f{margin-bottom:12px}
+.f label{display:block;font-size:13px;color:var(--mut);margin-bottom:5px;font-weight:600}
+.f input[type=text],.f textarea,.f select{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:15px;background:#fcfdfc}
+.f textarea{min-height:110px;resize:vertical}
+.f input:focus,.f textarea:focus,.f select:focus{outline:none;border-color:var(--g)}
+.hint{font-size:12px;color:var(--mut);margin-top:4px}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.btn{border:0;font:inherit;font-weight:700;font-size:15px;padding:13px 16px;border-radius:14px;cursor:pointer;background:var(--g);color:#fff;width:100%}
+.btn.o{background:#fff;color:var(--g);border:2px solid var(--g)}
+.btn.gold{background:var(--gold);color:#3b2a00}
+.btn.sm{padding:8px 12px;font-size:13px;border-radius:10px;width:auto}
+.btn.red{background:#c0392b}
+.file{display:flex;align-items:center;gap:10px}
+.file input{display:none}
+.file span{font-size:13px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
+.seg button{flex:1;border:0;background:#fff;padding:10px;font:inherit;cursor:pointer}
+.seg button.on{background:var(--g);color:#fff}
+.back{background:none;border:0;font:inherit;color:var(--g);font-weight:700;cursor:pointer;margin-bottom:10px;font-size:15px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;z-index:30;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;background:none;padding:9px 0 8px;font:inherit;font-size:12px;color:var(--mut);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button i{font-style:normal;font-size:21px}
+nav button.on{color:var(--g);font-weight:700}
+.hist{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.hcard{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.hcard img{width:100%;display:block}
+.hcard .m{padding:8px 10px;font-size:12px;color:var(--mut)}
+.hcard .b{display:flex;gap:6px;padding:0 10px 10px}
+.empty{text-align:center;color:var(--mut);padding:50px 10px}
+.pro{background:linear-gradient(160deg,#1d1a10,#3a2c06);color:#fff;border-radius:22px;padding:24px;text-align:center}
+.pro .pr{font-size:48px;font-weight:800;color:var(--gold)}
+.pro ul{list-style:none;text-align:left;max-width:340px;margin:16px auto;line-height:2}
+.pro ul li:before{content:"✔ ";color:var(--gold)}
+.steps{background:#fff;border-radius:var(--r);padding:16px;margin-top:14px;line-height:1.9;font-size:14px}
+.steps code{background:#eef3ee;padding:2px 8px;border-radius:6px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.modal.on{display:flex}
+.mbox{background:#fff;border-radius:22px;padding:22px;max-width:380px;width:100%;text-align:center}
+.mbox h3{margin-bottom:8px}.mbox p{color:var(--mut);margin-bottom:16px;font-size:14px}
+.toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;z-index:60;opacity:0;transition:.3s;pointer-events:none}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<header><h1>🎴 <span id="appName">কার্ড স্টুডিও</span></h1><span class="badge" id="proBadge">★ PRO</span></header>
+<main>
+  <section class="view on" id="v-home">
+    <h2>টেমপ্লেট বেছে নিন</h2>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="tgrid"></div>
+  </section>
+  <section class="view" id="v-edit">
+    <button class="back" id="backBtn">← টেমপ্লেটে ফিরুন</button>
+    <div class="editor">
+      <div class="prev"><canvas id="cv"></canvas></div>
+      <div class="panel" id="panel"></div>
+    </div>
+  </section>
+  <section class="view" id="v-hist"><h2>আমার তৈরি কার্ড</h2><div id="hlist"></div></section>
+  <section class="view" id="v-pro"></section>
+  <section class="view" id="v-prof"></section>
+</main>
+<nav>
+  <button data-go="home" class="on"><i>🏠</i>হোম</button>
+  <button data-go="hist"><i>🕘</i>হিস্টরি</button>
+  <button data-go="pro"><i>⭐</i>প্রো</button>
+  <button data-go="prof"><i>👤</i>প্রোফাইল</button>
+</nav>
+<div class="modal" id="modal"><div class="mbox"><h3>🔒 প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকায় লাইফটাইম।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
+const CFG={
+  appName:'কার্ড স্টুডিও',
+  price:200,
+  payMethod:'বিকাশ / নগদ (Send Money)',
+  payNumber:'01XXXXXXXXX',
+  contactLink:'https://wa.me/8801XXXXXXXXX',
+  proCodes:['ZOHIR200'],           // পেমেন্টের পর ইউজারকে এই ধরনের কোড দিন
+  // নিজের ছবির টেমপ্লেট যোগ করতে (README দেখুন):
+  // {id:'my1',name:'আমার ডিজাইন',pro:false,src:'templates/my1.png',box:{x:90,y:300,w:900,h:500},color:'#111',accent:'#c00',align:'center',size:80}
+  imageTemplates:[]
+};
+
+/* ============ হেল্পার ============ */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const FH=104;
+const F=s=>`"${s.font}",'Noto Sans Bengali',sans-serif`;
+function rr(c,x,y,w,h,r){c.beginPath();c.roundRect(x,y,w,h,r)}
+function tint(c,x,y,w,h,col,a){c.save();c.globalAlpha=a;c.fillStyle=col;c.fillRect(x,y,w,h);c.restore()}
+function cover(c,img,x,y,w,h,col){
+  if(!img){const g=c.createLinearGradient(x,y,x+w,y+h);g.addColorStop(0,col||'#5a7a6a');g.addColorStop(1,'#1d2b24');c.fillStyle=g;c.fillRect(x,y,w,h);
+    c.save();c.globalAlpha=.12;c.fillStyle='#fff';for(let i=0;i<7;i++){c.beginPath();c.arc(x+w*(i/6),y+h*(.3+.4*((i*37)%10)/10),60+i*14,0,7);c.fill()}c.restore();return}
+  const r=Math.max(w/img.width,h/img.height),iw=w/r,ih=h/r;
+  c.drawImage(img,(img.width-iw)/2,(img.height-ih)/2,iw,ih,x,y,w,h)}
+function pattern(c,W,H,col,a){c.save();c.strokeStyle=col;c.globalAlpha=a;c.lineWidth=2;c.beginPath();c.rect(0,0,W,H);c.clip();
+  for(let y=0;y<H;y+=96)for(let x=0;x<W;x+=96){c.beginPath();c.moveTo(x+48,y);c.lineTo(x+96,y+48);c.lineTo(x+48,y+96);c.lineTo(x,y+48);c.closePath();c.stroke();c.beginPath();c.arc(x+48,y+48,24,0,7);c.stroke()}c.restore()}
+function dots(c,W,H,col,a,gap){c.save();c.fillStyle=col;c.globalAlpha=a;for(let y=gap/2;y<H;y+=gap)for(let x=gap/2;x<W;x+=gap){c.beginPath();c.arc(x,y,3,0,7);c.fill()}c.restore()}
+function gridBg(c,W,H,col,a,gap){c.save();c.strokeStyle=col;c.globalAlpha=a;c.lineWidth=2;for(let x=0;x<=W;x+=gap){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke()}for(let y=0;y<=H;y+=gap){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()}c.restore()}
+function glyph(c,x,y,size,col,align){c.save();c.fillStyle=col;c.textAlign=align||'left';c.textBaseline='alphabetic';c.font=`900 ${size}px Georgia,serif`;c.fillText('\u201C',x,y);c.restore()}
+function txt(c,s,t,x,y,size,col,o={}){if(!t)return;c.save();c.fillStyle=col;c.font=`${o.weight||600} ${size}px ${F(s)}`;c.textAlign=o.align||'left';c.textBaseline='middle';if(o.shadow){c.shadowColor=o.shadow;c.shadowBlur=22}c.fillText(t,x,y);c.restore()}
+function pill(c,s,t,cx,y,size,bg,fg){if(!t)return;c.save();c.font=`600 ${size}px ${F(s)}`;const w=c.measureText(t).width+60,h=size*1.9;c.fillStyle=bg;c.fillRect(cx-w/2,y,w,h);c.fillStyle=fg;c.textAlign='center';c.textBaseline='middle';c.fillText(t,cx,y+h/2+2);c.restore()}
+
+function parse(t){return t.split('\n').map(l=>{const o=[];l.split('*').forEach((seg,i)=>seg.split(/\s+/).filter(Boolean).forEach(w=>o.push({w,hl:i%2===1})));return o})}
+function layout(c,text,o){c.font=`${o.weight} ${o.size}px ${o.font}`;const sp=c.measureText(' ').width,lines=[];
+  parse(text).forEach(par=>{if(!par.length){lines.push({runs:[],width:0});return}let cur=[],cw=0;
+    par.forEach(t=>{const w=c.measureText(t.w).width;if(cur.length&&cw+sp+w>o.w){lines.push({runs:cur,width:cw});cur=[];cw=0}cw+=(cur.length?sp:0)+w;cur.push({...t,width:w})});
+    lines.push({runs:cur,width:cw})});return{lines,sp}}
+function block(c,s,text,o){
+  if(!text)return{bottom:o.y,size:0};
+  const f=F(s),lh=o.lh||1.4,wt=o.weight||700;let size=o.size*(o.noScale?1:s.sizeMul),L;
+  for(;;){L=layout(c,text,{size,w:o.w,font:f,weight:wt});if(L.lines.length*size*lh<=o.h||size<=(o.min||24))break;size-=3}
+  const total=L.lines.length*size*lh;let y=o.y+(o.valign==='top'?0:Math.max(0,(o.h-total)/2));
+  c.save();c.textBaseline='middle';c.textAlign='left';c.font=`${wt} ${size}px ${f}`;
+  for(const ln of L.lines){let x=o.align==='left'?o.x:o.align==='right'?o.x+o.w-ln.width:o.x+(o.w-ln.width)/2;const cy=y+size*lh/2;
+    for(const r of ln.runs){
+      if(r.hl&&o.mode==='bg'){c.fillStyle=o.accent;c.fillRect(x-8,cy-size*.64,r.width+16,size*1.28);c.fillStyle=o.hlColor||'#111'}
+      else c.fillStyle=r.hl?o.accent:o.color;
+      if(o.shadow){c.shadowColor=o.shadow;c.shadowBlur=26}
+      c.fillText(r.w,x,cy);c.shadowBlur=0;x+=r.width+L.sp}
+    y+=size*lh}
+  c.restore();return{bottom:y,size}}
+function footer(c,W,H,s,st){
+  if(!s.showFooter)return;const y=H-FH,d=64,cx=44+d/2,cy=y+FH/2;
+  c.fillStyle=st.bg;c.fillRect(0,y,W,FH);
+  c.save();c.beginPath();c.arc(cx,cy,d/2,0,7);c.closePath();
+  if(s.logo){c.clip();cover(c,s.logo,cx-d/2,cy-d/2,d,d);c.restore()}
+  else{c.fillStyle=s.accent;c.fill();c.restore();txt(c,s,(s.tag||s.author||'ক').trim().charAt(0).toUpperCase(),cx,cy+2,34,'#fff',{align:'center',weight:800})}
+  txt(c,s,s.tag,cx+d/2+18,cy,32,st.fg,{weight:700});
+  txt(c,s,s.contact,W-44,cy,28,st.fg,{align:'right'})}
+
+/* ============ টেমপ্লেট ডিজাইন ============ */
+function quoteTop(c,W,H,s){
+  const fh=s.showFooter?FH:0,area=H-fh,topH=Math.round(area*.5),ac=s.accent;
+  c.fillStyle='#fdfcf6';c.fillRect(0,0,W,H);pattern(c,W,topH,'#c9c3a8',.4);
+  c.fillStyle=ac;rr(c,W/2-68,0,136,124,[0,0,34,34]);c.fill();glyph(c,W/2,112,150,'#fff','center');
+  txt(c,s,s.title,W/2,160,34,ac,{align:'center',weight:700});
+  block(c,s,s.text,{x:70,y:190,w:W-140,h:topH-190-(s.author?120:50),size:82,align:'center',color:'#111',accent:ac,font:0,weight:800,lh:1.38});
+  pill(c,s,s.author,W/2,topH-112,34,ac,'#fff');
+  cover(c,s.photo,0,topH,W,area-topH,ac);tint(c,0,topH,W,area-topH,ac,.5);
+  c.fillStyle=ac;c.globalAlpha=.6;c.fillRect(0,topH,W,5);c.globalAlpha=1;
+  if(s.caption)txt(c,s,s.caption,W/2,topH+60,34,'#fff',{align:'center',shadow:'#000'});
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.6)',fg:'#fff'})}
+function darkPhoto(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent;
+  cover(c,s.photo,0,0,W,H,'#1d3a24');tint(c,0,0,W,H,'#000',.62);
+  const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(0,0,0,.4)');g.addColorStop(1,'rgba(0,0,0,.2)');c.fillStyle=g;c.fillRect(0,0,W,H);
+  block(c,s,s.title,{x:60,y:A*.2,w:W-120,h:A*.18,size:170,align:'center',color:ac,accent:'#fff',font:0,weight:800,lh:1.1,shadow:'rgba(0,0,0,.5)'});
+  block(c,s,s.caption,{x:60,y:A*.39,w:W-120,h:A*.1,size:78,align:'center',color:'#fff',accent:ac,weight:700,lh:1.2});
+  c.fillStyle='rgba(60,80,25,.62)';rr(c,70,A*.52,W-140,A*.33,52);c.fill();
+  block(c,s,s.text,{x:110,y:A*.52+20,w:W-220,h:A*.33-40,size:46,align:'center',color:'#fff',accent:ac,weight:500,lh:1.5});
+  c.fillStyle='#fff';for(let i=0;i<5;i++){c.beginPath();c.arc(W/2-60+i*30,A*.89,9,0,7);c.fill()}
+  txt(c,s,s.author,W/2,A*.945,34,'rgba(255,255,255,.75)',{align:'center'});
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.55)',fg:'#fff'})}
+function paperPhoto(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,topH=Math.round(A*.52),ac=s.accent,paper='#e6e6e4';
+  c.fillStyle=paper;c.fillRect(0,0,W,H);dots(c,W,topH,'#bbb',.35,24);
+  c.fillStyle=ac;rr(c,W-210,60,130,130,26);c.fill();txt(c,s,(s.tag||s.title||'Z').trim().charAt(0).toUpperCase(),W-145,128,76,'#fff',{align:'center',weight:800});
+  txt(c,s,s.title,W-145,230,40,ac,{align:'center',weight:800});
+  glyph(c,100,380,210,'#4a4a4a');
+  block(c,s,s.text,{x:100,y:340,w:W-200,h:topH-340-110,size:70,align:'left',color:'#111',accent:ac,weight:700,lh:1.35,valign:'top'});
+  txt(c,s,s.author,100,topH-62,32,'#666',{weight:500});
+  cover(c,s.photo,0,topH,W,A-topH,'#4b7a8a');tint(c,0,topH,W,A-topH,'#2a6f70',.12);
+  c.fillStyle=paper;for(let x=0;x<W+130;x+=130){c.beginPath();c.arc(x+65,topH-2,62,0,Math.PI);c.fill()}c.fillRect(0,topH-30,W,28);
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.6)',fg:'#fff'})}
+function splitSide(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent,sx=Math.round(W*.667);
+  c.fillStyle='#fff';c.fillRect(0,0,W,H);
+  if(s.photo){cover(c,s.photo,sx,0,W-sx,A);tint(c,sx,0,W-sx,A,ac,.88)}else{c.fillStyle=ac;c.fillRect(sx,0,W-sx,A)}
+  c.fillStyle='rgba(255,255,255,.12)';c.beginPath();c.arc(sx+(W-sx)/2,A*.42,200,0,7);c.fill();
+  txt(c,s,s.title,70,100,46,ac,{weight:800});txt(c,s,s.tag,70,152,28,'#777');
+  c.fillStyle=ac;rr(c,W-360-sx+sx-0,0,0,0,0);
+  glyph(c,70,420,220,ac);
+  block(c,s,s.text,{x:70,y:400,w:sx-110,h:A-400-170,size:82,align:'left',color:'#444',accent:ac,weight:700,lh:1.4,valign:'top'});
+  txt(c,s,s.author?'– '+s.author:'',70,A-100,34,ac,{weight:700});
+  footer(c,W,H,s,{bg:ac,fg:'#fff'})}
+function brownBanner(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent;
+  c.fillStyle='#efece7';c.fillRect(0,0,W,H);
+  for(let i=0;i<2600;i++){c.fillStyle=`rgba(0,0,0,${Math.random()*.035})`;c.fillRect(Math.random()*W,Math.random()*H,3,3)}
+  txt(c,s,s.tag,70,100,34,'#444',{weight:700});
+  const bh=A*.19,by=A*.28;c.fillStyle=ac;c.fillRect(W*.2,by,W*.6,bh);
+  block(c,s,s.title,{x:W*.2+30,y:by+8,w:W*.6-60,h:bh-16,size:130,align:'center',color:'#fff',accent:'#ffe7a3',weight:800,lh:1.1});
+  block(c,s,s.text,{x:100,y:by+bh+50,w:W-200,h:A-(by+bh)-220,size:62,align:'center',color:ac,accent:'#222',weight:500,lh:1.5});
+  txt(c,s,s.author?'– '+s.author+' –':'',W-110,A-80,32,ac,{align:'right'});
+  footer(c,W,H,s,{bg:ac,fg:'#fff'})}
+function marker(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent;
+  c.fillStyle='#faf9f4';c.fillRect(0,0,W,H);gridBg(c,W,H,'#ddd',.5,60);
+  c.fillStyle=ac;c.fillRect(70,80,10,80);txt(c,s,'learning from',100,106,36,'#444',{weight:500});txt(c,s,s.title,100,148,38,'#222',{weight:800});
+  block(c,s,s.text,{x:70,y:240,w:W-140,h:A-240-190,size:78,align:'center',color:'#333',accent:ac,hlColor:'#111',mode:'bg',weight:700,lh:1.55});
+  txt(c,s,s.author,W/2,A-110,50,'#444',{align:'center',weight:500});txt(c,s,s.caption,W/2,A-50,34,'#555',{align:'center',weight:500});
+  footer(c,W,H,s,{bg:'#fff',fg:'#333'})}
+/* ---- প্রো ---- */
+function darkCard(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent;
+  c.fillStyle='#f7f7f5';c.fillRect(0,0,W,H);gridBg(c,W,H,'#ddd',.8,60);
+  const cy=A*.3,ch=A*.5;const g=c.createLinearGradient(0,cy,W,cy+ch);g.addColorStop(0,'#03362a');g.addColorStop(1,'#01140f');c.fillStyle=g;rr(c,50,cy,W-100,ch,60);c.fill();
+  const r=130,px=W/2,py=cy;c.save();c.shadowColor='rgba(0,0,0,.35)';c.shadowBlur=30;c.fillStyle='#fff';c.beginPath();c.arc(px,py,r+8,0,7);c.fill();c.restore();
+  c.save();c.beginPath();c.arc(px,py,r,0,7);c.clip();cover(c,s.logo||s.photo,px-r,py-r,r*2,r*2,ac);c.restore();
+  txt(c,s,s.title,W/2,A*.09,46,'#222',{align:'center',weight:800});
+  glyph(c,100,cy+210,150,'#fff');
+  block(c,s,s.text,{x:110,y:cy+140,w:W-220,h:ch-250,size:64,align:'center',color:'#fff',accent:ac,weight:700,lh:1.45});
+  txt(c,s,s.author?'- '+s.author:'',W-130,cy+ch-50,34,'#fff',{align:'right'});
+  txt(c,s,s.caption,W/2,cy+ch+70,34,'#555',{align:'center'});
+  footer(c,W,H,s,{bg:'#03362a',fg:'#fff'})}
+function peach(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent;
+  const g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#fadcc8');g.addColorStop(1,'#e6b6a2');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.strokeStyle='rgba(120,70,50,.18)';c.lineWidth=6;for(let i=0;i<5;i++){c.beginPath();c.arc(120,A-100,90+i*50,Math.PI*1.1,Math.PI*1.9);c.stroke()}
+  c.beginPath();c.arc(W-100,160,170,0,7);c.stroke();
+  c.fillStyle='#7a5547';rr(c,90,40,200,200,30);c.fill();c.save();c.beginPath();c.arc(190,140,78,0,7);c.clip();cover(c,s.logo,112,62,156,156,'#222');c.restore();
+  txt(c,s,s.title,330,140,44,'#5b3322',{weight:800});
+  glyph(c,200,520,210,'#7a5547');
+  block(c,s,s.text,{x:90,y:420,w:W-180,h:A-420-220,size:66,align:'center',color:'#7a2e0e',accent:'#a6c88a',hlColor:'#111',mode:'bg',weight:700,lh:1.6});
+  txt(c,s,s.author?'- '+s.author:'',W/2,A-110,38,'#222',{align:'center'});
+  footer(c,W,H,s,{bg:'rgba(90,50,35,.9)',fg:'#fff'})}
+function news(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent,ph=Math.round(A*.5);
+  c.fillStyle='#111';c.fillRect(0,0,W,H);cover(c,s.photo,0,0,W,ph,'#44556a');
+  const g=c.createLinearGradient(0,ph*.5,0,ph);g.addColorStop(0,'rgba(17,17,17,0)');g.addColorStop(1,'#111');c.fillStyle=g;c.fillRect(0,ph*.5,W,ph*.5);
+  c.font=`800 46px ${F(s)}`;const tw=c.measureText(s.title||'ব্রেকিং নিউজ').width+70;
+  c.fillStyle=ac;c.fillRect(0,ph-30,tw,76);txt(c,s,s.title||'ব্রেকিং নিউজ',35,ph+8,46,'#fff',{weight:800});
+  block(c,s,s.text,{x:60,y:ph+70,w:W-120,h:A-ph-70-(s.caption?150:60),size:74,align:'left',color:'#fff',accent:'#ffd447',weight:800,lh:1.35,valign:'top'});
+  block(c,s,s.caption,{x:60,y:A-150,w:W-120,h:90,size:34,align:'left',color:'#bbb',accent:'#ffd447',weight:400,lh:1.4,valign:'top',min:22});
+  c.fillStyle=ac;c.fillRect(0,A-12,W,12);
+  footer(c,W,H,s,{bg:'#000',fg:'#fff'})}
+function luxury(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent;
+  c.fillStyle='#0a0a0a';c.fillRect(0,0,W,H);
+  c.strokeStyle=ac;c.lineWidth=4;c.strokeRect(40,40,W-80,A-80);c.lineWidth=1.5;c.strokeRect(62,62,W-124,A-124);
+  txt(c,s,s.title,W/2,150,40,ac,{align:'center',weight:700});
+  c.fillStyle=ac;c.fillRect(W/2-90,196,180,3);c.beginPath();c.arc(W/2,197,9,0,7);c.fill();
+  glyph(c,W/2,380,170,ac,'center');
+  block(c,s,s.text,{x:130,y:330,w:W-260,h:A-330-250,size:68,align:'center',color:'#f3e6bd',accent:ac,weight:700,lh:1.5});
+  c.fillStyle=ac;c.fillRect(W/2-60,A-215,120,3);
+  txt(c,s,s.author,W/2,A-160,38,ac,{align:'center',weight:700});txt(c,s,s.caption,W/2,A-105,30,'#b9a878',{align:'center',weight:400});
+  footer(c,W,H,s,{bg:'#000',fg:ac})}
+function neon(c,W,H,s){
+  const fh=s.showFooter?FH:0,A=H-fh,ac=s.accent;
+  const g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#1c0b3d');g.addColorStop(1,'#08344f');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.save();c.filter='blur(60px)';c.fillStyle=ac;c.globalAlpha=.35;c.beginPath();c.arc(W*.85,A*.15,230,0,7);c.fill();c.fillStyle='#b14dff';c.beginPath();c.arc(W*.1,A*.85,260,0,7);c.fill();c.restore();
+  if(s.title){c.font=`700 36px ${F(s)}`;const w=c.measureText(s.title).width+60;c.strokeStyle=ac;c.lineWidth=3;rr(c,W/2-w/2,90,w,70,35);c.stroke();txt(c,s,s.title,W/2,127,36,ac,{align:'center',weight:700})}
+  glyph(c,W/2,400,200,ac,'center');
+  block(c,s,s.text,{x:90,y:330,w:W-180,h:A-330-190,size:72,align:'center',color:'#fff',accent:ac,weight:800,lh:1.45,shadow:ac});
+  txt(c,s,s.author?'— '+s.author:'',W/2,A-110,36,ac,{align:'center',weight:700,shadow:ac});
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.45)',fg:'#fff'})}
+function imageTpl(t){return(c,W,H,s)=>{
+  if(!t._img){t._img=new Image();t._img.onload=()=>window.rerender&&window.rerender();t._img.src=t.src}
+  if(t._img.complete&&t._img.naturalWidth)c.drawImage(t._img,0,0,W,H);else{c.fillStyle='#ddd';c.fillRect(0,0,W,H)}
+  const b=t.box;block(c,s,s.text,{x:b.x,y:b.y,w:b.w,h:b.h,size:t.size||80,align:t.align||'center',color:t.color||'#111',accent:s.accent,weight:700});
+  txt(c,s,s.author,W/2,b.y+b.h+60,36,t.color||'#111',{align:'center'});
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.55)',fg:'#fff'})}}
+
+const TXT1='কবরই তো তোমার ঠিকানা *গালিব!* অন্তত কিছু ইবাদত করো, রীতি আছে-কারও বাড়িতে *খালি হাতে যেতে* নেই।';
+const TXT2='তুমি যখন নিজের জন্য *ইস্তিগফার* করো তোমার মর্যাদা বাড়ে, আর যখন অন্যের জন্য করো তার মর্যাদাও বেড়ে যায়।';
+const TPL=[
+ {id:'q-purple',name:'পার্পল কোট',pro:false,accent:'#8e3fa3',draw:quoteTop,sample:{text:TXT1,author:'কথা: জহির_০৪৩'}},
+ {id:'q-green',name:'গ্রিন কোট',pro:false,accent:'#4b6e14',draw:quoteTop,sample:{text:'একাকিত্বকে ভয় পাবেন না, আল্লাহ আপনাকে *আগলে রাখবেন* বলেই আপনার পাশে কাউকে থাকতে দেন না!',author:'জহির_০৪৩'}},
+ {id:'dark-photo',name:'ডার্ক ফটো',pro:false,accent:'#1aa80c',draw:darkPhoto,sample:{title:'মা মারা গেলে',caption:'আল্লাহ কি বলে জানেন?',text:'যখন কোন ব্যক্তির মা মারা যায় তখন আল্লাহ তা\'আলা বলেন, হে আমার বান্দা! যার কারণে আমি তোমার খেয়াল করতাম সে মৃত্যুবরণ করেছে, এখন তুমি তোমার আমলকে ঠিক করো।',author:'মা বেঁচে থাকলে বলি আলহামদুলিল্লাহ'}},
+ {id:'paper',name:'পেপার ফটো',pro:false,accent:'#8a5a3c',draw:paperPhoto,sample:{title:'zohir',text:'যে ব্যক্তি তোমার বিরুদ্ধে অন্যায়ভাবে দোয়া করে তাকে *ভয় করো না*, কারণ দোয়া কবুল করেন সর্বশক্তিমান আল্লাহ।',author:'শাইখ সালেহ আল উসাইমিন রাহি.'}},
+ {id:'split',name:'স্প্লিট',pro:false,accent:'#4e0020',font:'Tiro Bangla',draw:splitSide,sample:{title:'জহিরুল ইসলাম জহির',text:'কখনো কখনো একটি আলহামদুলিল্লাহ শত *অভিযোগের* চেয়েও শক্তিশালী।',author:'শায়খ আহমাদুল্লাহ (হাফি.)'}},
+ {id:'brown',name:'ব্রাউন ব্যানার',pro:false,accent:'#82583a',draw:brownBanner,sample:{title:'পড়ালেখা',text:'ততটুকুই করো যতটুকু দরকার। কারণ দুনিয়ার ডিগ্রী বা সার্টিফিকেট তোমার আখিরাতে বিন্দুমাত্র সফলতা এনে দিতে পারবে না',author:'মুহাম্মদ আবু রায়হান'}},
+ {id:'marker',name:'মার্কার হাইলাইট',pro:false,accent:'#e0aa2f',draw:marker,sample:{title:'আখিরাতের ম্যানুয়াল',text:'বাবার বাড়ি *থেকে একটা সূতাও* না এনে যদি আপনি শ্বশুর বাড়িতে সবার চোখের *মনি হয়ে* থাকতে পারেন তাহলে বুঝে নেবেন আপনি হাজার *অমানুষের ভিড়ে* ভালো মানুষের ঘরে জায়গা পেয়েছেন',author:'ZAHIRUL',caption:'কথা: সংগৃহীত'}},
+ {id:'dark-card',name:'ডার্ক কার্ড',pro:true,accent:'#ffe94a',draw:darkCard,sample:{title:'আজকের কথা',text:'যে রব ভালোবাসতে জানেন সে রবই আজাব *দিতে জানেন।* মাওলা ক্ষমা করেন আমাদের।',author:'ZOHIR',caption:'শেয়ার করে অন্যকে জানান'}},
+ {id:'peach',name:'পিচ ফ্লোরাল',pro:true,accent:'#a6c88a',draw:peach,sample:{title:'জহির_০৪৩',text:TXT2,author:'শায়খ উসামা আল-শুরাফা'}},
+ {id:'news',name:'নিউজ কার্ড',pro:true,accent:'#d8201c',draw:news,sample:{title:'ব্রেকিং নিউজ',text:'রাজধানীতে *নতুন মেট্রোরেল রুটের* উদ্বোধন, যাত্রী চলাচল শুরু আজ থেকেই',caption:'কর্তৃপক্ষ জানিয়েছে, প্রথম সপ্তাহে ভাড়ায় বিশেষ ছাড় থাকবে।',author:'নিজস্ব প্রতিবেদক'}},
+ {id:'luxury',name:'গোল্ড লাক্সারি',pro:true,accent:'#d4af37',font:'Noto Serif Bengali',draw:luxury,sample:{title:'আজকের স্মরণ',text:'যে ব্যক্তি আল্লাহর জন্য হারাম ছেড়ে দেয়, আল্লাহ তাকে *উত্তম হালাল* দান করেন।',author:'সংগৃহীত'}},
+ {id:'neon',name:'নিয়ন গ্লো',pro:true,accent:'#38f5c8',font:'Baloo Da 2',draw:neon,sample:{title:'Motivation',text:'ভিক্ষা চায় ভিক্ষুকে, ভোট চায় নেতা। *জনগণ* জাগলে বদলে যায় সব হিসাব।',author:'জহির'}}
+];
+CFG.imageTemplates.forEach(t=>TPL.push({id:t.id,name:t.name,pro:!!t.pro,accent:t.accent||'#c0392b',draw:imageTpl(t),sample:{text:t.sample||'এখানে আপনার লেখা',author:''}}));
+const tplById=id=>TPL.find(t=>t.id===id);
+
+/* ============ রেন্ডার ============ */
+function render(canvas,s,outW){
+  const H=Math.round(1080*s.ratio),k=outW/1080;canvas.width=outW;canvas.height=Math.round(H*k);
+  const c=canvas.getContext('2d');c.setTransform(k,0,0,k,0,0);c.clearRect(0,0,1080,H);
+  tplById(s.tpl).draw(c,1080,H,s)}
+
+/* ============ স্টোরেজ ============ */
+const LS={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
+let profile=LS.get('cs_profile',{tag:'',contact:'',author:'',logoData:null});
+const isPro=()=>LS.get('cs_pro',false)===true;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)}
+function loadImg(src){return new Promise(r=>{if(!src)return r(null);const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src})}
+function readFile(file,max,type){return new Promise(res=>{const fr=new FileReader();fr.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),cv=document.createElement('canvas');cv.width=Math.round(i.width*k);cv.height=Math.round(i.height*k);cv.getContext('2d').drawImage(i,0,0,cv.width,cv.height);res(cv.toDataURL(type,.82))};i.src=fr.result};fr.readAsDataURL(file)})}
+
+/* ============ স্টেট ============ */
+let S=null;
+function newState(t){return{tpl:t.id,ratio:1,title:t.sample.title||'',text:t.sample.text||'',caption:t.sample.caption||'',author:profile.author||t.sample.author||'',tag:profile.tag||'',contact:profile.contact||'',accent:t.accent,font:t.font||'Hind Siguri',sizeMul:1,showFooter:true,logo:null,photo:null,logoData:profile.logoData,photoData:null}}
+let raf=0;function rerender(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(S)render($('#cv'),S,1080)})}window.rerender=rerender;
+
+/* ============ ভিউ ============ */
+function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===(v==='edit'?'home':v)));window.scrollTo(0,0);
+  if(v==='hist')drawHist();if(v==='pro')drawPro();if(v==='prof')drawProf()}
+$$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
+$('#backBtn').onclick=()=>go('home');
+
+let filter='all';
+function drawChips(){$('#chips').innerHTML=[['all','সব'],['free','ফ্রি'],['pro','প্রো ★']].map(([k,l])=>`<button class="chip ${filter===k?'on':''}" data-k="${k}">${l}</button>`).join('');
+  $$('#chips .chip').forEach(b=>b.onclick=()=>{filter=b.dataset.k;drawChips();drawGrid()})}
+function drawGrid(){const g=$('#tgrid');g.innerHTML='';
+  TPL.filter(t=>filter==='all'||(filter==='pro')===t.pro).forEach(t=>{
+    const d=document.createElement('div');d.className='tcard';
+    const cv=document.createElement('canvas');d.appendChild(cv);
+    d.insertAdjacentHTML('beforeend',`<span class="${t.pro&&!isPro()?'lock':'free'}">${t.pro?(isPro()?'★ প্রো':'🔒 প্রো'):'ফ্রি'}</span><div class="nm">${t.name}</div>`);
+    d.onclick=()=>openEditor(t);g.appendChild(d);
+    const st=newState(t);st.author=t.sample.author||'';st.tag='@yourname';render(cv,st,360)})}
+
+async function openEditor(t,state){
+  S=state||newState(t);
+  if(!state){S.logo=await loadImg(S.logoData)}
+  go('edit');buildPanel();rerender()}
+
+function buildPanel(){
+  const t=tplById(S.tpl);
+  const fonts=['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'];
+  $('#panel').innerHTML=`
+  <div class="f"><label>টাইটেল</label><input type="text" data-k="title" value=""></div>
+  <div class="f"><label>মূল লেখা</label><textarea data-k="text"></textarea><div class="hint">কোনো শব্দ রঙিন করতে *তারকা* চিহ্নের ভেতরে লিখুন। যেমন: *গালিব*</div></div>
+  <div class="f"><label>ক্যাপশন / সাব-লাইন</label><input type="text" data-k="caption"></div>
+  <div class="f"><label>লেখক / বক্তা</label><input type="text" data-k="author"></div>
+  <div class="row"><div class="f"><label>ট্যাগ / পেজের নাম</label><input type="text" data-k="tag"></div><div class="f"><label>ফোন / যোগাযোগ</label><input type="text" data-k="contact"></div></div>
+  <div class="f"><label>নিজের লোগো</label><label class="file"><input type="file" accept="image/*" id="logoF"><span class="btn o sm">লোগো বাছুন</span><span id="logoN">${S.logoData?'লোগো যোগ হয়েছে':''}</span></label></div>
+  <div class="f"><label>ব্যাকগ্রাউন্ড / ফটো</label><label class="file"><input type="file" accept="image/*" id="photoF"><span class="btn o sm">ছবি বাছুন</span><span id="photoN">${S.photoData?'ছবি যোগ হয়েছে':''}</span></label></div>
+  <div class="row"><div class="f"><label>রঙ</label><input type="color" data-k="accent" style="width:100%;height:44px;border:1.5px solid var(--line);border-radius:12px;padding:3px"></div>
+  <div class="f"><label>ফন্ট</label><select data-k="font">${fonts.map(f=>`<option ${f===S.font?'selected':''}>${f}</option>`).join('')}</select></div></div>
+  <div class="f"><label>লেখার সাইজ</label><input type="range" min="0.6" max="1.4" step="0.05" data-k="sizeMul" style="width:100%"></div>
+  <div class="row"><div class="f"><label>সাইজ</label><div class="seg" id="ratioSeg"><button data-r="1" class="${S.ratio===1?'on':''}">১:১</button><button data-r="1.25" class="${S.ratio===1.25?'on':''}">৪:৫</button></div></div>
+  <div class="f"><label>নিচের স্ট্রিপ</label><div class="seg" id="ftSeg"><button data-f="1" class="${S.showFooter?'on':''}">দেখান</button><button data-f="0" class="${!S.showFooter?'on':''}">লুকান</button></div></div></div>
+  ${t.pro&&!isPro()?'<div class="hint" style="margin-bottom:10px">🔒 এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
+  <div class="row"><button class="btn" id="dlN">⬇ নরমাল ডাউনলোড</button><button class="btn gold" id="dlH">⬇ HD ডাউনলোড</button></div>
+  <div class="hint" style="text-align:center;margin-top:8px">দুটোই সম্পূর্ণ ফ্রি • নরমাল: ৭২০px • HD: ২১৬০px</div>`;
+  $$('#panel [data-k]').forEach(el=>{const k=el.dataset.k;el.value=S[k];el.oninput=()=>{S[k]=k==='sizeMul'?+el.value:el.value;rerender()}});
+  $('#logoF').onchange=async e=>{const f=e.target.files[0];if(!f)return;S.logoData=await readFile(f,300,'image/png');S.logo=await loadImg(S.logoData);$('#logoN').textContent=f.name;rerender()};
+  $('#photoF').onchange=async e=>{const f=e.target.files[0];if(!f)return;S.photoData=await readFile(f,1100,'image/jpeg');S.photo=await loadImg(S.photoData);$('#photoN').textContent=f.name;rerender()};
+  $$('#ratioSeg button').forEach(b=>b.onclick=()=>{S.ratio=+b.dataset.r;$$('#ratioSeg button').forEach(x=>x.classList.toggle('on',x===b));rerender()});
+  $$('#ftSeg button').forEach(b=>b.onclick=()=>{S.showFooter=b.dataset.f==='1';$$('#ftSeg button').forEach(x=>x.classList.toggle('on',x===b));rerender()});
+  $('#dlN').onclick=()=>download(false);$('#dlH').onclick=()=>download(true)}
+
+function download(hd){
+  const t=tplById(S.tpl);if(t.pro&&!isPro()){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
+  const out=document.createElement('canvas');render(out,S,hd?2160:720);
+  out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000)},hd?'image/png':'image/jpeg',.9);
+  saveHistory();toast(hd?'HD ছবি ডাউনলোড হচ্ছে ✔':'ছবি ডাউনলোড হচ্ছে ✔')}
+$('#mClose').onclick=()=>$('#modal').classList.remove('on');
+$('#mGo').onclick=()=>{$('#modal').classList.remove('on');go('pro')};
+
+function saveHistory(){
+  const th=document.createElement('canvas');render(th,S,320);
+  const {logo,photo,...rest}=S;
+  let h=LS.get('cs_hist',[]);h.unshift({id:Date.now(),s:rest,thumb:th.toDataURL('image/jpeg',.7)});h=h.slice(0,24);
+  while(h.length&&!LS.set('cs_hist',h))h.pop()}
+function drawHist(){
+  const h=LS.get('cs_hist',[]),box=$('#hlist');
+  if(!h.length){box.innerHTML='<div class="empty">এখনো কোনো কার্ড বানানো হয়নি।<br>কার্ড ডাউনলোড করলে এখানে জমা হবে।</div>';return}
+  box.innerHTML=`<p class="hint" style="margin-bottom:10px">মোট ${h.length}টি কার্ড বানানো হয়েছে</p><div class="hist">${h.map(e=>`<div class="hcard"><img src="${e.thumb}"><div class="m">${tplById(e.s.tpl)?.name||''} • ${new Date(e.id).toLocaleDateString('bn-BD')}</div><div class="b"><button class="btn sm" data-e="${e.id}">এডিট</button><button class="btn sm red" data-d="${e.id}">মুছুন</button></div></div>`).join('')}</div><div style="height:14px"></div><button class="btn o" id="clrH">সব হিস্টরি মুছুন</button>`;
+  $$('[data-e]').forEach(b=>b.onclick=async()=>{const e=h.find(x=>x.id==b.dataset.e);const t=tplById(e.s.tpl);if(!t)return;const st={...e.s,logo:await loadImg(e.s.logoData),photo:await loadImg(e.s.photoData)};openEditor(t,st)});
+  $$('[data-d]').forEach(b=>b.onclick=()=>{LS.set('cs_hist',h.filter(x=>x.id!=b.dataset.d));drawHist()});
+  $('#clrH').onclick=()=>{if(confirm('সব হিস্টরি মুছে ফেলবেন?')){LS.set('cs_hist',[]);drawHist()}}}
+
+function drawPro(){
+  const p=isPro(),v=$('#v-pro');
+  v.innerHTML=`<div class="pro"><div style="font-size:42px">👑</div><h2 style="margin:6px 0">প্রো প্ল্যান</h2><div class="pr">৳${CFG.price}</div><div>একবার দিন, সারা জীবন ব্যবহার করুন</div>
+  <ul><li>সব আধুনিক প্রো ডিজাইন আনলক</li><li>নতুন ডিজাইন যোগ হলে ফ্রি আপডেট</li><li>নরমাল ও HD ডাউনলোড (ফ্রি ইউজারদের জন্যও ফ্রি)</li><li>লাইফটাইম — কোনো মাসিক খরচ নেই</li></ul>
+  ${p?'<div class="btn gold" style="cursor:default">✔ আপনার প্রো সক্রিয় আছে</div>':'<div class="hint" style="color:#d9c98f">নিচের ধাপ অনুসরণ করুন</div>'}</div>
+  ${p?'':`<div class="steps"><b>কিভাবে প্রো নেবেন:</b><br>১. ${CFG.payMethod} এ <code>${CFG.payNumber}</code> নম্বরে <b>${CFG.price} টাকা</b> পাঠান।<br>২. <a href="${CFG.contactLink}" target="_blank">এখানে ক্লিক করে</a> ট্রানজেকশন আইডি পাঠান।<br>৩. আমরা আপনাকে একটি প্রো কোড দেব — নিচে বসিয়ে আনলক করুন।
+  <div class="f" style="margin-top:12px"><input type="text" id="code" placeholder="প্রো কোড লিখুন"></div><button class="btn gold" id="unlock">আনলক করুন</button></div>`}
+  <div class="steps"><b>প্রো ডিজাইনগুলো:</b> ${TPL.filter(t=>t.pro).map(t=>t.name).join(' • ')}</div>`;
+  const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase();if(CFG.proCodes.map(x=>x.toUpperCase()).includes(c)){LS.set('cs_pro',true);syncPro();toast('প্রো আনলক হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
+function syncPro(){$('#proBadge').classList.toggle('on',isPro());drawGrid()}
+
+function drawProf(){
+  const v=$('#v-prof');
+  v.innerHTML=`<h2>আমার প্রোফাইল</h2><div class="panel"><p class="hint" style="margin-bottom:12px">এখানে একবার তথ্য দিলে প্রতিটি নতুন কার্ডে নিজে থেকে বসে যাবে।</p>
+  <div class="f"><label>ডিফল্ট লেখক / নাম</label><input type="text" id="pa"></div>
+  <div class="f"><label>ট্যাগ / পেজের নাম</label><input type="text" id="pt"></div>
+  <div class="f"><label>ফোন / যোগাযোগ</label><input type="text" id="pc"></div>
+  <div class="f"><label>লোগো</label><label class="file"><input type="file" accept="image/*" id="pl"><span class="btn o sm">লোগো বাছুন</span><span id="pln">${profile.logoData?'লোগো সেভ আছে':''}</span></label></div>
+  <button class="btn" id="ps">সেভ করুন</button></div>
+  <div class="steps" style="margin-top:14px">সব তথ্য শুধু আপনার ব্রাউজারেই থাকে, কোথাও আপলোড হয় না।</div>`;
+  $('#pa').value=profile.author||'';$('#pt').value=profile.tag||'';$('#pc').value=profile.contact||'';
+  $('#pl').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.logoData=await readFile(f,300,'image/png');$('#pln').textContent=f.name};
+  $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔')}}
+
+/* ============ শুরু ============ */
+(async function init(){
+  document.title=CFG.appName+' - ফটো কার্ড ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
+  try{await Promise.all(['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'].map(f=>document.fonts.load(`700 40px "${f}"`,'অআক')))}catch(e){}
+  drawChips();syncPro();
+})();
+</script>
+</body>
+</html>
