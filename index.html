@@ -119,7 +119,8 @@ main{padding:12px}
 .tabs button{flex:1;border:0;background:none;padding:8px 2px;font:inherit;font-size:13px;font-weight:600;color:var(--mut);border-radius:9px;cursor:pointer}
 .tabs button.on{background:#fff;color:var(--g);box-shadow:0 1px 4px rgba(0,0,0,.1)}
 .pane{display:none}.pane.on{display:block}
-.dl{position:sticky;bottom:calc(64px + env(safe-area-inset-bottom));background:#fff;padding-top:8px;margin-top:6px;border-top:1px solid var(--line)}
+.dl{position:static;clear:both;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.dl .row{display:flex;gap:8px}.dl .btn{flex:1;min-width:0;white-space:nowrap;padding:12px 6px}
 nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 </style>
 </head>
@@ -583,8 +584,8 @@ function buildPanel(){
   </div>
   <div class="dl">
   ${t.pro&&!isPro()?'<div class="hint" style="margin-bottom:10px">🔒 এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
-  <div class="row"><button class="btn" id="dlN">⬇ নরমাল ডাউনলোড</button><button class="btn gold" id="dlH">⬇ HD ডাউনলোড</button></div>
-  <div class="hint" style="text-align:center;margin-top:6px">দুটোই ফ্রি • নরমাল: ৭২০px • HD: ২১৬০px</div></div>`;
+  <div class="row"><button class="btn" id="dlN">⬇ নরমাল</button><button class="btn gold" id="dlH">⬇ HD</button></div>
+  <div class="hint" style="text-align:center;margin-top:6px">দুটোই ফ্রি • নরমাল ৭২০px • HD ২১৬০px</div></div>`;
   $$('#tabs button').forEach(b=>b.onclick=()=>{$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));$$('.pane').forEach(q=>q.classList.toggle('on',q.dataset.p===b.dataset.t))});
   // সাধারণ ইনপুট
   $$('#panel [data-k]').forEach(el=>{const k=el.dataset.k;el.value=S[k];el.oninput=()=>{S[k]=k==='sizeMul'?+el.value:el.value;rerender()}});
