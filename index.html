@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f6b3a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -89,6 +89,38 @@ nav button.on{color:var(--g);font-weight:700}
 .mbox h3{margin-bottom:8px}.mbox p{color:var(--mut);margin-bottom:16px;font-size:14px}
 .toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;z-index:60;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1}
+
+/* ===== অ্যাপ-স্টাইল কমপ্যাক্ট + ওভারফ্লো ফিক্স ===== */
+html,body{overflow-x:hidden;width:100%}
+.editor{grid-template-columns:minmax(0,1fr)!important;gap:10px}
+.editor>*,.panel,.prev,.f,.row>*{min-width:0}
+.scn,.chips,.tb{max-width:100%}
+.panel{padding:10px 12px}
+.f{margin-bottom:9px}
+.f>label{font-size:12px;margin-bottom:3px}
+.hint{font-size:11px}
+.btn{padding:11px 12px;font-size:14px;border-radius:12px}
+.btn.sm{padding:7px 10px;font-size:12px}
+.row{gap:8px}
+.seg button{padding:8px 4px;font-size:13px}
+.sw{width:26px;height:26px}
+.tb{gap:6px;margin-top:6px}
+.rt{min-height:84px}
+.scn button{width:58px}.scn button.none{height:58px}
+h2{font-size:16px;margin:2px 0 10px}
+header{padding-top:calc(10px + env(safe-area-inset-top));padding-bottom:10px}
+header h1{font-size:18px}
+.tcard .nm{padding:7px 10px;font-size:13px}
+main{padding:12px}
+.back{margin-bottom:6px;font-size:14px}
+.prev{padding:8px}
+#cv{max-height:32vh;max-height:32dvh}
+.tabs{display:flex;gap:6px;margin-bottom:10px;background:#eef2ee;padding:4px;border-radius:12px}
+.tabs button{flex:1;border:0;background:none;padding:8px 2px;font:inherit;font-size:13px;font-weight:600;color:var(--mut);border-radius:9px;cursor:pointer}
+.tabs button.on{background:#fff;color:var(--g);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.pane{display:none}.pane.on{display:block}
+.dl{position:sticky;bottom:calc(64px + env(safe-area-inset-bottom));background:#fff;padding-top:8px;margin-top:6px;border-top:1px solid var(--line)}
+nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 </style>
 </head>
 <body>
@@ -525,6 +557,8 @@ function buildPanel(){
   const t=tplById(S.tpl);saved=null;
   const fonts=['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'];
   $('#panel').innerHTML=`
+<div class="tabs" id="tabs"><button class="on" data-t="0">✍️ লেখা</button><button data-t="1">🖼 ছবি</button><button data-t="2">🎨 ডিজাইন</button></div>
+  <div class="pane on" data-p="0">
   <div class="f"><label>টাইটেল</label><input type="text" data-k="title"></div>
   <div class="f"><label>মূল লেখা</label><div id="rt" class="rt" contenteditable="true" spellcheck="false"></div>
     <div class="tb">${SW.map(c=>`<button type="button" class="sw" data-c="${c}" style="background:${c}"></button>`).join('')}<input type="color" id="cc" value="#e53935" title="নিজের পছন্দের রঙ"><button type="button" class="sw" id="rst" title="রঙ মুছুন">↺</button></div>
@@ -532,19 +566,26 @@ function buildPanel(){
   <div class="f"><label>ক্যাপশন / সাব-লাইন</label><input type="text" data-k="caption"></div>
   <div class="f"><label>লেখক / বক্তা</label><input type="text" data-k="author"></div>
   <div class="row"><div class="f"><label>ট্যাগ / পেজের নাম</label><input type="text" data-k="tag"></div><div class="f"><label>ফোন / যোগাযোগ</label><input type="text" data-k="contact"></div></div>
-  <div class="row"><div class="f"><label>পুরো লেখার রঙ</label><div class="row" style="align-items:center"><input type="color" class="cin" id="tc" value="#111111"><button type="button" class="btn o sm" id="tcAuto">অটো</button></div></div>
-  <div class="f"><label>কার্ডের রঙ</label><input type="color" class="cin" data-k="accent" style="width:100%"></div></div>
-  <div class="f"><label>লেখার পেছনে বক্স</label><div class="seg" id="tbSeg"><button data-v="0">নেই</button><button data-v="1">ডার্ক</button><button data-v="2">লাইট</button></div></div>
+  </div>
+  <div class="pane" data-p="1">
   <div class="f"><label>ব্যাকগ্রাউন্ড সিনারি / ছবি</label><div class="scn" id="scn"></div>
     <label class="file"><input type="file" accept="image/*" id="photoF"><span class="btn o sm">📷 নিজের ছবি</span><span id="photoN">${S.photoData?'ছবি যোগ হয়েছে':''}</span></label></div>
   <div class="f"><label>নিজের লোগো</label><label class="file"><input type="file" accept="image/*" id="logoF"><span class="btn o sm">লোগো বাছুন</span><span id="logoN">${S.logoData?'লোগো যোগ হয়েছে':''}</span></label></div>
+  </div>
+  <div class="pane" data-p="2">
+  <div class="row"><div class="f"><label>পুরো লেখার রঙ</label><div class="row" style="align-items:center"><input type="color" class="cin" id="tc" value="#111111"><button type="button" class="btn o sm" id="tcAuto">অটো</button></div></div>
+  <div class="f"><label>কার্ডের রঙ</label><input type="color" class="cin" data-k="accent" style="width:100%"></div></div>
+  <div class="f"><label>লেখার পেছনে বক্স</label><div class="seg" id="tbSeg"><button data-v="0">নেই</button><button data-v="1">ডার্ক</button><button data-v="2">লাইট</button></div></div>
   <div class="row"><div class="f"><label>ফন্ট</label><select data-k="font">${fonts.map(f=>`<option ${f===S.font?'selected':''}>${f}</option>`).join('')}</select></div>
   <div class="f"><label>লেখার সাইজ</label><input type="range" min="0.6" max="1.4" step="0.05" data-k="sizeMul" style="width:100%;margin-top:10px"></div></div>
   <div class="row"><div class="f"><label>কার্ডের মাপ</label><div class="seg" id="ratioSeg"><button data-r="1">১:১</button><button data-r="1.25">৪:৫</button></div></div>
   <div class="f"><label>নিচের স্ট্রিপ</label><div class="seg" id="ftSeg"><button data-f="1">দেখান</button><button data-f="0">লুকান</button></div></div></div>
+  </div>
+  <div class="dl">
   ${t.pro&&!isPro()?'<div class="hint" style="margin-bottom:10px">🔒 এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
   <div class="row"><button class="btn" id="dlN">⬇ নরমাল ডাউনলোড</button><button class="btn gold" id="dlH">⬇ HD ডাউনলোড</button></div>
-  <div class="hint" style="text-align:center;margin-top:8px">দুটোই সম্পূর্ণ ফ্রি • নরমাল: ৭২০px • HD: ২১৬০px</div>`;
+  <div class="hint" style="text-align:center;margin-top:6px">দুটোই ফ্রি • নরমাল: ৭২০px • HD: ২১৬০px</div></div>`;
+  $$('#tabs button').forEach(b=>b.onclick=()=>{$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));$$('.pane').forEach(q=>q.classList.toggle('on',q.dataset.p===b.dataset.t))});
   // সাধারণ ইনপুট
   $$('#panel [data-k]').forEach(el=>{const k=el.dataset.k;el.value=S[k];el.oninput=()=>{S[k]=k==='sizeMul'?+el.value:el.value;rerender()}});
   // রিচ টেক্সট
