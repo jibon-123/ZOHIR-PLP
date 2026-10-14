@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="format-detection" content="telephone=no">
-<title>Zᴏʜɪʀ | PLP - ফটো কার্ড ও নিউজ কার্ড মেকার</title>
+<title>কার্ড স্টুডিও - ফটো কার্ড ও নিউজ কার্ড মেকার</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;700;800&family=Baloo+Da+2:wght@500;800&family=Hind+Siguri:wght@400;600;700&family=Noto+Serif+Bengali:wght@500;800&family=Tiro+Bangla&display=swap" rel="stylesheet">
@@ -125,7 +125,7 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 </style>
 </head>
 <body>
-<header><h1><span id="appName">Zᴏʜɪʀ | PLP</span></h1><span class="badge" id="proBadge">★ PRO</span></header>
+<header><h1>🎴 <span id="appName">কার্ড স্টুডিও</span></h1><span class="badge" id="proBadge">★ PRO</span></header>
 <main>
   <section class="view on" id="v-home">
     <h2>টেমপ্লেট বেছে নিন</h2>
@@ -142,6 +142,7 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
   <section class="view" id="v-hist"><h2>আমার তৈরি কার্ড</h2><div id="hlist"></div></section>
   <section class="view" id="v-pro"></section>
   <section class="view" id="v-prof"></section>
+  <section class="view" id="v-admin"></section>
 </main>
 <nav>
   <button data-go="home" class="on"><i>🏠</i>হোম</button>
@@ -151,22 +152,21 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 </nav>
 <div class="modal" id="modal"><div class="mbox"><h3>🔒 প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকায় লাইফটাইম।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
 <div class="modal" id="privM"><div class="mbox"><h3>🔔 গোপনীয়তা নোটিশ</h3>
-<p style="font-size:14px;line-height:1.6;text-align:left">কেউ এই অ্যাপে ঢুকলে বা কার্ড ডাউনলোড করলে আমাদের টেলিগ্রামে একটি <b>স্বয়ংক্রিয় নোটিফিকেশন</b> যায়। এতে শুধু থাকে: কোন টেমপ্লেট, নরমাল/HD, প্রো কি না, মোবাইল/ডেস্কটপ ও সময়।<br><b>আপনার নাম, ফোন নম্বর বা কার্ডের লেখা পাঠানো হয় না।</b><span id="privPhoto"> তবে ডাউনলোড করা কার্ডের ছবিটি আমাদের কাছে পাঠানো হতে পারে।</span><br>এটি বন্ধ করতে চাইলে নিচে "না" চাপুন; পরে প্রোফাইল পেজ থেকেও বদলানো যাবে।</p>
-<button class="btn" id="privYes">ঠিক আছে</button><div style="height:8px"></div><button class="btn o" id="privNo">না, পাঠাবেন না</button></div></div>
+<p style="font-size:14px;line-height:1.6;text-align:left">অ্যাপের মালিক জানতে পারেন <b>কতজন ঢুকেছে, কতজন এখন অনলাইনে আছে</b> এবং কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। এগুলো শুধু সংখ্যা হিসেবে জমা হয়।<br><b>আপনার নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি কখনো পাঠানো হয় না।</b><br>চাইলে নিচে "না" চাপুন; পরে প্রোফাইল পেজ থেকেও বদলানো যাবে।</p>
+<button class="btn" id="privYes">ঠিক আছে</button><div style="height:8px"></div><button class="btn o" id="privNo">না, গণনা করবেন না</button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
-  appName:'Zᴏʜɪʀ | PLP',
-  tgToken:'8945443978:AAFEwa8EyQY04DdQTq7eS5Xqfpdk-n2TWQM
-  tgChat:'-1004419035297
-  notifyPhoto:false, // true করলে ডাউনলোড করা কার্ডের ছবিও আপনার টেলিগ্রামে যাবে
+  appName:'কার্ড স্টুডিও',
+  dbUrl:'',          // Firebase Realtime Database লিংক (ফাঁকা থাকলে অ্যাডমিন প্যানেল ও গণনা বন্ধ)
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — নিজে একটা বসান
   price:200,
   payMethod:'বিকাশ / নগদ (Send Money)',
-  payNumber:'01856591506',
-  contactLink:'https://wa.me/8801856591506',
-  proCodes:['ZOHIR630'],
+  payNumber:'01XXXXXXXXX',
+  contactLink:'https://wa.me/8801XXXXXXXXX',
+  proCodes:['ZOHIR200'],
   // নিজের ছবির টেমপ্লেট (README দেখুন):
   // {id:'my1',name:'আমার ডিজাইন',pro:false,src:'templates/my1.png',box:{x:90,y:300,w:900,h:500},color:'#111',accent:'#c00',align:'center',size:80}
   imageTemplates:[]
@@ -619,7 +619,7 @@ function buildPanel(){
 function download(hd){
   const t=tplById(S.tpl);if(t.pro&&!isPro()){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
   const out=document.createElement('canvas');render(out,S,hd?2160:720);
-  out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);notify('download',{tpl:t.name,hd:!!hd,pro:!!t.pro},b)},hd?'image/png':'image/jpeg',.9);
+  out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);notify('download',{id:t.id,tpl:t.name,hd:!!hd,pro:!!t.pro})},hd?'image/png':'image/jpeg',.9);
   saveHistory();toast(hd?'HD ছবি ডাউনলোড হচ্ছে ✔':'ছবি ডাউনলোড হচ্ছে ✔')}
 $('#mClose').onclick=()=>$('#modal').classList.remove('on');
 $('#mGo').onclick=()=>{$('#modal').classList.remove('on');go('pro')};
@@ -662,49 +662,96 @@ function drawProf(){
   $('#pl').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.logoData=await readFile(f,300,'image/png');$('#pln').textContent=f.name};
   $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔')}}
 
-/* ============ টেলিগ্রাম নোটিফিকেশন (গ্রাহকের অনুমতি সহ) ============ */
+/* ============ গণনা ও অ্যাডমিন প্যানেল (গ্রাহকের অনুমতি সহ) ============ */
+const dbOn=()=>!!CFG.dbUrl;
+const dbu=p=>CFG.dbUrl.replace(/\/$/,'')+'/'+p+'.json';
+const dbPut=(p,v)=>fetch(dbu(p),{method:'PUT',body:JSON.stringify(v)}).catch(()=>{});
+const dbGet=(p,q)=>fetch(dbu(p)+(q||'')).then(r=>r.json()).catch(()=>null);
+const INC={'.sv':{increment:1}};
+const hx=x=>String(x??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const dayKey=(d=Date.now())=>new Date(d+6*36e5).toISOString().slice(0,10); // বাংলাদেশ সময়
+const isAdmin=()=>LS.get('cs_admin',false)===true;
 function consent(){return LS.get('cs_notify','')}
-function vid(){let v=LS.get('cs_vid','');if(!v){v='v'+Math.random().toString(36).slice(2,8);LS.set('cs_vid',v)}return v}
-const TG_T={visit:'👀 নতুন ভিজিট',download:'🖼 কার্ড ডাউনলোড',pro_on:'⭐ প্রো চালু হয়েছে',pro_off:'⏸ প্রো বন্ধ করা হয়েছে'};
-const tgOn=()=>!!(CFG.tgToken&&CFG.tgChat);
-const tgEsc=x=>String(x??'').slice(0,80).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-function notify(type,extra,blob){
-  if(!tgOn()||consent()!=='yes')return;
+function vid(){let v=LS.get('cs_vid','');if(!v){v='v'+Math.random().toString(36).slice(2,9);LS.set('cs_vid',v)}return v}
+function canTrack(){return dbOn()&&consent()==='yes'&&!isAdmin()}
+function notify(type,d){
+  if(!canTrack())return;d=d||{};
   try{
-    if(type==='visit'){if(sessionStorage.getItem('cs_seen'))return;sessionStorage.setItem('cs_seen','1')}
-    const d=extra||{};
-    const dev=/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)?'মোবাইল':'ডেস্কটপ';
-    const L=[`<b>${TG_T[type]||type}</b> — ${tgEsc(CFG.appName)}`];
-    if(d.tpl)L.push('টেমপ্লেট: '+tgEsc(d.tpl));
-    if(type==='download')L.push('কোয়ালিটি: '+(d.hd?'HD':'নরমাল')+(d.pro?' • প্রো ডিজাইন':''));
-    L.push('ডিভাইস: '+dev+' • ভিজিটর: '+vid());
-    L.push(new Date().toLocaleString('bn-BD',{timeZone:'Asia/Dhaka'}));
-    const fd=new FormData();fd.append('chat_id',CFG.tgChat);fd.append('parse_mode','HTML');
-    let method='sendMessage';
-    if(blob&&CFG.notifyPhoto){method='sendPhoto';fd.append('caption',L.join('\n'));fd.append('photo',blob,'card.'+(blob.type==='image/png'?'png':'jpg'))}
-    else fd.append('text',L.join('\n'));
-    fetch('https://api.telegram.org/bot'+CFG.tgToken+'/'+method,{method:'POST',body:fd}).catch(()=>{})
+    if(type==='visit'){
+      if(sessionStorage.getItem('cs_seen'))return;sessionStorage.setItem('cs_seen','1');
+      const day=dayKey();
+      dbPut('stats/total',INC);dbPut('stats/days/'+day,INC);
+      dbPut('uniq/'+vid(),true);dbPut('dayuniq/'+day+'/'+vid(),true);
+    }else if(type==='download'){
+      dbPut('stats/'+(d.hd?'dlHD':'dlNormal'),INC);
+      const id=String(d.id||'x').replace(/[^\w-]/g,'_');
+      dbPut('stats/tpl/'+id,INC);dbPut('stats/tplname/'+id,d.tpl||id);
+    }else if(type==='pro_on')dbPut('stats/proOn',INC);
+    else if(type==='pro_off')dbPut('stats/proOff',INC);
   }catch(e){}
 }
+let presenceOn=false;
+function startPresence(){
+  if(presenceOn||!canTrack())return;presenceOn=true;
+  const ping=()=>{if(canTrack())dbPut('online/'+vid(),{t:Date.now()})};
+  ping();setInterval(()=>{if(!document.hidden)ping()},25000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)ping()});
+  window.addEventListener('pagehide',()=>{try{fetch(dbu('online/'+vid()),{method:'DELETE',keepalive:true})}catch(e){}});
+}
 function initPrivacy(){
-  if(!tgOn())return;
-  $('#privPhoto').style.display=CFG.notifyPhoto?'inline':'none';
-  const set=v=>{LS.set('cs_notify',v);$('#privM').classList.remove('on');if(v==='yes')notify('visit')};
+  if(!dbOn()||location.hash==='#admin')return;
+  const set=v=>{LS.set('cs_notify',v);$('#privM').classList.remove('on');if(v==='yes'){notify('visit');startPresence()}};
   $('#privYes').onclick=()=>set('yes');$('#privNo').onclick=()=>set('no');
-  if(!consent())$('#privM').classList.add('on');else notify('visit')
+  if(!consent())$('#privM').classList.add('on');else{notify('visit');startPresence()}
 }
 function addPrivacy(){
-  if(!tgOn())return;
+  if(!dbOn())return;
   const on=consent()==='yes',v=$('#v-prof');
-  v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>🔔 গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">কেউ অ্যাপে ঢুকলে বা কার্ড ডাউনলোড করলে শপ মালিকের টেলিগ্রামে একটি নোটিফিকেশন যায় (টেমপ্লেটের নাম, নরমাল/HD, ডিভাইস, সময়)। নাম, ফোন নম্বর বা কার্ডের লেখা পাঠানো হয় না।${CFG.notifyPhoto?' ডাউনলোড করা কার্ডের ছবি পাঠানো হতে পারে।':''}<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'নোটিফিকেশন বন্ধ করুন':'নোটিফিকেশন চালু করুন'}</button></div>`);
-  $('#privTg').onclick=()=>{LS.set('cs_notify',on?'no':'yes');if(!on)notify('visit');toast(on?'বন্ধ করা হয়েছে':'চালু করা হয়েছে');go('prof')}
+  v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>🔔 গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">অ্যাপের মালিক শুধু সংখ্যা দেখতে পান: কতজন ঢুকেছে, কতজন অনলাইনে আছে, কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না।<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'গণনা বন্ধ করুন':'গণনা চালু করুন'}</button></div>`);
+  $('#privTg').onclick=()=>{LS.set('cs_notify',on?'no':'yes');if(!on){notify('visit');startPresence()}toast(on?'বন্ধ করা হয়েছে':'চালু করা হয়েছে');go('prof')}
 }
+
+/* ----- অ্যাডমিন প্যানেল: সাইটের ঠিকানার শেষে #admin লিখে খুলুন ----- */
+let admTimer=null;
+function openAdmin(){
+  if(!dbOn()){toast('আগে CFG-এ dbUrl বসান');return}
+  if(!CFG.adminPass){toast('আগে CFG-এ adminPass বসান');return}
+  if(!isAdmin()){const p=prompt('অ্যাডমিন পাসওয়ার্ড দিন');if(p!==CFG.adminPass){toast('পাসওয়ার্ড ভুল');return}LS.set('cs_admin',true)}
+  go('admin');drawAdmin();clearInterval(admTimer);
+  admTimer=setInterval(()=>{if($('#v-admin').classList.contains('on'))drawAdmin();else clearInterval(admTimer)},10000);
+}
+async function drawAdmin(){
+  const v=$('#v-admin');
+  if(!v.dataset.ready){v.innerHTML='<div class="empty">লোড হচ্ছে…</div>';v.dataset.ready='1'}
+  const today=dayKey();
+  let [on,st,uq,du]=await Promise.all([dbGet('online'),dbGet('stats'),dbGet('uniq','?shallow=true'),dbGet('dayuniq/'+today,'?shallow=true')]);
+  const now=Date.now(),o=on||{};let online=0;
+  Object.keys(o).forEach(k=>{const t=o[k]&&o[k].t||0;if(now-t<60000)online++;else if(now-t>300000)fetch(dbu('online/'+k),{method:'DELETE'}).catch(()=>{})});
+  st=st||{};
+  const days=st.days||{},n=x=>Number(x)||0,bn=x=>n(x).toLocaleString('bn-BD');
+  const last=[...Array(7)].map((_,i)=>{const k=dayKey(now-(6-i)*864e5);return{k,c:n(days[k])}});
+  const mx=Math.max(1,...last.map(d=>d.c));
+  const tp=Object.keys(st.tpl||{}).map(k=>({name:(st.tplname||{})[k]||k,c:n(st.tpl[k])})).sort((a,b)=>b.c-a.c).slice(0,8);
+  const box=(l,x,c)=>`<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:700;color:${c||'var(--g)'}">${x}</div><div class="hint">${l}</div></div>`;
+  v.innerHTML=`<h2>📊 অ্যাডমিন প্যানেল</h2>
+  <div style="background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border-radius:16px;padding:16px;text-align:center;margin-bottom:10px"><div style="font-size:40px;font-weight:700">🟢 ${bn(online)}</div><div>এখন অনলাইনে আছে</div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+   ${box('আজকের ভিজিট',bn(days[today]))}${box('আজ আলাদা মানুষ',bn(du?Object.keys(du).length:0))}
+   ${box('মোট ভিজিট',bn(st.total))}${box('মোট আলাদা মানুষ',bn(uq?Object.keys(uq).length:0))}
+   ${box('নরমাল ডাউনলোড',bn(st.dlNormal))}${box('HD ডাউনলোড',bn(st.dlHD))}
+   ${box('প্রো চালু হয়েছে',bn(st.proOn),'#b8860b')}${box('প্রো বন্ধ হয়েছে',bn(st.proOff),'#777')}
+  </div>
+  <div class="panel" style="margin-bottom:10px"><b>গত ৭ দিনের ভিজিট</b><div style="display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:10px">${last.map(d=>`<div style="flex:1;text-align:center;font-size:10px"><div style="background:var(--g);border-radius:4px 4px 0 0;height:${Math.max(3,d.c/mx*64)}px"></div>${bn(d.c)}<br>${d.k.slice(8)}</div>`).join('')}</div></div>
+  <div class="panel"><b>সবচেয়ে বেশি ডাউনলোড হওয়া টেমপ্লেট</b>${tp.length?tp.map((t,i)=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px"><span>${i+1}. ${hx(t.name)}</span><b>${bn(t.c)}</b></div>`).join(''):'<div class="hint" style="margin-top:8px">এখনো কোনো ডাউনলোড নেই</div>'}</div>
+  <p class="hint" style="text-align:center;margin-top:10px">প্রতি ১০ সেকেন্ডে নিজে নিজে আপডেট হয় • "অনলাইন" মানে গত ১ মিনিটে সক্রিয়</p>`;
+}
+window.addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin()});
 
 /* ============ শুরু ============ */
 (async function init(){
-  document.title=CFG.appName+' - Zᴏʜɪʀ | PLP ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
+  document.title=CFG.appName+' - ফটো কার্ড ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
   try{await Promise.all(['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'].map(f=>document.fonts.load(`700 40px "${f}"`,'অআক')))}catch(e){}
-  drawChips();syncPro();initPrivacy();
+  drawChips();syncPro();initPrivacy();if(location.hash==='#admin')openAdmin();
 })();
 </script>
 </body>
