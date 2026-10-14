@@ -150,12 +150,18 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
   <button data-go="prof"><i>👤</i>প্রোফাইল</button>
 </nav>
 <div class="modal" id="modal"><div class="mbox"><h3>🔒 প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকায় লাইফটাইম।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
+<div class="modal" id="privM"><div class="mbox"><h3>🔔 গোপনীয়তা নোটিশ</h3>
+<p style="font-size:14px;line-height:1.6;text-align:left">কেউ এই অ্যাপে ঢুকলে বা কার্ড ডাউনলোড করলে আমাদের টেলিগ্রামে একটি <b>স্বয়ংক্রিয় নোটিফিকেশন</b> যায়। এতে শুধু থাকে: কোন টেমপ্লেট, নরমাল/HD, প্রো কি না, মোবাইল/ডেস্কটপ ও সময়।<br><b>আপনার নাম, ফোন নম্বর বা কার্ডের লেখা পাঠানো হয় না।</b><span id="privPhoto"> তবে ডাউনলোড করা কার্ডের ছবিটি আমাদের কাছে পাঠানো হতে পারে।</span><br>এটি বন্ধ করতে চাইলে নিচে "না" চাপুন; পরে প্রোফাইল পেজ থেকেও বদলানো যাবে।</p>
+<button class="btn" id="privYes">ঠিক আছে</button><div style="height:8px"></div><button class="btn o" id="privNo">না, পাঠাবেন না</button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
   appName:'Zᴏʜɪʀ | PLP',
+  tgToken:'8945443978:AAFEwa8EyQY04DdQTq7eS5Xqfpdk-n2TWQM
+  tgChat:'-1004419035297
+  notifyPhoto:false, // true করলে ডাউনলোড করা কার্ডের ছবিও আপনার টেলিগ্রামে যাবে
   price:200,
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -528,7 +534,7 @@ let raf=0;function rerender(){cancelAnimationFrame(raf);raf=requestAnimationFram
 
 /* ============ ভিউ ============ */
 function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===(v==='edit'?'home':v)));window.scrollTo(0,0);
-  if(v==='hist')drawHist();if(v==='pro')drawPro();if(v==='prof')drawProf()}
+  if(v==='hist')drawHist();if(v==='pro')drawPro();if(v==='prof'){drawProf();addPrivacy()}}
 $$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
 $('#backBtn').onclick=()=>go('home');
 
@@ -613,7 +619,7 @@ function buildPanel(){
 function download(hd){
   const t=tplById(S.tpl);if(t.pro&&!isPro()){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
   const out=document.createElement('canvas');render(out,S,hd?2160:720);
-  out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000)},hd?'image/png':'image/jpeg',.9);
+  out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);notify('download',{tpl:t.name,hd:!!hd,pro:!!t.pro},b)},hd?'image/png':'image/jpeg',.9);
   saveHistory();toast(hd?'HD ছবি ডাউনলোড হচ্ছে ✔':'ছবি ডাউনলোড হচ্ছে ✔')}
 $('#mClose').onclick=()=>$('#modal').classList.remove('on');
 $('#mGo').onclick=()=>{$('#modal').classList.remove('on');go('pro')};
@@ -639,8 +645,8 @@ function drawPro(){
   ${p?'':`<div class="steps"><b>কিভাবে প্রো নেবেন:</b><br>১. ${CFG.payMethod} এ <code>${CFG.payNumber}</code> নম্বরে <b>${CFG.price} টাকা</b> পাঠান।<br>২. <a href="${CFG.contactLink}" target="_blank">এখানে ক্লিক করে</a> ট্রানজেকশন আইডি পাঠান।<br>৩. আমরা আপনাকে একটি প্রো কোড দেব — নিচে বসিয়ে আনলক করুন।
   <div class="f" style="margin-top:12px"><input type="text" id="code" placeholder="প্রো কোড লিখুন"></div><button class="btn gold" id="unlock">আনলক করুন</button></div>`}
   <div class="steps"><b>প্রো ডিজাইনগুলো:</b> ${TPL.filter(t=>t.pro).map(t=>t.name).join(' • ')}</div>`;
-  const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);syncPro();toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
-  const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase();if(CFG.proCodes.map(x=>x.toUpperCase()).includes(c)){LS.set('cs_pro',true);syncPro();toast('প্রো আনলক হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
+  const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);syncPro();notify('pro_off');toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
+  const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase();if(CFG.proCodes.map(x=>x.toUpperCase()).includes(c)){LS.set('cs_pro',true);syncPro();notify('pro_on');toast('প্রো আনলক হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
 function syncPro(){$('#proBadge').classList.toggle('on',isPro());drawGrid()}
 
 function drawProf(){
@@ -656,11 +662,49 @@ function drawProf(){
   $('#pl').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.logoData=await readFile(f,300,'image/png');$('#pln').textContent=f.name};
   $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔')}}
 
+/* ============ টেলিগ্রাম নোটিফিকেশন (গ্রাহকের অনুমতি সহ) ============ */
+function consent(){return LS.get('cs_notify','')}
+function vid(){let v=LS.get('cs_vid','');if(!v){v='v'+Math.random().toString(36).slice(2,8);LS.set('cs_vid',v)}return v}
+const TG_T={visit:'👀 নতুন ভিজিট',download:'🖼 কার্ড ডাউনলোড',pro_on:'⭐ প্রো চালু হয়েছে',pro_off:'⏸ প্রো বন্ধ করা হয়েছে'};
+const tgOn=()=>!!(CFG.tgToken&&CFG.tgChat);
+const tgEsc=x=>String(x??'').slice(0,80).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function notify(type,extra,blob){
+  if(!tgOn()||consent()!=='yes')return;
+  try{
+    if(type==='visit'){if(sessionStorage.getItem('cs_seen'))return;sessionStorage.setItem('cs_seen','1')}
+    const d=extra||{};
+    const dev=/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)?'মোবাইল':'ডেস্কটপ';
+    const L=[`<b>${TG_T[type]||type}</b> — ${tgEsc(CFG.appName)}`];
+    if(d.tpl)L.push('টেমপ্লেট: '+tgEsc(d.tpl));
+    if(type==='download')L.push('কোয়ালিটি: '+(d.hd?'HD':'নরমাল')+(d.pro?' • প্রো ডিজাইন':''));
+    L.push('ডিভাইস: '+dev+' • ভিজিটর: '+vid());
+    L.push(new Date().toLocaleString('bn-BD',{timeZone:'Asia/Dhaka'}));
+    const fd=new FormData();fd.append('chat_id',CFG.tgChat);fd.append('parse_mode','HTML');
+    let method='sendMessage';
+    if(blob&&CFG.notifyPhoto){method='sendPhoto';fd.append('caption',L.join('\n'));fd.append('photo',blob,'card.'+(blob.type==='image/png'?'png':'jpg'))}
+    else fd.append('text',L.join('\n'));
+    fetch('https://api.telegram.org/bot'+CFG.tgToken+'/'+method,{method:'POST',body:fd}).catch(()=>{})
+  }catch(e){}
+}
+function initPrivacy(){
+  if(!tgOn())return;
+  $('#privPhoto').style.display=CFG.notifyPhoto?'inline':'none';
+  const set=v=>{LS.set('cs_notify',v);$('#privM').classList.remove('on');if(v==='yes')notify('visit')};
+  $('#privYes').onclick=()=>set('yes');$('#privNo').onclick=()=>set('no');
+  if(!consent())$('#privM').classList.add('on');else notify('visit')
+}
+function addPrivacy(){
+  if(!tgOn())return;
+  const on=consent()==='yes',v=$('#v-prof');
+  v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>🔔 গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">কেউ অ্যাপে ঢুকলে বা কার্ড ডাউনলোড করলে শপ মালিকের টেলিগ্রামে একটি নোটিফিকেশন যায় (টেমপ্লেটের নাম, নরমাল/HD, ডিভাইস, সময়)। নাম, ফোন নম্বর বা কার্ডের লেখা পাঠানো হয় না।${CFG.notifyPhoto?' ডাউনলোড করা কার্ডের ছবি পাঠানো হতে পারে।':''}<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'নোটিফিকেশন বন্ধ করুন':'নোটিফিকেশন চালু করুন'}</button></div>`);
+  $('#privTg').onclick=()=>{LS.set('cs_notify',on?'no':'yes');if(!on)notify('visit');toast(on?'বন্ধ করা হয়েছে':'চালু করা হয়েছে');go('prof')}
+}
+
 /* ============ শুরু ============ */
 (async function init(){
-  document.title=CFG.appName+' - ফটো কার্ড ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
+  document.title=CFG.appName+' - Zᴏʜɪʀ | PLP ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
   try{await Promise.all(['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'].map(f=>document.fonts.load(`700 40px "${f}"`,'অআক')))}catch(e){}
-  drawChips();syncPro();
+  drawChips();syncPro();initPrivacy();
 })();
 </script>
 </body>
