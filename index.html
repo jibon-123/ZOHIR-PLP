@@ -172,7 +172,7 @@ const CFG={
   adminPass:'zohirplp',
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
-  plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
+  plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (30 = লাইফটাইম) • vipz: ভিআইপি ডিজাইন খোলে কি না
     {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIRKJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন']},
     {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন']},
     {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন']}
@@ -817,7 +817,7 @@ function drawPro(){
   <div class="steps"><b>প্রো ডিজাইন:</b> ${TPL.filter(t=>t.pro&&!t.vip).map(t=>t.name).join(' • ')}<br><b>👑 ভিআইপি ডিজাইন:</b> ${TPL.filter(t=>t.vip).map(t=>t.name).join(' • ')}</div>`;
   const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);LS.set('cs_plan',null);syncPro();notify('pro_off');toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
   const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase(),pl=CFG.plans.find(x=>x.codes.some(k=>k.toUpperCase()===c));if(pl){LS.set('cs_pro',false);LS.set('cs_plan',{id:pl.id,exp:pl.days?Date.now()+pl.days*864e5:0});syncPro();notify('pro_on');toast(pl.name+' প্ল্যান চালু হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
-function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<h1>🎴 ${CFG.appName}</h1><p>মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`}
+function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<h1> ${CFG.appName}</h1><p>মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`}
 function syncPro(){drawHero();$('#proBadge').classList.toggle('on',isPro());drawGrid()}
 
 function drawProf(){
