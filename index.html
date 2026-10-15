@@ -129,7 +129,10 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 .pcover{background:linear-gradient(135deg,var(--g),var(--g2));border-radius:22px;padding:22px 16px 16px;text-align:center;color:#fff;margin-bottom:12px}
 .pav{width:84px;height:84px;border-radius:50%;background:#fff;color:var(--g);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;margin:0 auto 8px;overflow:hidden;border:4px solid rgba(255,255,255,.5)}.pav img{width:100%;height:100%;object-fit:cover}
 .pstats{display:flex;gap:8px;margin-bottom:12px}.pstats div{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center;font-size:12px;color:var(--mut)}.pstats b{display:block;font-size:17px;color:var(--g)}
-.plans{display:grid;gap:10px;margin:12px 0}.plan{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);border-radius:16px;padding:12px;text-align:left;color:#fff}.plan.best{border-color:#ffd86b;background:rgba(255,216,107,.15)}.plan b{font-size:16px}.plan .pp{float:right;font-size:20px;font-weight:800;color:#ffd86b}.plan small{display:block;opacity:.85;margin-top:4px;line-height:1.5}
+.plans{display:grid;gap:10px;margin:12px 0}.plan{cursor:pointer;position:relative;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);border-radius:16px;padding:12px;text-align:left;color:#fff}.plan.sel{border-color:#ffd86b;background:rgba(255,216,107,.18)}.plan.sel:after{content:'✔';position:absolute;left:10px;bottom:8px;color:#ffd86b;font-weight:800}.plan b{font-size:16px}.plan .pp{float:right;font-size:20px;font-weight:800;color:#ffd86b}.plan small{display:block;opacity:.85;margin-top:4px;line-height:1.5}
+.edhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}.edhead .back{margin:0;white-space:nowrap}
+.wmnote{font-size:11px;line-height:1.35;padding:6px 10px;border-radius:12px;text-align:right;cursor:pointer;background:#fff4d6;color:#7a5a00;border:1px solid #f0d88a;max-width:62%}.wmnote.ok{background:#e6f6ec;color:#17623a;border-color:#b8e2c8;cursor:default}
+.qopt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;margin-bottom:6px;font:inherit;font-size:14px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -142,7 +145,7 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
     <div class="grid" id="tgrid"></div>
   </section>
   <section class="view" id="v-edit">
-    <button class="back" id="backBtn">← টেমপ্লেটে ফিরুন</button>
+    <div class="edhead"><button class="back" id="backBtn">← টেমপ্লেটে ফিরুন</button><span class="wmnote" id="wmNote"></span></div>
     <div class="editor">
       <div class="prev"><canvas id="cv"></canvas></div>
       <div class="panel" id="panel"></div>
@@ -168,14 +171,15 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
+  watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
-  plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (30 = লাইফটাইম) • vipz: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIRKJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন']}
+  plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -625,6 +629,51 @@ function circleCard(c,W,H,s){
   footer(c,W,H,s,{bg:ac,fg:'#fff'})}
 
 
+/* ============ ভিডিও থাম্বনেইল (১৬:৯) ============ */
+const playBtn=(c,x,y,r,col)=>{c.fillStyle=col;c.beginPath();c.arc(x,y,r,0,7);c.fill();c.fillStyle='#fff';c.beginPath();c.moveTo(x-r*.28,y-r*.42);c.lineTo(x-r*.28,y+r*.42);c.lineTo(x+r*.48,y);c.fill()};
+const thumbBold=c2=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent;
+  const g=c.createLinearGradient(0,0,W,A);g.addColorStop(0,ac);g.addColorStop(1,c2);c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.save();c.globalAlpha=.12;c.fillStyle='#fff';c.beginPath();c.arc(W*.86,A*.5,300,0,7);c.fill();c.restore();playBtn(c,W*.84,A*.46,96,'rgba(0,0,0,.35)');
+  block(c,s,s.title,{x:60,y:50,w:W*.66,h:A*.58,size:118,align:'left',color:'#fff',accent:'#ffe14d',weight:900,lh:1.12});
+  mainBlock(c,s,{x:60,y:A*.7,w:W*.66,h:A*.18,size:44,align:'left',color:'#fff',accent:'#ffe14d',weight:700,lh:1.2,valign:'top'});
+  if(s.author)pill(c,s,s.author,W-190,A-80,28,'rgba(0,0,0,.4)','#fff',30);
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.5)',fg:'#fff'})};
+const thumbSplit=def=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent;
+  photoFill(c,s,0,0,W,A,def);
+  c.fillStyle='#10141c';c.beginPath();c.moveTo(0,0);c.lineTo(W*.62,0);c.lineTo(W*.5,A);c.lineTo(0,A);c.closePath();c.fill();
+  c.fillStyle=ac;c.beginPath();c.moveTo(W*.62,0);c.lineTo(W*.645,0);c.lineTo(W*.525,A);c.lineTo(W*.5,A);c.closePath();c.fill();
+  block(c,s,s.title,{x:50,y:60,w:W*.46,h:A*.56,size:104,align:'left',color:'#fff',accent:ac,weight:900,lh:1.12});
+  mainBlock(c,s,{x:50,y:A*.68,w:W*.4,h:A*.2,size:40,align:'left',color:'#cfd6e4',accent:ac,weight:700,lh:1.2,valign:'top'});
+  playBtn(c,W*.8,A*.5,80,ac);footer(c,W,H,s,{bg:'#10141c',fg:'#fff'})};
+function thumbYellow(c,W,H,s){const{A}=dims(s,H),ac=s.accent;
+  c.fillStyle='#ffe14d';c.fillRect(0,0,W,H);c.strokeStyle='#111';c.lineWidth=14;c.strokeRect(7,7,W-14,A-14);
+  c.fillStyle=ac;rr(c,50,44,300,70,12);c.fill();txt(c,s,s.tag||'নতুন ভিডিও',200,79,34,'#fff',{align:'center',weight:900});
+  block(c,s,s.title,{x:50,y:140,w:W-100,h:A*.52,size:112,align:'left',color:'#111',accent:ac,weight:900,lh:1.12});
+  mainBlock(c,s,{x:50,y:A*.74,w:W-100,h:A*.14,size:40,align:'left',color:'#222',accent:ac,weight:700,lh:1.2,valign:'top'});
+  txt(c,s,s.author,W-60,A-48,32,'#111',{align:'right',weight:800});footer(c,W,H,s,{bg:'#111',fg:'#ffe14d'})}
+function thumbNeon(c,W,H,s){const{A}=dims(s,H),ac=s.accent;
+  const g=c.createLinearGradient(0,0,0,A);g.addColorStop(0,'#0b0620');g.addColorStop(1,'#1a0b3d');c.fillStyle=g;c.fillRect(0,0,W,H);gridBg(c,W,A,ac,.12,60);
+  c.save();c.shadowColor=ac;c.shadowBlur=40;c.strokeStyle=ac;c.lineWidth=8;rr(c,36,36,W-72,A-72,28);c.stroke();c.restore();
+  block(c,s,s.title,{x:80,y:80,w:W-160,h:A*.55,size:112,align:'center',color:'#fff',accent:ac,weight:900,lh:1.12});
+  mainBlock(c,s,{x:100,y:A*.68,w:W-200,h:A*.15,size:42,align:'center',color:'#d9c8ff',accent:ac,weight:700,lh:1.2});
+  txt(c,s,s.author,W/2,A-62,30,ac,{align:'center',weight:800});footer(c,W,H,s,{bg:'#000',fg:ac})}
+const thumbPhoto=def=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent;
+  photoFill(c,s,0,0,W,A,def);tint(c,0,0,W,A,'#000',.45);
+  block(c,s,s.title,{x:60,y:50,w:W-120,h:A*.58,size:124,align:'center',color:'#fff',accent:'#ffe14d',weight:900,lh:1.1});
+  c.fillStyle=ac;c.fillRect(0,A*.74,W,A*.17);
+  mainBlock(c,s,{x:60,y:A*.74,w:W-120,h:A*.17,size:44,align:'center',color:'#fff',accent:'#ffe14d',weight:800,lh:1.2});
+  txt(c,s,s.author,W/2,A-30,26,'#fff',{align:'center',weight:700});footer(c,W,H,s,{bg:'rgba(0,0,0,.6)',fg:'#fff'})};
+function thumbIslam(c,W,H,s){const{A}=dims(s,H),ac=s.accent;
+  const g=c.createLinearGradient(0,0,W,A);g.addColorStop(0,'#06281f');g.addColorStop(1,'#0e4a37');c.fillStyle=g;c.fillRect(0,0,W,H);pattern(c,W,A,ac,.07);
+  c.fillStyle=ac;c.beginPath();c.arc(W-130,110,62,0,7);c.fill();c.fillStyle='#0a3a2c';c.beginPath();c.arc(W-104,100,54,0,7);c.fill();
+  block(c,s,s.title,{x:60,y:60,w:W*.72,h:A*.55,size:112,align:'left',color:'#fff',accent:ac,weight:900,lh:1.12});
+  c.fillStyle=ac;c.fillRect(60,A*.68,120,5);
+  mainBlock(c,s,{x:60,y:A*.72,w:W*.8,h:A*.15,size:42,align:'left',color:'#dfeee6',accent:ac,weight:700,lh:1.2,valign:'top'});
+  txt(c,s,s.author,W-60,A-48,30,ac,{align:'right',weight:800});footer(c,W,H,s,{bg:'rgba(0,0,0,.4)',fg:'#fff'})}
+
+const QUOTES={
+ bn:['সবচেয়ে সুন্দর হলো সেই মন, যে *কৃতজ্ঞ* থাকতে জানে।','ধৈর্য ধরো, প্রতিটি *অন্ধকার রাতের* পরেই সকাল আসে।','ছোট ছোট *ভালো কাজই* একদিন বড় পরিবর্তন আনে।','যার *মন ভালো*, তার জীবনের সবকিছুই সুন্দর।','নিজের ওপর *বিশ্বাস* রাখো, পথ নিজেই তৈরি হয়ে যাবে।','সময়ের মূল্য দাও, কারণ *গেলে আর ফেরে না*।','হাসি এমন এক ভাষা, যা *সবাই বোঝে*।','সফলতা একদিনে আসে না, প্রতিদিনের *চেষ্টাতেই* আসে।','মানুষকে সম্মান দিলে *সম্মান ফিরে আসে*।','যা হারিয়েছ তা নিয়ে কেঁদো না, যা *আছে* তার শুকরিয়া করো।','সত্য কথা বলো, *মনে শান্তি* পাবে।','স্বপ্ন দেখো, তারপর তা পূরণের জন্য *কাজ করো*।','মা-বাবার দোয়া হলো জীবনের *সবচেয়ে বড় সম্পদ*।','আজকের পরিশ্রমই কালকের *সাফল্যের ভিত্তি*।'],
+ en:['Believe in *yourself* and all that you are.','Small steps every day lead to *big results*.','Be kind — it costs nothing but means *everything*.','Dream big, work hard, stay *humble*.','Every *sunrise* is a new chance to begin again.','Gratitude turns what we have into *enough*.','Don\'t wait for *opportunity*. Create it.','A calm mind brings *inner strength*.','Success is the sum of *small efforts* repeated daily.','Choose *peace* over drama, always.','The best time to start was yesterday. The next best is *now*.','Be the reason someone *smiles* today.','Good things take *time* — keep going.','Make today so good that *yesterday* gets jealous.']};
 /* ============ টেমপ্লেট তালিকা ============ */
 const T1='কবরই তো তোমার ঠিকানা *গালিব!* অন্তত কিছু ইবাদত করো, রীতি আছে-কারও বাড়িতে *খালি হাতে যেতে* নেই।';
 const T2='তুমি যখন নিজের জন্য *ইস্তিগফার* করো তোমার মর্যাদা বাড়ে, আর যখন অন্যের জন্য করো তার মর্যাদাও বেড়ে যায়।';
@@ -673,6 +722,22 @@ const TPL=[
  {id:'chat',name:'চ্যাট বাবল',pro:true,accent:'#128c7e',draw:chatBubble,sample:{title:'জহির_০৪৩',text:T3,author:'জহির_০৪৩'}},
  {id:'emerald',vip:true,name:'এমারেল্ড নাইট',pro:true,accent:'#f2c94c',draw:darkPat('#06281f','#02110c'),sample:{title:'আজকের স্মরণ',text:T2,author:'জহির_০৪৩'}},
  {id:'navy-gold',vip:true,name:'নেভি গোল্ড',pro:true,accent:'#e0b84a',draw:darkPat('#0b1b3a','#050d1f'),sample:{title:'দিনের কথা',text:T1,author:'জহির_০৪৩'}},
+ {id:'th-purple',name:'থাম্বনেইল পার্পল',pro:false,cat:'thumb',ratio:.5625,accent:'#7b2ff7',draw:thumbBold('#f107a3'),sample:{title:'এই ভিডিও *মিস* করবেন না!',text:'পুরো ভিডিও দেখুন',author:'জহির_০৪৩'}},
+ {id:'th-yellow',name:'থাম্বনেইল ইয়েলো',pro:false,cat:'thumb',ratio:.5625,accent:'#e53935',draw:thumbYellow,sample:{title:'*সবচেয়ে সহজ* উপায়!',text:'৫ মিনিটেই শিখুন',author:'জহির_০৪৩'}},
+ {id:'th-neon',name:'থাম্বনেইল নিয়ন',pro:false,cat:'thumb',ratio:.5625,accent:'#00e5ff',draw:thumbNeon,sample:{title:'নতুন *টিউটোরিয়াল*',text:'শুরু থেকে শেষ পর্যন্ত',author:'জহির_০৪৩'}},
+ {id:'th-split',name:'থাম্বনেইল স্প্লিট',pro:true,cat:'thumb',ratio:.5625,accent:'#ff5722',draw:thumbSplit('forest'),sample:{title:'*অবাক* করা সত্য!',text:'শেষ পর্যন্ত দেখুন',author:'জহির_০৪৩'}},
+ {id:'th-photo',name:'থাম্বনেইল ফটো',pro:true,cat:'thumb',ratio:.5625,accent:'#e53935',draw:thumbPhoto('sea'),sample:{title:'*ভ্রমণ* গাইড ২০২৬',text:'সব খরচসহ',author:'জহির_০৪৩'}},
+ {id:'th-islam',name:'থাম্বনেইল ইসলামিক',pro:true,cat:'thumb',ratio:.5625,accent:'#f2c94c',draw:thumbIslam,sample:{title:'জুমার *ফজিলত*',text:'পুরো আলোচনা শুনুন',author:'জহির_০৪৩'}},
+ {id:'f-grad-rose',name:'গ্রেডিয়েন্ট রোজ',pro:false,accent:'#ff6f91',draw:gradCard('#7b1e4a'),sample:{title:'শুভ সকাল',text:QUOTES.bn[1],author:'জহির_০৪৩'}},
+ {id:'f-grad-ocean',name:'গ্রেডিয়েন্ট ওশান',pro:false,accent:'#00b4d8',draw:gradCard('#0b3d91'),sample:{title:'Good Vibes',text:QUOTES.en[1],author:'জহির_০৪৩'}},
+ {id:'f-frame-rose',name:'ফ্রেম রোজ',pro:false,accent:'#c2185b',draw:frameCard('#fff1f2','#4a1d2b'),sample:{title:'আজকের কথা',text:QUOTES.bn[3],author:'জহির_০৪৩'}},
+ {id:'f-top-flowers',name:'টপ ফ্লাওয়ার',pro:false,accent:'#d81b60',draw:topScene('flowers'),sample:{title:'Be Kind',text:QUOTES.en[2],author:'জহির_০৪৩'}},
+ {id:'f-full-forest',name:'ফরেস্ট ফুল',pro:false,accent:'#8bd17c',draw:fullBottom('forest'),sample:{title:'প্রকৃতির কথা',text:QUOTES.bn[4],author:'জহির_০৪৩'}},
+ {id:'f-min-dark',name:'মিনিমাল ডার্ক',pro:false,accent:'#ffb703',draw:minimalLeft('#14181f','#f1f3f6'),sample:{title:'Motivation',text:QUOTES.en[3],author:'জহির_০৪৩'}},
+ {id:'f-min-pink',name:'মিনিমাল পিঙ্ক',pro:false,accent:'#e63a6e',draw:minimalLeft('#fff5f7','#3a1a24'),sample:{title:'ভালো থাকুন',text:QUOTES.bn[6],author:'জহির_০৪৩'}},
+ {id:'f-sticky-pink',name:'স্টিকি পিঙ্ক',pro:false,accent:'#ff9ecb',draw:stickyNote,sample:{title:'Reminder',text:QUOTES.en[13],author:'জহির_০৪৩'}},
+ {id:'f-night-purple',name:'নাইট পার্পল',pro:false,accent:'#c792ff',draw:darkPat('#2b0a3d','#12041c'),sample:{title:'শুভ রাত্রি',text:QUOTES.bn[9],author:'জহির_০৪৩'}},
+ {id:'f-polaroid-sea',name:'পোলারয়েড সি',pro:false,accent:'#1c6dd0',draw:polaroid('sea'),sample:{title:'New Day',text:QUOTES.en[4],author:'জহির_০৪৩'}},
 ];
 CFG.imageTemplates.forEach(t=>TPL.push({id:t.id,name:t.name,pro:!!t.pro,accent:t.accent||'#c0392b',draw:imageTpl(t),sample:{text:t.sample||'এখানে আপনার লেখা',author:''}}));
 const tplById=id=>TPL.find(t=>t.id===id);
@@ -692,6 +757,7 @@ function curPlan(){let p=LS.get('cs_plan',null);if(!p&&LS.get('cs_pro',false)===
 const isPro=()=>!!curPlan();
 const planDef=()=>{const p=curPlan();return p&&CFG.plans.find(x=>x.id===p.id)};
 const isVip=()=>!!(planDef()&&planDef().vip);
+let selPlan='p200';const selDef=()=>CFG.plans.find(x=>x.id===selPlan)||CFG.plans[0];
 const locked=t=>(t.pro&&!isPro())||(t.vip&&!isVip());
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)}
 function loadImg(src){return new Promise(r=>{if(!src)return r(null);const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src})}
@@ -699,8 +765,8 @@ function readFile(file,max,type){return new Promise(res=>{const fr=new FileReade
 
 /* ============ স্টেট ============ */
 let S=null;
-function newState(t){return{tpl:t.id,ratio:1,title:t.sample.title||'',html:toHtml(t.sample.text||''),caption:t.sample.caption||'',author:profile.author||t.sample.author||'',tag:profile.tag||'',contact:profile.contact||'',accent:t.accent,textColor:'',textBox:0,scene:'',font:t.font||'Hind Siguri',sizeMul:1,showFooter:true,logo:null,photo:null,logoData:profile.logoData,photoData:null}}
-let raf=0;function rerender(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(S)render($('#cv'),S,1080)})}window.rerender=rerender;
+function newState(t){return{tpl:t.id,ratio:t.ratio||1,title:t.sample.title||'',html:toHtml(t.sample.text||''),caption:t.sample.caption||'',author:profile.author||t.sample.author||'',tag:profile.tag||'',contact:profile.contact||'',accent:t.accent,textColor:'',textBox:0,scene:'',font:t.font||'Hind Siguri',sizeMul:1,showFooter:t.cat!=='thumb',logo:null,photo:null,logoData:profile.logoData,photoData:null}}
+let raf=0;function rerender(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(S){render($('#cv'),S,1080);watermark($('#cv'))}})}window.rerender=rerender;
 
 /* ============ ভিউ ============ */
 function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===(v==='edit'?'home':v)));window.scrollTo(0,0);
@@ -709,10 +775,10 @@ $$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
 $('#backBtn').onclick=()=>go('home');
 
 let filter='all';
-function drawChips(){$('#chips').innerHTML=[['all','সব ('+TPL.length+')'],['free','ফ্রি ('+TPL.filter(t=>!t.pro).length+')'],['pro','প্রো ★ ('+TPL.filter(t=>t.pro).length+')']].map(([k,l])=>`<button class="chip ${filter===k?'on':''}" data-k="${k}">${l}</button>`).join('');
+function drawChips(){$('#chips').innerHTML=[['all','সব ('+TPL.length+')'],['free','ফ্রি ('+TPL.filter(t=>!t.pro).length+')'],['pro','প্রো ★ ('+TPL.filter(t=>t.pro).length+')'],['vip','👑 পেইড ভিআইপি ('+TPL.filter(t=>t.vip).length+')'],['thumb','🎬 ভিডিও থাম্বনেইল ('+TPL.filter(t=>t.cat==='thumb').length+')']].map(([k,l])=>`<button class="chip ${filter===k?'on':''}" data-k="${k}">${l}</button>`).join('');
   $$('#chips .chip').forEach(b=>b.onclick=()=>{filter=b.dataset.k;drawChips();drawGrid()})}
 function drawGrid(){const g=$('#tgrid');g.innerHTML='';
-  TPL.filter(t=>filter==='all'||(filter==='pro')===t.pro).forEach(t=>{
+  TPL.filter(t=>({all:1,free:!t.pro,pro:t.pro,vip:t.vip,thumb:t.cat==='thumb'})[filter]).forEach(t=>{
     const d=document.createElement('div');d.className='tcard';
     const cv=document.createElement('canvas');d.appendChild(cv);
     d.insertAdjacentHTML('beforeend',`<span class="${locked(t)?'lock':'free'}">${t.vip?(locked(t)?'👑 VIP':'★ VIP'):t.pro?(isPro()?'★ প্রো':'🔒 প্রো'):'ফ্রি'}</span><div class="nm">${t.name}</div>`);
@@ -722,7 +788,8 @@ function drawGrid(){const g=$('#tgrid');g.innerHTML='';
 async function openEditor(t,state){
   S=state||newState(t);
   if(!state)S.logo=await loadImg(S.logoData);
-  go('edit');buildPanel();rerender()}
+  go('edit');buildPanel();setWmNote();rerender()}
+function setWmNote(){const n=$('#wmNote');if(isPro()){n.className='wmnote ok';n.innerHTML='✔ প্রো চালু — ওয়াটারমার্ক রাখা/সরানো আপনার ইচ্ছা';n.onclick=null}else{n.className='wmnote';n.innerHTML='🔒 ফ্রি কার্ডে <b>'+hx(CFG.watermark)+'</b> ওয়াটারমার্ক থাকবে<br><u>সরাতে প্রো নিন →</u>';n.onclick=()=>go('pro')}}
 
 const SW=['#000000','#ffffff','#e53935','#fb8c00','#fdd835','#43a047','#1e88e5','#8e24aa','#d81b60','#795548'];
 let saved=null;
@@ -737,6 +804,7 @@ function buildPanel(){
 <div class="tabs" id="tabs"><button class="on" data-t="0">✍️ লেখা</button><button data-t="1">🖼 ছবি</button><button data-t="2">🎨 ডিজাইন</button></div>
   <div class="pane on" data-p="0">
   <div class="f"><label>টাইটেল</label><input type="text" data-k="title"></div>
+  <div class="f"><label>✨ রেডিমেড লেখা (চাপ দিলেই বসে যাবে)</label><div class="seg" id="qSeg"><button data-l="bn">বাংলা</button><button data-l="en">English</button></div><div id="qList" style="max-height:150px;overflow:auto;margin-top:6px"></div></div>
   <div class="f"><label>মূল লেখা</label><div id="rt" class="rt" contenteditable="true" spellcheck="false"></div>
     <div class="tb">${SW.map(c=>`<button type="button" class="sw" data-c="${c}" style="background:${c}"></button>`).join('')}<input type="color" id="cc" value="#e53935" title="নিজের পছন্দের রঙ"><button type="button" class="sw" id="rst" title="রঙ মুছুন">↺</button></div>
     <div class="hint">🎨 লেখার যে অংশের রঙ বদলাতে চান সেটা সিলেক্ট করুন, তারপর উপরের একটা রঙে চাপুন। ↺ দিলে রঙ মুছে যাবে।</div></div>
@@ -755,13 +823,13 @@ function buildPanel(){
   <div class="f"><label>লেখার পেছনে বক্স</label><div class="seg" id="tbSeg"><button data-v="0">নেই</button><button data-v="1">ডার্ক</button><button data-v="2">লাইট</button></div></div>
   <div class="row"><div class="f"><label>ফন্ট</label><select data-k="font">${fonts.map(f=>`<option ${f===S.font?'selected':''}>${f}</option>`).join('')}</select></div>
   <div class="f"><label>লেখার সাইজ</label><input type="range" min="0.6" max="1.4" step="0.05" data-k="sizeMul" style="width:100%;margin-top:10px"></div></div>
-  <div class="row"><div class="f"><label>কার্ডের মাপ</label><div class="seg" id="ratioSeg"><button data-r="1">১:১</button><button data-r="1.25">৪:৫</button></div></div>
+  <div class="row"><div class="f"><label>কার্ডের মাপ</label><div class="seg" id="ratioSeg"><button data-r="1">১:১</button><button data-r="1.25">৪:৫</button><button data-r="0.5625">১৬:৯</button></div></div>
   <div class="f"><label>নিচের স্ট্রিপ</label><div class="seg" id="ftSeg"><button data-f="1">দেখান</button><button data-f="0">লুকান</button></div></div></div>
   </div>
   <div class="dl">
   ${locked(t)?'<div class="hint" style="margin-bottom:10px">🔒 এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
   <div class="row"><button class="btn" id="dlN">⬇ নরমাল</button><button class="btn gold" id="dlH">⬇ HD</button></div>
-  <div class="hint" style="text-align:center;margin-top:6px">দুটোই ফ্রি • নরমাল ৭২০px • HD ২১৬০px</div></div>`;
+  ${isPro()?`<div class="f" style="margin:10px 0 0"><label>ওয়াটারমার্ক (প্রো-তে আপনার ইচ্ছা)</label><div class="seg" id="wmSeg"><button data-w="0">ছাড়া</button><button data-w="1">${CFG.watermark} সহ</button></div></div>`:''}</div>`;
   $$('#tabs button').forEach(b=>b.onclick=()=>{$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));$$('.pane').forEach(q=>q.classList.toggle('on',q.dataset.p===b.dataset.t))});
   // সাধারণ ইনপুট
   $$('#panel [data-k]').forEach(el=>{const k=el.dataset.k;el.value=S[k];el.oninput=()=>{S[k]=k==='sizeMul'?+el.value:el.value;rerender()}});
@@ -777,6 +845,10 @@ function buildPanel(){
   seg('tbSeg','v',()=>S.textBox,v=>S.textBox=+v);
   seg('ratioSeg','r',()=>S.ratio,v=>S.ratio=+v);
   seg('ftSeg','f',()=>S.showFooter?1:0,v=>S.showFooter=v==='1');
+  seg('wmSeg','w',()=>LS.get('cs_wm',false)?1:0,v=>LS.set('cs_wm',v==='1'));
+  let ql='bn';const drawQ=()=>{$('#qList').innerHTML=QUOTES[ql].map((q,i)=>`<button type="button" class="qopt" data-i="${i}">${hx(q.replace(/\*/g,''))}</button>`).join('')};
+  seg('qSeg','l',()=>ql,v=>{ql=v;drawQ()});drawQ();
+  $('#qList').onclick=e=>{const b=e.target.closest('.qopt');if(!b)return;S.html=toHtml(QUOTES[ql][+b.dataset.i]);$('#rt').innerHTML=S.html;rerender();toast('লেখা বসানো হয়েছে ✔')};
   // সিনারি তালিকা
   const scn=$('#scn');
   const mk=(id,label)=>{const b=document.createElement('button');b.type='button';b.dataset.id=id;if(id){const cv=document.createElement('canvas');cv.width=140;cv.height=140;scene(cv.getContext('2d'),id,0,0,140,140);b.appendChild(cv);b.insertAdjacentHTML('beforeend',`<div>${label}</div>`)}else b.innerHTML='ডিফল্ট';if(!id)b.className='none';b.onclick=async()=>{S.scene=id;S.photo=null;S.photoData=null;$('#photoN').textContent='';mark();rerender()};scn.appendChild(b)};
@@ -786,9 +858,18 @@ function buildPanel(){
   $('#logoF').onchange=async e=>{const f=e.target.files[0];if(!f)return;S.logoData=await readFile(f,300,'image/png');S.logo=await loadImg(S.logoData);$('#logoN').textContent=f.name;rerender()};
   $('#dlN').onclick=()=>download(false);$('#dlH').onclick=()=>download(true)}
 
+function watermark(out){
+  if(isPro()&&!LS.get('cs_wm',false))return;
+  const c=out.getContext('2d'),W=out.width,H=out.height,k=W/1080,T=CFG.watermark||CFG.appName,f=`800 ${44*k}px 'Hind Siguri','Noto Sans Bengali',sans-serif`;
+  c.save();c.font=f;c.textAlign='center';c.textBaseline='middle';c.globalAlpha=.17;c.fillStyle='#fff';c.strokeStyle='#000';c.lineWidth=2*k;
+  c.translate(W/2,H/2);c.rotate(-.5);let r=0;
+  for(let y=-W;y<=W;y+=190*k,r++)for(let x=-W;x<=W;x+=500*k){const xx=x+(r%2?250*k:0);c.strokeText(T,xx,y);c.fillText(T,xx,y)}
+  c.restore();
+  c.save();c.font=`700 ${26*k}px 'Hind Siguri','Noto Sans Bengali',sans-serif`;const lab='✦ '+T,w=c.measureText(lab).width+34*k;
+  c.globalAlpha=.62;c.fillStyle='#000';c.beginPath();c.roundRect(W-w-18*k,18*k,w,50*k,25*k);c.fill();c.globalAlpha=1;c.fillStyle='#fff';c.textAlign='center';c.textBaseline='middle';c.fillText(lab,W-w/2-18*k,43*k);c.restore()}
 function download(hd){
   const t=tplById(S.tpl);if(locked(t)){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
-  const out=document.createElement('canvas');render(out,S,hd?2160:720);
+  const out=document.createElement('canvas');render(out,S,hd?2160:720);watermark(out);
   out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);notify('download',{id:t.id,tpl:t.name,hd:!!hd,pro:!!t.pro})},hd?'image/png':'image/jpeg',.9);
   saveHistory();toast(hd?'HD ছবি ডাউনলোড হচ্ছে ✔':'ছবি ডাউনলোড হচ্ছে ✔')}
 $('#mClose').onclick=()=>$('#modal').classList.remove('on');
@@ -810,14 +891,15 @@ function drawHist(){
 function drawPro(){
   const p=curPlan(),d=planDef(),v=$('#v-pro'),nPro=TPL.filter(t=>t.pro&&!t.vip).length,nVip=TPL.filter(t=>t.vip).length;
   const left=p&&p.exp?Math.max(1,Math.ceil((p.exp-Date.now())/864e5)):0;
-  v.innerHTML=`<div class="pro"><div style="font-size:42px">👑</div><h2 style="margin:6px 0">প্রো প্ল্যান</h2><div>${nPro}টি প্রো + ${nVip}টি ভিআইপি ডিজাইন • নরমাল ও HD ডাউনলোড সবসময় ফ্রি</div>
-  ${p?`<div class="btn gold" style="cursor:default;margin-top:12px">✔ ${d?d.name:'প্রো'} সক্রিয়${left?' — আর '+left+' দিন':' — লাইফটাইম'}</div><div style="height:10px"></div><button class="btn o" id="deact" style="background:transparent;color:#fff;border-color:#d9c98f">প্রো নিষ্ক্রিয় করুন</button>`:`<div class="plans">${CFG.plans.map(x=>`<div class="plan${x.vip?' best':''}"><span class="pp">৳${x.price}</span><b>${x.vip?'👑 ':''}${x.name}</b><small>${x.perks.join(' • ')}</small></div>`).join('')}</div>`}</div>
-  ${p&&d&&d.vip?'':`<div class="steps"><b>কিভাবে প্রো নেবেন:</b><br>১. ${CFG.payMethod} এ <code>${CFG.payNumber}</code> নম্বরে পছন্দের প্ল্যানের টাকা (<b>${CFG.plans.map(x=>x.price).join(' / ')}</b>) পাঠান।<br>২. <a href="${CFG.contactLink}" target="_blank">এখানে ক্লিক করে</a> ট্রানজেকশন আইডি ও প্ল্যানের নাম পাঠান।<br>৩. আমরা একটি প্রো কোড দেব — নিচে বসিয়ে আনলক করুন${p?' (আপগ্রেডও এভাবে)':''}।
+  v.innerHTML=`<div class="pro"><div style="font-size:42px">👑</div><h2 style="margin:6px 0">প্রো প্ল্যান</h2><div>${nPro}টি প্রো + ${nVip}টি ভিআইপি ডিজাইন • নরমাল ও HD ডাউনলোড ফ্রি • প্রো-তে <b>ওয়াটারমার্ক রাখা বা সরানো আপনার ইচ্ছা</b></div>
+  ${p?`<div class="btn gold" style="cursor:default;margin-top:12px">✔ ${d?d.name:'প্রো'} সক্রিয়${left?' — আর '+left+' দিন':' — লাইফটাইম'}</div><div style="height:10px"></div><button class="btn o" id="deact" style="background:transparent;color:#fff;border-color:#d9c98f">প্রো নিষ্ক্রিয় করুন</button>`:`<div class="plans">${CFG.plans.map(x=>`<div class="plan${x.id===selPlan?' sel':''}" data-p="${x.id}"><span class="pp">৳${x.price}</span><b>${x.vip?'👑 ':''}${x.name}</b><small>${x.perks.join(' • ')}</small></div>`).join('')}</div>`}</div>
+  ${p&&d&&d.vip?'':`<div class="steps"><b>কিভাবে প্রো নেবেন:</b><br>১. ${CFG.payMethod} এ <code>${CFG.payNumber}</code> নম্বরে পছন্দের প্ল্যানের টাকা (<span id="payAmt">${selDef().name} — <b>৳${selDef().price}</b></span>) পাঠান।<br>২. <a href="${CFG.contactLink}" target="_blank">এখানে ক্লিক করে</a> ট্রানজেকশন আইডি ও প্ল্যানের নাম পাঠান।<br>৩. আমরা একটি প্রো কোড দেব — নিচে বসিয়ে আনলক করুন${p?' (আপগ্রেডও এভাবে)':''}।
   <div class="f" style="margin-top:12px"><input type="text" id="code" placeholder="প্রো কোড লিখুন"></div><button class="btn gold" id="unlock">আনলক করুন</button></div>`}
   <div class="steps"><b>প্রো ডিজাইন:</b> ${TPL.filter(t=>t.pro&&!t.vip).map(t=>t.name).join(' • ')}<br><b>👑 ভিআইপি ডিজাইন:</b> ${TPL.filter(t=>t.vip).map(t=>t.name).join(' • ')}</div>`;
+  $$('.plan').forEach(el=>el.onclick=()=>{selPlan=el.dataset.p;$$('.plan').forEach(q=>q.classList.toggle('sel',q===el));const a=$('#payAmt');if(a)a.innerHTML=selDef().name+' — <b>৳'+selDef().price+'</b>'});
   const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);LS.set('cs_plan',null);syncPro();notify('pro_off');toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
   const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase(),pl=CFG.plans.find(x=>x.codes.some(k=>k.toUpperCase()===c));if(pl){LS.set('cs_pro',false);LS.set('cs_plan',{id:pl.id,exp:pl.days?Date.now()+pl.days*864e5:0});syncPro();notify('pro_on');toast(pl.name+' প্ল্যান চালু হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
-function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<h1> ${CFG.appName}</h1><p>মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`}
+function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<h1>🎴 ${CFG.appName}</h1><p>মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`}
 function syncPro(){drawHero();$('#proBadge').classList.toggle('on',isPro());drawGrid()}
 
 function drawProf(){
