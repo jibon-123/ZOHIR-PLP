@@ -122,12 +122,21 @@ main{padding:12px}
 .dl{position:static;clear:both;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .dl .row{display:flex;gap:8px}.dl .btn{flex:1;min-width:0;white-space:nowrap;padding:12px 6px}
 nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
+.hero{background:linear-gradient(135deg,var(--g),var(--g2) 60%,#0a3d26);color:#fff;border-radius:22px;padding:20px 18px;margin-bottom:14px;position:relative;overflow:hidden}
+.hero:after{content:'';position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.1)}
+.hero h1{font-size:22px;margin:0 0 4px}.hero p{opacity:.9;font-size:14px;margin:0 0 14px}
+.hstats{display:flex;gap:8px}.hstats div{flex:1;background:rgba(255,255,255,.15);border-radius:14px;padding:8px 4px;text-align:center;font-size:12px}.hstats b{display:block;font-size:18px}
+.pcover{background:linear-gradient(135deg,var(--g),var(--g2));border-radius:22px;padding:22px 16px 16px;text-align:center;color:#fff;margin-bottom:12px}
+.pav{width:84px;height:84px;border-radius:50%;background:#fff;color:var(--g);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;margin:0 auto 8px;overflow:hidden;border:4px solid rgba(255,255,255,.5)}.pav img{width:100%;height:100%;object-fit:cover}
+.pstats{display:flex;gap:8px;margin-bottom:12px}.pstats div{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center;font-size:12px;color:var(--mut)}.pstats b{display:block;font-size:17px;color:var(--g)}
+.plans{display:grid;gap:10px;margin:12px 0}.plan{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);border-radius:16px;padding:12px;text-align:left;color:#fff}.plan.best{border-color:#ffd86b;background:rgba(255,216,107,.15)}.plan b{font-size:16px}.plan .pp{float:right;font-size:20px;font-weight:800;color:#ffd86b}.plan small{display:block;opacity:.85;margin-top:4px;line-height:1.5}
 </style>
 </head>
 <body>
 <header><h1><span id="appName">Zᴏʜɪʀ | PLP</span></h1><span class="badge" id="proBadge">★ PRO</span></header>
 <main>
   <section class="view on" id="v-home">
+    <div id="hero"></div>
     <h2>টেমপ্লেট বেছে নিন</h2>
     <div class="chips" id="chips"></div>
     <div class="grid" id="tgrid"></div>
@@ -150,9 +159,9 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
   <button data-go="pro"><i>⭐</i>প্রো</button>
   <button data-go="prof"><i>👤</i>প্রোফাইল</button>
 </nav>
-<div class="modal" id="modal"><div class="mbox"><h3>🔒 প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকায় লাইফটাইম।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
+<div class="modal" id="modal"><div class="mbox"><h3>🔒 প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকা থেকে প্রো প্ল্যান (৩ ধরনের)।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
 <div class="modal" id="privM"><div class="mbox"><h3>🔔 গোপনীয়তা নোটিশ</h3>
-<p style="font-size:14px;line-height:1.6;text-align:left">অ্যাপের মালিক জানতে পারেন <b>কতজন ঢুকেছে, কতজন এখন অনলাইনে আছে</b> এবং কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। এগুলো শুধু সংখ্যা হিসেবে জমা হয়।<br><b>আপনার নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি কখনো পাঠানো হয় না।</b><br>চাইলে নিচে "না" চাপুন; পরে প্রোফাইল পেজ থেকেও বদলানো যাবে।</p>
+<p style="font-size:14px;line-height:1.6;text-align:left">অ্যাপের মালিক জানতে পারেন <b>কতজন ঢুকেছে, কতজন এখন অনলাইনে আছে</b> এবং কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। এগুলো শুধু সংখ্যা হিসেবে জমা হয়।<br><b>আপনার নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি কখনো পাঠানো হয় না।</b> ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>চাইলে নিচে "না" চাপুন; পরে প্রোফাইল পেজ থেকেও বদলানো যাবে।</p>
 <button class="btn" id="privYes">ঠিক আছে</button><div style="height:8px"></div><button class="btn o" id="privNo">না, গণনা করবেন না</button></div></div>
 <div class="toast" id="toast"></div>
 
@@ -160,13 +169,17 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
-  price:200,
+  price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
+  plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন']}
+  ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
   contactLink:'https://wa.me/8801856591506',
-  proCodes:['ZOHIR630'],
   // নিজের ছবির টেমপ্লেট (README দেখুন):
   // {id:'my1',name:'আমার ডিজাইন',pro:false,src:'templates/my1.png',box:{x:90,y:300,w:900,h:500},color:'#111',accent:'#c00',align:'center',size:80}
   imageTemplates:[]
@@ -646,10 +659,10 @@ const TPL=[
  {id:'notebook',name:'নোটবুক',pro:false,accent:'#2b6cb0',draw:noteLined,sample:{title:'আমার ডায়েরি',text:T2,author:'জহির_০৪৩'}},
  {id:'circle-pink',name:'সার্কেল পিঙ্ক',pro:false,accent:'#d6336c',draw:circleCard,sample:{title:'স্মরণ',text:T1,author:'জহির_০৪৩'}},
  {id:'poster-blue',name:'পোস্টার ব্লু',pro:false,accent:'#1565c0',draw:poster,sample:{title:'মনে রাখবেন',text:T4,author:'জহির_০৪৩'}},
- {id:'grad-purple',name:'গ্রেডিয়েন্ট পার্পল',pro:true,accent:'#8e2de2',draw:gradCard('#2a0a66'),sample:{title:'আজকের কথা',text:T1,author:'জহির_০৪৩'}},
- {id:'grad-sunset',name:'গ্রেডিয়েন্ট সানসেট',pro:true,accent:'#ff7e5f',draw:gradCard('#8a1c2b'),sample:{title:'স্মরণ',text:T4,author:'জহির_০৪৩'}},
- {id:'grad-teal',name:'গ্রেডিয়েন্ট টিল',pro:true,accent:'#11998e',draw:gradCard('#0b3b3a'),sample:{title:'আজকের কথা',text:T3,author:'জহির_০৪৩'}},
- {id:'frame-gold',name:'ফ্রেম গোল্ড',pro:true,accent:'#b8892b',draw:frameCard('#fbf5e4','#2b2412'),sample:{title:'আজকের স্মরণ',text:T2,author:'জহির_০৪৩'}},
+ {id:'grad-purple',vip:true,name:'গ্রেডিয়েন্ট পার্পল',pro:true,accent:'#8e2de2',draw:gradCard('#2a0a66'),sample:{title:'আজকের কথা',text:T1,author:'জহির_০৪৩'}},
+ {id:'grad-sunset',vip:true,name:'গ্রেডিয়েন্ট সানসেট',pro:true,accent:'#ff7e5f',draw:gradCard('#8a1c2b'),sample:{title:'স্মরণ',text:T4,author:'জহির_০৪৩'}},
+ {id:'grad-teal',vip:true,name:'গ্রেডিয়েন্ট টিল',pro:true,accent:'#11998e',draw:gradCard('#0b3b3a'),sample:{title:'আজকের কথা',text:T3,author:'জহির_০৪৩'}},
+ {id:'frame-gold',vip:true,name:'ফ্রেম গোল্ড',pro:true,accent:'#b8892b',draw:frameCard('#fbf5e4','#2b2412'),sample:{title:'আজকের স্মরণ',text:T2,author:'জহির_০৪৩'}},
  {id:'frame-green',name:'ফ্রেম গ্রিন',pro:true,accent:'#2f7d46',draw:frameCard('#f2f7ef','#183a22'),sample:{title:'দিনের কথা',text:T3,author:'জহির_০৪৩'}},
  {id:'top-forest',name:'টপ ফরেস্ট',pro:true,accent:'#2f7d46',draw:topScene('forest'),sample:{title:'আজকের কথা',text:T1,author:'জহির_০৪৩'}},
  {id:'top-sea',name:'টপ সি',pro:true,accent:'#1c6dd0',draw:topScene('sea'),sample:{title:'স্মরণ',text:T4,author:'জহির_০৪৩'}},
@@ -658,8 +671,8 @@ const TPL=[
  {id:'polaroid',name:'পোলারয়েড',pro:true,accent:'#c2185b',draw:polaroid('flowers'),sample:{title:'আজকের কথা',text:T1,author:'জহির_০৪৩'}},
  {id:'sticky',name:'স্টিকি নোট',pro:true,accent:'#ffd84a',draw:stickyNote,sample:{title:'মনে রাখুন',text:T4,author:'জহির_০৪৩'}},
  {id:'chat',name:'চ্যাট বাবল',pro:true,accent:'#128c7e',draw:chatBubble,sample:{title:'জহির_০৪৩',text:T3,author:'জহির_০৪৩'}},
- {id:'emerald',name:'এমারেল্ড নাইট',pro:true,accent:'#f2c94c',draw:darkPat('#06281f','#02110c'),sample:{title:'আজকের স্মরণ',text:T2,author:'জহির_০৪৩'}},
- {id:'navy-gold',name:'নেভি গোল্ড',pro:true,accent:'#e0b84a',draw:darkPat('#0b1b3a','#050d1f'),sample:{title:'দিনের কথা',text:T1,author:'জহির_০৪৩'}},
+ {id:'emerald',vip:true,name:'এমারেল্ড নাইট',pro:true,accent:'#f2c94c',draw:darkPat('#06281f','#02110c'),sample:{title:'আজকের স্মরণ',text:T2,author:'জহির_০৪৩'}},
+ {id:'navy-gold',vip:true,name:'নেভি গোল্ড',pro:true,accent:'#e0b84a',draw:darkPat('#0b1b3a','#050d1f'),sample:{title:'দিনের কথা',text:T1,author:'জহির_০৪৩'}},
 ];
 CFG.imageTemplates.forEach(t=>TPL.push({id:t.id,name:t.name,pro:!!t.pro,accent:t.accent||'#c0392b',draw:imageTpl(t),sample:{text:t.sample||'এখানে আপনার লেখা',author:''}}));
 const tplById=id=>TPL.find(t=>t.id===id);
@@ -675,7 +688,11 @@ function render(canvas,s,outW){
 /* ============ স্টোরেজ ============ */
 const LS={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 let profile=LS.get('cs_profile',{tag:'',contact:'',author:'',logoData:null});
-const isPro=()=>LS.get('cs_pro',false)===true;
+function curPlan(){let p=LS.get('cs_plan',null);if(!p&&LS.get('cs_pro',false)===true)p={id:'p200',exp:0};if(!p||(p.exp&&Date.now()>p.exp))return null;return p}
+const isPro=()=>!!curPlan();
+const planDef=()=>{const p=curPlan();return p&&CFG.plans.find(x=>x.id===p.id)};
+const isVip=()=>!!(planDef()&&planDef().vip);
+const locked=t=>(t.pro&&!isPro())||(t.vip&&!isVip());
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)}
 function loadImg(src){return new Promise(r=>{if(!src)return r(null);const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src})}
 function readFile(file,max,type){return new Promise(res=>{const fr=new FileReader();fr.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),cv=document.createElement('canvas');cv.width=Math.round(i.width*k);cv.height=Math.round(i.height*k);cv.getContext('2d').drawImage(i,0,0,cv.width,cv.height);res(cv.toDataURL(type,.82))};i.src=fr.result};fr.readAsDataURL(file)})}
@@ -698,7 +715,7 @@ function drawGrid(){const g=$('#tgrid');g.innerHTML='';
   TPL.filter(t=>filter==='all'||(filter==='pro')===t.pro).forEach(t=>{
     const d=document.createElement('div');d.className='tcard';
     const cv=document.createElement('canvas');d.appendChild(cv);
-    d.insertAdjacentHTML('beforeend',`<span class="${t.pro&&!isPro()?'lock':'free'}">${t.pro?(isPro()?'★ প্রো':'🔒 প্রো'):'ফ্রি'}</span><div class="nm">${t.name}</div>`);
+    d.insertAdjacentHTML('beforeend',`<span class="${locked(t)?'lock':'free'}">${t.vip?(locked(t)?'👑 VIP':'★ VIP'):t.pro?(isPro()?'★ প্রো':'🔒 প্রো'):'ফ্রি'}</span><div class="nm">${t.name}</div>`);
     d.onclick=()=>openEditor(t);g.appendChild(d);
     const st=newState(t);st.author=t.sample.author||'';st.tag='@yourname';render(cv,st,360)})}
 
@@ -742,7 +759,7 @@ function buildPanel(){
   <div class="f"><label>নিচের স্ট্রিপ</label><div class="seg" id="ftSeg"><button data-f="1">দেখান</button><button data-f="0">লুকান</button></div></div></div>
   </div>
   <div class="dl">
-  ${t.pro&&!isPro()?'<div class="hint" style="margin-bottom:10px">🔒 এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
+  ${locked(t)?'<div class="hint" style="margin-bottom:10px">🔒 এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
   <div class="row"><button class="btn" id="dlN">⬇ নরমাল</button><button class="btn gold" id="dlH">⬇ HD</button></div>
   <div class="hint" style="text-align:center;margin-top:6px">দুটোই ফ্রি • নরমাল ৭২০px • HD ২১৬০px</div></div>`;
   $$('#tabs button').forEach(b=>b.onclick=()=>{$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));$$('.pane').forEach(q=>q.classList.toggle('on',q.dataset.p===b.dataset.t))});
@@ -770,7 +787,7 @@ function buildPanel(){
   $('#dlN').onclick=()=>download(false);$('#dlH').onclick=()=>download(true)}
 
 function download(hd){
-  const t=tplById(S.tpl);if(t.pro&&!isPro()){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
+  const t=tplById(S.tpl);if(locked(t)){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
   const out=document.createElement('canvas');render(out,S,hd?2160:720);
   out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);notify('download',{id:t.id,tpl:t.name,hd:!!hd,pro:!!t.pro})},hd?'image/png':'image/jpeg',.9);
   saveHistory();toast(hd?'HD ছবি ডাউনলোড হচ্ছে ✔':'ছবি ডাউনলোড হচ্ছে ✔')}
@@ -791,29 +808,32 @@ function drawHist(){
   $('#clrH').onclick=()=>{if(confirm('সব হিস্টরি মুছে ফেলবেন?')){LS.set('cs_hist',[]);drawHist()}}}
 
 function drawPro(){
-  const p=isPro(),v=$('#v-pro'),nPro=TPL.filter(t=>t.pro).length;
-  v.innerHTML=`<div class="pro"><div style="font-size:42px">👑</div><h2 style="margin:6px 0">প্রো প্ল্যান</h2><div class="pr">৳${CFG.price}</div><div>একবার দিন, সারা জীবন ব্যবহার করুন</div>
-  <ul><li>${nPro}টি আধুনিক প্রো ডিজাইন আনলক</li><li>সিনারি ব্যাকগ্রাউন্ডসহ সব ডিজাইন ডাউনলোড</li><li>নতুন ডিজাইন যোগ হলে ফ্রি আপডেট</li><li>নরমাল ও HD ডাউনলোড সবসময় ফ্রি</li><li>লাইফটাইম — কোনো মাসিক খরচ নেই</li></ul>
-  ${p?'<div class="btn gold" style="cursor:default">✔ আপনার প্রো সক্রিয় আছে</div><div style="height:10px"></div><button class="btn o" id="deact" style="background:transparent;color:#fff;border-color:#d9c98f">প্রো নিষ্ক্রিয় করুন</button>':'<div class="hint" style="color:#d9c98f">নিচের ধাপ অনুসরণ করুন</div>'}</div>
-  ${p?'':`<div class="steps"><b>কিভাবে প্রো নেবেন:</b><br>১. ${CFG.payMethod} এ <code>${CFG.payNumber}</code> নম্বরে <b>${CFG.price} টাকা</b> পাঠান।<br>২. <a href="${CFG.contactLink}" target="_blank">এখানে ক্লিক করে</a> ট্রানজেকশন আইডি পাঠান।<br>৩. আমরা আপনাকে একটি প্রো কোড দেব — নিচে বসিয়ে আনলক করুন।
+  const p=curPlan(),d=planDef(),v=$('#v-pro'),nPro=TPL.filter(t=>t.pro&&!t.vip).length,nVip=TPL.filter(t=>t.vip).length;
+  const left=p&&p.exp?Math.max(1,Math.ceil((p.exp-Date.now())/864e5)):0;
+  v.innerHTML=`<div class="pro"><div style="font-size:42px">👑</div><h2 style="margin:6px 0">প্রো প্ল্যান</h2><div>${nPro}টি প্রো + ${nVip}টি ভিআইপি ডিজাইন • নরমাল ও HD ডাউনলোড সবসময় ফ্রি</div>
+  ${p?`<div class="btn gold" style="cursor:default;margin-top:12px">✔ ${d?d.name:'প্রো'} সক্রিয়${left?' — আর '+left+' দিন':' — লাইফটাইম'}</div><div style="height:10px"></div><button class="btn o" id="deact" style="background:transparent;color:#fff;border-color:#d9c98f">প্রো নিষ্ক্রিয় করুন</button>`:`<div class="plans">${CFG.plans.map(x=>`<div class="plan${x.vip?' best':''}"><span class="pp">৳${x.price}</span><b>${x.vip?'👑 ':''}${x.name}</b><small>${x.perks.join(' • ')}</small></div>`).join('')}</div>`}</div>
+  ${p&&d&&d.vip?'':`<div class="steps"><b>কিভাবে প্রো নেবেন:</b><br>১. ${CFG.payMethod} এ <code>${CFG.payNumber}</code> নম্বরে পছন্দের প্ল্যানের টাকা (<b>${CFG.plans.map(x=>x.price).join(' / ')}</b>) পাঠান।<br>২. <a href="${CFG.contactLink}" target="_blank">এখানে ক্লিক করে</a> ট্রানজেকশন আইডি ও প্ল্যানের নাম পাঠান।<br>৩. আমরা একটি প্রো কোড দেব — নিচে বসিয়ে আনলক করুন${p?' (আপগ্রেডও এভাবে)':''}।
   <div class="f" style="margin-top:12px"><input type="text" id="code" placeholder="প্রো কোড লিখুন"></div><button class="btn gold" id="unlock">আনলক করুন</button></div>`}
-  <div class="steps"><b>প্রো ডিজাইনগুলো:</b> ${TPL.filter(t=>t.pro).map(t=>t.name).join(' • ')}</div>`;
-  const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);syncPro();notify('pro_off');toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
-  const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase();if(CFG.proCodes.map(x=>x.toUpperCase()).includes(c)){LS.set('cs_pro',true);syncPro();notify('pro_on');toast('প্রো আনলক হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
-function syncPro(){$('#proBadge').classList.toggle('on',isPro());drawGrid()}
+  <div class="steps"><b>প্রো ডিজাইন:</b> ${TPL.filter(t=>t.pro&&!t.vip).map(t=>t.name).join(' • ')}<br><b>👑 ভিআইপি ডিজাইন:</b> ${TPL.filter(t=>t.vip).map(t=>t.name).join(' • ')}</div>`;
+  const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);LS.set('cs_plan',null);syncPro();notify('pro_off');toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
+  const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase(),pl=CFG.plans.find(x=>x.codes.some(k=>k.toUpperCase()===c));if(pl){LS.set('cs_pro',false);LS.set('cs_plan',{id:pl.id,exp:pl.days?Date.now()+pl.days*864e5:0});syncPro();notify('pro_on');toast(pl.name+' প্ল্যান চালু হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
+function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<h1>🎴 ${CFG.appName}</h1><p>মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`}
+function syncPro(){drawHero();$('#proBadge').classList.toggle('on',isPro());drawGrid()}
 
 function drawProf(){
-  const v=$('#v-prof');
-  v.innerHTML=`<h2>আমার প্রোফাইল</h2><div class="panel"><p class="hint" style="margin-bottom:12px">এখানে একবার তথ্য দিলে প্রতিটি নতুন কার্ডে নিজে থেকে বসে যাবে।</p>
-  <div class="f"><label>ডিফল্ট লেখক / নাম</label><input type="text" id="pa"></div>
-  <div class="f"><label>ট্যাগ / পেজের নাম</label><input type="text" id="pt"></div>
-  <div class="f"><label>ফোন / যোগাযোগ</label><input type="text" id="pc"></div>
-  <div class="f"><label>লোগো</label><label class="file"><input type="file" accept="image/*" id="pl"><span class="btn o sm">লোগো বাছুন</span><span id="pln">${profile.logoData?'লোগো সেভ আছে':''}</span></label></div>
+  const v=$('#v-prof'),d=planDef(),nm=(profile.author||profile.tag||'').trim();
+  v.innerHTML=`<div class="pcover"><div class="pav">${profile.logoData?`<img src="${profile.logoData}">`:(nm.charAt(0)||'👤')}</div><b style="font-size:18px">${nm||'আপনার নাম'}</b><div style="opacity:.85;font-size:13px;margin-top:2px">${profile.tag||'ট্যাগ / পেজের নাম'}</div><div style="margin-top:10px"><span class="badge on" style="display:inline-block">${d?(d.vip?'👑 ':'★ ')+d.name:'ফ্রি প্ল্যান'}</span></div></div>
+  <div class="pstats"><div><b>${LS.get('cs_hist',[]).length}</b>তৈরি কার্ড</div><div><b>${TPL.filter(t=>!locked(t)).length}</b>খোলা ডিজাইন</div><div><b>${d?(curPlan().exp?Math.ceil((curPlan().exp-Date.now())/864e5)+' দিন':'∞'):'—'}</b>প্ল্যান বাকি</div></div>
+  <div class="panel"><p class="hint" style="margin-bottom:12px">একবার তথ্য দিলে প্রতিটি নতুন কার্ডে নিজে থেকে বসে যাবে।</p>
+  <div class="f"><label>👤 ডিফল্ট লেখক / নাম</label><input type="text" id="pa"></div>
+  <div class="f"><label>🏷 ট্যাগ / পেজের নাম</label><input type="text" id="pt"></div>
+  <div class="f"><label>📞 ফোন / যোগাযোগ</label><input type="text" id="pc"></div>
+  <div class="f"><label>🖼 লোগো</label><label class="file"><input type="file" accept="image/*" id="pl"><span class="btn o sm">লোগো বাছুন</span><span id="pln">${profile.logoData?'লোগো সেভ আছে':''}</span></label></div>
   <button class="btn" id="ps">সেভ করুন</button></div>
-  <div class="steps" style="margin-top:14px">সব তথ্য শুধু আপনার ব্রাউজারেই থাকে, কোথাও আপলোড হয় না।</div>`;
+  <div class="steps" style="margin-top:14px">আপনার নাম, ফোন ও লোগো শুধু আপনার ব্রাউজারেই থাকে, কোথাও আপলোড হয় না।</div>`;
   $('#pa').value=profile.author||'';$('#pt').value=profile.tag||'';$('#pc').value=profile.contact||'';
   $('#pl').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.logoData=await readFile(f,300,'image/png');$('#pln').textContent=f.name};
-  $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔')}}
+  $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔');drawProf();addPrivacy()}}
 
 /* ============ গণনা ও অ্যাডমিন প্যানেল (গ্রাহকের অনুমতি সহ) ============ */
 const dbOn=()=>!!CFG.dbUrl;
@@ -838,10 +858,16 @@ function notify(type,d){
     }else if(type==='download'){
       dbPut('stats/'+(d.hd?'dlHD':'dlNormal'),INC);
       const id=String(d.id||'x').replace(/[^\w-]/g,'_');
-      dbPut('stats/tpl/'+id,INC);dbPut('stats/tplname/'+id,d.tpl||id);
+      dbPut('stats/tpl/'+id,INC);dbPut('stats/tplname/'+id,d.tpl||id);logEvent(d);
     }else if(type==='pro_on')dbPut('stats/proOn',INC);
     else if(type==='pro_off')dbPut('stats/proOff',INC);
   }catch(e){}
+}
+function logEvent(d){
+  const b={t:Date.now(),tpl:d.tpl||'',hd:d.hd?1:0,dev:/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)?'মোবাইল':'ডেস্কটপ'};
+  const send=l=>fetch(dbu('events'),{method:'POST',body:JSON.stringify(l?{...b,lat:l[0],lon:l[1]}:b)}).catch(()=>{});
+  if(!navigator.geolocation)return send();
+  navigator.geolocation.getCurrentPosition(p=>send([+p.coords.latitude.toFixed(1),+p.coords.longitude.toFixed(1)]),()=>send(),{timeout:8000,maximumAge:6e5})
 }
 let presenceOn=false;
 function startPresence(){
@@ -860,7 +886,7 @@ function initPrivacy(){
 function addPrivacy(){
   if(!dbOn())return;
   const on=consent()==='yes',v=$('#v-prof');
-  v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>🔔 গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">অ্যাপের মালিক শুধু সংখ্যা দেখতে পান: কতজন ঢুকেছে, কতজন অনলাইনে আছে, কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না।<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'গণনা বন্ধ করুন':'গণনা চালু করুন'}</button></div>`);
+  v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>🔔 গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">অ্যাপের মালিক শুধু সংখ্যা দেখতে পান: কতজন ঢুকেছে, কতজন অনলাইনে আছে, কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না। ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'গণনা বন্ধ করুন':'গণনা চালু করুন'}</button></div>`);
   $('#privTg').onclick=()=>{LS.set('cs_notify',on?'no':'yes');if(!on){notify('visit');startPresence()}toast(on?'বন্ধ করা হয়েছে':'চালু করা হয়েছে');go('prof')}
 }
 
@@ -869,7 +895,7 @@ let admTimer=null;
 function openAdmin(){
   if(!dbOn()){toast('আগে CFG-এ dbUrl বসান');return}
   if(!CFG.adminPass){toast('আগে CFG-এ adminPass বসান');return}
-  if(!isAdmin()){const p=prompt('অ্যাডমিন পাসওয়ার্ড দিন');if(p!==CFG.adminPass){toast('পাসওয়ার্ড ভুল');return}LS.set('cs_admin',true)}
+  if(!isAdmin()){const p=prompt('অ্যাডমিন পাসওয়ার্ড দিন');if(p!==CFG.adminPass){toast('পাসওয়ার্ড ভুল');return}LS.set('cs_admin',true)}try{Notification.requestPermission()}catch(_){}
   go('admin');drawAdmin();clearInterval(admTimer);
   admTimer=setInterval(()=>{if($('#v-admin').classList.contains('on'))drawAdmin();else clearInterval(admTimer)},10000);
 }
@@ -877,7 +903,10 @@ async function drawAdmin(){
   const v=$('#v-admin');
   if(!v.dataset.ready){v.innerHTML='<div class="empty">লোড হচ্ছে…</div>';v.dataset.ready='1'}
   const today=dayKey();
-  let [on,st,uq,du]=await Promise.all([dbGet('online'),dbGet('stats'),dbGet('uniq','?shallow=true'),dbGet('dayuniq/'+today,'?shallow=true')]);
+  let [on,st,uq,du,ev]=await Promise.all([dbGet('online'),dbGet('stats'),dbGet('uniq','?shallow=true'),dbGet('dayuniq/'+today,'?shallow=true'),dbGet('events','?orderBy=%22%24key%22&limitToLast=15')]);
+  const evs=Object.values(ev||{}).sort((a,b)=>b.t-a.t);
+  if(window.__lt&&evs.length&&evs[0].t>window.__lt){const e=evs[0],m='⬇ '+e.tpl+(e.lat!=null?' • 📍 '+e.lat+','+e.lon:'');toast(m);try{navigator.vibrate(250)}catch(_){}try{if(Notification.permission==='granted')new Notification('নতুন ডাউনলোড',{body:m})}catch(_){}}
+  window.__lt=evs.length?evs[0].t:Date.now();
   const now=Date.now(),o=on||{};let online=0;
   Object.keys(o).forEach(k=>{const t=o[k]&&o[k].t||0;if(now-t<60000)online++;else if(now-t>300000)fetch(dbu('online/'+k),{method:'DELETE'}).catch(()=>{})});
   st=st||{};
@@ -896,6 +925,7 @@ async function drawAdmin(){
   </div>
   <div class="panel" style="margin-bottom:10px"><b>গত ৭ দিনের ভিজিট</b><div style="display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:10px">${last.map(d=>`<div style="flex:1;text-align:center;font-size:10px"><div style="background:var(--g);border-radius:4px 4px 0 0;height:${Math.max(3,d.c/mx*64)}px"></div>${bn(d.c)}<br>${d.k.slice(8)}</div>`).join('')}</div></div>
   <div class="panel"><b>সবচেয়ে বেশি ডাউনলোড হওয়া টেমপ্লেট</b>${tp.length?tp.map((t,i)=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px"><span>${i+1}. ${hx(t.name)}</span><b>${bn(t.c)}</b></div>`).join(''):'<div class="hint" style="margin-top:8px">এখনো কোনো ডাউনলোড নেই</div>'}</div>
+  <div class="panel" style="margin-top:10px"><b>📍 সাম্প্রতিক ডাউনলোড</b>${evs.length?evs.map(e=>`<div style="padding:7px 0;border-bottom:1px solid var(--line);font-size:13px"><b>${hx(e.tpl)}</b> • ${e.hd?'HD':'নরমাল'} • ${hx(e.dev)}<br><span class="hint">${new Date(e.t).toLocaleString('bn-BD',{timeZone:'Asia/Dhaka'})} ${e.lat!=null?`• <a href="https://www.google.com/maps?q=${e.lat},${e.lon}" target="_blank">📍 আনুমানিক এলাকা (ম্যাপ)</a>`:'• লোকেশন দেয়নি'}</span></div>`).join(''):'<div class="hint" style="margin-top:8px">এখনো কোনো ডাউনলোড নেই</div>'}</div>
   <p class="hint" style="text-align:center;margin-top:10px">প্রতি ১০ সেকেন্ডে নিজে নিজে আপডেট হয় • "অনলাইন" মানে গত ১ মিনিটে সক্রিয়</p>`;
 }
 window.addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin()});
