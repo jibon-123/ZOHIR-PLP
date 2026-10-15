@@ -159,9 +159,9 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
+  dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
-  dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app',
-  adminPass:'zohirplp',
   price:200,
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -477,6 +477,141 @@ function imageTpl(t){return(c,W,H,s)=>{
   txt(c,s,s.author,W/2,b.y+b.h+56,36,t.color||'#111',{align:'center'});
   footer(c,W,H,s,{bg:'rgba(0,0,0,.55)',fg:'#fff'})}}
 
+/* ============ নতুন টেমপ্লেট ডিজাইন (২য় ব্যাচ) ============ */
+const gradCard=c2=>(c,W,H,s)=>{
+  const{A}=dims(s,H),ac=s.accent,y0=s.title?250:200;
+  const g=c.createLinearGradient(0,0,W*.6,A);g.addColorStop(0,ac);g.addColorStop(1,c2);c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.save();c.globalAlpha=.1;c.fillStyle='#fff';c.beginPath();c.arc(W*.92,A*.08,280,0,7);c.fill();c.beginPath();c.arc(W*.02,A*.97,220,0,7);c.fill();c.restore();
+  if(s.title){txt(c,s,s.title,W/2,120,36,'#fff',{align:'center',weight:700});c.fillStyle='rgba(255,255,255,.7)';c.fillRect(W/2-60,164,120,4)}
+  glyph(c,W/2,y0+70,150,'#fff','center',.25);
+  mainBlock(c,s,{x:90,y:y0,w:W-180,h:A-y0-190,size:70,align:'center',color:'#fff',accent:'#ffe27a',weight:800,lh:1.45});
+  if(s.author)pill(c,s,s.author,W/2,A-150,32,'rgba(255,255,255,.2)','#fff',40);
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.3)',fg:'#fff'})};
+
+const frameCard=(bg,fg)=>(c,W,H,s)=>{
+  const{A}=dims(s,H),ac=s.accent,ty=s.title?220:150;
+  c.fillStyle=bg;c.fillRect(0,0,W,H);pattern(c,W,A,ac,.08);
+  c.strokeStyle=ac;c.lineWidth=6;c.strokeRect(44,44,W-88,A-88);c.lineWidth=2;c.strokeRect(68,68,W-136,A-136);
+  [[44,44],[W-44,44],[44,A-44],[W-44,A-44]].forEach(([x,y])=>{c.fillStyle=ac;c.save();c.translate(x,y);c.rotate(Math.PI/4);c.fillRect(-14,-14,28,28);c.restore()});
+  if(s.title){c.save();c.font=`800 38px ${F(s)}`;const w=Math.min(c.measureText(s.title).width+90,W-240);c.restore();c.fillStyle=ac;rr(c,W/2-w/2,100,w,76,38);c.fill();txt(c,s,s.title,W/2,139,38,'#fff',{align:'center',weight:800})}
+  mainBlock(c,s,{x:130,y:ty,w:W-260,h:A-ty-210,size:66,align:'center',color:fg,accent:ac,weight:700,lh:1.5});
+  c.fillStyle=ac;c.fillRect(W/2-70,A-190,140,4);
+  txt(c,s,s.author,W/2,A-135,36,ac,{align:'center',weight:700});
+  footer(c,W,H,s,{bg:ac,fg:'#fff'})};
+
+const topScene=def=>(c,W,H,s)=>{
+  const{A}=dims(s,H),ac=s.accent,th=Math.round(A*.42);
+  photoFill(c,s,0,0,W,th+40,def);tint(c,0,0,W,th+40,'#000',.15);
+  c.fillStyle='#fff';rr(c,0,th,W,A-th,[64,64,0,0]);c.fill();
+  c.fillStyle=ac;c.fillRect(W/2-60,th+26,120,8);
+  if(s.title)pill(c,s,s.title,W/2,th-40,34,ac,'#fff',40);
+  mainBlock(c,s,{x:80,y:th+70,w:W-160,h:A-th-70-170,size:62,align:'center',color:'#222',accent:ac,weight:800,lh:1.45});
+  txt(c,s,s.author,W/2,A-80,34,ac,{align:'center',weight:700});
+  footer(c,W,H,s,{bg:ac,fg:'#fff'})};
+
+const fullBottom=def=>(c,W,H,s)=>{
+  const{A}=dims(s,H),ac=s.accent,ty=Math.round(A*.4);
+  photoFill(c,s,0,0,W,A,def);
+  const g=c.createLinearGradient(0,A*.25,0,A);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(.55,'rgba(0,0,0,.6)');g.addColorStop(1,'rgba(0,0,0,.92)');c.fillStyle=g;c.fillRect(0,A*.25,W,A*.75);
+  brand(c,s,64,56,'#fff',76);
+  c.fillStyle=ac;c.fillRect(70,ty-20,10,A-(ty-20)-140);
+  txt(c,s,s.title,106,ty,34,ac,{weight:800});
+  mainBlock(c,s,{x:106,y:ty+30,w:W-176,h:A-(ty+30)-170,size:68,align:'left',color:'#fff',accent:ac,weight:800,lh:1.45,valign:'top'});
+  txt(c,s,s.author,106,A-96,34,ac,{weight:700});
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.65)',fg:'#fff'})};
+
+const polaroid=def=>(c,W,H,s)=>{
+  const{A}=dims(s,H),ac=s.accent;
+  c.fillStyle='#efe7da';c.fillRect(0,0,W,H);dots(c,0,0,W,A,'#c9bba0',.5,44);
+  const ph=Math.min(700,A*.55),pw=ph*.9,py=A*.06;
+  c.save();c.translate(W/2,py+ph/2);c.rotate(-.045);
+  c.shadowColor='rgba(0,0,0,.3)';c.shadowBlur=36;c.shadowOffsetY=14;c.fillStyle='#fff';c.fillRect(-pw/2,-ph/2,pw,ph);c.shadowColor='transparent';
+  const ix=-pw/2+28,iy=-ph/2+28,iw=pw-56,ih=ph-56-ph*.2;
+  c.save();c.beginPath();c.rect(ix,iy,iw,ih);c.clip();photoFill(c,s,ix,iy,iw,ih,def);c.restore();
+  txt(c,s,s.title,0,ph/2-ph*.1,36,'#333',{align:'center',weight:700});
+  c.restore();
+  const ty=py+ph+50;
+  mainBlock(c,s,{x:90,y:ty,w:W-180,h:A-ty-130,size:58,align:'center',color:'#3a2f20',accent:ac,weight:800,lh:1.45});
+  txt(c,s,s.author,W/2,A-62,34,ac,{align:'center',weight:700});
+  footer(c,W,H,s,{bg:'#3a2f20',fg:'#fff'})};
+
+function stickyNote(c,W,H,s){
+  const{A}=dims(s,H),ac=s.accent;
+  const g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,'#2c3138');g.addColorStop(1,'#14171b');c.fillStyle=g;c.fillRect(0,0,W,H);dots(c,0,0,W,A,'#ffffff',.06,40);
+  const nw=W-200,nh=A-300,ny=130;
+  c.save();c.translate(W/2,ny+nh/2);c.rotate(.025);
+  c.shadowColor='rgba(0,0,0,.5)';c.shadowBlur=40;c.shadowOffsetY=18;c.fillStyle=ac;c.fillRect(-nw/2,-nh/2,nw,nh);c.shadowColor='transparent';
+  tint(c,-nw/2,-nh/2,nw,70,'#000',.06);
+  c.fillStyle='rgba(255,255,255,.55)';c.fillRect(-90,-nh/2-28,180,56);
+  mainBlock(c,s,{x:-nw/2+60,y:-nh/2+90,w:nw-120,h:nh-90-120,size:64,align:'center',color:'#2b2412',accent:'#b3202a',weight:800,lh:1.5});
+  txt(c,s,s.author,0,nh/2-62,34,'#4a3f1e',{align:'center',weight:700});
+  c.restore();
+  txt(c,s,s.title,W/2,70,34,'#fff',{align:'center',weight:700});
+  footer(c,W,H,s,{bg:'#000',fg:'#fff'})}
+
+function chatBubble(c,W,H,s){
+  const{A}=dims(s,H),ac=s.accent;
+  const g=c.createLinearGradient(0,0,0,A);g.addColorStop(0,'#dff3e6');g.addColorStop(1,'#b9dcc5');c.fillStyle=g;c.fillRect(0,0,W,H);dots(c,0,0,W,A,'#7fae91',.18,46);
+  logoBox(c,s,60,70,100,50);txt(c,s,s.title||s.tag||s.author,186,106,40,'#1c3b2a',{weight:800});txt(c,s,'অনলাইন',186,148,26,'#3b7a56',{weight:500});
+  const bx=70,by=230,bw=W-200,bh=A-230-260;
+  c.save();c.shadowColor='rgba(0,0,0,.15)';c.shadowBlur=24;c.shadowOffsetY=8;c.fillStyle='#fff';rr(c,bx,by,bw,bh,44);c.fill();c.restore();
+  c.fillStyle='#fff';c.beginPath();c.moveTo(bx+4,by+30);c.lineTo(bx-34,by+20);c.lineTo(bx+10,by+90);c.fill();
+  mainBlock(c,s,{x:bx+50,y:by+40,w:bw-100,h:bh-80,size:60,align:'left',color:'#1d2b22',accent:ac,weight:700,lh:1.5});
+  if(s.author){c.save();c.font=`700 34px ${F(s)}`;const w=Math.min(c.measureText(s.author).width+80,W-200);c.restore();c.fillStyle=ac;rr(c,W-60-w,by+bh+40,w,84,42);c.fill();txt(c,s,s.author,W-60-w/2,by+bh+82,34,'#fff',{align:'center',weight:700})}
+  footer(c,W,H,s,{bg:'#1c3b2a',fg:'#fff'})}
+
+const minimalLeft=(bg,fg)=>(c,W,H,s)=>{
+  const{A}=dims(s,H),ac=s.accent;
+  c.fillStyle=bg;c.fillRect(0,0,W,H);c.fillStyle=ac;c.fillRect(0,0,26,A);
+  txt(c,s,s.title,100,120,38,ac,{weight:800});c.fillStyle=ac;c.fillRect(100,160,90,6);
+  mainBlock(c,s,{x:100,y:210,w:W-200,h:A-210-190,size:74,align:'left',color:fg,accent:ac,weight:800,lh:1.45,valign:'top'});
+  if(s.author){c.fillStyle=ac;c.fillRect(100,A-132,60,4);txt(c,s,s.author,100,A-88,34,fg,{weight:600})}
+  footer(c,W,H,s,{bg:ac,fg:'#fff'})};
+
+const darkPat=(c1,c2)=>(c,W,H,s)=>{
+  const{A}=dims(s,H),ac=s.accent,y0=s.title?320:260;
+  const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,c1);g.addColorStop(1,c2);c.fillStyle=g;c.fillRect(0,0,W,H);
+  gridBg(c,W,A,ac,.07,90);
+  c.fillStyle=ac;c.beginPath();c.arc(W/2,150,64,0,7);c.fill();c.fillStyle=c1;c.beginPath();c.arc(W/2+26,138,56,0,7);c.fill();
+  txt(c,s,s.title,W/2,270,38,ac,{align:'center',weight:700});
+  mainBlock(c,s,{x:100,y:y0,w:W-200,h:A-y0-190,size:68,align:'center',color:'#fff',accent:ac,weight:800,lh:1.5});
+  if(s.author){c.fillStyle=ac;c.fillRect(W/2-60,A-168,120,3);txt(c,s,s.author,W/2,A-110,34,ac,{align:'center',weight:700})}
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.4)',fg:'#fff'})};
+
+function noteLined(c,W,H,s){
+  const{A}=dims(s,H),ac=s.accent;
+  c.fillStyle='#fffdf6';c.fillRect(0,0,W,H);
+  c.strokeStyle='#b9d3ea';c.lineWidth=2;for(let y=190;y<A;y+=84){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()}
+  c.strokeStyle='#e57373';c.lineWidth=3;c.beginPath();c.moveTo(130,0);c.lineTo(130,A);c.stroke();
+  c.fillStyle='#ddd';for(let y=110;y<A-60;y+=240){c.beginPath();c.arc(54,y,16,0,7);c.fill()}
+  txt(c,s,s.title,170,110,44,ac,{weight:800});
+  mainBlock(c,s,{x:170,y:190,w:W-250,h:A-190-190,size:64,align:'left',color:'#223',accent:ac,weight:700,lh:1.4,valign:'top'});
+  txt(c,s,s.author,W-80,A-80,34,ac,{align:'right',weight:700});
+  footer(c,W,H,s,{bg:'#fff',fg:'#333'})}
+
+function poster(c,W,H,s){
+  const{A}=dims(s,H),ac=s.accent,th=Math.round(A*.38);
+  c.fillStyle='#f7f5ef';c.fillRect(0,0,W,H);
+  c.fillStyle=ac;c.beginPath();c.moveTo(0,0);c.lineTo(W,0);c.lineTo(W,th-70);c.lineTo(0,th);c.closePath();c.fill();
+  glyph(c,W-90,th-30,170,'#fff','right',.25);
+  block(c,s,s.title,{x:90,y:50,w:W-180,h:th-130,size:112,align:'left',color:'#fff',accent:'#ffe27a',weight:900,lh:1.15});
+  mainBlock(c,s,{x:90,y:th+50,w:W-180,h:A-th-50-190,size:64,align:'left',color:'#222',accent:ac,weight:800,lh:1.5,valign:'top'});
+  txt(c,s,s.author,90,A-90,34,ac,{weight:700});
+  footer(c,W,H,s,{bg:ac,fg:'#fff'})}
+
+function circleCard(c,W,H,s){
+  const{A}=dims(s,H),ac=s.accent;
+  const g=c.createLinearGradient(0,0,W,A);g.addColorStop(0,'#fff0f5');g.addColorStop(1,'#ffd3e2');c.fillStyle=g;c.fillRect(0,0,W,H);
+  const r=Math.min(W*.4,A*.34),cx=W/2,cy=A*.42;
+  c.save();c.shadowColor='rgba(0,0,0,.18)';c.shadowBlur=40;c.shadowOffsetY=16;c.fillStyle='#fff';c.beginPath();c.arc(cx,cy,r,0,7);c.fill();c.restore();
+  c.strokeStyle=ac;c.lineWidth=10;c.beginPath();c.arc(cx,cy,r-26,0,7);c.stroke();
+  glyph(c,cx,cy-r*.5,110,ac,'center',.35);
+  mainBlock(c,s,{x:cx-r*.75,y:cy-r*.55,w:r*1.5,h:r*1.1,size:60,align:'center',color:'#333',accent:ac,weight:800,lh:1.45});
+  if(s.title)pill(c,s,s.title,W/2,cy+r+30,34,ac,'#fff',40);
+  txt(c,s,s.author,W/2,A-50,34,ac,{align:'center',weight:700});
+  footer(c,W,H,s,{bg:ac,fg:'#fff'})}
+
+
 /* ============ টেমপ্লেট তালিকা ============ */
 const T1='কবরই তো তোমার ঠিকানা *গালিব!* অন্তত কিছু ইবাদত করো, রীতি আছে-কারও বাড়িতে *খালি হাতে যেতে* নেই।';
 const T2='তুমি যখন নিজের জন্য *ইস্তিগফার* করো তোমার মর্যাদা বাড়ে, আর যখন অন্যের জন্য করো তার মর্যাদাও বেড়ে যায়।';
@@ -506,7 +641,25 @@ const TPL=[
  {id:'side-photo',name:'সাইড ফটো',pro:true,accent:'#e04a7d',draw:sidePhoto,sample:{text:'দ্বীনি ভাইয়েরা গরীব মেয়েকে বিয়ে করলেও *দ্বীনি বোনেরা গরীব ছেলেকে* বিয়ে করতে চায় না!',author:'হযরত মতিউর রহমান মাদানী'}},
  {id:'red-bold',name:'রেড বোল্ড',pro:true,accent:'#c4161c',draw:redBold,sample:{title:'জহির',caption:'Zohir_043',text:'এই দাড়ি-টুপিওয়ালা মোল্লাদের হাতেই আপনাদের বিচার হবে *ইনশাআল্লাহ!* কারণ তারাই সামনে বিশ্ব শাসন করবে ইনশাআল্লাহ।',author:'আবু ত্বহা মুহাম্মদ আদনান (হাফি.)'}},
  {id:'green-learn',name:'গ্রিন লার্নিং',pro:true,accent:'#2f9e1a',draw:greenLearn,sample:{title:'Zohir_043',text:'ভিক্ষা চায় ভিক্ষুকে, ভোট চায় নেতা পাস করলে নেতার ঘরে কম্বল *জনগণের ঘরে খেতা*'}},
- {id:'mosque-light',name:'মসজিদ লাইট',pro:true,accent:'#1d6b43',draw:mosqueLight,sample:{title:'দিনের স্মরণ',text:'আল্লাহর জন্য হারাম ছেড়ে দিলে আল্লাহ কিভাবে সেটাকেই *হালাল বানিয়ে উত্তম করে* ফিরিয়ে দেন!',author:'সংগৃহীত'}}
+ {id:'mosque-light',name:'মসজিদ লাইট',pro:true,accent:'#1d6b43',draw:mosqueLight,sample:{title:'দিনের স্মরণ',text:'আল্লাহর জন্য হারাম ছেড়ে দিলে আল্লাহ কিভাবে সেটাকেই *হালাল বানিয়ে উত্তম করে* ফিরিয়ে দেন!',author:'সংগৃহীত'}},
+ {id:'min-green',name:'মিনিমাল গ্রিন',pro:false,accent:'#2e7d32',draw:minimalLeft('#fbfbf6','#1f2a1f'),sample:{title:'আজকের কথা',text:T3,author:'জহির_০৪৩'}},
+ {id:'notebook',name:'নোটবুক',pro:false,accent:'#2b6cb0',draw:noteLined,sample:{title:'আমার ডায়েরি',text:T2,author:'জহির_০৪৩'}},
+ {id:'circle-pink',name:'সার্কেল পিঙ্ক',pro:false,accent:'#d6336c',draw:circleCard,sample:{title:'স্মরণ',text:T1,author:'জহির_০৪৩'}},
+ {id:'poster-blue',name:'পোস্টার ব্লু',pro:false,accent:'#1565c0',draw:poster,sample:{title:'মনে রাখবেন',text:T4,author:'জহির_০৪৩'}},
+ {id:'grad-purple',name:'গ্রেডিয়েন্ট পার্পল',pro:true,accent:'#8e2de2',draw:gradCard('#2a0a66'),sample:{title:'আজকের কথা',text:T1,author:'জহির_০৪৩'}},
+ {id:'grad-sunset',name:'গ্রেডিয়েন্ট সানসেট',pro:true,accent:'#ff7e5f',draw:gradCard('#8a1c2b'),sample:{title:'স্মরণ',text:T4,author:'জহির_০৪৩'}},
+ {id:'grad-teal',name:'গ্রেডিয়েন্ট টিল',pro:true,accent:'#11998e',draw:gradCard('#0b3b3a'),sample:{title:'আজকের কথা',text:T3,author:'জহির_০৪৩'}},
+ {id:'frame-gold',name:'ফ্রেম গোল্ড',pro:true,accent:'#b8892b',draw:frameCard('#fbf5e4','#2b2412'),sample:{title:'আজকের স্মরণ',text:T2,author:'জহির_০৪৩'}},
+ {id:'frame-green',name:'ফ্রেম গ্রিন',pro:true,accent:'#2f7d46',draw:frameCard('#f2f7ef','#183a22'),sample:{title:'দিনের কথা',text:T3,author:'জহির_০৪৩'}},
+ {id:'top-forest',name:'টপ ফরেস্ট',pro:true,accent:'#2f7d46',draw:topScene('forest'),sample:{title:'আজকের কথা',text:T1,author:'জহির_০৪৩'}},
+ {id:'top-sea',name:'টপ সি',pro:true,accent:'#1c6dd0',draw:topScene('sea'),sample:{title:'স্মরণ',text:T4,author:'জহির_০৪৩'}},
+ {id:'full-night',name:'নাইট ফুল',pro:true,accent:'#ffd86b',draw:fullBottom('night'),sample:{title:'আজকের কথা',text:T3,author:'জহির_০৪৩'}},
+ {id:'full-mosque',name:'মসজিদ ফুল',pro:true,accent:'#ffb347',draw:fullBottom('mosque'),sample:{title:'দিনের স্মরণ',text:T2,author:'জহির_০৪৩'}},
+ {id:'polaroid',name:'পোলারয়েড',pro:true,accent:'#c2185b',draw:polaroid('flowers'),sample:{title:'আজকের কথা',text:T1,author:'জহির_০৪৩'}},
+ {id:'sticky',name:'স্টিকি নোট',pro:true,accent:'#ffd84a',draw:stickyNote,sample:{title:'মনে রাখুন',text:T4,author:'জহির_০৪৩'}},
+ {id:'chat',name:'চ্যাট বাবল',pro:true,accent:'#128c7e',draw:chatBubble,sample:{title:'জহির_০৪৩',text:T3,author:'জহির_০৪৩'}},
+ {id:'emerald',name:'এমারেল্ড নাইট',pro:true,accent:'#f2c94c',draw:darkPat('#06281f','#02110c'),sample:{title:'আজকের স্মরণ',text:T2,author:'জহির_০৪৩'}},
+ {id:'navy-gold',name:'নেভি গোল্ড',pro:true,accent:'#e0b84a',draw:darkPat('#0b1b3a','#050d1f'),sample:{title:'দিনের কথা',text:T1,author:'জহির_০৪৩'}},
 ];
 CFG.imageTemplates.forEach(t=>TPL.push({id:t.id,name:t.name,pro:!!t.pro,accent:t.accent||'#c0392b',draw:imageTpl(t),sample:{text:t.sample||'এখানে আপনার লেখা',author:''}}));
 const tplById=id=>TPL.find(t=>t.id===id);
@@ -749,7 +902,7 @@ window.addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin(
 
 /* ============ শুরু ============ */
 (async function init(){
-  document.title=CFG.appName+' - Zᴏʜɪʀ | PLP ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
+  document.title=CFG.appName+' - ফটো কার্ড ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
   try{await Promise.all(['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'].map(f=>document.fonts.load(`700 40px "${f}"`,'অআক')))}catch(e){}
   drawChips();syncPro();initPrivacy();if(location.hash==='#admin')openAdmin();
 })();
