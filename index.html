@@ -133,19 +133,31 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 .edhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}.edhead .back{margin:0;white-space:nowrap}
 .wmnote{font-size:11px;line-height:1.35;padding:6px 10px;border-radius:12px;text-align:right;cursor:pointer;background:#fff4d6;color:#7a5a00;border:1px solid #f0d88a;max-width:62%}.wmnote.ok{background:#e6f6ec;color:#17623a;border-color:#b8e2c8;cursor:default}
 .qopt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;margin-bottom:6px;font:inherit;font-size:14px;cursor:pointer}
+.ic{width:1.15em;height:1.15em;vertical-align:-.22em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav i{display:block;font-style:normal;margin-bottom:2px}nav i .ic{width:23px;height:23px;vertical-align:0}
+.tcard{position:relative}.fav{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#8a8f98;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.18);cursor:pointer;padding:0}.fav.on{color:#e0245e}.fav.on .ic{fill:#e0245e}
+.sbox{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:0 12px;margin-bottom:10px;color:var(--mut)}.sbox input{flex:1;border:0;outline:0;background:none;font:inherit;font-size:16px;padding:11px 0;color:var(--tx)}
+.adm{display:grid;gap:12px}.ah{display:flex;justify-content:space-between;align-items:center}.ah h2{margin:0;font-size:18px;display:flex;gap:8px;align-items:center}.ah small{color:var(--mut);font-size:11px;display:block;margin-top:2px}.ab button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px;margin-left:6px;color:var(--tx);cursor:pointer;line-height:0}
+.live{background:linear-gradient(135deg,#0f6b3a,#0a3d26);color:#fff;border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px}.live b{font-size:36px;line-height:1}.live small{opacity:.85;display:block}.dot{width:12px;height:12px;border-radius:50%;background:#4ade80;animation:pl 1.6s infinite;flex:none}@keyframes pl{0%{box-shadow:0 0 0 0 rgba(74,222,128,.7)}70%,100%{box-shadow:0 0 0 12px rgba(74,222,128,0)}}
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.kc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}.kc .ki{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#e8f3ec;color:var(--g);margin-bottom:8px}.kc b{display:block;font-size:22px}.kc small{color:var(--mut);font-size:12px}.up{color:#17803d}.dn{color:#c62828}
+.ac{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.ac h3{margin:0 0 10px;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bar{height:8px;border-radius:6px;background:#eef2ee;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--g2))}.r2{display:flex;justify-content:space-between;font-size:13px;margin:9px 0 4px}
+.evr{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}.evr:last-child{border:0}.evr .ei{width:32px;height:32px;border-radius:50%;background:#e8f3ec;color:var(--g);display:flex;align-items:center;justify-content:center;flex:none}.evr small{color:var(--mut)}
+.mini{border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 10px;font:inherit;font-size:12px;cursor:pointer;color:var(--tx)}.mini.d{color:#c62828}
 </style>
 </head>
 <body>
-<header><h1><span id="appName">Zᴏʜɪʀ | PLP</span></h1><span class="badge" id="proBadge">★ PRO</span></header>
+<header><h1><svg class="ic" viewBox="0 0 24 24" style="width:22px;height:22px"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg> <span id="appName">Zᴏʜɪʀ | PLP</span></h1><span class="badge" id="proBadge"><svg class="ic" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z"/></svg> PRO</span></header>
 <main>
   <section class="view on" id="v-home">
     <div id="hero"></div>
     <h2>টেমপ্লেট বেছে নিন</h2>
+    <div class="sbox"><svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="text" id="tsearch" placeholder="টেমপ্লেট খুঁজুন…" autocomplete="off"></div>
     <div class="chips" id="chips"></div>
     <div class="grid" id="tgrid"></div>
   </section>
   <section class="view" id="v-edit">
-    <div class="edhead"><button class="back" id="backBtn">← টেমপ্লেটে ফিরুন</button><span class="wmnote" id="wmNote"></span></div>
+    <div class="edhead"><button class="back" id="backBtn"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg> টেমপ্লেটে ফিরুন</button><span class="wmnote" id="wmNote"></span></div>
     <div class="editor">
       <div class="prev"><canvas id="cv"></canvas></div>
       <div class="panel" id="panel"></div>
@@ -157,13 +169,13 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
   <section class="view" id="v-admin"></section>
 </main>
 <nav>
-  <button data-go="home" class="on"><i>🏠</i>হোম</button>
-  <button data-go="hist"><i>🕘</i>হিস্টরি</button>
-  <button data-go="pro"><i>⭐</i>প্রো</button>
-  <button data-go="prof"><i>👤</i>প্রোফাইল</button>
+  <button data-go="home" class="on"><i><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></i>হোম</button>
+  <button data-go="hist"><i><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i>হিস্টরি</button>
+  <button data-go="pro"><i><svg class="ic" viewBox="0 0 24 24"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z"/></svg></i>প্রো</button>
+  <button data-go="prof"><i><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></i>প্রোফাইল</button>
 </nav>
-<div class="modal" id="modal"><div class="mbox"><h3>🔒 প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকা থেকে প্রো প্ল্যান (৩ ধরনের)।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
-<div class="modal" id="privM"><div class="mbox"><h3>🔔 গোপনীয়তা নোটিশ</h3>
+<div class="modal" id="modal"><div class="mbox"><h3><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকা থেকে প্রো প্ল্যান (৩ ধরনের)।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
+<div class="modal" id="privM"><div class="mbox"><h3><svg class="ic" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></svg> গোপনীয়তা নোটিশ</h3>
 <p style="font-size:14px;line-height:1.6;text-align:left">অ্যাপের মালিক জানতে পারেন <b>কতজন ঢুকেছে, কতজন এখন অনলাইনে আছে</b> এবং কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। এগুলো শুধু সংখ্যা হিসেবে জমা হয়।<br><b>আপনার নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি কখনো পাঠানো হয় না।</b> ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>চাইলে নিচে "না" চাপুন; পরে প্রোফাইল পেজ থেকেও বদলানো যাবে।</p>
 <button class="btn" id="privYes">ঠিক আছে</button><div style="height:8px"></div><button class="btn o" id="privNo">না, গণনা করবেন না</button></div></div>
 <div class="toast" id="toast"></div>
@@ -173,13 +185,13 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 const CFG={
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
   plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIRKJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -775,13 +787,18 @@ $$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
 $('#backBtn').onclick=()=>go('home');
 
 let filter='all';
-function drawChips(){$('#chips').innerHTML=[['all','সব ('+TPL.length+')'],['free','ফ্রি ('+TPL.filter(t=>!t.pro).length+')'],['pro','প্রো ★ ('+TPL.filter(t=>t.pro).length+')'],['vip','👑 পেইড ভিআইপি ('+TPL.filter(t=>t.vip).length+')'],['thumb','🎬 ভিডিও থাম্বনেইল ('+TPL.filter(t=>t.cat==='thumb').length+')']].map(([k,l])=>`<button class="chip ${filter===k?'on':''}" data-k="${k}">${l}</button>`).join('');
+let tq='';
+const favs=()=>LS.get('cs_fav',[]);
+function toggleFav(id){let f=favs();f=f.includes(id)?f.filter(x=>x!==id):[id,...f];LS.set('cs_fav',f);drawChips();drawGrid()}
+function wireSearch(){const i=$('#tsearch');if(i)i.oninput=e=>{tq=e.target.value.trim().toLowerCase();drawGrid()}}
+function drawChips(){$('#chips').innerHTML=[['all','সব ('+TPL.length+')'],['free','ফ্রি ('+TPL.filter(t=>!t.pro).length+')'],['pro',ic('crown',14)+' প্রো ('+TPL.filter(t=>t.pro).length+')'],['vip',ic('crown',14)+' ভিআইপি ('+TPL.filter(t=>t.vip).length+')'],['thumb',ic('film',14)+' থাম্বনেইল ('+TPL.filter(t=>t.cat==='thumb').length+')'],['fav',ic('heart',14)+' ফেভারিট ('+favs().length+')']].map(([k,l])=>`<button class="chip ${filter===k?'on':''}" data-k="${k}">${l}</button>`).join('');
   $$('#chips .chip').forEach(b=>b.onclick=()=>{filter=b.dataset.k;drawChips();drawGrid()})}
 function drawGrid(){const g=$('#tgrid');g.innerHTML='';
-  TPL.filter(t=>({all:1,free:!t.pro,pro:t.pro,vip:t.vip,thumb:t.cat==='thumb'})[filter]).forEach(t=>{
+  TPL.filter(t=>({all:1,free:!t.pro,pro:t.pro,vip:t.vip,thumb:t.cat==='thumb',fav:favs().includes(t.id)})[filter]&&(!tq||t.name.toLowerCase().includes(tq))).forEach(t=>{
     const d=document.createElement('div');d.className='tcard';
     const cv=document.createElement('canvas');d.appendChild(cv);
-    d.insertAdjacentHTML('beforeend',`<span class="${locked(t)?'lock':'free'}">${t.vip?(locked(t)?'👑 VIP':'★ VIP'):t.pro?(isPro()?'★ প্রো':'🔒 প্রো'):'ফ্রি'}</span><div class="nm">${t.name}</div>`);
+    d.insertAdjacentHTML('beforeend',`<span class="${locked(t)?'lock':'free'}">${t.vip?ic('crown',13)+' VIP':t.pro?(isPro()?ic('crown',13):ic('lock',13))+' প্রো':'ফ্রি'}</span><div class="nm">${t.name}</div>`);
+    const fv=document.createElement('button');fv.className='fav'+(favs().includes(t.id)?' on':'');fv.innerHTML=ic('heart',16);fv.setAttribute('aria-label','ফেভারিট');fv.onclick=e=>{e.stopPropagation();toggleFav(t.id)};d.appendChild(fv);
     d.onclick=()=>openEditor(t);g.appendChild(d);
     const st=newState(t);st.author=t.sample.author||'';st.tag='@yourname';render(cv,st,360)})}
 
@@ -789,7 +806,7 @@ async function openEditor(t,state){
   S=state||newState(t);
   if(!state)S.logo=await loadImg(S.logoData);
   go('edit');buildPanel();setWmNote();rerender()}
-function setWmNote(){const n=$('#wmNote');if(isPro()){n.className='wmnote ok';n.innerHTML='✔ প্রো চালু — ওয়াটারমার্ক রাখা/সরানো আপনার ইচ্ছা';n.onclick=null}else{n.className='wmnote';n.innerHTML='🔒 ফ্রি কার্ডে <b>'+hx(CFG.watermark)+'</b> ওয়াটারমার্ক থাকবে<br><u>সরাতে প্রো নিন →</u>';n.onclick=()=>go('pro')}}
+function setWmNote(){const n=$('#wmNote');if(isPro()){n.className='wmnote ok';n.innerHTML=ic('check',13)+' প্রো চালু — ওয়াটারমার্ক রাখা/সরানো আপনার ইচ্ছা';n.onclick=null}else{n.className='wmnote';n.innerHTML=ic('lock',13)+' ফ্রি কার্ডে <b>'+hx(CFG.watermark)+'</b> ওয়াটারমার্ক থাকবে<br><u>সরাতে প্রো নিন →</u>';n.onclick=()=>go('pro')}}
 
 const SW=['#000000','#ffffff','#e53935','#fb8c00','#fdd835','#43a047','#1e88e5','#8e24aa','#d81b60','#795548'];
 let saved=null;
@@ -801,10 +818,10 @@ function buildPanel(){
   const t=tplById(S.tpl);saved=null;
   const fonts=['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'];
   $('#panel').innerHTML=`
-<div class="tabs" id="tabs"><button class="on" data-t="0">✍️ লেখা</button><button data-t="1">🖼 ছবি</button><button data-t="2">🎨 ডিজাইন</button></div>
+<div class="tabs" id="tabs"><button class="on" data-t="0"><svg class="ic" viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 6l3 3"/></svg> লেখা</button><button data-t="1"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg> ছবি</button><button data-t="2"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H18a3 3 0 003-3c0-5-4-10.5-9-10.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7" r="1"/></svg> ডিজাইন</button></div>
   <div class="pane on" data-p="0">
   <div class="f"><label>টাইটেল</label><input type="text" data-k="title"></div>
-  <div class="f"><label>✨ রেডিমেড লেখা (চাপ দিলেই বসে যাবে)</label><div class="seg" id="qSeg"><button data-l="bn">বাংলা</button><button data-l="en">English</button></div><div id="qList" style="max-height:150px;overflow:auto;margin-top:6px"></div></div>
+  <div class="f"><label>${ic('sparkle',15)} রেডিমেড লেখা (চাপ দিলেই বসে যাবে)</label><div class="seg" id="qSeg"><button data-l="bn">বাংলা</button><button data-l="en">English</button></div><div id="qList" style="max-height:150px;overflow:auto;margin-top:6px"></div></div>
   <div class="f"><label>মূল লেখা</label><div id="rt" class="rt" contenteditable="true" spellcheck="false"></div>
     <div class="tb">${SW.map(c=>`<button type="button" class="sw" data-c="${c}" style="background:${c}"></button>`).join('')}<input type="color" id="cc" value="#e53935" title="নিজের পছন্দের রঙ"><button type="button" class="sw" id="rst" title="রঙ মুছুন">↺</button></div>
     <div class="hint">🎨 লেখার যে অংশের রঙ বদলাতে চান সেটা সিলেক্ট করুন, তারপর উপরের একটা রঙে চাপুন। ↺ দিলে রঙ মুছে যাবে।</div></div>
@@ -827,8 +844,9 @@ function buildPanel(){
   <div class="f"><label>নিচের স্ট্রিপ</label><div class="seg" id="ftSeg"><button data-f="1">দেখান</button><button data-f="0">লুকান</button></div></div></div>
   </div>
   <div class="dl">
-  ${locked(t)?'<div class="hint" style="margin-bottom:10px">🔒 এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
-  <div class="row"><button class="btn" id="dlN">⬇ নরমাল</button><button class="btn gold" id="dlH">⬇ HD</button></div>
+  ${locked(t)?'<div class="hint" style="margin-bottom:10px"><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> এটি প্রো ডিজাইন — এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে।</div>':''}
+  <div class="row"><button class="btn" id="dlN"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg> নরমাল</button><button class="btn gold" id="dlH"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg> HD</button></div>
+  <button class="btn o" id="shN" style="margin-top:8px"><svg class="ic" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 11l7.6-4M8.2 13l7.6 4"/></svg> শেয়ার করুন</button>
   ${isPro()?`<div class="f" style="margin:10px 0 0"><label>ওয়াটারমার্ক (প্রো-তে আপনার ইচ্ছা)</label><div class="seg" id="wmSeg"><button data-w="0">ছাড়া</button><button data-w="1">${CFG.watermark} সহ</button></div></div>`:''}</div>`;
   $$('#tabs button').forEach(b=>b.onclick=()=>{$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));$$('.pane').forEach(q=>q.classList.toggle('on',q.dataset.p===b.dataset.t))});
   // সাধারণ ইনপুট
@@ -856,7 +874,7 @@ function buildPanel(){
   const mark=()=>$$('#scn button').forEach(b=>b.classList.toggle('on',!S.photo&&b.dataset.id===(S.scene||'')));mark();
   $('#photoF').onchange=async e=>{const f=e.target.files[0];if(!f)return;S.photoData=await readFile(f,1200,'image/jpeg');S.photo=await loadImg(S.photoData);S.scene='';$('#photoN').textContent=f.name;mark();rerender()};
   $('#logoF').onchange=async e=>{const f=e.target.files[0];if(!f)return;S.logoData=await readFile(f,300,'image/png');S.logo=await loadImg(S.logoData);$('#logoN').textContent=f.name;rerender()};
-  $('#dlN').onclick=()=>download(false);$('#dlH').onclick=()=>download(true)}
+  $('#dlN').onclick=()=>download(false);$('#dlH').onclick=()=>download(true);$('#shN').onclick=shareCard}
 
 function watermark(out){
   if(isPro()&&!LS.get('cs_wm',false))return;
@@ -872,6 +890,12 @@ function download(hd){
   const out=document.createElement('canvas');render(out,S,hd?2160:720);watermark(out);
   out.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`card-${Date.now()}.${hd?'png':'jpg'}`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);notify('download',{id:t.id,tpl:t.name,hd:!!hd,pro:!!t.pro})},hd?'image/png':'image/jpeg',.9);
   saveHistory();toast(hd?'HD ছবি ডাউনলোড হচ্ছে ✔':'ছবি ডাউনলোড হচ্ছে ✔')}
+async function shareCard(){
+  const t=tplById(S.tpl);if(locked(t)){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
+  const out=document.createElement('canvas');render(out,S,1080);watermark(out);
+  out.toBlob(async b=>{const f=new File([b],'card.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:CFG.appName});saveHistory()}catch(e){}}
+    else toast('এই ব্রাউজারে শেয়ার চলে না — ডাউনলোড করুন')},'image/png')}
 $('#mClose').onclick=()=>$('#modal').classList.remove('on');
 $('#mGo').onclick=()=>{$('#modal').classList.remove('on');go('pro')};
 
@@ -891,32 +915,34 @@ function drawHist(){
 function drawPro(){
   const p=curPlan(),d=planDef(),v=$('#v-pro'),nPro=TPL.filter(t=>t.pro&&!t.vip).length,nVip=TPL.filter(t=>t.vip).length;
   const left=p&&p.exp?Math.max(1,Math.ceil((p.exp-Date.now())/864e5)):0;
-  v.innerHTML=`<div class="pro"><div style="font-size:42px">👑</div><h2 style="margin:6px 0">প্রো প্ল্যান</h2><div>${nPro}টি প্রো + ${nVip}টি ভিআইপি ডিজাইন • নরমাল ও HD ডাউনলোড ফ্রি • প্রো-তে <b>ওয়াটারমার্ক রাখা বা সরানো আপনার ইচ্ছা</b></div>
-  ${p?`<div class="btn gold" style="cursor:default;margin-top:12px">✔ ${d?d.name:'প্রো'} সক্রিয়${left?' — আর '+left+' দিন':' — লাইফটাইম'}</div><div style="height:10px"></div><button class="btn o" id="deact" style="background:transparent;color:#fff;border-color:#d9c98f">প্রো নিষ্ক্রিয় করুন</button>`:`<div class="plans">${CFG.plans.map(x=>`<div class="plan${x.id===selPlan?' sel':''}" data-p="${x.id}"><span class="pp">৳${x.price}</span><b>${x.vip?'👑 ':''}${x.name}</b><small>${x.perks.join(' • ')}</small></div>`).join('')}</div>`}</div>
+  v.innerHTML=`<div class="pro"><div style="color:#ffd86b">${ic('crown',46)}</div><h2 style="margin:6px 0">প্রো প্ল্যান</h2><div>${nPro}টি প্রো + ${nVip}টি ভিআইপি ডিজাইন • নরমাল ও HD ডাউনলোড ফ্রি • প্রো-তে <b>ওয়াটারমার্ক রাখা বা সরানো আপনার ইচ্ছা</b></div>
+  ${p?`<div class="btn gold" style="cursor:default;margin-top:12px">✔ ${d?d.name:'প্রো'} সক্রিয়${left?' — আর '+left+' দিন':' — লাইফটাইম'}</div><div style="height:10px"></div><button class="btn o" id="deact" style="background:transparent;color:#fff;border-color:#d9c98f">প্রো নিষ্ক্রিয় করুন</button>`:`<div class="plans">${CFG.plans.map(x=>`<div class="plan${x.id===selPlan?' sel':''}" data-p="${x.id}"><span class="pp">৳${x.price}</span><b>${x.vip?ic('crown',16)+' ':''}${x.name}</b><small>${x.perks.join(' • ')}</small></div>`).join('')}</div>`}</div>
   ${p&&d&&d.vip?'':`<div class="steps"><b>কিভাবে প্রো নেবেন:</b><br>১. ${CFG.payMethod} এ <code>${CFG.payNumber}</code> নম্বরে পছন্দের প্ল্যানের টাকা (<span id="payAmt">${selDef().name} — <b>৳${selDef().price}</b></span>) পাঠান।<br>২. <a href="${CFG.contactLink}" target="_blank">এখানে ক্লিক করে</a> ট্রানজেকশন আইডি ও প্ল্যানের নাম পাঠান।<br>৩. আমরা একটি প্রো কোড দেব — নিচে বসিয়ে আনলক করুন${p?' (আপগ্রেডও এভাবে)':''}।
   <div class="f" style="margin-top:12px"><input type="text" id="code" placeholder="প্রো কোড লিখুন"></div><button class="btn gold" id="unlock">আনলক করুন</button></div>`}
   <div class="steps"><b>প্রো ডিজাইন:</b> ${TPL.filter(t=>t.pro&&!t.vip).map(t=>t.name).join(' • ')}<br><b>👑 ভিআইপি ডিজাইন:</b> ${TPL.filter(t=>t.vip).map(t=>t.name).join(' • ')}</div>`;
   $$('.plan').forEach(el=>el.onclick=()=>{selPlan=el.dataset.p;$$('.plan').forEach(q=>q.classList.toggle('sel',q===el));const a=$('#payAmt');if(a)a.innerHTML=selDef().name+' — <b>৳'+selDef().price+'</b>'});
   const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);LS.set('cs_plan',null);syncPro();notify('pro_off');toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
-  const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase(),pl=CFG.plans.find(x=>x.codes.some(k=>k.toUpperCase()===c));if(pl){LS.set('cs_pro',false);LS.set('cs_plan',{id:pl.id,exp:pl.days?Date.now()+pl.days*864e5:0});syncPro();notify('pro_on');toast(pl.name+' প্ল্যান চালু হয়েছে 🎉');drawPro()}else toast('কোডটি সঠিক নয়')}}
-function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<h1> ${CFG.appName}</h1><p>মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`}
+  const u=$('#unlock');if(u)u.onclick=()=>{const c=$('#code').value.trim().toUpperCase(),pl=CFG.plans.find(x=>x.codes.some(k=>k.toUpperCase()===c));if(pl){LS.set('cs_pro',false);LS.set('cs_plan',{id:pl.id,exp:pl.days?Date.now()+pl.days*864e5:0});syncPro();notify('pro_on');toast(pl.name+' প্ল্যান চালু হয়েছে');drawPro()}else toast('কোডটি সঠিক নয়')}}
+function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<h1>${ic('layers',24)} ${CFG.appName}</h1><p>মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`}
 function syncPro(){drawHero();$('#proBadge').classList.toggle('on',isPro());drawGrid()}
 
 function drawProf(){
   const v=$('#v-prof'),d=planDef(),nm=(profile.author||profile.tag||'').trim();
-  v.innerHTML=`<div class="pcover"><div class="pav">${profile.logoData?`<img src="${profile.logoData}">`:(nm.charAt(0)||'👤')}</div><b style="font-size:18px">${nm||'আপনার নাম'}</b><div style="opacity:.85;font-size:13px;margin-top:2px">${profile.tag||'ট্যাগ / পেজের নাম'}</div><div style="margin-top:10px"><span class="badge on" style="display:inline-block">${d?(d.vip?'👑 ':'★ ')+d.name:'ফ্রি প্ল্যান'}</span></div></div>
+  v.innerHTML=`<div class="pcover"><div class="pav">${profile.logoData?`<img src="${profile.logoData}">`:(nm.charAt(0)||ic('user',40))}</div><b style="font-size:18px">${nm||'আপনার নাম'}</b><div style="opacity:.85;font-size:13px;margin-top:2px">${profile.tag||'ট্যাগ / পেজের নাম'}</div><div style="margin-top:10px"><span class="badge on" style="display:inline-block">${d?(d.vip?ic('crown',13)+' ':'')+d.name:'ফ্রি প্ল্যান'}</span></div></div>
   <div class="pstats"><div><b>${LS.get('cs_hist',[]).length}</b>তৈরি কার্ড</div><div><b>${TPL.filter(t=>!locked(t)).length}</b>খোলা ডিজাইন</div><div><b>${d?(curPlan().exp?Math.ceil((curPlan().exp-Date.now())/864e5)+' দিন':'∞'):'—'}</b>প্ল্যান বাকি</div></div>
   <div class="panel"><p class="hint" style="margin-bottom:12px">একবার তথ্য দিলে প্রতিটি নতুন কার্ডে নিজে থেকে বসে যাবে।</p>
-  <div class="f"><label>👤 ডিফল্ট লেখক / নাম</label><input type="text" id="pa"></div>
-  <div class="f"><label>🏷 ট্যাগ / পেজের নাম</label><input type="text" id="pt"></div>
-  <div class="f"><label>📞 ফোন / যোগাযোগ</label><input type="text" id="pc"></div>
-  <div class="f"><label>🖼 লোগো</label><label class="file"><input type="file" accept="image/*" id="pl"><span class="btn o sm">লোগো বাছুন</span><span id="pln">${profile.logoData?'লোগো সেভ আছে':''}</span></label></div>
+  <div class="f"><label>${ic('user',15)} ডিফল্ট লেখক / নাম</label><input type="text" id="pa"></div>
+  <div class="f"><label>${ic('tag',15)} ট্যাগ / পেজের নাম</label><input type="text" id="pt"></div>
+  <div class="f"><label>${ic('phone',15)} ফোন / যোগাযোগ</label><input type="text" id="pc"></div>
+  <div class="f"><label>${ic('image',15)} লোগো</label><label class="file"><input type="file" accept="image/*" id="pl"><span class="btn o sm">লোগো বাছুন</span><span id="pln">${profile.logoData?'লোগো সেভ আছে':''}</span></label></div>
   <button class="btn" id="ps">সেভ করুন</button></div>
   <div class="steps" style="margin-top:14px">আপনার নাম, ফোন ও লোগো শুধু আপনার ব্রাউজারেই থাকে, কোথাও আপলোড হয় না।</div>`;
   $('#pa').value=profile.author||'';$('#pt').value=profile.tag||'';$('#pc').value=profile.contact||'';
   $('#pl').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.logoData=await readFile(f,300,'image/png');$('#pln').textContent=f.name};
   $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔');drawProf();addPrivacy()}}
 
+const IC={"home": "<path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "crown": "<path d=\"M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z\"/>", "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c0-4 4-6 8-6s8 2 8 6\"/>", "lock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 018 0v3\"/>", "download": "<path d=\"M12 4v11\"/><path d=\"M7 11l5 5 5-5\"/><path d=\"M5 20h14\"/>", "pin": "<path d=\"M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>", "bell": "<path d=\"M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z\"/><path d=\"M10 21h4\"/>", "image": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><circle cx=\"9\" cy=\"10\" r=\"1.5\"/><path d=\"M21 16l-5-5-9 9\"/>", "palette": "<path d=\"M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H18a3 3 0 003-3c0-5-4-10.5-9-10.5z\"/><circle cx=\"7.5\" cy=\"11\" r=\"1\"/><circle cx=\"10\" cy=\"7\" r=\"1\"/><circle cx=\"15\" cy=\"7\" r=\"1\"/>", "pen": "<path d=\"M4 20l4-1 11-11-3-3L5 16l-1 4z\"/><path d=\"M14 6l3 3\"/>", "sparkle": "<path d=\"M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z\"/>", "back": "<path d=\"M15 5l-7 7 7 7\"/>", "chart": "<path d=\"M4 20V4\"/><path d=\"M4 20h16\"/><rect x=\"8\" y=\"12\" width=\"3\" height=\"5\"/><rect x=\"13\" y=\"8\" width=\"3\" height=\"9\"/>", "film": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 5v14M16 5v14M3 10h5M3 14h5M16 10h5M16 14h5\"/>", "heart": "<path d=\"M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z\"/>", "share": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 11l7.6-4M8.2 13l7.6 4\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/>", "eye": "<path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "users": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5\"/><circle cx=\"17\" cy=\"9\" r=\"2.5\"/><path d=\"M17 14.5c3 0 5 1.5 5 4.5\"/>", "refresh": "<path d=\"M20 11a8 8 0 10-2.3 5.7\"/><path d=\"M20 4v7h-7\"/>", "logout": "<path d=\"M9 4H5v16h4\"/><path d=\"M16 8l4 4-4 4M20 12H9\"/>", "trash": "<path d=\"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3\"/>", "file": "<path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 13h6M9 17h6\"/>", "layers": "<path d=\"M12 3l9 5-9 5-9-5z\"/><path d=\"M3 13l9 5 9-5\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1\"/>", "phone": "<rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><path d=\"M11 18h2\"/>", "trend": "<path d=\"M3 17l6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "check": "<path d=\"M5 12l5 5 9-10\"/>", "monitor": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>"};
+const ic=(n,z)=>'<svg class="ic" viewBox="0 0 24 24"'+(z?` style="width:${z}px;height:${z}px"`:'')+'>'+IC[n]+'</svg>';
 /* ============ গণনা ও অ্যাডমিন প্যানেল (গ্রাহকের অনুমতি সহ) ============ */
 const dbOn=()=>!!CFG.dbUrl;
 const dbu=p=>CFG.dbUrl.replace(/\/$/,'')+'/'+p+'.json';
@@ -968,7 +994,7 @@ function initPrivacy(){
 function addPrivacy(){
   if(!dbOn())return;
   const on=consent()==='yes',v=$('#v-prof');
-  v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>🔔 গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">অ্যাপের মালিক শুধু সংখ্যা দেখতে পান: কতজন ঢুকেছে, কতজন অনলাইনে আছে, কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না। ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'গণনা বন্ধ করুন':'গণনা চালু করুন'}</button></div>`);
+  v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>${ic('bell',16)} গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">অ্যাপের মালিক শুধু সংখ্যা দেখতে পান: কতজন ঢুকেছে, কতজন অনলাইনে আছে, কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না। ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'গণনা বন্ধ করুন':'গণনা চালু করুন'}</button></div>`);
   $('#privTg').onclick=()=>{LS.set('cs_notify',on?'no':'yes');if(!on){notify('visit');startPresence()}toast(on?'বন্ধ করা হয়েছে':'চালু করা হয়েছে');go('prof')}
 }
 
@@ -981,34 +1007,54 @@ function openAdmin(){
   go('admin');drawAdmin();clearInterval(admTimer);
   admTimer=setInterval(()=>{if($('#v-admin').classList.contains('on'))drawAdmin();else clearInterval(admTimer)},10000);
 }
+let admRange=7;
+const bnN=x=>(Number(x)||0).toLocaleString('bn-BD');
+const ago=t=>{const m=Math.floor((Date.now()-t)/6e4);return m<1?'এইমাত্র':m<60?bnN(m)+' মিনিট আগে':m<1440?bnN(Math.floor(m/60))+' ঘণ্টা আগে':bnN(Math.floor(m/1440))+' দিন আগে'};
+function exportEvents(evs){
+  const rows=[['সময়','টেমপ্লেট','কোয়ালিটি','ডিভাইস','অক্ষাংশ','দ্রাঘিমাংশ']].concat(evs.map(e=>[new Date(e.t).toISOString(),e.tpl,e.hd?'HD':'Normal',e.dev,e.lat??'',e.lon??'']));
+  const csv='\ufeff'+rows.map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='downloads-'+dayKey()+'.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},3000)}
 async function drawAdmin(){
   const v=$('#v-admin');
   if(!v.dataset.ready){v.innerHTML='<div class="empty">লোড হচ্ছে…</div>';v.dataset.ready='1'}
   const today=dayKey();
-  let [on,st,uq,du,ev]=await Promise.all([dbGet('online'),dbGet('stats'),dbGet('uniq','?shallow=true'),dbGet('dayuniq/'+today,'?shallow=true'),dbGet('events','?orderBy=%22%24key%22&limitToLast=15')]);
+  let [on,st,uq,du,ev]=await Promise.all([dbGet('online'),dbGet('stats'),dbGet('uniq','?shallow=true'),dbGet('dayuniq/'+today,'?shallow=true'),dbGet('events','?orderBy=%22%24key%22&limitToLast=50')]);
   const evs=Object.values(ev||{}).sort((a,b)=>b.t-a.t);
-  if(window.__lt&&evs.length&&evs[0].t>window.__lt){const e=evs[0],m='⬇ '+e.tpl+(e.lat!=null?' • 📍 '+e.lat+','+e.lon:'');toast(m);try{navigator.vibrate(250)}catch(_){}try{if(Notification.permission==='granted')new Notification('নতুন ডাউনলোড',{body:m})}catch(_){}}
+  if(window.__lt&&evs.length&&evs[0].t>window.__lt){const e=evs[0],m='নতুন ডাউনলোড: '+e.tpl+(e.lat!=null?' • '+e.lat+','+e.lon:'');toast(m);try{navigator.vibrate(250)}catch(_){}try{if(Notification.permission==='granted')new Notification('নতুন ডাউনলোড',{body:m})}catch(_){}}
   window.__lt=evs.length?evs[0].t:Date.now();
   const now=Date.now(),o=on||{};let online=0;
   Object.keys(o).forEach(k=>{const t=o[k]&&o[k].t||0;if(now-t<60000)online++;else if(now-t>300000)fetch(dbu('online/'+k),{method:'DELETE'}).catch(()=>{})});
-  st=st||{};
-  const days=st.days||{},n=x=>Number(x)||0,bn=x=>n(x).toLocaleString('bn-BD');
-  const last=[...Array(7)].map((_,i)=>{const k=dayKey(now-(6-i)*864e5);return{k,c:n(days[k])}});
-  const mx=Math.max(1,...last.map(d=>d.c));
-  const tp=Object.keys(st.tpl||{}).map(k=>({name:(st.tplname||{})[k]||k,c:n(st.tpl[k])})).sort((a,b)=>b.c-a.c).slice(0,8);
-  const box=(l,x,c)=>`<div style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center"><div style="font-size:24px;font-weight:700;color:${c||'var(--g)'}">${x}</div><div class="hint">${l}</div></div>`;
-  v.innerHTML=`<h2>📊 অ্যাডমিন প্যানেল</h2>
-  <div style="background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border-radius:16px;padding:16px;text-align:center;margin-bottom:10px"><div style="font-size:40px;font-weight:700">🟢 ${bn(online)}</div><div>এখন অনলাইনে আছে</div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-   ${box('আজকের ভিজিট',bn(days[today]))}${box('আজ আলাদা মানুষ',bn(du?Object.keys(du).length:0))}
-   ${box('মোট ভিজিট',bn(st.total))}${box('মোট আলাদা মানুষ',bn(uq?Object.keys(uq).length:0))}
-   ${box('নরমাল ডাউনলোড',bn(st.dlNormal))}${box('HD ডাউনলোড',bn(st.dlHD))}
-   ${box('প্রো চালু হয়েছে',bn(st.proOn),'#b8860b')}${box('প্রো বন্ধ হয়েছে',bn(st.proOff),'#777')}
+  st=st||{};const days=st.days||{},n=x=>Number(x)||0;
+  const series=[...Array(admRange)].map((_,i)=>{const k=dayKey(now-(admRange-1-i)*864e5);return{k,c:n(days[k])}});
+  const mx=Math.max(1,...series.map(d=>d.c)),sum=series.reduce((a,d)=>a+d.c,0);
+  const yest=n(days[dayKey(now-864e5)]),td=n(days[today]),delta=yest?Math.round((td-yest)/yest*100):null;
+  const dl=n(st.dlNormal)+n(st.dlHD),hdp=dl?Math.round(n(st.dlHD)/dl*100):0,uqN=uq?Object.keys(uq).length:0,duN=du?Object.keys(du).length:0;
+  const conv=uqN?Math.min(100,n(st.proOn)/uqN*100).toFixed(1):'0';
+  const mob=evs.filter(e=>e.dev==='মোবাইল').length,mp=evs.length?Math.round(mob/evs.length*100):0;
+  const tp=Object.keys(st.tpl||{}).map(k=>({name:(st.tplname||{})[k]||k,c:n(st.tpl[k])})).sort((a,b)=>b.c-a.c).slice(0,6),tmx=Math.max(1,...tp.map(t=>t.c));
+  const bw=300/admRange,chart=`<svg viewBox="0 0 320 140" style="width:100%"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17a05a"/><stop offset="1" stop-color="#0f6b3a"/></linearGradient></defs>${[0,1,2].map(i=>`<line x1="10" x2="310" y1="${20+i*45}" y2="${20+i*45}" stroke="#e5ebe6"/>`).join('')}${series.map((d,i)=>{const h=Math.max(2,d.c/mx*90),x=10+i*bw+bw*.15;return `<rect x="${x}" y="${110-h}" width="${bw*.7}" height="${h}" rx="3" fill="${d.k===today?'#ffb703':'url(#gb)'}"/>${admRange<=14||i%5===0?`<text x="${x+bw*.35}" y="128" font-size="9" fill="#7a8a80" text-anchor="middle">${d.k.slice(8)}</text>`:''}${admRange<=7&&d.c?`<text x="${x+bw*.35}" y="${104-h}" font-size="9" fill="#33443a" text-anchor="middle">${bnN(d.c)}</text>`:''}`}).join('')}</svg>`;
+  const kc=(i,l,x,sub)=>`<div class="kc"><div class="ki">${ic(i,18)}</div><b>${x}</b><small>${l}</small>${sub||''}</div>`;
+  v.innerHTML=`<div class="adm">
+  <div class="ah"><div><h2>${ic('chart',22)} অ্যাডমিন ড্যাশবোর্ড</h2><small>${hx(CFG.appName)} • আপডেট ${new Date().toLocaleTimeString('bn-BD',{timeZone:'Asia/Dhaka',hour:'2-digit',minute:'2-digit'})}</small></div><div class="ab"><button id="aRef" aria-label="রিফ্রেশ">${ic('refresh',18)}</button><button id="aOut" aria-label="লগআউট">${ic('logout',18)}</button></div></div>
+  <div class="live"><span class="dot"></span><div><b>${bnN(online)}</b><small>জন এখন অনলাইনে (গত ১ মিনিট)</small></div></div>
+  <div class="kg">
+   ${kc('eye','আজকের ভিজিট',bnN(td),delta===null?'':`<small class="${delta>=0?'up':'dn'}"> ${delta>=0?'▲':'▼'} ${bnN(Math.abs(delta))}% গতকালের তুলনায়</small>`)}
+   ${kc('users','আজ আলাদা মানুষ',bnN(duN))}
+   ${kc('trend','মোট ভিজিট',bnN(st.total))}
+   ${kc('users','মোট আলাদা মানুষ',bnN(uqN))}
+   ${kc('download','মোট ডাউনলোড',bnN(dl),`<small> HD ${bnN(hdp)}%</small>`)}
+   ${kc('crown','প্রো চালু',bnN(st.proOn),`<small> রূপান্তর ${conv}%</small>`)}
   </div>
-  <div class="panel" style="margin-bottom:10px"><b>গত ৭ দিনের ভিজিট</b><div style="display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:10px">${last.map(d=>`<div style="flex:1;text-align:center;font-size:10px"><div style="background:var(--g);border-radius:4px 4px 0 0;height:${Math.max(3,d.c/mx*64)}px"></div>${bn(d.c)}<br>${d.k.slice(8)}</div>`).join('')}</div></div>
-  <div class="panel"><b>সবচেয়ে বেশি ডাউনলোড হওয়া টেমপ্লেট</b>${tp.length?tp.map((t,i)=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px"><span>${i+1}. ${hx(t.name)}</span><b>${bn(t.c)}</b></div>`).join(''):'<div class="hint" style="margin-top:8px">এখনো কোনো ডাউনলোড নেই</div>'}</div>
-  <div class="panel" style="margin-top:10px"><b>📍 সাম্প্রতিক ডাউনলোড</b>${evs.length?evs.map(e=>`<div style="padding:7px 0;border-bottom:1px solid var(--line);font-size:13px"><b>${hx(e.tpl)}</b> • ${e.hd?'HD':'নরমাল'} • ${hx(e.dev)}<br><span class="hint">${new Date(e.t).toLocaleString('bn-BD',{timeZone:'Asia/Dhaka'})} ${e.lat!=null?`• <a href="https://www.google.com/maps?q=${e.lat},${e.lon}" target="_blank">📍 আনুমানিক এলাকা (ম্যাপ)</a>`:'• লোকেশন দেয়নি'}</span></div>`).join(''):'<div class="hint" style="margin-top:8px">এখনো কোনো ডাউনলোড নেই</div>'}</div>
-  <p class="hint" style="text-align:center;margin-top:10px">প্রতি ১০ সেকেন্ডে নিজে নিজে আপডেট হয় • "অনলাইন" মানে গত ১ মিনিটে সক্রিয়</p>`;
+  <div class="ac"><h3><span>${ic('chart',16)} ভিজিট</span><div class="seg" id="aSeg" style="width:150px">${[7,14,30].map(d=>`<button data-d="${d}" class="${admRange===d?'on':''}">${bnN(d)} দিন</button>`).join('')}</div></h3>${chart}<div class="hint" style="text-align:center">${bnN(admRange)} দিনে মোট ${bnN(sum)} ভিজিট • গড় ${bnN(Math.round(sum/admRange))}/দিন</div></div>
+  <div class="ac"><h3><span>${ic('layers',16)} সবচেয়ে জনপ্রিয় টেমপ্লেট</span></h3>${tp.length?tp.map((t,i)=>`<div class="r2"><span>${bnN(i+1)}. ${hx(t.name)}</span><b>${bnN(t.c)}</b></div><div class="bar"><i style="width:${t.c/tmx*100}%"></i></div>`).join(''):'<div class="hint">এখনো কোনো ডাউনলোড নেই</div>'}</div>
+  <div class="ac"><h3><span>${ic('phone',16)} ডিভাইস (সাম্প্রতিক ${bnN(evs.length)}টি ডাউনলোড)</span></h3><div class="r2"><span>${ic('phone',14)} মোবাইল</span><b>${bnN(mp)}%</b></div><div class="bar"><i style="width:${mp}%"></i></div><div class="r2"><span>${ic('monitor',14)} ডেস্কটপ</span><b>${bnN(evs.length?100-mp:0)}%</b></div><div class="bar"><i style="width:${evs.length?100-mp:0}%"></i></div></div>
+  <div class="ac"><h3><span>${ic('pin',16)} সাম্প্রতিক ডাউনলোড</span><span><button class="mini" id="aCsv">${ic('file',13)} CSV</button> <button class="mini d" id="aClr">${ic('trash',13)}</button></span></h3>${evs.length?evs.slice(0,12).map(e=>`<div class="evr"><div class="ei">${ic('download',15)}</div><div style="flex:1;min-width:0"><b>${hx(e.tpl)}</b> • ${e.hd?'HD':'নরমাল'}<br><small>${ago(e.t)} • ${hx(e.dev)}</small></div>${e.lat!=null?`<a href="https://www.google.com/maps?q=${e.lat},${e.lon}" target="_blank" class="mini" style="text-decoration:none">${ic('pin',13)} ম্যাপ</a>`:'<small>লোকেশন নেই</small>'}</div>`).join(''):'<div class="hint">এখনো কোনো ডাউনলোড নেই</div>'}</div>
+  <p class="hint" style="text-align:center">প্রতি ১০ সেকেন্ডে নিজে আপডেট হয় • লোকেশন আনুমানিক (প্রায় ১১ কিমি)</p></div>`;
+  $('#aRef').onclick=()=>{toast('রিফ্রেশ হচ্ছে');drawAdmin()};
+  $('#aOut').onclick=()=>{LS.set('cs_admin',false);clearInterval(admTimer);go('home');toast('লগআউট হয়েছে')};
+  $$('#aSeg button').forEach(b=>b.onclick=()=>{admRange=+b.dataset.d;drawAdmin()});
+  $('#aCsv').onclick=()=>{if(!evs.length)return toast('কোনো ডেটা নেই');exportEvents(evs)};
+  $('#aClr').onclick=()=>{if(confirm('সাম্প্রতিক ডাউনলোডের তালিকা মুছে ফেলবেন?'))fetch(dbu('events'),{method:'DELETE'}).then(()=>{toast('মোছা হয়েছে');drawAdmin()}).catch(()=>toast('মোছা যায়নি'))}
 }
 window.addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin()});
 
@@ -1016,7 +1062,7 @@ window.addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin(
 (async function init(){
   document.title=CFG.appName+' - ফটো কার্ড ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
   try{await Promise.all(['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'].map(f=>document.fonts.load(`700 40px "${f}"`,'অআক')))}catch(e){}
-  drawChips();syncPro();initPrivacy();if(location.hash==='#admin')openAdmin();
+  wireSearch();drawChips();syncPro();initPrivacy();if(location.hash==='#admin')openAdmin();
 })();
 </script>
 </body>
