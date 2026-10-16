@@ -144,6 +144,15 @@ nav i{display:block;font-style:normal;margin-bottom:2px}nav i .ic{width:23px;hei
 .bar{height:8px;border-radius:6px;background:#eef2ee;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--g2))}.r2{display:flex;justify-content:space-between;font-size:13px;margin:9px 0 4px}
 .evr{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}.evr:last-child{border:0}.evr .ei{width:32px;height:32px;border-radius:50%;background:#e8f3ec;color:var(--g);display:flex;align-items:center;justify-content:center;flex:none}.evr small{color:var(--mut)}
 .mini{border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 10px;font:inherit;font-size:12px;cursor:pointer;color:var(--tx)}.mini.d{color:#c62828}
+*{scrollbar-width:none;-ms-overflow-style:none}*::-webkit-scrollbar{display:none;width:0;height:0}
+.pc{position:relative;height:210px;border-radius:20px;overflow:hidden;margin-bottom:12px;background:linear-gradient(135deg,var(--g),var(--g2))}
+.pcbg{position:absolute;inset:0;background-size:cover;background-position:center}
+.pcbl{position:absolute;left:0;right:0;bottom:0;height:62%;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 55%);mask-image:linear-gradient(to bottom,transparent,#000 55%);background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.5))}
+.pci{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;gap:12px;color:#fff}
+.pci .pav{width:62px;height:62px;margin:0;font-size:26px;flex:none;border-width:3px}
+.pci b{font-size:17px;display:block;text-shadow:0 1px 4px rgba(0,0,0,.4)}.pci small{opacity:.92;font-size:12px;display:block}
+.pcb{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.22);border-radius:20px;padding:2px 9px;font-size:11px;margin-top:4px;backdrop-filter:blur(6px)}
+.pcedit{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.4);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px)}
 </style>
 </head>
 <body>
@@ -185,13 +194,13 @@ nav i{display:block;font-style:normal;margin-bottom:2px}nav i .ic{width:23px;hei
 const CFG={
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
   plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIRKJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -686,6 +695,77 @@ function thumbIslam(c,W,H,s){const{A}=dims(s,H),ac=s.accent;
 const QUOTES={
  bn:['সবচেয়ে সুন্দর হলো সেই মন, যে *কৃতজ্ঞ* থাকতে জানে।','ধৈর্য ধরো, প্রতিটি *অন্ধকার রাতের* পরেই সকাল আসে।','ছোট ছোট *ভালো কাজই* একদিন বড় পরিবর্তন আনে।','যার *মন ভালো*, তার জীবনের সবকিছুই সুন্দর।','নিজের ওপর *বিশ্বাস* রাখো, পথ নিজেই তৈরি হয়ে যাবে।','সময়ের মূল্য দাও, কারণ *গেলে আর ফেরে না*।','হাসি এমন এক ভাষা, যা *সবাই বোঝে*।','সফলতা একদিনে আসে না, প্রতিদিনের *চেষ্টাতেই* আসে।','মানুষকে সম্মান দিলে *সম্মান ফিরে আসে*।','যা হারিয়েছ তা নিয়ে কেঁদো না, যা *আছে* তার শুকরিয়া করো।','সত্য কথা বলো, *মনে শান্তি* পাবে।','স্বপ্ন দেখো, তারপর তা পূরণের জন্য *কাজ করো*।','মা-বাবার দোয়া হলো জীবনের *সবচেয়ে বড় সম্পদ*।','আজকের পরিশ্রমই কালকের *সাফল্যের ভিত্তি*।'],
  en:['Believe in *yourself* and all that you are.','Small steps every day lead to *big results*.','Be kind — it costs nothing but means *everything*.','Dream big, work hard, stay *humble*.','Every *sunrise* is a new chance to begin again.','Gratitude turns what we have into *enough*.','Don\'t wait for *opportunity*. Create it.','A calm mind brings *inner strength*.','Success is the sum of *small efforts* repeated daily.','Choose *peace* over drama, always.','The best time to start was yesterday. The next best is *now*.','Be the reason someone *smiles* today.','Good things take *time* — keep going.','Make today so good that *yesterday* gets jealous.']};
+/* ============ নতুন স্টাইল ও প্রিমিয়াম থাম্বনেইল ============ */
+const glassCard=(c1,c2,c3)=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent,y0=s.title?215:150;
+  const g=c.createLinearGradient(0,0,W,H);g.addColorStop(0,c1);g.addColorStop(1,c2);c.fillStyle=g;c.fillRect(0,0,W,H);
+  [[W*.2,A*.2,380,c3],[W*.85,A*.45,340,ac],[W*.35,A*.9,420,c3]].forEach(([x,y,r,col])=>{const rg=c.createRadialGradient(x,y,0,x,y,r);rg.addColorStop(0,col);rg.addColorStop(1,'rgba(0,0,0,0)');c.globalAlpha=.7;c.fillStyle=rg;c.fillRect(0,0,W,H);c.globalAlpha=1});
+  c.save();c.fillStyle='rgba(255,255,255,.18)';c.strokeStyle='rgba(255,255,255,.55)';c.lineWidth=3;rr(c,70,100,W-140,A-290,44);c.fill();c.stroke();c.restore();
+  txt(c,s,s.title,W/2,165,34,'#fff',{align:'center',weight:800});
+  mainBlock(c,s,{x:130,y:y0,w:W-260,h:A-290-(y0-100)-40,size:66,align:'center',color:'#fff',accent:'#ffe27a',weight:800,lh:1.45});
+  if(s.author)pill(c,s,s.author,W/2,A-160,32,'rgba(255,255,255,.2)','#fff',40);
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.3)',fg:'#fff'})};
+function retroSun(c,W,H,s){const{A}=dims(s,H),ac=s.accent;
+  const g=c.createLinearGradient(0,0,0,A);g.addColorStop(0,'#1a0536');g.addColorStop(.6,'#7a1a73');g.addColorStop(1,'#ff5e7e');c.fillStyle=g;c.fillRect(0,0,W,H);
+  const r=Math.min(W*.22,A*.2),sy=A*.72,sg=c.createLinearGradient(0,sy-r,0,sy+r);sg.addColorStop(0,'#ffe14d');sg.addColorStop(1,ac);c.fillStyle=sg;c.beginPath();c.arc(W/2,sy,r,0,7);c.fill();
+  c.fillStyle='#7a1a73';for(let i=0;i<5;i++)c.fillRect(W/2-r,sy+r*.15+i*r*.17,r*2,3+i*3);
+  c.fillStyle='#12041f';c.fillRect(0,sy+r*.45,W,A);c.strokeStyle=ac;c.globalAlpha=.5;c.lineWidth=2;for(let i=-8;i<=8;i++){c.beginPath();c.moveTo(W/2+i*20,sy+r*.45);c.lineTo(W/2+i*130,A);c.stroke()}c.globalAlpha=1;
+  txt(c,s,s.title,W/2,100,34,'#ffe14d',{align:'center',weight:900});
+  mainBlock(c,s,{x:90,y:140,w:W-180,h:sy-r-170,size:62,align:'center',color:'#fff',accent:'#ffe14d',weight:800,lh:1.4});
+  txt(c,s,s.author,W/2,A-50,32,'#fff',{align:'center',weight:700});footer(c,W,H,s,{bg:'#000',fg:'#fff'})}
+const waveCard=(bg,c2)=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent,y0=s.title?190:120;
+  c.fillStyle=bg;c.fillRect(0,0,W,H);
+  [[.62,.35,ac],[.7,.6,ac],[.78,1,c2]].forEach(([y,a,col],i)=>{c.globalAlpha=a;c.fillStyle=col;c.beginPath();c.moveTo(0,A);for(let x=0;x<=W;x+=20)c.lineTo(x,A*y+Math.sin(x/110+i*1.7)*34);c.lineTo(W,A);c.closePath();c.fill()});c.globalAlpha=1;
+  txt(c,s,s.title,W/2,110,36,ac,{align:'center',weight:900});
+  mainBlock(c,s,{x:90,y:y0,w:W-180,h:A*.56-y0,size:64,align:'center',color:'#1d2733',accent:ac,weight:800,lh:1.45});
+  txt(c,s,s.author,W/2,A-60,34,'#fff',{align:'center',weight:700});footer(c,W,H,s,{bg:c2,fg:'#fff'})};
+function ticketCard(c,W,H,s){const{A}=dims(s,H),ac=s.accent;
+  c.fillStyle=ac;c.fillRect(0,0,W,H);dots(c,0,0,W,A,'#ffffff',.12,40);
+  const x=60,y=90,w=W-120,h=A-190,sy=y+h*.72;
+  c.save();c.shadowColor='rgba(0,0,0,.3)';c.shadowBlur=36;c.shadowOffsetY=14;c.fillStyle='#fffdf7';rr(c,x,y,w,h,32);c.fill();c.restore();
+  c.fillStyle=ac;[x,x+w].forEach(px=>{c.beginPath();c.arc(px,sy,30,0,7);c.fill()});
+  c.strokeStyle='#d8d2c4';c.lineWidth=4;c.setLineDash([14,12]);c.beginPath();c.moveTo(x+40,sy);c.lineTo(x+w-40,sy);c.stroke();c.setLineDash([]);
+  txt(c,s,s.title,W/2,y+60,34,ac,{align:'center',weight:900});
+  mainBlock(c,s,{x:x+50,y:y+100,w:w-100,h:sy-y-130,size:60,align:'center',color:'#2a2418',accent:ac,weight:800,lh:1.45});
+  c.fillStyle='#2a2418';for(let i=0;i<34;i++)c.fillRect(x+50+i*((w-100)/34),sy+36,i%3?4:8,y+h-sy-110);
+  txt(c,s,s.author,W/2,y+h-40,32,'#2a2418',{align:'center',weight:700});footer(c,W,H,s,{bg:'#000',fg:'#fff'})}
+function ribbonCard(c,W,H,s){const{A}=dims(s,H),ac=s.accent,ry=90,rh=110;
+  c.fillStyle='#fdf8ef';c.fillRect(0,0,W,H);pattern(c,W,A,ac,.06);
+  c.fillStyle=ac;c.beginPath();c.moveTo(20,ry);c.lineTo(W-20,ry);c.lineTo(W-60,ry+rh/2);c.lineTo(W-20,ry+rh);c.lineTo(20,ry+rh);c.lineTo(60,ry+rh/2);c.closePath();c.fill();
+  c.fillStyle='rgba(0,0,0,.2)';c.beginPath();c.moveTo(60,ry+rh);c.lineTo(110,ry+rh);c.lineTo(110,ry+rh+24);c.closePath();c.fill();c.beginPath();c.moveTo(W-60,ry+rh);c.lineTo(W-110,ry+rh);c.lineTo(W-110,ry+rh+24);c.closePath();c.fill();
+  txt(c,s,s.title||CFG.appName,W/2,ry+rh/2,42,'#fff',{align:'center',weight:900});
+  glyph(c,W/2,ry+rh+130,130,ac,'center',.2);
+  mainBlock(c,s,{x:110,y:ry+rh+60,w:W-220,h:A-(ry+rh+60)-200,size:66,align:'center',color:'#2b2418',accent:ac,weight:800,lh:1.5});
+  c.fillStyle=ac;c.fillRect(W/2-60,A-150,120,4);txt(c,s,s.author,W/2,A-100,36,ac,{align:'center',weight:700});footer(c,W,H,s,{bg:ac,fg:'#fff'})}
+const bokeh=(c1,c2)=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent,y0=s.title?270:200;
+  const g=c.createLinearGradient(0,0,W,A);g.addColorStop(0,c1);g.addColorStop(1,c2);c.fillStyle=g;c.fillRect(0,0,W,H);
+  for(let i=0;i<26;i++){const x=(Math.sin(i*12.9)*.5+.5)*W,y=(Math.sin(i*78.2)*.5+.5)*A,r=30+((i*37)%70);c.globalAlpha=.08+((i*13)%10)/90;c.fillStyle=i%3?ac:'#fff';c.beginPath();c.arc(x,y,r,0,7);c.fill()}c.globalAlpha=1;
+  glyph(c,W/2,170,140,ac,'center',.5);txt(c,s,s.title,W/2,230,34,ac,{align:'center',weight:800});
+  mainBlock(c,s,{x:100,y:y0,w:W-200,h:A-y0-190,size:68,align:'center',color:'#fff',accent:ac,weight:800,lh:1.5});
+  if(s.author){c.fillStyle=ac;c.fillRect(W/2-60,A-165,120,3);txt(c,s,s.author,W/2,A-110,34,ac,{align:'center',weight:700})}
+  footer(c,W,H,s,{bg:'rgba(0,0,0,.4)',fg:'#fff'})};
+const thumbVS=c2=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent;
+  c.fillStyle=ac;c.fillRect(0,0,W,A);c.fillStyle=c2;c.beginPath();c.moveTo(W*.56,0);c.lineTo(W,0);c.lineTo(W,A);c.lineTo(W*.44,A);c.closePath();c.fill();
+  c.fillStyle='#fff';c.beginPath();c.moveTo(W*.555,0);c.lineTo(W*.575,0);c.lineTo(W*.46,A);c.lineTo(W*.44,A);c.closePath();c.fill();
+  c.save();c.shadowColor='rgba(0,0,0,.4)';c.shadowBlur=30;c.fillStyle='#111';c.beginPath();c.arc(W/2,A*.4,95,0,7);c.fill();c.restore();
+  txt(c,s,'VS',W/2,A*.4,84,'#ffe14d',{align:'center',weight:900});
+  mainBlock(c,s,{x:40,y:24,w:W*.4,h:A*.2,size:34,align:'left',color:'#fff',accent:'#ffe14d',weight:800,lh:1.2,valign:'top'});
+  c.fillStyle='rgba(0,0,0,.6)';c.fillRect(0,A*.7,W,A*.3);
+  block(c,s,s.title,{x:50,y:A*.7+10,w:W-100,h:A*.3-20,size:74,align:'center',color:'#fff',accent:'#ffe14d',weight:900,lh:1.1});footer(c,W,H,s,{bg:'#000',fg:'#fff'})};
+const thumbCinema=def=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent,bh=Math.round(A*.12);
+  photoFill(c,s,0,0,W,A,def);tint(c,0,0,W,A,'#000',.35);
+  const rg=c.createRadialGradient(W/2,A/2,A*.3,W/2,A/2,W*.65);rg.addColorStop(0,'rgba(0,0,0,0)');rg.addColorStop(1,'rgba(0,0,0,.65)');c.fillStyle=rg;c.fillRect(0,0,W,A);
+  c.fillStyle='#000';c.fillRect(0,0,W,bh);c.fillRect(0,A-bh,W,bh);
+  block(c,s,s.title,{x:70,y:bh+20,w:W-140,h:A-2*bh-150,size:120,align:'center',color:ac,accent:'#fff',weight:900,lh:1.1});
+  mainBlock(c,s,{x:90,y:A-bh-120,w:W-180,h:100,size:40,align:'center',color:'#e9e1cf',accent:ac,weight:600,lh:1.2});
+  txt(c,s,s.author,W/2,A-bh/2,26,ac,{align:'center',weight:700});footer(c,W,H,s,{bg:'#000',fg:'#fff'})};
+const thumbBreaking=def=>(c,W,H,s)=>{const{A}=dims(s,H),ac=s.accent;
+  photoFill(c,s,0,0,W,A,def);tint(c,0,0,W,A,'#000',.25);
+  c.fillStyle=ac;rr(c,40,40,260,64,10);c.fill();txt(c,s,s.tag||'ব্রেকিং',170,72,36,'#fff',{align:'center',weight:900});
+  c.fillStyle='rgba(8,12,22,.9)';c.fillRect(0,A*.58,W,A*.3);c.fillStyle=ac;c.fillRect(0,A*.58,16,A*.3);
+  block(c,s,s.title,{x:50,y:A*.58+8,w:W-100,h:A*.3-16,size:76,align:'left',color:'#fff',accent:'#ffd84a',weight:900,lh:1.1});
+  c.fillStyle=ac;c.fillRect(0,A*.88,W,A*.12);
+  mainBlock(c,s,{x:40,y:A*.88,w:W-80,h:A*.12,size:34,align:'left',color:'#fff',accent:'#ffe14d',weight:700,lh:1.1});footer(c,W,H,s,{bg:'#000',fg:'#fff'})};
+
 /* ============ টেমপ্লেট তালিকা ============ */
 const T1='কবরই তো তোমার ঠিকানা *গালিব!* অন্তত কিছু ইবাদত করো, রীতি আছে-কারও বাড়িতে *খালি হাতে যেতে* নেই।';
 const T2='তুমি যখন নিজের জন্য *ইস্তিগফার* করো তোমার মর্যাদা বাড়ে, আর যখন অন্যের জন্য করো তার মর্যাদাও বেড়ে যায়।';
@@ -750,6 +830,21 @@ const TPL=[
  {id:'f-sticky-pink',name:'স্টিকি পিঙ্ক',pro:false,accent:'#ff9ecb',draw:stickyNote,sample:{title:'Reminder',text:QUOTES.en[13],author:'জহির_০৪৩'}},
  {id:'f-night-purple',name:'নাইট পার্পল',pro:false,accent:'#c792ff',draw:darkPat('#2b0a3d','#12041c'),sample:{title:'শুভ রাত্রি',text:QUOTES.bn[9],author:'জহির_০৪৩'}},
  {id:'f-polaroid-sea',name:'পোলারয়েড সি',pro:false,accent:'#1c6dd0',draw:polaroid('sea'),sample:{title:'New Day',text:QUOTES.en[4],author:'জহির_০৪৩'}},
+ {id:'n6-glass-aurora',name:'গ্লাস অরোরা',pro:false,accent:'#7c5cff',draw:glassCard('#2b1b6b','#0d3b66','#00d4ff'),sample:{title:'আজকের কথা',text:QUOTES.bn[0],author:'জহির_০৪৩'}},
+ {id:'n6-wave-blue',name:'ওয়েভ ব্লু',pro:false,accent:'#3aa0ff',draw:waveCard('#f4f9ff','#0b4a9c'),sample:{title:'Good Morning',text:QUOTES.en[4],author:'জহির_০৪৩'}},
+ {id:'n6-ribbon',name:'রিবন',pro:false,accent:'#b8892b',draw:ribbonCard,sample:{title:'আজকের স্মরণ',text:QUOTES.bn[7],author:'জহির_০৪৩'}},
+ {id:'n6-glass-sunset',name:'গ্লাস সানসেট',pro:true,accent:'#ff7a59',draw:glassCard('#7b1e4a','#2a0a3d','#ffb703'),sample:{title:'Stay Positive',text:QUOTES.en[0],author:'জহির_০৪৩'}},
+ {id:'n6-wave-rose',name:'ওয়েভ রোজ',pro:true,accent:'#ff6f91',draw:waveCard('#fff5f7','#8a1c4a'),sample:{title:'শুভ সকাল',text:QUOTES.bn[11],author:'জহির_০৪৩'}},
+ {id:'n6-ticket',name:'টিকেট',pro:true,accent:'#e8590c',draw:ticketCard,sample:{title:'স্পেশাল',text:QUOTES.bn[2],author:'জহির_০৪৩'}},
+ {id:'n6-bokeh',name:'বোকেহ নাইট',pro:true,accent:'#ffcf5a',draw:bokeh('#101a3a','#2b1148'),sample:{title:'Dream Big',text:QUOTES.en[3],author:'জহির_০৪৩'}},
+ {id:'n6-retro',name:'রেট্রো সান',pro:true,vip:true,accent:'#ff8a3d',draw:retroSun,sample:{title:'Retro Vibes',text:QUOTES.en[9],author:'জহির_০৪৩'}},
+ {id:'th-gold',name:'থাম্বনেইল গোল্ড',pro:true,cat:'thumb',ratio:.5625,accent:'#ffb703',draw:thumbBold('#7a4b00'),sample:{title:'*সেরা* ৫টি টিপস',text:'আজই জেনে নিন',author:'জহির_০৪৩'}},
+ {id:'th-mosque',name:'থাম্বনেইল মসজিদ',pro:true,cat:'thumb',ratio:.5625,accent:'#f2c94c',draw:thumbSplit('mosque'),sample:{title:'*রমজানের* প্রস্তুতি',text:'পুরো আলোচনা',author:'জহির_০৪৩'}},
+ {id:'th-night',name:'থাম্বনেইল নাইট',pro:true,cat:'thumb',ratio:.5625,accent:'#7c4dff',draw:thumbPhoto('night'),sample:{title:'*রাতের* গল্প',text:'শেষ পর্যন্ত দেখুন',author:'জহির_০৪৩'}},
+ {id:'th-neonpink',name:'থাম্বনেইল নিয়ন পিঙ্ক',pro:true,cat:'thumb',ratio:.5625,accent:'#ff2d95',draw:thumbNeon,sample:{title:'নতুন *ভিডিও* আসছে',text:'সাবস্ক্রাইব করুন',author:'জহির_০৪৩'}},
+ {id:'th-breaking',name:'থাম্বনেইল ব্রেকিং',pro:true,cat:'thumb',ratio:.5625,accent:'#e53935',draw:thumbBreaking('sea'),sample:{title:'*বড় খবর* এইমাত্র',text:'বিস্তারিত ভিডিওতে',author:'জহির_০৪৩'}},
+ {id:'th-vs',name:'থাম্বনেইল ভার্সাস',pro:true,vip:true,cat:'thumb',ratio:.5625,accent:'#e53935',draw:thumbVS('#1565c0'),sample:{title:'কোনটা *সেরা?*',text:'তুলনা দেখুন',author:'জহির_০৪৩'}},
+ {id:'th-cinema',name:'থাম্বনেইল সিনেমা',pro:true,vip:true,cat:'thumb',ratio:.5625,accent:'#f2c94c',draw:thumbCinema('night'),sample:{title:'*অন্ধকারের* রাজা',text:'শীঘ্রই আসছে',author:'জহির_০৪৩'}},
 ];
 CFG.imageTemplates.forEach(t=>TPL.push({id:t.id,name:t.name,pro:!!t.pro,accent:t.accent||'#c0392b',draw:imageTpl(t),sample:{text:t.sample||'এখানে আপনার লেখা',author:''}}));
 const tplById=id=>TPL.find(t=>t.id===id);
@@ -928,7 +1023,8 @@ function syncPro(){drawHero();$('#proBadge').classList.toggle('on',isPro());draw
 
 function drawProf(){
   const v=$('#v-prof'),d=planDef(),nm=(profile.author||profile.tag||'').trim();
-  v.innerHTML=`<div class="pcover"><div class="pav">${profile.logoData?`<img src="${profile.logoData}">`:(nm.charAt(0)||ic('user',40))}</div><b style="font-size:18px">${nm||'আপনার নাম'}</b><div style="opacity:.85;font-size:13px;margin-top:2px">${profile.tag||'ট্যাগ / পেজের নাম'}</div><div style="margin-top:10px"><span class="badge on" style="display:inline-block">${d?(d.vip?ic('crown',13)+' ':'')+d.name:'ফ্রি প্ল্যান'}</span></div></div>
+  v.innerHTML=`<div class="pc"><div class="pcbg" style="${profile.coverData?`background-image:url(${profile.coverData})`:''}"></div><div class="pcbl"></div><label class="pcedit" title="কভার ফটো বদলান">${ic('camera',18)}<input type="file" accept="image/*" id="pcv" hidden></label>
+  <div class="pci"><div class="pav">${profile.logoData?`<img src="${profile.logoData}">`:(nm.charAt(0)||ic('user',30))}</div><div style="min-width:0"><b>${hx(nm)||'আপনার নাম'}</b><small>${hx(profile.tag)||'ট্যাগ / পেজের নাম'}</small><span class="pcb">${d?(d.vip?ic('crown',12)+' ':'')+d.name:'ফ্রি প্ল্যান'}</span></div></div></div>
   <div class="pstats"><div><b>${LS.get('cs_hist',[]).length}</b>তৈরি কার্ড</div><div><b>${TPL.filter(t=>!locked(t)).length}</b>খোলা ডিজাইন</div><div><b>${d?(curPlan().exp?Math.ceil((curPlan().exp-Date.now())/864e5)+' দিন':'∞'):'—'}</b>প্ল্যান বাকি</div></div>
   <div class="panel"><p class="hint" style="margin-bottom:12px">একবার তথ্য দিলে প্রতিটি নতুন কার্ডে নিজে থেকে বসে যাবে।</p>
   <div class="f"><label>${ic('user',15)} ডিফল্ট লেখক / নাম</label><input type="text" id="pa"></div>
@@ -938,10 +1034,11 @@ function drawProf(){
   <button class="btn" id="ps">সেভ করুন</button></div>
   <div class="steps" style="margin-top:14px">আপনার নাম, ফোন ও লোগো শুধু আপনার ব্রাউজারেই থাকে, কোথাও আপলোড হয় না।</div>`;
   $('#pa').value=profile.author||'';$('#pt').value=profile.tag||'';$('#pc').value=profile.contact||'';
+  $('#pcv').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.coverData=await readFile(f,900,'image/jpeg');LS.set('cs_profile',profile);drawProf();addPrivacy();toast('কভার ফটো সেভ হয়েছে')};
   $('#pl').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.logoData=await readFile(f,300,'image/png');$('#pln').textContent=f.name};
   $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔');drawProf();addPrivacy()}}
 
-const IC={"home": "<path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "crown": "<path d=\"M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z\"/>", "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c0-4 4-6 8-6s8 2 8 6\"/>", "lock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 018 0v3\"/>", "download": "<path d=\"M12 4v11\"/><path d=\"M7 11l5 5 5-5\"/><path d=\"M5 20h14\"/>", "pin": "<path d=\"M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>", "bell": "<path d=\"M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z\"/><path d=\"M10 21h4\"/>", "image": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><circle cx=\"9\" cy=\"10\" r=\"1.5\"/><path d=\"M21 16l-5-5-9 9\"/>", "palette": "<path d=\"M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H18a3 3 0 003-3c0-5-4-10.5-9-10.5z\"/><circle cx=\"7.5\" cy=\"11\" r=\"1\"/><circle cx=\"10\" cy=\"7\" r=\"1\"/><circle cx=\"15\" cy=\"7\" r=\"1\"/>", "pen": "<path d=\"M4 20l4-1 11-11-3-3L5 16l-1 4z\"/><path d=\"M14 6l3 3\"/>", "sparkle": "<path d=\"M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z\"/>", "back": "<path d=\"M15 5l-7 7 7 7\"/>", "chart": "<path d=\"M4 20V4\"/><path d=\"M4 20h16\"/><rect x=\"8\" y=\"12\" width=\"3\" height=\"5\"/><rect x=\"13\" y=\"8\" width=\"3\" height=\"9\"/>", "film": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 5v14M16 5v14M3 10h5M3 14h5M16 10h5M16 14h5\"/>", "heart": "<path d=\"M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z\"/>", "share": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 11l7.6-4M8.2 13l7.6 4\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/>", "eye": "<path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "users": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5\"/><circle cx=\"17\" cy=\"9\" r=\"2.5\"/><path d=\"M17 14.5c3 0 5 1.5 5 4.5\"/>", "refresh": "<path d=\"M20 11a8 8 0 10-2.3 5.7\"/><path d=\"M20 4v7h-7\"/>", "logout": "<path d=\"M9 4H5v16h4\"/><path d=\"M16 8l4 4-4 4M20 12H9\"/>", "trash": "<path d=\"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3\"/>", "file": "<path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 13h6M9 17h6\"/>", "layers": "<path d=\"M12 3l9 5-9 5-9-5z\"/><path d=\"M3 13l9 5 9-5\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1\"/>", "phone": "<rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><path d=\"M11 18h2\"/>", "trend": "<path d=\"M3 17l6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "check": "<path d=\"M5 12l5 5 9-10\"/>", "monitor": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>"};
+const IC={"camera":"<path d=\"M4 8h3l2-3h6l2 3h3v11H4z\"/><circle cx=\"12\" cy=\"13\" r=\"3.5\"/>","home": "<path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "crown": "<path d=\"M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z\"/>", "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c0-4 4-6 8-6s8 2 8 6\"/>", "lock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 018 0v3\"/>", "download": "<path d=\"M12 4v11\"/><path d=\"M7 11l5 5 5-5\"/><path d=\"M5 20h14\"/>", "pin": "<path d=\"M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>", "bell": "<path d=\"M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z\"/><path d=\"M10 21h4\"/>", "image": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><circle cx=\"9\" cy=\"10\" r=\"1.5\"/><path d=\"M21 16l-5-5-9 9\"/>", "palette": "<path d=\"M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H18a3 3 0 003-3c0-5-4-10.5-9-10.5z\"/><circle cx=\"7.5\" cy=\"11\" r=\"1\"/><circle cx=\"10\" cy=\"7\" r=\"1\"/><circle cx=\"15\" cy=\"7\" r=\"1\"/>", "pen": "<path d=\"M4 20l4-1 11-11-3-3L5 16l-1 4z\"/><path d=\"M14 6l3 3\"/>", "sparkle": "<path d=\"M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z\"/>", "back": "<path d=\"M15 5l-7 7 7 7\"/>", "chart": "<path d=\"M4 20V4\"/><path d=\"M4 20h16\"/><rect x=\"8\" y=\"12\" width=\"3\" height=\"5\"/><rect x=\"13\" y=\"8\" width=\"3\" height=\"9\"/>", "film": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 5v14M16 5v14M3 10h5M3 14h5M16 10h5M16 14h5\"/>", "heart": "<path d=\"M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z\"/>", "share": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 11l7.6-4M8.2 13l7.6 4\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/>", "eye": "<path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "users": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5\"/><circle cx=\"17\" cy=\"9\" r=\"2.5\"/><path d=\"M17 14.5c3 0 5 1.5 5 4.5\"/>", "refresh": "<path d=\"M20 11a8 8 0 10-2.3 5.7\"/><path d=\"M20 4v7h-7\"/>", "logout": "<path d=\"M9 4H5v16h4\"/><path d=\"M16 8l4 4-4 4M20 12H9\"/>", "trash": "<path d=\"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3\"/>", "file": "<path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 13h6M9 17h6\"/>", "layers": "<path d=\"M12 3l9 5-9 5-9-5z\"/><path d=\"M3 13l9 5 9-5\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1\"/>", "phone": "<rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><path d=\"M11 18h2\"/>", "trend": "<path d=\"M3 17l6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "check": "<path d=\"M5 12l5 5 9-10\"/>", "monitor": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>"};
 const ic=(n,z)=>'<svg class="ic" viewBox="0 0 24 24"'+(z?` style="width:${z}px;height:${z}px"`:'')+'>'+IC[n]+'</svg>';
 /* ============ গণনা ও অ্যাডমিন প্যানেল (গ্রাহকের অনুমতি সহ) ============ */
 const dbOn=()=>!!CFG.dbUrl;
