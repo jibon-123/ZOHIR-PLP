@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0f6b3a">
+<meta name="theme-color" content="#0f6b3a" id="themeMeta">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -25,7 +25,7 @@ main{padding:14px}
 .view{display:none}.view.on{display:block}
 h2{font-size:18px;margin:6px 0 12px}
 .chips{display:flex;gap:8px;margin-bottom:14px;overflow:auto}
-.chip{border:1px solid var(--line);background:#fff;padding:7px 16px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
+.chip{border:1px solid var(--line);background:var(--card);padding:7px 16px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
 .chip.on{background:var(--g);color:#fff;border-color:var(--g)}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .tcard{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);cursor:pointer;position:relative;transition:transform .15s}
@@ -46,12 +46,12 @@ h2{font-size:18px;margin:6px 0 12px}
 .rt [data-hl]{background:#fff3b0;font-weight:700;border-radius:4px}
 .f input:focus,.rt:focus,.f select:focus{outline:none;border-color:var(--g)}
 .tb{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:8px}
-.sw{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px var(--line);cursor:pointer;font-size:15px;line-height:1;color:#555;background:#fff}
-.tb input[type=color],.cin{width:38px;height:34px;border:1.5px solid var(--line);border-radius:10px;padding:2px;background:#fff;cursor:pointer}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px var(--line);cursor:pointer;font-size:15px;line-height:1;color:#555;background:var(--card)}
+.tb input[type=color],.cin{width:38px;height:34px;border:1.5px solid var(--line);border-radius:10px;padding:2px;background:var(--card);cursor:pointer}
 .hint{font-size:12px;color:var(--mut);margin-top:5px}
 .row{display:flex;gap:10px}.row>*{flex:1}
 .btn{border:0;font:inherit;font-weight:700;font-size:15px;padding:13px 16px;border-radius:14px;cursor:pointer;background:var(--g);color:#fff;width:100%}
-.btn.o{background:#fff;color:var(--g);border:2px solid var(--g)}
+.btn.o{background:var(--card);color:var(--g);border:2px solid var(--g)}
 .btn.gold{background:var(--gold);color:#3b2a00}
 .btn.sm{padding:8px 12px;font-size:13px;border-radius:10px;width:auto}
 .btn.red{background:#c0392b}
@@ -59,20 +59,20 @@ h2{font-size:18px;margin:6px 0 12px}
 .file input{display:none}
 .file span{font-size:13px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .seg{display:flex;border:1.5px solid var(--line);border-radius:12px;overflow:hidden}
-.seg button{flex:1;border:0;background:#fff;padding:10px;font:inherit;cursor:pointer}
+.seg button{flex:1;border:0;background:var(--card);padding:10px;font:inherit;cursor:pointer}
 .seg button.on{background:var(--g);color:#fff}
 .scn{display:flex;gap:8px;overflow:auto;padding:4px 2px 8px}
-.scn button{flex:0 0 auto;border:2.5px solid transparent;border-radius:12px;background:#fff;padding:0;cursor:pointer;overflow:hidden;font:inherit;font-size:11px;color:var(--mut);width:70px}
+.scn button{flex:0 0 auto;border:2.5px solid transparent;border-radius:12px;background:var(--card);padding:0;cursor:pointer;overflow:hidden;font:inherit;font-size:11px;color:var(--mut);width:70px}
 .scn button.on{border-color:var(--g)}
 .scn canvas{display:block;width:100%}
 .scn button.none{height:70px;display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--line)}
 .back{position:static;background:none;border:0;font:inherit;color:var(--g);font-weight:700;cursor:pointer;margin-bottom:10px;font-size:15px}
-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid var(--line);display:flex;z-index:30;padding-bottom:env(safe-area-inset-bottom)}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:var(--card);border-top:1px solid var(--line);display:flex;z-index:30;padding-bottom:env(safe-area-inset-bottom)}
 nav button{flex:1;border:0;background:none;padding:9px 0 8px;font:inherit;font-size:12px;color:var(--mut);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
 nav button i{font-style:normal;font-size:21px}
 nav button.on{color:var(--g);font-weight:700}
 .hist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.hcard{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.hcard{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07)}
 .hcard img{width:100%;display:block}
 .hcard .m{padding:8px 10px;font-size:12px;color:var(--mut)}
 .hcard .b{display:flex;gap:6px;padding:0 10px 10px}
@@ -81,11 +81,11 @@ nav button.on{color:var(--g);font-weight:700}
 .pro .pr{font-size:48px;font-weight:800;color:var(--gold)}
 .pro ul{list-style:none;text-align:left;max-width:360px;margin:16px auto;line-height:2}
 .pro ul li:before{content:"✔ ";color:var(--gold)}
-.steps{background:#fff;border-radius:var(--r);padding:16px;margin-top:14px;line-height:1.9;font-size:14px}
+.steps{background:var(--card);border-radius:var(--r);padding:16px;margin-top:14px;line-height:1.9;font-size:14px}
 .steps code{background:#eef3ee;padding:2px 8px;border-radius:6px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
 .modal.on{display:flex}
-.mbox{background:#fff;border-radius:22px;padding:22px;max-width:380px;width:100%;text-align:center}
+.mbox{background:var(--card);border-radius:22px;padding:22px;max-width:380px;width:100%;text-align:center}
 .mbox h3{margin-bottom:8px}.mbox p{color:var(--mut);margin-bottom:16px;font-size:14px}
 .toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:99px;font-size:14px;z-index:60;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
 .toast.on{opacity:1}
@@ -117,7 +117,7 @@ main{padding:12px}
 #cv{max-height:32vh;max-height:32dvh}
 .tabs{display:flex;gap:6px;margin-bottom:10px;background:#eef2ee;padding:4px;border-radius:12px}
 .tabs button{flex:1;border:0;background:none;padding:8px 2px;font:inherit;font-size:13px;font-weight:600;color:var(--mut);border-radius:9px;cursor:pointer}
-.tabs button.on{background:#fff;color:var(--g);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.tabs button.on{background:var(--card);color:var(--g);box-shadow:0 1px 4px rgba(0,0,0,.1)}
 .pane{display:none}.pane.on{display:block}
 .dl{position:static;clear:both;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .dl .row{display:flex;gap:8px}.dl .btn{flex:1;min-width:0;white-space:nowrap;padding:12px 6px}
@@ -127,23 +127,23 @@ nav button{padding:7px 0 6px;font-size:11px}nav button i{font-size:19px}
 .hero h1{font-size:22px;margin:0 0 4px}.hero p{opacity:.9;font-size:14px;margin:0 0 14px}
 .hstats{display:flex;gap:8px}.hstats div{flex:1;background:rgba(255,255,255,.15);border-radius:14px;padding:8px 4px;text-align:center;font-size:12px}.hstats b{display:block;font-size:18px}
 .pcover{background:linear-gradient(135deg,var(--g),var(--g2));border-radius:22px;padding:22px 16px 16px;text-align:center;color:#fff;margin-bottom:12px}
-.pav{width:84px;height:84px;border-radius:50%;background:#fff;color:var(--g);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;margin:0 auto 8px;overflow:hidden;border:4px solid rgba(255,255,255,.5)}.pav img{width:100%;height:100%;object-fit:cover}
-.pstats{display:flex;gap:8px;margin-bottom:12px}.pstats div{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center;font-size:12px;color:var(--mut)}.pstats b{display:block;font-size:17px;color:var(--g)}
+.pav{width:84px;height:84px;border-radius:50%;background:var(--card);color:var(--g);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;margin:0 auto 8px;overflow:hidden;border:4px solid rgba(255,255,255,.5)}.pav img{width:100%;height:100%;object-fit:cover}
+.pstats{display:flex;gap:8px;margin-bottom:12px}.pstats div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center;font-size:12px;color:var(--mut)}.pstats b{display:block;font-size:17px;color:var(--g)}
 .plans{display:grid;gap:10px;margin:12px 0}.plan{cursor:pointer;position:relative;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.25);border-radius:16px;padding:12px;text-align:left;color:#fff}.plan.sel{border-color:#ffd86b;background:rgba(255,216,107,.18)}.plan.sel:after{content:'✔';position:absolute;left:10px;bottom:8px;color:#ffd86b;font-weight:800}.plan b{font-size:16px}.plan .pp{float:right;font-size:20px;font-weight:800;color:#ffd86b}.plan small{display:block;opacity:.85;margin-top:4px;line-height:1.5}
 .edhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}.edhead .back{margin:0;white-space:nowrap}
 .wmnote{font-size:11px;line-height:1.35;padding:6px 10px;border-radius:12px;text-align:right;cursor:pointer;background:#fff4d6;color:#7a5a00;border:1px solid #f0d88a;max-width:62%}.wmnote.ok{background:#e6f6ec;color:#17623a;border-color:#b8e2c8;cursor:default}
-.qopt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;margin-bottom:6px;font:inherit;font-size:14px;cursor:pointer}
+.qopt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 10px;margin-bottom:6px;font:inherit;font-size:14px;cursor:pointer}
 .ic{width:1.15em;height:1.15em;vertical-align:-.22em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 nav i{display:block;font-style:normal;margin-bottom:2px}nav i .ic{width:23px;height:23px;vertical-align:0}
 .tcard{position:relative}.fav{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#8a8f98;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.18);cursor:pointer;padding:0}.fav.on{color:#e0245e}.fav.on .ic{fill:#e0245e}
-.sbox{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:0 12px;margin-bottom:10px;color:var(--mut)}.sbox input{flex:1;border:0;outline:0;background:none;font:inherit;font-size:16px;padding:11px 0;color:var(--tx)}
-.adm{display:grid;gap:12px}.ah{display:flex;justify-content:space-between;align-items:center}.ah h2{margin:0;font-size:18px;display:flex;gap:8px;align-items:center}.ah small{color:var(--mut);font-size:11px;display:block;margin-top:2px}.ab button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px;margin-left:6px;color:var(--tx);cursor:pointer;line-height:0}
+.sbox{display:flex;align-items:center;gap:8px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:0 12px;margin-bottom:10px;color:var(--mut)}.sbox input{flex:1;border:0;outline:0;background:none;font:inherit;font-size:16px;padding:11px 0;color:var(--tx)}
+.adm{display:grid;gap:12px}.ah{display:flex;justify-content:space-between;align-items:center}.ah h2{margin:0;font-size:18px;display:flex;gap:8px;align-items:center}.ah small{color:var(--mut);font-size:11px;display:block;margin-top:2px}.ab button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px;margin-left:6px;color:var(--tx);cursor:pointer;line-height:0}
 .live{background:linear-gradient(135deg,#0f6b3a,#0a3d26);color:#fff;border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px}.live b{font-size:36px;line-height:1}.live small{opacity:.85;display:block}.dot{width:12px;height:12px;border-radius:50%;background:#4ade80;animation:pl 1.6s infinite;flex:none}@keyframes pl{0%{box-shadow:0 0 0 0 rgba(74,222,128,.7)}70%,100%{box-shadow:0 0 0 12px rgba(74,222,128,0)}}
-.kg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.kc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}.kc .ki{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#e8f3ec;color:var(--g);margin-bottom:8px}.kc b{display:block;font-size:22px}.kc small{color:var(--mut);font-size:12px}.up{color:#17803d}.dn{color:#c62828}
-.ac{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}.ac h3{margin:0 0 10px;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.kc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}.kc .ki{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#e8f3ec;color:var(--g);margin-bottom:8px}.kc b{display:block;font-size:22px}.kc small{color:var(--mut);font-size:12px}.up{color:#17803d}.dn{color:#c62828}
+.ac{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}.ac h3{margin:0 0 10px;font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .bar{height:8px;border-radius:6px;background:#eef2ee;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--g2))}.r2{display:flex;justify-content:space-between;font-size:13px;margin:9px 0 4px}
 .evr{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}.evr:last-child{border:0}.evr .ei{width:32px;height:32px;border-radius:50%;background:#e8f3ec;color:var(--g);display:flex;align-items:center;justify-content:center;flex:none}.evr small{color:var(--mut)}
-.mini{border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 10px;font:inherit;font-size:12px;cursor:pointer;color:var(--tx)}.mini.d{color:#c62828}
+.mini{border:1px solid var(--line);background:var(--card);border-radius:9px;padding:6px 10px;font:inherit;font-size:12px;cursor:pointer;color:var(--tx)}.mini.d{color:#c62828}
 *{scrollbar-width:none;-ms-overflow-style:none}*::-webkit-scrollbar{display:none;width:0;height:0}
 .pc{position:relative;height:210px;border-radius:20px;overflow:hidden;margin-bottom:12px;background:linear-gradient(135deg,var(--g),var(--g2))}
 .pcbg{position:absolute;inset:0;background-size:cover;background-position:center}
@@ -153,6 +153,17 @@ nav i{display:block;font-style:normal;margin-bottom:2px}nav i .ic{width:23px;hei
 .pci b{font-size:17px;display:block;text-shadow:0 1px 4px rgba(0,0,0,.4)}.pci small{opacity:.92;font-size:12px;display:block}
 .pcb{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.22);border-radius:20px;padding:2px 9px;font-size:11px;margin-top:4px;backdrop-filter:blur(6px)}
 .pcedit{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.4);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(6px)}
+.pc{height:auto;aspect-ratio:3/1;width:100%;min-width:0;min-height:0}.pci{bottom:10px}.pci .pav{width:52px;height:52px;font-size:22px}.pcedit{top:8px;right:8px}.pcedit.cam{right:52px}button.pcedit{border:0}
+.srow{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;border-bottom:1px solid var(--line);padding:13px 4px;font:inherit;color:var(--tx);cursor:pointer}.srow:last-child{border:0}.srow .si{width:34px;height:34px;border-radius:10px;background:#e8f3ec;color:var(--g);display:flex;align-items:center;justify-content:center;flex:none}.srow small{display:block;color:var(--mut);font-size:12px}
+.sgrp{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:12px}.sgrp.nopad{padding:4px 12px}.sl{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:10px}
+.ibox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;line-height:1.75;font-size:14px}.ibox h3{font-size:15px;margin:14px 0 4px}.ibox h3:first-child{margin-top:0}.ibox p,.ibox li{color:var(--mut)}.ibox ul{padding-left:20px}
+html[data-theme=dark]{--bg:#0e1411;--card:#17201b;--tx:#e6eee8;--mut:#93a39a;--line:#27352c;background:#070b09}
+html[data-theme=dark] .seg button,html[data-theme=dark] .chip,html[data-theme=dark] .mini,html[data-theme=dark] .qopt,html[data-theme=dark] .f input,html[data-theme=dark] .f textarea,html[data-theme=dark] .f select,html[data-theme=dark] .rt,html[data-theme=dark] .ab button,html[data-theme=dark] .sbox input,html[data-theme=dark] .srow{color:var(--tx)}
+html[data-theme=dark] .seg button.on,html[data-theme=dark] .chip.on{color:#fff}
+html[data-theme=dark] .tabs,html[data-theme=dark] .bar{background:#223028}
+html[data-theme=dark] .kc .ki,html[data-theme=dark] .evr .ei,html[data-theme=dark] .srow .si{background:#1f3a2a}
+html[data-theme=dark] .rt [data-hl]{color:#222}
+html[data-theme=dark] .f input[type=text],html[data-theme=dark] .f textarea,html[data-theme=dark] .f select,html[data-theme=dark] .rt,html[data-theme=dark] .sbox{background:#0f1612}
 </style>
 </head>
 <body>
@@ -176,6 +187,8 @@ nav i{display:block;font-style:normal;margin-bottom:2px}nav i .ic{width:23px;hei
   <section class="view" id="v-pro"></section>
   <section class="view" id="v-prof"></section>
   <section class="view" id="v-admin"></section>
+  <section class="view" id="v-set"></section>
+  <section class="view" id="v-info"></section>
 </main>
 <nav>
   <button data-go="home" class="on"><i><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></i>হোম</button>
@@ -185,13 +198,16 @@ nav i{display:block;font-style:normal;margin-bottom:2px}nav i .ic{width:23px;hei
 </nav>
 <div class="modal" id="modal"><div class="mbox"><h3><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> প্রো টেমপ্লেট</h3><p>এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র <b id="mPrice"></b> টাকা থেকে প্রো প্ল্যান (৩ ধরনের)।</p><button class="btn gold" id="mGo">প্রো নিন</button><div style="height:8px"></div><button class="btn o" id="mClose">পরে</button></div></div>
 <div class="modal" id="privM"><div class="mbox"><h3><svg class="ic" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z"/><path d="M10 21h4"/></svg> গোপনীয়তা নোটিশ</h3>
-<p style="font-size:14px;line-height:1.6;text-align:left">অ্যাপের মালিক জানতে পারেন <b>কতজন ঢুকেছে, কতজন এখন অনলাইনে আছে</b> এবং কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। এগুলো শুধু সংখ্যা হিসেবে জমা হয়।<br><b>আপনার নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি কখনো পাঠানো হয় না।</b> ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>চাইলে নিচে "না" চাপুন; পরে প্রোফাইল পেজ থেকেও বদলানো যাবে।</p>
+<p id="privTxt" style="font-size:14px;line-height:1.6;text-align:left"></p>
 <button class="btn" id="privYes">ঠিক আছে</button><div style="height:8px"></div><button class="btn o" id="privNo">না, গণনা করবেন না</button></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
+  version:'2.0',
+  telegram:'',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  email:'',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
   adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
@@ -868,6 +884,7 @@ let selPlan='p200';const selDef=()=>CFG.plans.find(x=>x.id===selPlan)||CFG.plans
 const locked=t=>(t.pro&&!isPro())||(t.vip&&!isVip());
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2200)}
 function loadImg(src){return new Promise(r=>{if(!src)return r(null);const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=src})}
+function coverCrop(file){return new Promise(res=>{const fr=new FileReader();fr.onload=()=>{const i=new Image();i.onload=()=>{const W=1500,H=500,cv=document.createElement('canvas');cv.width=W;cv.height=H;const k=Math.max(W/i.width,H/i.height),w=i.width*k,h=i.height*k;cv.getContext('2d').drawImage(i,(W-w)/2,(H-h)/2,w,h);res(cv.toDataURL('image/jpeg',.82))};i.src=fr.result};fr.readAsDataURL(file)})}
 function readFile(file,max,type){return new Promise(res=>{const fr=new FileReader();fr.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),cv=document.createElement('canvas');cv.width=Math.round(i.width*k);cv.height=Math.round(i.height*k);cv.getContext('2d').drawImage(i,0,0,cv.width,cv.height);res(cv.toDataURL(type,.82))};i.src=fr.result};fr.readAsDataURL(file)})}
 
 /* ============ স্টেট ============ */
@@ -876,8 +893,8 @@ function newState(t){return{tpl:t.id,ratio:t.ratio||1,title:t.sample.title||'',h
 let raf=0;function rerender(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(S){render($('#cv'),S,1080);watermark($('#cv'))}})}window.rerender=rerender;
 
 /* ============ ভিউ ============ */
-function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===(v==='edit'?'home':v)));window.scrollTo(0,0);
-  if(v==='hist')drawHist();if(v==='pro')drawPro();if(v==='prof'){drawProf();addPrivacy()}}
+function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===({edit:'home',set:'prof',info:'prof',admin:'prof'}[v]||v)));window.scrollTo(0,0);
+  if(v==='hist')drawHist();if(v==='pro')drawPro();if(v==='prof'){drawProf();addPrivacy()}if(v==='set')drawSet();if(v==='info')drawInfo()}
 $$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
 $('#backBtn').onclick=()=>go('home');
 
@@ -1023,8 +1040,9 @@ function syncPro(){drawHero();$('#proBadge').classList.toggle('on',isPro());draw
 
 function drawProf(){
   const v=$('#v-prof'),d=planDef(),nm=(profile.author||profile.tag||'').trim();
-  v.innerHTML=`<div class="pc"><div class="pcbg" style="${profile.coverData?`background-image:url(${profile.coverData})`:''}"></div><div class="pcbl"></div><label class="pcedit" title="কভার ফটো বদলান">${ic('camera',18)}<input type="file" accept="image/*" id="pcv" hidden></label>
+  v.innerHTML=`<div class="pc"><div class="pcbg" style="${profile.coverData?`background-image:url(${profile.coverData})`:''}"></div><div class="pcbl"></div><button class="pcedit" id="pcSet" aria-label="সেটিংস">${ic('dots',20)}</button><label class="pcedit cam" title="কভার ফটো বদলান">${ic('camera',18)}<input type="file" accept="image/*" id="pcv" hidden></label>
   <div class="pci"><div class="pav">${profile.logoData?`<img src="${profile.logoData}">`:(nm.charAt(0)||ic('user',30))}</div><div style="min-width:0"><b>${hx(nm)||'আপনার নাম'}</b><small>${hx(profile.tag)||'ট্যাগ / পেজের নাম'}</small><span class="pcb">${d?(d.vip?ic('crown',12)+' ':'')+d.name:'ফ্রি প্ল্যান'}</span></div></div></div>
+  <div class="hint" style="margin:-4px 2px 10px">কভার ফটো: ১৫০০ × ৫০০ (আপলোড করলে নিজে থেকে ক্রপ হবে)</div>
   <div class="pstats"><div><b>${LS.get('cs_hist',[]).length}</b>তৈরি কার্ড</div><div><b>${TPL.filter(t=>!locked(t)).length}</b>খোলা ডিজাইন</div><div><b>${d?(curPlan().exp?Math.ceil((curPlan().exp-Date.now())/864e5)+' দিন':'∞'):'—'}</b>প্ল্যান বাকি</div></div>
   <div class="panel"><p class="hint" style="margin-bottom:12px">একবার তথ্য দিলে প্রতিটি নতুন কার্ডে নিজে থেকে বসে যাবে।</p>
   <div class="f"><label>${ic('user',15)} ডিফল্ট লেখক / নাম</label><input type="text" id="pa"></div>
@@ -1034,11 +1052,12 @@ function drawProf(){
   <button class="btn" id="ps">সেভ করুন</button></div>
   <div class="steps" style="margin-top:14px">আপনার নাম, ফোন ও লোগো শুধু আপনার ব্রাউজারেই থাকে, কোথাও আপলোড হয় না।</div>`;
   $('#pa').value=profile.author||'';$('#pt').value=profile.tag||'';$('#pc').value=profile.contact||'';
-  $('#pcv').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.coverData=await readFile(f,900,'image/jpeg');LS.set('cs_profile',profile);drawProf();addPrivacy();toast('কভার ফটো সেভ হয়েছে')};
+  $('#pcSet').onclick=()=>go('set');
+  $('#pcv').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.coverData=await coverCrop(f);LS.set('cs_profile',profile);drawProf();addPrivacy();toast('কভার ফটো সেভ হয়েছে')};
   $('#pl').onchange=async e=>{const f=e.target.files[0];if(!f)return;profile.logoData=await readFile(f,300,'image/png');$('#pln').textContent=f.name};
   $('#ps').onclick=()=>{profile.author=$('#pa').value;profile.tag=$('#pt').value;profile.contact=$('#pc').value;LS.set('cs_profile',profile);toast('প্রোফাইল সেভ হয়েছে ✔');drawProf();addPrivacy()}}
 
-const IC={"camera":"<path d=\"M4 8h3l2-3h6l2 3h3v11H4z\"/><circle cx=\"12\" cy=\"13\" r=\"3.5\"/>","home": "<path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "crown": "<path d=\"M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z\"/>", "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c0-4 4-6 8-6s8 2 8 6\"/>", "lock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 018 0v3\"/>", "download": "<path d=\"M12 4v11\"/><path d=\"M7 11l5 5 5-5\"/><path d=\"M5 20h14\"/>", "pin": "<path d=\"M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>", "bell": "<path d=\"M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z\"/><path d=\"M10 21h4\"/>", "image": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><circle cx=\"9\" cy=\"10\" r=\"1.5\"/><path d=\"M21 16l-5-5-9 9\"/>", "palette": "<path d=\"M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H18a3 3 0 003-3c0-5-4-10.5-9-10.5z\"/><circle cx=\"7.5\" cy=\"11\" r=\"1\"/><circle cx=\"10\" cy=\"7\" r=\"1\"/><circle cx=\"15\" cy=\"7\" r=\"1\"/>", "pen": "<path d=\"M4 20l4-1 11-11-3-3L5 16l-1 4z\"/><path d=\"M14 6l3 3\"/>", "sparkle": "<path d=\"M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z\"/>", "back": "<path d=\"M15 5l-7 7 7 7\"/>", "chart": "<path d=\"M4 20V4\"/><path d=\"M4 20h16\"/><rect x=\"8\" y=\"12\" width=\"3\" height=\"5\"/><rect x=\"13\" y=\"8\" width=\"3\" height=\"9\"/>", "film": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 5v14M16 5v14M3 10h5M3 14h5M16 10h5M16 14h5\"/>", "heart": "<path d=\"M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z\"/>", "share": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 11l7.6-4M8.2 13l7.6 4\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/>", "eye": "<path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "users": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5\"/><circle cx=\"17\" cy=\"9\" r=\"2.5\"/><path d=\"M17 14.5c3 0 5 1.5 5 4.5\"/>", "refresh": "<path d=\"M20 11a8 8 0 10-2.3 5.7\"/><path d=\"M20 4v7h-7\"/>", "logout": "<path d=\"M9 4H5v16h4\"/><path d=\"M16 8l4 4-4 4M20 12H9\"/>", "trash": "<path d=\"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3\"/>", "file": "<path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 13h6M9 17h6\"/>", "layers": "<path d=\"M12 3l9 5-9 5-9-5z\"/><path d=\"M3 13l9 5 9-5\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1\"/>", "phone": "<rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><path d=\"M11 18h2\"/>", "trend": "<path d=\"M3 17l6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "check": "<path d=\"M5 12l5 5 9-10\"/>", "monitor": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>"};
+const IC={"globe":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18\"/>","moon":"<path d=\"M20 14A8 8 0 019.5 3.5 8 8 0 1020 14z\"/>","sun":"<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2\"/>","shield":"<path d=\"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z\"/><path d=\"M9 12l2 2 4-4\"/>","key":"<circle cx=\"8\" cy=\"15\" r=\"4\"/><path d=\"M11 12l9-9M16 7l3 3\"/>","info":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 11v6M12 7.5v.5\"/>","chev":"<path d=\"M9 5l7 7-7 7\"/>","dots":"<circle cx=\"12\" cy=\"5\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"12\" cy=\"12\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"12\" cy=\"19\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"/>","camera":"<path d=\"M4 8h3l2-3h6l2 3h3v11H4z\"/><circle cx=\"12\" cy=\"13\" r=\"3.5\"/>","home": "<path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "crown": "<path d=\"M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z\"/>", "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c0-4 4-6 8-6s8 2 8 6\"/>", "lock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 018 0v3\"/>", "download": "<path d=\"M12 4v11\"/><path d=\"M7 11l5 5 5-5\"/><path d=\"M5 20h14\"/>", "pin": "<path d=\"M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>", "bell": "<path d=\"M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z\"/><path d=\"M10 21h4\"/>", "image": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><circle cx=\"9\" cy=\"10\" r=\"1.5\"/><path d=\"M21 16l-5-5-9 9\"/>", "palette": "<path d=\"M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H18a3 3 0 003-3c0-5-4-10.5-9-10.5z\"/><circle cx=\"7.5\" cy=\"11\" r=\"1\"/><circle cx=\"10\" cy=\"7\" r=\"1\"/><circle cx=\"15\" cy=\"7\" r=\"1\"/>", "pen": "<path d=\"M4 20l4-1 11-11-3-3L5 16l-1 4z\"/><path d=\"M14 6l3 3\"/>", "sparkle": "<path d=\"M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z\"/>", "back": "<path d=\"M15 5l-7 7 7 7\"/>", "chart": "<path d=\"M4 20V4\"/><path d=\"M4 20h16\"/><rect x=\"8\" y=\"12\" width=\"3\" height=\"5\"/><rect x=\"13\" y=\"8\" width=\"3\" height=\"9\"/>", "film": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 5v14M16 5v14M3 10h5M3 14h5M16 10h5M16 14h5\"/>", "heart": "<path d=\"M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z\"/>", "share": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 11l7.6-4M8.2 13l7.6 4\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/>", "eye": "<path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "users": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5\"/><circle cx=\"17\" cy=\"9\" r=\"2.5\"/><path d=\"M17 14.5c3 0 5 1.5 5 4.5\"/>", "refresh": "<path d=\"M20 11a8 8 0 10-2.3 5.7\"/><path d=\"M20 4v7h-7\"/>", "logout": "<path d=\"M9 4H5v16h4\"/><path d=\"M16 8l4 4-4 4M20 12H9\"/>", "trash": "<path d=\"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3\"/>", "file": "<path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 13h6M9 17h6\"/>", "layers": "<path d=\"M12 3l9 5-9 5-9-5z\"/><path d=\"M3 13l9 5 9-5\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1\"/>", "phone": "<rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><path d=\"M11 18h2\"/>", "trend": "<path d=\"M3 17l6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "check": "<path d=\"M5 12l5 5 9-10\"/>", "monitor": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>"};
 const ic=(n,z)=>'<svg class="ic" viewBox="0 0 24 24"'+(z?` style="width:${z}px;height:${z}px"`:'')+'>'+IC[n]+'</svg>';
 /* ============ গণনা ও অ্যাডমিন প্যানেল (গ্রাহকের অনুমতি সহ) ============ */
 const dbOn=()=>!!CFG.dbUrl;
@@ -1088,7 +1107,8 @@ function initPrivacy(){
   $('#privYes').onclick=()=>set('yes');$('#privNo').onclick=()=>set('no');
   if(!consent())$('#privM').classList.add('on');else{notify('visit');startPresence()}
 }
-function addPrivacy(){
+function addPrivacy(){return}
+function addPrivacyOld(){
   if(!dbOn())return;
   const on=consent()==='yes',v=$('#v-prof');
   v.insertAdjacentHTML('beforeend',`<div class="panel" style="margin-top:12px"><b>${ic('bell',16)} গোপনীয়তা</b><p class="hint" style="margin:6px 0 10px">অ্যাপের মালিক শুধু সংখ্যা দেখতে পান: কতজন ঢুকেছে, কতজন অনলাইনে আছে, কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না। ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>বর্তমান অবস্থা: <b>${on?'চালু':'বন্ধ'}</b></p><button class="btn o" id="privTg">${on?'গণনা বন্ধ করুন':'গণনা চালু করুন'}</button></div>`);
@@ -1155,11 +1175,54 @@ async function drawAdmin(){
 }
 window.addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin()});
 
+/* ============ সেটিংস, ভাষা, থিম, তথ্য-পাতা ============ */
+const L=(b,e)=>LS.get('cs_lang','bn')==='en'?e:b;
+function setPrivText(){const t=$('#privTxt');if(t)t.innerHTML=L('অ্যাপের মালিক জানতে পারেন <b>কতজন ঢুকেছে, কতজন এখন অনলাইনে আছে</b> এবং কোন টেমপ্লেট কতবার ডাউনলোড হয়েছে। এগুলো শুধু সংখ্যা হিসেবে জমা হয়।<br><b>আপনার নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি কখনো পাঠানো হয় না।</b> ডাউনলোডের সময় ব্রাউজার লোকেশনের অনুমতি চাইতে পারে; অনুমতি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়, না দিলে কিছুই যায় না।<br>চাইলে নিচে "না" চাপুন; পরে সেটিংস থেকেও বদলানো যাবে।','The app owner can see <b>how many people visited, how many are online now</b> and how often each template is downloaded. These are stored as plain numbers only.<br><b>Your name, phone number, card text or photos are never sent.</b> On download your browser may ask for location permission; if you allow it only an approximate area (about 11 km) is known, if you decline nothing is sent.<br>Tap "No" if you prefer; you can change this later in Settings.')}
+function setTheme(v){LS.set('cs_theme',v);document.documentElement.dataset.theme=v;const m=$('#themeMeta');if(m)m.content=v==='dark'?'#0e1411':'#0f6b3a'}
+function setLang(v){LS.set('cs_lang',v);document.documentElement.lang=v;trAll(v==='en');setPrivText();drawChips();drawGrid();syncPro();const on=$$('.view').find(e=>e.classList.contains('on'));if(on){const id=on.id.slice(2);if(id==='set')drawSet();if(id==='info')drawInfo();if(id==='pro')drawPro();if(id==='prof')drawProf();if(id==='hist')drawHist()}trAll(v==='en')}
+let infoKey='privacy';
+function segG(id,get,set){const mark=()=>$$('#'+id+' button').forEach(b=>b.classList.toggle('on',b.dataset.v===String(get())));mark();$$('#'+id+' button').forEach(b=>b.onclick=()=>{set(b.dataset.v);mark()})}
+function drawSet(){
+  const row=(i,t,sub,id)=>`<button class="srow" id="${id}"><span class="si">${ic(i,18)}</span><span style="flex:1;text-align:left"><b>${t}</b>${sub?`<small>${sub}</small>`:''}</span>${ic('chev',16)}</button>`;
+  $('#v-set').innerHTML=`<div class="edhead"><button class="back" id="sBack">${ic('back')} ${L('প্রোফাইল','Profile')}</button></div><h2>${L('সেটিংস','Settings')}</h2>
+  <div class="sgrp"><div class="sl">${ic('globe',16)} ${L('ভাষা','Language')}</div><div class="seg" id="sLang"><button data-v="bn">বাংলা</button><button data-v="en">English</button></div></div>
+  <div class="sgrp"><div class="sl">${ic('moon',16)} ${L('থিম','Theme')}</div><div class="seg" id="sTh"><button data-v="light">${ic('sun',15)} ${L('লাইট মোড','Light mode')}</button><button data-v="dark">${ic('moon',15)} ${L('ডার্ক মোড','Dark mode')}</button></div></div>
+  ${dbOn()?`<div class="sgrp"><div class="sl">${ic('chart',16)} ${L('ব্যবহারের পরিসংখ্যান (নাম-পরিচয় ছাড়া)','Usage statistics (anonymous)')}</div><div class="seg" id="sAn"><button data-v="yes">${L('চালু','On')}</button><button data-v="no">${L('বন্ধ','Off')}</button></div></div>`:''}
+  <div class="sgrp nopad">${row('shield',L('প্রাইভেসি পলিসি','Privacy Policy'),'','sPriv')}${row('key',L('অ্যাডমিন','Admin'),L('শুধু মালিকের জন্য','Owner only'),'sAdm')}${row('phone',L('যোগাযোগ','Contact'),'','sCon')}${row('info',L('অ্যাপ সম্পর্কে','About'),'','sAbt')}</div>
+  <p class="hint" style="text-align:center">${hx(CFG.appName)} • v${CFG.version||'2.0'}</p>`;
+  $('#sBack').onclick=()=>go('prof');
+  segG('sLang',()=>LS.get('cs_lang','bn'),v=>setLang(v));
+  segG('sTh',()=>LS.get('cs_theme','light'),v=>setTheme(v));
+  if($('#sAn'))segG('sAn',()=>consent()==='yes'?'yes':'no',v=>{LS.set('cs_notify',v);if(v==='yes'){notify('visit');startPresence()}toast(L(v==='yes'?'চালু করা হয়েছে':'বন্ধ করা হয়েছে',v==='yes'?'Turned on':'Turned off'))});
+  $('#sPriv').onclick=()=>{infoKey='privacy';go('info')};$('#sCon').onclick=()=>{infoKey='contact';go('info')};$('#sAbt').onclick=()=>{infoKey='about';go('info')};
+  $('#sAdm').onclick=()=>openAdmin()}
+function drawInfo(){
+  const k=infoKey,T={privacy:L('প্রাইভেসি পলিসি','Privacy Policy'),contact:L('যোগাযোগ','Contact'),about:L('অ্যাপ সম্পর্কে','About')}[k];let h='';
+  if(k==='privacy')h=L(`<h3>আপনার কার্ড</h3><p>কার্ড আপনার ফোনেই তৈরি হয়। আপনার লেখা, ছবি বা লোগো কোনো সার্ভারে আপলোড হয় না।</p><h3>ফোনে সেভ থাকে যা</h3><p>প্রোফাইলের তথ্য (নাম, ট্যাগ, ফোন, লোগো, কভার ফটো), হিস্টরি, ফেভারিট, প্ল্যান, ভাষা ও থিম আপনার ব্রাউজারের লোকাল স্টোরেজে থাকে। ব্রাউজারের ডেটা মুছলে এগুলোও মুছে যায়।</p><h3>পরিসংখ্যান</h3><p>আপনি অনুমতি দিলে শুধু নামহীন সংখ্যা জমা হয়: ভিজিট, কোন টেমপ্লেট ডাউনলোড হয়েছে, নরমাল/HD, ডিভাইসের ধরন ও একটি এলোমেলো আইডি। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না।</p><h3>লোকেশন</h3><p>ডাউনলোডের সময় ব্রাউজার অনুমতি চাইলে এবং আপনি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়। না দিলে কিছুই যায় না।</p><h3>তৃতীয় পক্ষ</h3><p>সংখ্যাগুলো Google Firebase-এ জমা হয়। ফন্ট Google Fonts থেকে আসে।</p><h3>আপনার নিয়ন্ত্রণ</h3><p>সেটিংস থেকে পরিসংখ্যান যেকোনো সময় বন্ধ করতে পারবেন।</p>`,`<h3>Your cards</h3><p>Cards are created on your phone. Your text, photos or logo are never uploaded to any server.</p><h3>Saved on your device</h3><p>Profile details (name, tag, phone, logo, cover photo), history, favorites, plan, language and theme are kept in your browser's local storage. Clearing browser data removes them.</p><h3>Statistics</h3><p>If you allow it, only anonymous numbers are stored: visits, which template was downloaded, normal/HD, device type and a random ID. No name, phone number, card text or photo is sent.</p><h3>Location</h3><p>If your browser asks on download and you allow it, only an approximate area (about 11 km) is known. If you decline, nothing is sent.</p><h3>Third parties</h3><p>Counts are stored in Google Firebase. Fonts are loaded from Google Fonts.</p><h3>Your control</h3><p>You can turn statistics off any time in Settings.</p>`);
+  if(k==='about')h=L(`<h3>${hx(CFG.appName)}</h3><p>বাংলা ও ইংরেজি ফটো কার্ড, নিউজ কার্ড ও ভিডিও থাম্বনেইল বানানোর অ্যাপ। ফোনেই ডিজাইন, ফোনেই ডাউনলোড।</p><ul><li>${TPL.length}টি টেমপ্লেট (ফ্রি, প্রো ও ভিআইপি)</li><li>১৬:৯ ভিডিও থাম্বনেইল</li><li>নরমাল ও HD ডাউনলোড</li><li>নিজের ছবি, লোগো ও রেডিমেড লেখা</li></ul><p>ভার্সন ${CFG.version||'2.0'} • ${hx(CFG.watermark||CFG.appName)}</p>`,`<h3>${hx(CFG.appName)}</h3><p>An app for making Bangla and English photo cards, news cards and video thumbnails. Design and download right on your phone.</p><ul><li>${TPL.length} templates (Free, Pro and VIP)</li><li>16:9 video thumbnails</li><li>Normal and HD downloads</li><li>Your own photo, logo and ready-made quotes</li></ul><p>Version ${CFG.version||'2.0'} • ${hx(CFG.watermark||CFG.appName)}</p>`);
+  if(k==='contact'){const b=(href,i,t)=>`<a class="btn${i==='phone'?'':' o'}" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;margin-bottom:10px" href="${href}" target="_blank" rel="noopener">${ic(i,18)} ${t}</a>`;
+    h=`<p style="margin-bottom:12px">${L('প্রো কোড, সমস্যা বা পরামর্শের জন্য যোগাযোগ করুন।','Reach out for Pro codes, problems or suggestions.')}</p>`+(CFG.contactLink?b(CFG.contactLink,'phone',L('হোয়াটসঅ্যাপে মেসেজ','Message on WhatsApp')):'')+(CFG.telegram?b(CFG.telegram,'share',L('টেলিগ্রাম','Telegram')):'')+(CFG.email?b('mailto:'+CFG.email,'file',CFG.email):'')+(CFG.payNumber?`<p class="hint">${L('পেমেন্ট নম্বর','Payment number')}: <b>${hx(CFG.payNumber)}</b></p>`:'')}
+  $('#v-info').innerHTML=`<div class="edhead"><button class="back" id="iBack">${ic('back')} ${L('সেটিংস','Settings')}</button></div><h2>${T}</h2><div class="ibox">${h}</div>`;
+  $('#iBack').onclick=()=>go('set')}
+
+/* ----- ভাষা অনুবাদ (বাংলা → English) ----- */
+const EX={'হোম':'Home','হিস্টরি':'History','প্রো':'Pro','প্রোফাইল':'Profile','লেখা':'Text','ছবি':'Image','ডিজাইন':'Design','ফ্রি':'Free','নরমাল':'Normal','ছাড়া':'None','ঠিক আছে':'OK','সেভ করুন':'Save','আনলক করুন':'Unlock','এডিট':'Edit','মুছুন':'Delete','পরে':'Later','প্রো নিন':'Get Pro','দেখান':'Show','লুকান':'Hide','লোগো':'Logo','ভিআইপি':'VIP','বন্ধ':'Off','চালু':'On','ভিজিট':'Visits','মোবাইল':'Mobile','ডেস্কটপ':'Desktop','ম্যাপ':'Map','অটো':'Auto','ডিফল্ট':'Default','ফন্ট':'Font','সাইজ':'Size','রঙ':'Color','সহ':'with','লোড হচ্ছে…':'Loading…'};
+const PH={'প্রো-তে':'On Pro,','টেমপ্লেট বেছে নিন':'Choose a template','টেমপ্লেট খুঁজুন…':'Search templates…','মিনিটেই বানান সুন্দর ফটো কার্ড — ফোনেই ডিজাইন, ফোনেই ডাউনলোড':'Make beautiful photo cards in minutes — design and download on your phone','আপনার প্ল্যান':'Your plan','সব (':'All (','ফ্রি (':'Free (','প্রো (':'Pro (','ভিআইপি (':'VIP (','থাম্বনেইল (':'Thumbnails (','ফেভারিট (':'Favorites (','টেমপ্লেটে ফিরুন':'Back to templates','রেডিমেড লেখা (চাপ দিলেই বসে যাবে)':'Ready-made text (tap to insert)','মূল লেখা':'Main text','টাইটেল':'Title','ক্যাপশন / সাব-লাইন':'Caption / sub-line','লেখক / বক্তা':'Author / speaker','কার্ডের মাপ':'Card size','নিচের স্ট্রিপ':'Bottom strip','লেখার সাইজ':'Text size','পুরো লেখার রঙ':'Text color','কার্ডের রঙ':'Card color','নিজের পছন্দের রঙ':'Custom color','লেখার পেছনে বক্স':'Box behind text','রঙ মুছুন':'Clear color','নিজের ছবি':'Your photo','নিজের লোগো':'Your logo','সিনারি তালিকা':'Scenery list','ব্যাকগ্রাউন্ড সিনারি / ছবি':'Background scenery / photo','শেয়ার করুন':'Share','ওয়াটারমার্ক (প্রো-তে আপনার ইচ্ছা)':'Watermark (optional on Pro)','ফ্রি কার্ডে':'Free cards carry the','ওয়াটারমার্ক থাকবে':'watermark','সরাতে প্রো নিন →':'Get Pro to remove →','প্রো চালু — ওয়াটারমার্ক রাখা/সরানো আপনার ইচ্ছা':'Pro active — watermark is optional','এই ডিজাইনটি ডাউনলোড করতে প্রো প্ল্যান লাগবে। মাত্র':'This design needs a Pro plan to download. Only','টাকা থেকে প্রো প্ল্যান (৩ ধরনের)।':'BDT onwards — 3 plans.','প্রো টেমপ্লেট':'Pro template','প্রো প্ল্যান':'Pro Plans','কিভাবে প্রো নেবেন:':'How to get Pro:','প্রো কোড লিখুন':'Enter Pro code','প্রো নিষ্ক্রিয় করুন':'Deactivate Pro','বেসিক':'Basic','স্ট্যান্ডার্ড':'Standard','৩০ দিন সব সাধারণ প্রো ডিজাইন':'30 days · all regular Pro designs','লাইফটাইম — একবার দিন, সারা জীবন':'Lifetime — pay once','লাইফটাইম':'Lifetime','সব সাধারণ প্রো ডিজাইন':'all regular Pro designs','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা':'watermark optional','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন':'All Pro + exclusive VIP designs','প্রো ডিজাইন:':'Pro designs:','ভিআইপি ডিজাইন:':'VIP designs:','টি ভিআইপি ডিজাইন':' VIP designs','টি প্রো +':' Pro +','নরমাল ও HD ডাউনলোড ফ্রি':'Normal & HD downloads are free','ওয়াটারমার্ক রাখা বা সরানো আপনার ইচ্ছা':'watermark optional','ডিফল্ট লেখক / নাম':'Default author / name','ট্যাগ / পেজের নাম':'Tag / page name','ফোন / যোগাযোগ':'Phone / contact','লোগো বাছুন':'Choose logo','তৈরি কার্ড':'Cards made','খোলা ডিজাইন':'Unlocked designs','প্ল্যান বাকি':'Plan left','ফ্রি প্ল্যান':'Free plan','আপনার নাম':'Your name','গোপনীয়তা নোটিশ':'Privacy notice','না, গণনা করবেন না':"No, don't count me",'আমার তৈরি কার্ড':'My cards','সব হিস্টরি মুছুন':'Clear all history','অ্যাডমিন ড্যাশবোর্ড':'Admin Dashboard','জন এখন অনলাইনে (গত ১ মিনিট)':'online now (last 1 min)','আজকের ভিজিট':"Today's visits",'আজ আলাদা মানুষ':'Unique visitors today','মোট ভিজিট':'Total visits','মোট আলাদা মানুষ':'Total unique visitors','মোট ডাউনলোড':'Total downloads','প্রো চালু':'Pro activations','সবচেয়ে জনপ্রিয় টেমপ্লেট':'Top templates','ডিভাইস (সাম্প্রতিক':'Devices (recent','টি ডাউনলোড)':' downloads)','সাম্প্রতিক ডাউনলোড':'Recent downloads','এখনো কোনো ডাউনলোড নেই':'No downloads yet','লোকেশন নেই':'No location','গতকালের তুলনায়':'vs yesterday','এইমাত্র':'just now','মিনিট আগে':'min ago','ঘণ্টা আগে':'h ago','দিন আগে':'d ago','দিনে মোট':'days total','গড়':'avg','প্রতি ১০ সেকেন্ডে নিজে আপডেট হয়':'Auto-refreshes every 10 seconds','প্রোফাইল সেভ হয়েছে':'Profile saved','কভার ফটো সেভ হয়েছে':'Cover photo saved','লেখা বসানো হয়েছে':'Text inserted','কোডটি সঠিক নয়':'Invalid code','প্রো নিষ্ক্রিয় করা হয়েছে':'Pro deactivated','প্ল্যান চালু হয়েছে':'plan activated','ছবি ডাউনলোড হচ্ছে':'Downloading image','এই ব্রাউজারে শেয়ার চলে না — ডাউনলোড করুন':'Sharing is not supported here — please download','পাসওয়ার্ড ভুল':'Wrong password','রিফ্রেশ হচ্ছে':'Refreshing','লগআউট হয়েছে':'Logged out','মোছা হয়েছে':'Deleted','কভার ফটো: ১৫০০ × ৫০০ (আপলোড করলে নিজে থেকে ক্রপ হবে)':'Cover photo: 1500 × 500 (auto-cropped on upload)','কভার ফটো বদলান':'Change cover photo','সেটিংস':'Settings','এডিট করে দেখা যাবে, ডাউনলোডে প্রো লাগবে':'you can edit, but downloading needs Pro','এটি প্রো ডিজাইন':'This is a Pro design','থাম্বনেইল':'Thumbnail','গ্রেডিয়েন্ট':'Gradient','পার্পল':'Purple','সানসেট':'Sunset','গ্রেডিয়েন্ট টিল':'Gradient Teal','ফ্রেম':'Frame','গোল্ড':'Gold','গ্রিন':'Green','টপ ফরেস্ট':'Top Forest','টপ সি':'Top Sea','টপ ফ্লাওয়ার':'Top Flower','নাইট ফুল':'Night Full','মসজিদ ফুল':'Mosque Full','ফরেস্ট ফুল':'Forest Full','মসজিদ':'Mosque','পোলারয়েড':'Polaroid','স্টিকি নোট':'Sticky Note','স্টিকি':'Sticky','চ্যাট বাবল':'Chat Bubble','এমারেল্ড নাইট':'Emerald Night','নেভি গোল্ড':'Navy Gold','মিনিমাল':'Minimal','নোটবুক':'Notebook','সার্কেল':'Circle','পিঙ্ক':'Pink','পোস্টার':'Poster','ব্লু':'Blue','রোজ':'Rose','ওশান':'Ocean','ডার্ক':'Dark','গ্লাস':'Glass','অরোরা':'Aurora','ওয়েভ':'Wave','রিবন':'Ribbon','টিকেট':'Ticket','বোকেহ নাইট':'Bokeh Night','রেট্রো সান':'Retro Sun','নিয়ন':'Neon','ইয়েলো':'Yellow','স্প্লিট':'Split','ফটো':'Photo','ইসলামিক':'Islamic','ব্রেকিং':'Breaking','ভার্সাস':'Versus','সিনেমা':'Cinema','নাইট':'Night','পার্পল':'Purple','আজকের কথা':"Today's words"};
+const PHK=Object.keys(PH).sort((a,b)=>b.length-a.length),BD='০১২৩৪৫৬৭৮৯';
+function trText(o){const t=o.trim();if(EX[t])return o.replace(t,EX[t]);let r=o;for(const k of PHK)if(r.includes(k))r=r.split(k).join(PH[k]);return r.replace(/[০-৯]/g,d=>BD.indexOf(d))}
+const ORIG=new WeakMap();let trBusy=false;
+function trAll(toEn){trBusy=true;try{
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&!n.parentElement.closest('script,style,textarea,[contenteditable],canvas')?1:2});let n;
+  while(n=w.nextNode()){if(toEn){const o=ORIG.has(n)?ORIG.get(n):n.nodeValue;if(!ORIG.has(n)&&!/[\u0980-\u09FF]/.test(o))continue;const t=trText(o);if(t!==n.nodeValue){if(!ORIG.has(n))ORIG.set(n,o);n.nodeValue=t}}else if(ORIG.has(n)){n.nodeValue=ORIG.get(n);ORIG.delete(n)}}
+  $$('[placeholder],[title]').forEach(e=>{['placeholder','title'].forEach(a=>{if(!e.hasAttribute(a))return;const k='bn'+a;if(toEn){if(e.dataset[k]==null)e.dataset[k]=e.getAttribute(a);e.setAttribute(a,trText(e.dataset[k]))}else if(e.dataset[k]!=null)e.setAttribute(a,e.dataset[k])})})
+}finally{trBusy=false}}
+let trT=0;new MutationObserver(()=>{if(trBusy||LS.get('cs_lang','bn')!=='en')return;cancelAnimationFrame(trT);trT=requestAnimationFrame(()=>trAll(true))}).observe(document.body,{childList:true,subtree:true,characterData:true});
+
 /* ============ শুরু ============ */
 (async function init(){
   document.title=CFG.appName+' - ফটো কার্ড ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
   try{await Promise.all(['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'].map(f=>document.fonts.load(`700 40px "${f}"`,'অআক')))}catch(e){}
-  wireSearch();drawChips();syncPro();initPrivacy();if(location.hash==='#admin')openAdmin();
+  document.documentElement.dataset.theme=LS.get('cs_theme','light');document.documentElement.lang=LS.get('cs_lang','bn');setTheme(LS.get('cs_theme','light'));setPrivText();wireSearch();drawChips();syncPro();initPrivacy();if(LS.get('cs_lang','bn')==='en')trAll(true);if(location.hash==='#admin')openAdmin();
 })();
 </script>
 </body>
