@@ -176,7 +176,7 @@ html[data-theme=dark] .f input[type=text],html[data-theme=dark] .f textarea,html
 #payM .mbox{max-height:90vh;overflow:auto;text-align:left;max-width:400px}.plpick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.plpick button{border:2px solid var(--line);background:var(--card);color:var(--tx);border-radius:14px;padding:8px 4px;font:inherit;cursor:pointer}.plpick button.on{border-color:var(--g);background:rgba(15,107,58,.1)}.plpick b{display:block;font-size:17px}.plpick small{font-size:11px;color:var(--mut)}
 .payamt{text-align:center;font-size:14px;margin-bottom:4px}.paysteps{padding-left:20px;font-size:13px;color:var(--mut);margin:6px 0 12px;line-height:1.7}.hpay{margin-top:12px;width:100%}
 .rlst{font-size:13px;color:var(--g);min-height:20px;text-align:center;margin:6px 0}.clip{display:flex;align-items:center;gap:8px;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--card);margin-bottom:8px;font-size:13px}.clip b{flex:1}.clip .mini{white-space:nowrap}
-#rlCv{display:block;width:62%;max-width:260px;margin:10px auto;border-radius:16px;background:#000;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#rlCv{display:none;width:62%;max-width:260px;margin:10px auto;border-radius:16px;background:#000;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 </style>
 </head>
 <body>
@@ -221,20 +221,18 @@ html[data-theme=dark] .f input[type=text],html[data-theme=dark] .f textarea,html
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
-  version:'2.2',
-  telegram:'অনেক প্রিমিয়াম পিএলপি ফাইল দেওয়া হয় আমাদের গ্রুপে
-
-https://t.me/zohir_plp',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
-  email:'jibonmahmud630@gmail.com',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  version:'2.0',
+  telegram:'',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  email:'',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
   plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIRKJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -1285,7 +1283,7 @@ function drawFrame(g,W,H,v,cl,t,i,n){
   g.fillStyle='#000';g.fillRect(0,0,W,H);
   const s=Math.max(W/vw,H/vh);
   if(vh/vw>1.4)g.drawImage(v,(W-vw*s)/2,(H-vh*s)/2,vw*s,vh*s);
-  else{g.save();try{g.filter='blur('+(28*k)+'px)'}catch(e){}g.drawImage(v,(W-vw*s)/2,(H-vh*s)/2,vw*s,vh*s);g.restore();g.fillStyle='rgba(0,0,0,.35)';g.fillRect(0,0,W,H);const fh=vh/vw*W;g.drawImage(v,0,(H-fh)/2,W,fh)}
+  else{const bw=36,bh=Math.round(36*H/W),bc=RL.bg||(RL.bg=document.createElement('canvas'));if(bc.width!==bw||bc.height!==bh){bc.width=bw;bc.height=bh}const bs=Math.max(bw/vw,bh/vh);bc.getContext('2d').drawImage(v,(bw-vw*bs)/2,(bh-vh*bs)/2,vw*bs,vh*bs);g.imageSmoothingEnabled=true;g.drawImage(bc,0,0,W,H);g.fillStyle='rgba(0,0,0,.4)';g.fillRect(0,0,W,H);const fh=vh/vw*W;g.drawImage(v,0,(H-fh)/2,W,fh)}
   g.fillStyle='rgba(0,0,0,.45)';rr(g,40*k,70*k,230*k,56*k,28*k);g.fill();g.fillStyle='#fff';g.font=`700 ${28*k}px 'Hind Siguri','Noto Sans Bengali',sans-serif`;g.textAlign='center';g.textBaseline='middle';g.fillText('ক্লিপ '+(i+1)+'/'+n,155*k,98*k);
   const cue=RL.cues.find(c=>t>=c.s&&t<c.e);if(cue)drawCap(g,W,H,cue,t,st);
   g.fillStyle='rgba(255,255,255,.25)';g.fillRect(0,H-10*k,W,10*k);g.fillStyle=st.hl;g.fillRect(0,H-10*k,W*Math.min(1,(t-cl.s)/(cl.e-cl.s)),10*k);
@@ -1342,7 +1340,8 @@ async function renderClip(i,record){
     const stream=cv.captureStream(30),vs=v.captureStream?v.captureStream():(v.mozCaptureStream?v.mozCaptureStream():null),at=vs&&vs.getAudioTracks()[0];if(at)stream.addTrack(at);
     mime=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm'].find(t=>MediaRecorder.isTypeSupported(t))||'';
     rec=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:4e6}:{});mime=rec.mimeType||mime;rec.ondataavailable=e=>e.data&&e.data.size&&chunks.push(e.data);rec.start(300)}
-  v.muted=!record;await v.play();const t0=performance.now();let lock=null;try{lock=await navigator.wakeLock.request('screen')}catch(e){}
+  if(!record){prev.style.display='block';prev.scrollIntoView({behavior:'smooth',block:'center'})}
+  v.muted=false;await v.play();const t0=performance.now();let lock=null;try{lock=await navigator.wakeLock.request('screen')}catch(e){}
   await new Promise(res=>{const f=()=>{const t=v.currentTime;drawFrame(g,W,H,v,cl,t,i,n);if(record)rlSt('ভিডিও তৈরি হচ্ছে… '+Math.round(t-cl.s)+'/'+Math.round(cl.e-cl.s)+' সেকেন্ড (স্ক্রিন বন্ধ করবেন না)');
     if(t>=cl.e||v.ended||performance.now()-t0>(cl.e-cl.s+8)*1000)res();else requestAnimationFrame(f)};f()});
   v.pause();try{lock&&lock.release()}catch(e){}
@@ -1372,7 +1371,7 @@ function drawReel(){
   v.innerHTML=`<h2>${ic('film',20)} রিলস স্টুডিও</h2>
   <div class="steps" style="margin-bottom:12px"><b>কিভাবে কাজ করে:</b> লম্বা ভিডিও দিন → ২০/২৫/৩০ সেকেন্ডের ক্লিপে নিজে কাটবে → ক্যাপশন দিলে স্টাইলিশ শব্দ-বাই-শব্দ ভেসে উঠবে (রঙিন ব্যাকগ্রাউন্ডসহ) → ক্লিপ ডাউনলোড।</div>
   <div class="panel"><label class="file"><input type="file" accept="video/*" id="rlFile"><span class="btn" style="display:block;text-align:center">${ic('film',17)} ভিডিও বাছুন (গ্যালারি থেকে)</span></label><p class="hint" id="rlInfo" style="margin-top:8px">এখনো ভিডিও বাছা হয়নি।</p>
-  <video id="rlVid" playsinline preload="auto" muted style="display:block;width:100%;max-height:190px;border-radius:12px;background:#000;margin-top:8px"></video>
+  <video id="rlVid" playsinline preload="auto" controls style="display:none;width:100%;max-height:220px;border-radius:12px;background:#000;margin-top:8px"></video>
   <div class="f" style="margin-top:12px"><label>ক্লিপের দৈর্ঘ্য</label><div class="seg" id="rlLen"><button data-v="20">২০ সেকেন্ড</button><button data-v="25">২৫ সেকেন্ড</button><button data-v="30">৩০ সেকেন্ড</button></div></div>
   <div class="f"><label>অটো ক্যাপশন (ভয়েস থেকে নিজে লিখবে)</label><div class="seg" id="rlAuto"><button data-v="yes">চালু</button><button data-v="no">বন্ধ</button></div></div>
   <div class="f"><label>ভিডিওর ভাষা</label><div class="seg" id="rlLang"><button data-v="bn">বাংলা</button><button data-v="en">English</button><button data-v="auto">অটো</button></div></div>
@@ -1385,7 +1384,8 @@ function drawReel(){
   <div class="steps"><b>${ic('info',15)} লিংক থেকে কাটা যায় না কেন?</b><br>ইউটিউব, টিকটক, ফেসবুক বা ইনস্টাগ্রামের লিংক থেকে ভিডিও নামানো ব্রাউজারের ভেতরে সম্ভব নয় (ওই সাইটগুলো তা আটকে রাখে), আর অন্যের ভিডিও কপিরাইটের আওতায় পড়ে। তাই নিজের ভিডিও ফাইল গ্যালারি থেকে দিন।<br><br><b>অটো ক্যাপশন:</b> ভিডিওর কথা শুনে নিজে লেখে (একবার ইন্টারনেটে ভয়েস-মডেল নামে, পরে ফোনে সেভ থাকে)। বাংলায় নিখুঁত নাও হতে পারে, তাই লেখাটা ক্যাপশনের ঘরে দেখে ঠিক করে নিতে পারবেন। প্রতিটি ক্লিপ শুনতে ও বানাতে ক্লিপের সমান সময় লাগে; ক্রোমে সবচেয়ে ভালো চলে।${isPro()?'':'<br><br>ফ্রিতে ক্লিপে ওয়াটারমার্ক থাকে, প্রো-তে থাকে না।'}</div>`;
   segG('rlLen',()=>RL.len,x=>{RL.len=+x;if(RL.dur){buildClips();drawClips()}});segG('rlStyle',()=>RL.style,x=>RL.style=x);segG('rlPos',()=>RL.pos,x=>RL.pos=x);segG('rlAuto',()=>RL.autoOn,x=>RL.autoOn=x);segG('rlLang',()=>RL.lang,x=>RL.lang=x);segG('rlModel',()=>RL.model,x=>RL.model=x);
   $('#rlFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const vid=$('#rlVid');if(RL.url)URL.revokeObjectURL(RL.url);RL.url=URL.createObjectURL(f);vid.src=RL.url;
-    vid.onloadedmetadata=()=>{RL.dur=vid.duration;$('#rlInfo').textContent=f.name+' • '+fmtT(RL.dur)+' মিনিট';buildClips();drawClips();vid.currentTime=0.1}};
+    vid.onerror=()=>{vid.style.display='none';$('#rlInfo').textContent='এই ভিডিও ফরম্যাট ব্রাউজারে চলছে না — MP4 (H.264) ভিডিও দিন।'};
+    vid.onloadedmetadata=()=>{vid.style.display='block';RL.dur=vid.duration;$('#rlInfo').textContent=f.name+' • '+fmtT(RL.dur)+' মিনিট';buildClips();drawClips();vid.currentTime=0.1}};
   $('#rlSub').onchange=async e=>{const f=e.target.files[0];if(f){$('#rlTxt').value=await f.text();toast('ক্যাপশন যোগ হয়েছে')}};
   $('#rlBuild').onclick=()=>{if(!RL.dur)return toast('আগে ভিডিও বাছুন');buildClips();drawClips();toast(RL.clips.length+'টি ক্লিপ তৈরি')}}
 /* ============ শুরু ============ */
