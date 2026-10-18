@@ -221,18 +221,18 @@ html[data-theme=dark] .f input[type=text],html[data-theme=dark] .f textarea,html
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
-  version:'2.1',
-  telegram:'https://t.me/zohir_plp_in',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
-  email:'jibonmahmud630@gmail.com',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  version:'2.0',
+  telegram:'',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  email:'',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
   plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIRKJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -1255,7 +1255,7 @@ function trAll(toEn){trBusy=true;try{
 let trT=0;new MutationObserver(()=>{if(trBusy||LS.get('cs_lang','bn')!=='en')return;cancelAnimationFrame(trT);trT=requestAnimationFrame(()=>trAll(true))}).observe(document.body,{childList:true,subtree:true,characterData:true});
 
 /* ============ রিলস স্টুডিও ============ */
-const RL={url:'',dur:0,len:25,style:'neon',pos:'bottom',cues:[],clips:[],busy:false};
+const RL={url:'',dur:0,len:25,style:'neon',pos:'bottom',lang:'bn',model:'tiny',autoOn:'yes',asr:null,cues:[],clips:[],busy:false};
 const RS={neon:{bg:'rgba(0,0,0,.6)',fg:'#fff',hl:'#00f5d4'},gold:{bg:'rgba(25,14,0,.65)',fg:'#fff',hl:'#ffd24a'},pop:{bg:'#ff3d71',fg:'#fff',hl:'#ffe14d'},clean:{bg:'rgba(255,255,255,.93)',fg:'#111',hl:'#e11d48'}};
 const tsec=x=>{const p=x.trim().replace(',','.').split(':').map(Number);while(p.length<3)p.unshift(0);return p[0]*3600+p[1]*60+p[2]};
 const fmtT=x=>Math.floor(x/60)+':'+String(Math.floor(x%60)).padStart(2,'0');
@@ -1290,43 +1290,98 @@ function drawFrame(g,W,H,v,cl,t,i,n){
   if(!isPro()){g.save();g.globalAlpha=.55;g.fillStyle='#fff';g.font=`800 ${34*k}px 'Hind Siguri','Noto Sans Bengali',sans-serif`;g.textAlign='right';g.shadowColor='rgba(0,0,0,.6)';g.shadowBlur=6*k;g.fillText(CFG.watermark||CFG.appName,W-40*k,H-60*k);g.restore()}}
 const rlSt=m=>{const e=$('#rlSt');if(e)e.textContent=m};
 const once=(el,ev)=>new Promise(r=>el.addEventListener(ev,r,{once:true}));
-async function runClip(i,record){
-  if(RL.busy)return toast('একটু অপেক্ষা করুন, কাজ চলছে');
-  const v=$('#rlVid'),cl=RL.clips[i],n=RL.clips.length,prev=$('#rlCv');RL.busy=true;
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function seekTo(v,t){if(Math.abs(v.currentTime-t)<.05)v.currentTime=Math.min((v.duration||t+1)-.01,t+.06);else v.currentTime=t;await Promise.race([once(v,'seeked'),sleep(2500)])}
+const srtT=x=>{const h=Math.floor(x/3600),m=Math.floor(x%3600/60),sc=x%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+sc.toFixed(3).padStart(6,'0').replace('.',',')};
+const toSrt=cs=>cs.map((c,i)=>(i+1)+'\n'+srtT(c.s)+' --> '+srtT(c.e)+'\n'+c.text).join('\n\n');
+const clipHasCues=i=>{const cl=RL.clips[i];return parseCues($('#rlTxt').value,RL.dur).some(c=>c.e>cl.s&&c.s<cl.e)};
+async function getAsr(){
+  if(RL.asr&&RL.asr.m===RL.model)return RL.asr.p;
+  rlSt('ভয়েস-মডেল লোড হচ্ছে… (প্রথমবার ইন্টারনেট লাগে)');
+  const T=await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');T.env.allowLocalModels=false;
+  const p=await T.pipeline('automatic-speech-recognition',RL.model==='base'?'Xenova/whisper-base':'Xenova/whisper-tiny',{progress_callback:x=>{if(x.status==='progress')rlSt('মডেল ডাউনলোড হচ্ছে… '+Math.round(x.progress||0)+'%')}});
+  RL.asr={m:RL.model,p};return p}
+async function captureAudio(i){
+  const cl=RL.clips[i],a=document.createElement('video');a.src=RL.url;a.playsInline=true;a.preload='auto';
+  await Promise.race([once(a,'loadedmetadata'),sleep(8000)]);await seekTo(a,cl.s);
+  const AC=window.AudioContext||window.webkitAudioContext,ac=new AC();try{await ac.resume()}catch(e){}
+  const src=ac.createMediaElementSource(a),sp=ac.createScriptProcessor(4096,1,1),mute=ac.createGain(),bufs=[];mute.gain.value=0;
+  sp.onaudioprocess=e=>bufs.push(new Float32Array(e.inputBuffer.getChannelData(0)));
+  src.connect(sp);sp.connect(mute);mute.connect(ac.destination);
+  await a.play();const t0=performance.now();
+  await new Promise(res=>{const f=()=>{rlSt('ভয়েস শোনা হচ্ছে… '+Math.round(a.currentTime-cl.s)+'/'+Math.round(cl.e-cl.s)+' সেকেন্ড');if(a.currentTime>=cl.e||a.ended||performance.now()-t0>(cl.e-cl.s+8)*1000)res();else setTimeout(f,250)};f()});
+  a.pause();const sr=ac.sampleRate;sp.disconnect();src.disconnect();try{ac.close()}catch(e){}
+  let n=0;bufs.forEach(x=>n+=x.length);const all=new Float32Array(n);let o=0;bufs.forEach(x=>{all.set(x,o);o+=x.length});
+  const r=sr/16000,out=new Float32Array(Math.floor(all.length/r));
+  for(let k=0;k<out.length;k++){let sm=0,c=0;for(let j=Math.floor(k*r);j<Math.floor((k+1)*r)&&j<all.length;j++){sm+=all[j];c++}out[k]=c?sm/c:0}
+  return out}
+async function autoCaption(i){
+  const cl=RL.clips[i],pcm=await captureAudio(i);let peak=0;for(let k=0;k<pcm.length;k+=40)peak=Math.max(peak,Math.abs(pcm[k]));
+  if(peak<.004)throw new Error('ভিডিওতে কোনো আওয়াজ পাওয়া যায়নি');
+  const asr=await getAsr();rlSt('ভয়েস থেকে লেখা হচ্ছে… (একটু সময় লাগবে)');
+  const opt={task:'transcribe',return_timestamps:true,chunk_length_s:30};if(RL.lang!=='auto')opt.language=RL.lang==='en'?'english':'bengali';
+  const res=await asr(pcm,opt),len=cl.e-cl.s;
+  const nc=(res.chunks&&res.chunks.length?res.chunks:[{text:res.text,timestamp:[0,len]}]).map(c=>{const t0=c.timestamp&&c.timestamp[0]||0,t1=c.timestamp&&c.timestamp[1]!=null?c.timestamp[1]:Math.min(len,t0+4);return{s:cl.s+t0,e:cl.s+Math.max(t1,t0+.8),text:(c.text||'').trim()}}).filter(c=>c.text);
+  if(!nc.length)throw new Error('কথা বোঝা যায়নি');
+  const old=parseCues($('#rlTxt').value,RL.dur).filter(c=>c.e<=cl.s||c.s>=cl.e);
+  $('#rlTxt').value=toSrt(old.concat(chunkCues(nc)).sort((x,y)=>x.s-y.s));return nc.length}
+function showOut(i,url,name,blob){
+  const o=$('#rlOut');
+  o.innerHTML=`<div class="panel"><b>${ic('check',15)} ক্লিপ ${i+1} তৈরি হয়েছে</b><video src="${url}" controls playsinline style="width:100%;max-height:420px;border-radius:12px;background:#000;margin:8px 0"></video><a class="btn" href="${url}" download="${name}" style="display:block;text-align:center;text-decoration:none">${ic('download',17)} ডাউনলোড (${(blob.size/1048576).toFixed(1)} MB)</a>${navigator.canShare?`<button class="btn o" id="rlShare" style="margin-top:8px">${ic('share',17)} শেয়ার / গ্যালারিতে সেভ</button>`:''}<p class="hint" style="margin-top:8px">ডাউনলোড না হলে উপরের বাটনে চাপ দিন, অথবা ভিডিওতে চেপে ধরে "ভিডিও ডাউনলোড" বেছে নিন।</p></div>`;
+  const sh=$('#rlShare');if(sh)sh.onclick=async()=>{const f=new File([blob],name,{type:blob.type});try{if(navigator.canShare({files:[f]}))await navigator.share({files:[f]});else toast('এই ব্রাউজারে শেয়ার চলে না')}catch(e){}};
+  o.scrollIntoView({behavior:'smooth',block:'center'})}
+async function renderClip(i,record){
+  const v=$('#rlVid'),cl=RL.clips[i],n=RL.clips.length,prev=$('#rlCv');
   RL.cues=parseCues($('#rlTxt').value,RL.dur);
   const W=record?720:prev.width,H=record?1280:prev.height,cv=record?Object.assign(document.createElement('canvas'),{width:W,height:H}):prev,g=cv.getContext('2d');
   let rec,chunks=[],mime='';
+  v.pause();await seekTo(v,cl.s);
+  if(record){if(!window.MediaRecorder||!cv.captureStream)throw new Error('এই ব্রাউজারে ভিডিও রেন্ডার চলে না (ক্রোম ব্যবহার করুন)');
+    const stream=cv.captureStream(30),vs=v.captureStream?v.captureStream():(v.mozCaptureStream?v.mozCaptureStream():null),at=vs&&vs.getAudioTracks()[0];if(at)stream.addTrack(at);
+    mime=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm'].find(t=>MediaRecorder.isTypeSupported(t))||'';
+    rec=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:4e6}:{});mime=rec.mimeType||mime;rec.ondataavailable=e=>e.data&&e.data.size&&chunks.push(e.data);rec.start(300)}
+  v.muted=!record;await v.play();const t0=performance.now();let lock=null;try{lock=await navigator.wakeLock.request('screen')}catch(e){}
+  await new Promise(res=>{const f=()=>{const t=v.currentTime;drawFrame(g,W,H,v,cl,t,i,n);if(record)rlSt('ভিডিও তৈরি হচ্ছে… '+Math.round(t-cl.s)+'/'+Math.round(cl.e-cl.s)+' সেকেন্ড (স্ক্রিন বন্ধ করবেন না)');
+    if(t>=cl.e||v.ended||performance.now()-t0>(cl.e-cl.s+8)*1000)res();else requestAnimationFrame(f)};f()});
+  v.pause();try{lock&&lock.release()}catch(e){}
+  if(!record){rlSt('');return}
+  await new Promise(r=>{rec.onstop=r;rec.stop()});
+  const blob=new Blob(chunks,{type:mime||'video/webm'});if(blob.size<2000)throw new Error('ভিডিও তৈরি হয়নি — ব্রাউজার সাপোর্ট করছে না, ক্রোম ব্যবহার করুন');
+  const ext=mime.includes('mp4')?'mp4':'webm',name='reel-'+(i+1)+'.'+ext,url=URL.createObjectURL(blob);
+  showOut(i,url,name,blob);rlSt('✔ ক্লিপ '+(i+1)+' তৈরি — নিচের "ডাউনলোড" বাটনে চাপ দিন');
+  try{const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove()}catch(e){}}
+async function runClip(i,record){
+  if(RL.busy)return toast('একটু অপেক্ষা করুন, কাজ চলছে');RL.busy=true;
   try{
-    v.pause();v.currentTime=cl.s;await once(v,'seeked');
-    if(record){if(!window.MediaRecorder||!cv.captureStream)throw new Error('এই ব্রাউজারে ভিডিও রেন্ডার চলে না (ক্রোম ব্যবহার করুন)');
-      const stream=cv.captureStream(30),vs=v.captureStream?v.captureStream():null,at=vs&&vs.getAudioTracks()[0];if(at)stream.addTrack(at);
-      mime=['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/webm;codecs=vp9,opus','video/webm'].find(t=>MediaRecorder.isTypeSupported(t))||'';
-      rec=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:4e6}:{});rec.ondataavailable=e=>e.data.size&&chunks.push(e.data);rec.start(300)}
-    v.muted=!record;await v.play();const t0=performance.now();
-    await new Promise(res=>{const f=()=>{const t=v.currentTime;drawFrame(g,W,H,v,cl,t,i,n);if(record)rlSt('রেন্ডার হচ্ছে… '+Math.round(t-cl.s)+'/'+Math.round(cl.e-cl.s)+' সেকেন্ড');
-      if(t>=cl.e||v.ended||performance.now()-t0>(cl.e-cl.s+8)*1000)res();else requestAnimationFrame(f)};f()});
-    v.pause();
-    if(record){await new Promise(r=>{rec.onstop=r;rec.stop()});const ext=mime.includes('mp4')?'mp4':'webm',a=document.createElement('a');a.href=URL.createObjectURL(new Blob(chunks,{type:mime||'video/webm'}));a.download='reel-'+(i+1)+'.'+ext;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);rlSt('✔ ক্লিপ '+(i+1)+' ডাউনলোড হয়েছে')}else rlSt('')
+    if(record&&RL.autoOn==='yes'&&!clipHasCues(i)){try{await autoCaption(i)}catch(e){rlSt('অটো ক্যাপশন হয়নি: '+e.message+' — ক্যাপশন ছাড়া তৈরি হচ্ছে');await sleep(1800)}}
+    await renderClip(i,record)
   }catch(e){rlSt('সমস্যা: '+e.message)}
   RL.busy=false}
+async function captionClip(i){
+  if(RL.busy)return toast('একটু অপেক্ষা করুন, কাজ চলছে');RL.busy=true;
+  try{const k=await autoCaption(i);rlSt('✔ ক্লিপ '+(i+1)+': '+k+' লাইন ক্যাপশন তৈরি। নিচের ঘরে দেখে ঠিক করতে পারবেন, তারপর প্রিভিউ/ডাউনলোড দিন')}catch(e){rlSt('অটো ক্যাপশন হয়নি: '+e.message)}
+  RL.busy=false}
 function drawClips(){
-  const b=$('#rlClips');b.innerHTML=RL.clips.map((c,i)=>`<div class="clip"><b>ক্লিপ ${i+1} • ${fmtT(c.s)}–${fmtT(c.e)}</b><button class="mini" data-p="${i}">প্রিভিউ</button><button class="mini" data-d="${i}">${ic('download',13)} ডাউনলোড</button></div>`).join('')+`<button class="btn o" id="rlAll" style="margin-top:4px">সব ক্লিপ একে একে ডাউনলোড</button>`;
-  $$('#rlClips [data-p]').forEach(x=>x.onclick=()=>runClip(+x.dataset.p,false));$$('#rlClips [data-d]').forEach(x=>x.onclick=()=>runClip(+x.dataset.d,true));
+  const b=$('#rlClips');b.innerHTML=RL.clips.map((c,i)=>`<div class="clip"><b>ক্লিপ ${i+1} • ${fmtT(c.s)}–${fmtT(c.e)}</b><button class="mini" data-c="${i}">ক্যাপশন</button><button class="mini" data-p="${i}">প্রিভিউ</button><button class="mini" data-d="${i}">${ic('download',13)} ডাউনলোড</button></div>`).join('')+`<button class="btn o" id="rlAll" style="margin-top:4px">সব ক্লিপ একে একে ডাউনলোড</button>`;
+  $$('#rlClips [data-c]').forEach(x=>x.onclick=()=>captionClip(+x.dataset.c));$$('#rlClips [data-p]').forEach(x=>x.onclick=()=>runClip(+x.dataset.p,false));$$('#rlClips [data-d]').forEach(x=>x.onclick=()=>runClip(+x.dataset.d,true));
   $('#rlAll').onclick=async()=>{for(let i=0;i<RL.clips.length;i++){await runClip(i,true)}}}
 function drawReel(){
   const v=$('#v-reel');if(v.dataset.ready)return;v.dataset.ready='1';
   v.innerHTML=`<h2>${ic('film',20)} রিলস স্টুডিও</h2>
   <div class="steps" style="margin-bottom:12px"><b>কিভাবে কাজ করে:</b> লম্বা ভিডিও দিন → ২০/২৫/৩০ সেকেন্ডের ক্লিপে নিজে কাটবে → ক্যাপশন দিলে স্টাইলিশ শব্দ-বাই-শব্দ ভেসে উঠবে (রঙিন ব্যাকগ্রাউন্ডসহ) → ক্লিপ ডাউনলোড।</div>
   <div class="panel"><label class="file"><input type="file" accept="video/*" id="rlFile"><span class="btn" style="display:block;text-align:center">${ic('film',17)} ভিডিও বাছুন (গ্যালারি থেকে)</span></label><p class="hint" id="rlInfo" style="margin-top:8px">এখনো ভিডিও বাছা হয়নি।</p>
-  <video id="rlVid" playsinline preload="auto" style="position:absolute;width:2px;height:2px;opacity:.01;pointer-events:none"></video>
+  <video id="rlVid" playsinline preload="auto" muted style="display:block;width:100%;max-height:190px;border-radius:12px;background:#000;margin-top:8px"></video>
   <div class="f" style="margin-top:12px"><label>ক্লিপের দৈর্ঘ্য</label><div class="seg" id="rlLen"><button data-v="20">২০ সেকেন্ড</button><button data-v="25">২৫ সেকেন্ড</button><button data-v="30">৩০ সেকেন্ড</button></div></div>
+  <div class="f"><label>অটো ক্যাপশন (ভয়েস থেকে নিজে লিখবে)</label><div class="seg" id="rlAuto"><button data-v="yes">চালু</button><button data-v="no">বন্ধ</button></div></div>
+  <div class="f"><label>ভিডিওর ভাষা</label><div class="seg" id="rlLang"><button data-v="bn">বাংলা</button><button data-v="en">English</button><button data-v="auto">অটো</button></div></div>
+  <div class="f"><label>ভয়েস-মডেল</label><div class="seg" id="rlModel"><button data-v="tiny">দ্রুত (~৪০MB)</button><button data-v="base">ভালো (~৮০MB)</button></div></div>
   <div class="f"><label>ক্যাপশন স্টাইল</label><div class="seg" id="rlStyle"><button data-v="neon">নিয়ন</button><button data-v="gold">গোল্ড</button><button data-v="pop">পপ</button><button data-v="clean">ক্লিন</button></div></div>
   <div class="f"><label>ক্যাপশনের জায়গা</label><div class="seg" id="rlPos"><button data-v="bottom">নিচে</button><button data-v="mid">মাঝখানে</button></div></div>
   <div class="f"><label>ক্যাপশন / ট্রান্সক্রিপ্ট</label><textarea id="rlTxt" rows="4" placeholder="এখানে .srt/.vtt টেক্সট পেস্ট করুন, অথবা সাধারণ লেখা দিন (সময় ছাড়া দিলে পুরো ভিডিওতে সমানভাবে ভাগ হবে)"></textarea><label class="file" style="margin-top:6px"><input type="file" accept=".srt,.vtt,.txt" id="rlSub"><span class="btn o sm">সাবটাইটেল ফাইল (.srt / .vtt)</span></label></div>
   <button class="btn" id="rlBuild">${ic('sparkle',17)} ক্লিপ বানান</button></div>
-  <div id="rlClips" style="margin-top:12px"></div><canvas id="rlCv" width="360" height="640"></canvas><div class="rlst" id="rlSt"></div>
-  <div class="steps"><b>${ic('info',15)} লিংক থেকে কাটা যায় না কেন?</b><br>ইউটিউব, টিকটক, ফেসবুক বা ইনস্টাগ্রামের লিংক থেকে ভিডিও নামানো ব্রাউজারের ভেতরে সম্ভব নয় (ওই সাইটগুলো তা আটকে রাখে), আর অন্যের ভিডিও কপিরাইটের আওতায় পড়ে। তাই নিজের ভিডিও ফাইল গ্যালারি থেকে দিন।<br><br><b>স্বয়ংক্রিয় ক্যাপশন:</b> এখনো নেই। .srt/.vtt ফাইল বা লেখা দিন। প্রতিটি ক্লিপ ক্লিপের সমান সময় ধরে রেন্ডার হয় এবং ক্রোমে সবচেয়ে ভালো চলে।${isPro()?'':'<br><br>ফ্রিতে ক্লিপে ওয়াটারমার্ক থাকে, প্রো-তে থাকে না।'}</div>`;
-  segG('rlLen',()=>RL.len,x=>{RL.len=+x;if(RL.dur){buildClips();drawClips()}});segG('rlStyle',()=>RL.style,x=>RL.style=x);segG('rlPos',()=>RL.pos,x=>RL.pos=x);
+  <div id="rlClips" style="margin-top:12px"></div><canvas id="rlCv" width="360" height="640"></canvas><div class="rlst" id="rlSt"></div><div id="rlOut"></div>
+  <div class="steps"><b>${ic('info',15)} লিংক থেকে কাটা যায় না কেন?</b><br>ইউটিউব, টিকটক, ফেসবুক বা ইনস্টাগ্রামের লিংক থেকে ভিডিও নামানো ব্রাউজারের ভেতরে সম্ভব নয় (ওই সাইটগুলো তা আটকে রাখে), আর অন্যের ভিডিও কপিরাইটের আওতায় পড়ে। তাই নিজের ভিডিও ফাইল গ্যালারি থেকে দিন।<br><br><b>অটো ক্যাপশন:</b> ভিডিওর কথা শুনে নিজে লেখে (একবার ইন্টারনেটে ভয়েস-মডেল নামে, পরে ফোনে সেভ থাকে)। বাংলায় নিখুঁত নাও হতে পারে, তাই লেখাটা ক্যাপশনের ঘরে দেখে ঠিক করে নিতে পারবেন। প্রতিটি ক্লিপ শুনতে ও বানাতে ক্লিপের সমান সময় লাগে; ক্রোমে সবচেয়ে ভালো চলে।${isPro()?'':'<br><br>ফ্রিতে ক্লিপে ওয়াটারমার্ক থাকে, প্রো-তে থাকে না।'}</div>`;
+  segG('rlLen',()=>RL.len,x=>{RL.len=+x;if(RL.dur){buildClips();drawClips()}});segG('rlStyle',()=>RL.style,x=>RL.style=x);segG('rlPos',()=>RL.pos,x=>RL.pos=x);segG('rlAuto',()=>RL.autoOn,x=>RL.autoOn=x);segG('rlLang',()=>RL.lang,x=>RL.lang=x);segG('rlModel',()=>RL.model,x=>RL.model=x);
   $('#rlFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const vid=$('#rlVid');if(RL.url)URL.revokeObjectURL(RL.url);RL.url=URL.createObjectURL(f);vid.src=RL.url;
     vid.onloadedmetadata=()=>{RL.dur=vid.duration;$('#rlInfo').textContent=f.name+' • '+fmtT(RL.dur)+' মিনিট';buildClips();drawClips();vid.currentTime=0.1}};
   $('#rlSub').onchange=async e=>{const f=e.target.files[0];if(f){$('#rlTxt').value=await f.text();toast('ক্যাপশন যোগ হয়েছে')}};
