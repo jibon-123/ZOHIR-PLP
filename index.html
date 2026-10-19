@@ -16,7 +16,7 @@
 :root{--g:#0f6b3a;--g2:#0a4d2a;--bg:#f3f5f2;--card:#fff;--tx:#1b2420;--mut:#6b7770;--line:#e2e8e3;--gold:#e0a82e;--r:18px}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{background:#d9dfda;-webkit-text-size-adjust:100%}
-body{font-family:'Hind Siguri','Noto Sans Bengali',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;min-height:100dvh;padding-bottom:calc(76px + env(safe-area-inset-bottom));max-width:480px;margin:0 auto;box-shadow:0 0 40px rgba(0,0,0,.12);overflow-x:hidden}
+body{font-family:'Hind Siguri','Noto Sans Bengali',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;min-height:100dvh;padding-bottom:calc(76px + env(safe-area-inset-bottom));max-width:480px;margin:0 auto;box-shadow:0 0 40px rgba(0,0,0,.12);overflow-x:clip}
 header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;padding:14px 18px;padding-top:calc(14px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between}
 header h1{font-size:20px;font-weight:700;display:flex;gap:10px;align-items:center}
 header .badge{background:var(--gold);color:#3b2a00;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;display:none}
@@ -91,7 +91,7 @@ nav button.on{color:var(--g);font-weight:700}
 .toast.on{opacity:1}
 
 /* ===== অ্যাপ-স্টাইল কমপ্যাক্ট + ওভারফ্লো ফিক্স ===== */
-html,body{overflow-x:hidden;width:100%}
+html,body{overflow-x:clip;width:100%}
 .editor{grid-template-columns:minmax(0,1fr)!important;gap:10px}
 .editor>*,.panel,.prev,.f,.row>*{min-width:0}
 .scn,.chips,.tb{max-width:100%}
@@ -201,6 +201,10 @@ html[data-theme=dark] .f input[type=text],html[data-theme=dark] .f textarea,html
 .pg-rib{right:50%;transform:translateX(50%);white-space:nowrap;top:-9px;font-size:10px}
 #pgPerks{padding:10px 14px;font-size:13px;color:var(--mut);line-height:1.9}#pgPerks .ic{color:var(--g)}
 .pg-hero{padding:16px 14px}.pg-ic{width:52px;height:52px}
+.pstats{display:flex;justify-content:center;gap:22px;margin:2px 0 10px}
+.pstats div{flex:none;background:none;border:0;border-radius:0;padding:0;font-size:13px;color:var(--mut)}
+.pstats b{display:inline;font-size:14px;font-weight:700;color:var(--tx);margin-right:4px}
+header{position:sticky;top:0;z-index:40}
 </style>
 </head>
 <body>
@@ -253,17 +257,17 @@ html[data-theme=dark] .f input[type=text],html[data-theme=dark] .f textarea,html
 const CFG={
   version:'2.0',
   reelPlan:{id:'reel',name:'রিলস প্ল্যান',price:200,days:30,codes:['ZOHIRREEL']}, // রিলস স্টুডিও আলাদা প্ল্যান: ৳২০০ / ৩০ দিন, নিজের কোড বসান
-  telegram:'https://t.me/zohir_plp_in',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
-  email:'jibonmahmud630@gmail.com',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  telegram:'',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  email:'',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
   plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR@KJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR@550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR@000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -1210,10 +1214,17 @@ function saveHistory(){
   const{logo,photo,product,...rest}=S;
   let h=LS.get('cs_hist',[]);h.unshift({id:Date.now(),s:rest,thumb:th.toDataURL('image/jpeg',.7)});h=h.slice(0,24);
   while(h.length&&!LS.set('cs_hist',h))h.pop()}
+let histF='all';
 function drawHist(){
   const h=LS.get('cs_hist',[]),box=$('#hlist');
   if(!h.length){box.innerHTML='<div class="empty">এখনো কোনো কার্ড বানানো হয়নি।<br>কার্ড ডাউনলোড করলে এখানে জমা হবে।</div>';return}
-  box.innerHTML=`<p class="hint" style="margin-bottom:10px">মোট ${h.length}টি কার্ড বানানো হয়েছে</p><div class="hist">${h.map(e=>`<div class="hcard"><img src="${e.thumb}"><div class="m">${tplById(e.s.tpl)?.name||''} • ${new Date(e.id).toLocaleDateString('bn-BD')}</div><div class="b"><button class="btn sm" data-e="${e.id}">এডিট</button><button class="btn sm red" data-d="${e.id}">মুছুন</button></div></div>`).join('')}</div><div style="height:14px"></div><button class="btn o" id="clrH">সব হিস্টরি মুছুন</button>`;
+  const cats=[['all','সব'],['free','ফ্রি'],['pro','প্রো'],['vip','ভিআইপি'],['thumb','থাম্বনেইল'],['news','নিউজ'],['sticker','স্টিকার'],['ad','বিজ্ঞাপন']];
+  const match=(e,k)=>{if(k==='all')return true;const t=tplById(e.s.tpl);if(!t)return k==='free';if(k==='free')return !t.pro;if(k==='pro')return !!t.pro&&!t.vip;if(k==='vip')return !!t.vip;return t.cat===k};
+  const list=h.filter(e=>match(e,histF));
+  box.innerHTML=`<div class="chips">${cats.map(([k,l])=>`<button class="chip ${histF===k?'on':''}" data-hf="${k}">${l} (${bnN(h.filter(e=>match(e,k)).length)})</button>`).join('')}</div>`+
+  (list.length?`<div class="hist">${list.map(e=>`<div class="hcard"><img src="${e.thumb}"><div class="m">${tplById(e.s.tpl)?.name||''} • ${new Date(e.id).toLocaleDateString('bn-BD')}</div><div class="b"><button class="btn sm" data-e="${e.id}">এডিট</button><button class="btn sm red" data-d="${e.id}">মুছুন</button></div></div>`).join('')}</div>`:'<div class="empty">এই ক্যাটাগরিতে কোনো কার্ড নেই</div>')+
+  `<div style="height:14px"></div><button class="btn o" id="clrH">সব হিস্টরি মুছুন</button>`;
+  $$('[data-hf]').forEach(b=>b.onclick=()=>{histF=b.dataset.hf;drawHist()});
   $$('[data-e]').forEach(b=>b.onclick=async()=>{const e=h.find(x=>x.id==b.dataset.e);const t=tplById(e.s.tpl);if(!t)return;const st={...e.s,logo:await loadImg(e.s.logoData),photo:await loadImg(e.s.photoData),product:await loadImg(e.s.productData)};openEditor(t,st)});
   $$('[data-d]').forEach(b=>b.onclick=()=>{LS.set('cs_hist',h.filter(x=>x.id!=b.dataset.d));drawHist()});
   $('#clrH').onclick=()=>{if(confirm('সব হিস্টরি মুছে ফেলবেন?')){LS.set('cs_hist',[]);drawHist()}}}
@@ -1592,7 +1603,7 @@ async function syncUser(){const av=profile.logoData?await shrinkImg(profile.logo
 async function publishPost(img,cap){const av=await syncUser(),id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);
   const r=await fetch(dbu('posts/'+id),{method:'PUT',body:JSON.stringify({uid:myUid(),name:myName(),av,img,cap:(cap||'').slice(0,200),t:Date.now()})});if(!r.ok)throw new Error('post');
   dbPut('counts/'+myUid()+'/posts',INC);return id}
-async function delPost(id,u){await dbDel('posts/'+id);dbDel('reports/'+id);dbDel('pc/'+id);dbDel('comments/'+id);fetch(dbu('counts/'+u+'/posts'),{method:'PUT',body:JSON.stringify({'.sv':{increment:-1}})}).catch(()=>{})}
+async function delPost(id,u){await dbDel('posts/'+id);dbDel('reports/'+id);fetch(dbu('counts/'+u+'/posts'),{method:'PUT',body:JSON.stringify({'.sv':{increment:-1}})}).catch(()=>{})}
 async function toggleFollow(u){const me=myUid();if(!FOL)await loadFol();if(FOL.has(u)){FOL.delete(u);await Promise.all([dbDel(`following/${me}/${u}`),dbDel(`followers/${u}/${me}`)])}else{FOL.add(u);syncUser();await Promise.all([dbPut(`following/${me}/${u}`,true),dbPut(`followers/${u}/${me}`,true)])}}
 async function commData(u){const[cnt,fr,fg,ps]=await Promise.all([dbGet('counts/'+u+'/posts'),dbGet('followers/'+u,'?shallow=true'),dbGet('following/'+u,'?shallow=true'),dbGet('posts','?orderBy=%22uid%22&equalTo=%22'+u+'%22&limitToLast=60')]);
   const list=Object.entries(ps||{}).map(([id,p])=>({id,...p})).sort((a,b)=>b.t-a.t);return{posts:Math.max(Number(cnt)||0,list.length),followers:Object.keys(fr||{}).length,following:Object.keys(fg||{}).length,list}}
@@ -1612,25 +1623,29 @@ function openPostSheet(img){
     $('#poGo').onclick=async()=>{if(!cur)return;const g=$('#poGo');g.disabled=true;g.textContent='পোস্ট হচ্ছে…';try{if(cur.length>290000)cur=await shrinkImg(cur,640,.6);await publishPost(cur,cap);m.classList.remove('on');toast('পোস্ট হয়েছে');if($('#v-feed').classList.contains('on'))loadFeed();if($('#v-prof').classList.contains('on'))loadMyStats()}catch(e){toast('পোস্ট হয়নি, আবার চেষ্টা করুন');g.disabled=false;g.textContent='পোস্ট করুন'}}};
   draw();m.classList.add('on')}
 async function postFromEditor(){const out=document.createElement('canvas');render(out,S,720);watermark(out);openPostSheet(await shrinkImg(out.toDataURL('image/png'),800,.78))}
-const liked=()=>LS.get('cs_liked',[]),pcn=(id,k)=>Math.max(0,Number(PC[id]&&PC[id][k])||0);
-function bump(id,k,d){PC[id]=PC[id]||{};PC[id][k]=Math.max(0,pcn(id,k)+d);
-  fetch(dbu('pc/'+id+'/'+k),{method:'PUT',body:JSON.stringify({'.sv':{increment:d}})}).catch(()=>{});
-  const sel=k==='l'?'like':'cmt';document.querySelectorAll('.pcard[data-pid="'+id+'"] [data-a="'+sel+'"] span').forEach(e=>e.textContent=bnN(PC[id][k]))}
-function toggleLike(id){let l=liked();const on=l.includes(id);l=on?l.filter(x=>x!==id):[id,...l].slice(0,500);LS.set('cs_liked',l);
-  document.querySelectorAll('.pcard[data-pid="'+id+'"] [data-a="like"]').forEach(b=>b.classList.toggle('on',!on));bump(id,'l',on?-1:1)}
+const nLikes=p=>Object.keys(p.likes||{}).length,nCm=p=>Object.keys(p.comments||{}).length,isLiked=p=>!!(p.likes&&p.likes[myUid()]);
+const rulesMsg='সেভ হয়নি — Firebase Rules-এ posts-এর ভেতরে লেখার অনুমতি দিন';
+function updPost(p){document.querySelectorAll('.pcard[data-pid="'+p.id+'"]').forEach(card=>{const l=card.querySelector('[data-a="like"]'),c=card.querySelector('[data-a="cmt"]');if(l){l.classList.toggle('on',isLiked(p));l.querySelector('span').textContent=bnN(nLikes(p))}if(c)c.querySelector('span').textContent=bnN(nCm(p))})}
+async function toggleLike(id){const p=FEED.find(x=>x.id===id);if(!p)return;const me=myUid(),on=isLiked(p);p.likes=p.likes||{};
+  if(on)delete p.likes[me];else p.likes[me]=true;updPost(p);
+  try{const r=await fetch(dbu('posts/'+id+'/likes/'+me),on?{method:'DELETE'}:{method:'PUT',body:'true'});if(!r.ok)throw 0}
+  catch(e){if(on)p.likes[me]=true;else delete p.likes[me];updPost(p);toast(rulesMsg)}}
 function savePostImg(p){if(!p)return;const a=document.createElement('a');a.href=p.img;a.download='card-'+p.id+'.jpg';document.body.appendChild(a);a.click();a.remove();toast('ছবি সেভ হচ্ছে ✔')}
-async function openComments(id){const m=$('#cmM'),b=m.querySelector('.mbox');
+async function openComments(id){const p=FEED.find(x=>x.id===id),m=$('#cmM'),b=m.querySelector('.mbox');if(!p)return;
   b.innerHTML=`<h3 style="margin-bottom:8px">${ic('chat',18)} কমেন্ট</h3><div class="cmlist" id="cmL"><div class="empty" style="padding:20px">লোড হচ্ছে…</div></div><div style="display:flex;gap:8px"><input type="text" id="cmI" placeholder="কমেন্ট লিখুন…" maxlength="300" style="flex:1;min-width:0;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:16px;background:var(--card);color:var(--tx)"><button class="btn sm" id="cmS">পাঠান</button></div><div style="height:8px"></div><button class="btn o" id="cmX">বন্ধ করুন</button>`;
   m.classList.add('on');$('#cmX').onclick=()=>m.classList.remove('on');
-  const load=async()=>{const r=await dbGet('comments/'+id,'?orderBy=%22%24key%22&limitToLast=60');const a=Object.entries(r||{}).map(([k,v])=>({k,...v})).sort((x,y)=>x.t-y.t),L=$('#cmL');if(!L)return;
+  const draw=()=>{const L=$('#cmL');if(!L)return;const a=Object.entries(p.comments||{}).map(([k,v])=>({k,...v})).sort((x,y)=>x.t-y.t);
     L.innerHTML=a.length?a.map(c=>`<div class="cm"><span class="av">${hx((c.name||'?').charAt(0))}</span><div class="cb"><b>${hx(c.name)}</b><small>${ago(c.t)}</small><p>${hx(c.text)}</p>${c.uid===myUid()||isAdmin()?`<button class="mini d" data-k="${c.k}" style="margin-top:4px">মুছুন</button>`:''}</div></div>`).join(''):'<div class="empty" style="padding:20px">এখনো কোনো কমেন্ট নেই — প্রথম কমেন্ট আপনার</div>';
-    L.scrollTop=L.scrollHeight;L.querySelectorAll('[data-k]').forEach(x=>x.onclick=async()=>{await dbDel('comments/'+id+'/'+x.dataset.k);bump(id,'c',-1);load()})};
-  $('#cmS').onclick=async()=>{const i=$('#cmI'),t=i.value.trim();if(!t)return;const g=$('#cmS');g.disabled=true;
-    try{const r=await fetch(dbu('comments/'+id),{method:'POST',body:JSON.stringify({uid:myUid(),name:myName(),text:t.slice(0,300),t:Date.now()})});if(!r.ok)throw 0;i.value='';bump(id,'c',1);await load()}catch(e){toast('কমেন্ট হয়নি, আবার চেষ্টা করুন')}g.disabled=false};
-  load()}
+    L.scrollTop=L.scrollHeight;
+    L.querySelectorAll('[data-k]').forEach(x=>x.onclick=async()=>{try{const r=await fetch(dbu('posts/'+id+'/comments/'+x.dataset.k),{method:'DELETE'});if(!r.ok)throw 0;delete p.comments[x.dataset.k];draw();updPost(p)}catch(e){toast(rulesMsg)}})};
+  draw();
+  dbGet('posts/'+id+'/comments').then(r=>{if(r&&typeof r==='object'&&!r.error)p.comments=r;else if(r===null)p.comments={};draw();updPost(p)});
+  const send=async()=>{const i=$('#cmI'),t=i.value.trim();if(!t)return;const g=$('#cmS');g.disabled=true;const body={uid:myUid(),name:myName(),text:t.slice(0,300),t:Date.now()};
+    try{const r=await fetch(dbu('posts/'+id+'/comments'),{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw 0;const j=await r.json();p.comments=p.comments||{};p.comments[j.name]=body;i.value='';draw();updPost(p)}catch(e){toast(rulesMsg)}g.disabled=false};
+  $('#cmS').onclick=send;$('#cmI').onkeydown=e=>{if(e.key==='Enter')send()}}
 $('#cmM').onclick=e=>{if(e.target.id==='cmM')e.target.classList.remove('on')};
 function postCard(p,fol){const me=p.uid===myUid();
-  return `<div class="pcard" data-pid="${p.id}"><div class="ph" data-a="user" data-u="${p.uid}">${avHtml(p.av,p.name)}<div><b>${hx(p.name)}</b><small>${ago(p.t)}</small></div>${me?'':`<button class="mini ${fol.has(p.uid)?'on':''}" data-a="fol" data-u="${p.uid}">${fol.has(p.uid)?'ফলোয়িং':'+ ফলো'}</button>`}</div>${p.cap?`<div class="pcap">${hx(p.cap)}</div>`:''}<img class="pim" src="${p.img}" loading="lazy" data-a="img" data-id="${p.id}"><div class="pact"><button data-a="like" data-id="${p.id}" class="${liked().includes(p.id)?'on':''}">${ic('heart',21)}<span>${bnN(pcn(p.id,'l'))}</span></button><button data-a="cmt" data-id="${p.id}">${ic('chat',21)}<span>${bnN(pcn(p.id,'c'))}</span></button><button data-a="save" data-id="${p.id}">${ic('download',21)}<span>সেভ</span></button><span class="sp"></span><button data-a="rep" data-id="${p.id}" title="রিপোর্ট">${ic('flag',18)}</button>${me||isAdmin()?`<button data-a="del" data-id="${p.id}" data-u="${p.uid}" style="color:#c62828" title="মুছুন">${ic('trash',18)}</button>`:''}</div></div>`}
+  return `<div class="pcard" data-pid="${p.id}"><div class="ph" data-a="user" data-u="${p.uid}">${avHtml(p.av,p.name)}<div><b>${hx(p.name)}</b><small>${ago(p.t)}</small></div>${me?'':`<button class="mini ${fol.has(p.uid)?'on':''}" data-a="fol" data-u="${p.uid}">${fol.has(p.uid)?'ফলোয়িং':'+ ফলো'}</button>`}</div>${p.cap?`<div class="pcap">${hx(p.cap)}</div>`:''}<img class="pim" src="${p.img}" loading="lazy" data-a="img" data-id="${p.id}"><div class="pact"><button data-a="like" data-id="${p.id}" class="${isLiked(p)?'on':''}">${ic('heart',21)}<span>${bnN(nLikes(p))}</span></button><button data-a="cmt" data-id="${p.id}">${ic('chat',21)}<span>${bnN(nCm(p))}</span></button><button data-a="save" data-id="${p.id}">${ic('download',21)}<span>সেভ</span></button><span class="sp"></span><button data-a="rep" data-id="${p.id}" title="রিপোর্ট">${ic('flag',18)}</button>${me||isAdmin()?`<button data-a="del" data-id="${p.id}" data-u="${p.uid}" style="color:#c62828" title="মুছুন">${ic('trash',18)}</button>`:''}</div></div>`}
 function drawFeed(){
   const v=$('#v-feed');
   if(!dbOn()){v.innerHTML=`<h2>${ic('users',20)} কমিউনিটি</h2><div class="steps">কমিউনিটি চালু করতে ফাইলের শুরুতে <code>dbUrl</code> বসান।</div>`;return}
@@ -1643,7 +1658,7 @@ function drawFeed(){
     if(a==='del'&&confirm('পোস্টটি মুছবেন?')){await delPost(id,u);loadFeed()}};
   loadFeed()}
 async function loadFeed(){
-  const L=$('#fList');if(!L)return;const[ps,fol,pcd]=await Promise.all([dbGet('posts','?orderBy=%22%24key%22&limitToLast=40'),loadFol(),dbGet('pc','?orderBy=%22%24key%22&limitToLast=80')]);PC=pcd||{};
+  const L=$('#fList');if(!L)return;const[ps,fol]=await Promise.all([dbGet('posts','?orderBy=%22%24key%22&limitToLast=40'),loadFol()]);
   let a=Object.entries(ps||{}).map(([id,p])=>({id,...p})).sort((x,y)=>y.t-x.t);FEED=a;if(feedTab==='fol')a=a.filter(p=>fol.has(p.uid));
   L.innerHTML=a.length?a.map(p=>postCard(p,fol)).join(''):`<div class="empty">${feedTab==='fol'?'আপনি যাদের ফলো করেন তাদের পোস্ট এখানে আসবে':'এখনো কোনো পোস্ট নেই — প্রথম পোস্টটা আপনিই করুন'}</div>`}
 function openUser(u){if(u===myUid())return go('prof');userV=u;go('user')}
