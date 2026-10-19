@@ -205,6 +205,11 @@ html[data-theme=dark] .f input[type=text],html[data-theme=dark] .f textarea,html
 .pstats div{flex:none;background:none;border:0;border-radius:0;padding:0;font-size:13px;color:var(--mut)}
 .pstats b{display:inline;font-size:14px;font-weight:700;color:var(--tx);margin-right:4px}
 header{position:sticky;top:0;z-index:40}
+#loginV{position:fixed;inset:0;z-index:90;background:var(--bg);display:none;overflow:auto}#loginV.on{display:block}
+.lg{max-width:440px;margin:0 auto;padding:calc(34px + env(safe-area-inset-top)) 18px 30px}
+.lgh{text-align:center;margin-bottom:22px;color:var(--g)}.lgh .ic{width:44px;height:44px}.lgh h2{margin:6px 0 2px;color:var(--tx)}.lgh p{color:var(--mut);font-size:13px}
+.lgc{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.lgc .av{width:52px;height:52px;font-size:21px}.lgc>div{flex:1;min-width:0}.lgc b{display:block;font-size:16px}.lgc small{color:var(--mut);font-size:12px}
 </style>
 </head>
 <body>
@@ -250,6 +255,8 @@ header{position:sticky;top:0;z-index:40}
 <div class="modal" id="postM"><div class="mbox" style="text-align:left;max-height:90vh;overflow:auto"></div></div>
 <div class="modal" id="pvM"><div class="mbox" style="max-height:92vh;overflow:auto"></div></div>
 <div class="modal" id="cmM"><div class="mbox" style="text-align:left;max-height:90vh;overflow:auto"></div></div>
+<div class="modal" id="outM"><div class="mbox"></div></div>
+<div id="loginV"></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -257,17 +264,17 @@ header{position:sticky;top:0;z-index:40}
 const CFG={
   version:'2.0',
   reelPlan:{id:'reel',name:'রিলস প্ল্যান',price:200,days:30,codes:['ZOHIRREEL']}, // রিলস স্টুডিও আলাদা প্ল্যান: ৳২০০ / ৩০ দিন, নিজের কোড বসান
-  telegram:'https://t.me/zohir_plp_in',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
-  email:'jibonmahmud630@gmail.com',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  telegram:'',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  email:'',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
   plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR@KJZ'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR@550'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR@000'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -1418,6 +1425,43 @@ function setTheme(v){LS.set('cs_theme',v);document.documentElement.dataset.theme
 function setLang(v){LS.set('cs_lang',v);document.documentElement.lang=v;trAll(v==='en');setPrivText();drawChips();drawGrid();syncPro();const on=$$('.view').find(e=>e.classList.contains('on'));if(on){const id=on.id.slice(2);if(id==='set')drawSet();if(id==='info')drawInfo();if(id==='pro')drawPro();if(id==='prof')drawProf();if(id==='hist')drawHist()}trAll(v==='en')}
 let infoKey='privacy';
 function segG(id,get,set){const mark=()=>$$('#'+id+' button').forEach(b=>b.classList.toggle('on',b.dataset.v===String(get())));mark();$$('#'+id+' button').forEach(b=>b.onclick=()=>{set(b.dataset.v);mark()})}
+const ACC='cs_accts',accts=()=>LS.get(ACC,[]);
+async function snapAccount(){
+  const pr=LS.get('cs_profile',null)||profile,h=LS.get('cs_hist',[]),plan=LS.get('cs_plan',null)||(LS.get('cs_pro',false)===true?{id:'p200',exp:0}:null),reel=LS.get('cs_reel',null);
+  const nm=((pr.author||pr.tag)||'').trim();if(!nm&&!h.length&&!plan&&!reel)return null;
+  const av=pr.logoData?await shrinkImg(pr.logoData,96,.7):'';
+  return{uid:myUid(),name:nm||'নামহীন অ্যাকাউন্ট',tag:pr.tag||'',av,t:Date.now(),d:{profile:pr,hist:h,fav:LS.get('cs_fav',[]),wm:LS.get('cs_wm',false),plan,reel}}}
+async function doLogout(){
+  const sn=await snapAccount();
+  if(sn){const list=[sn,...accts().filter(a=>a.uid!==sn.uid)].slice(0,8);if(!LS.set(ACC,list)){toast('জায়গা কম — লগ আউট হয়নি');return false}}
+  ['cs_profile','cs_uid','cs_hist','cs_fav','cs_liked','cs_wm','cs_admin','cs_plan','cs_pro','cs_reel'].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+  LS.set('cs_out',true);resetSession();return true}
+function resetSession(){profile={tag:'',contact:'',author:'',logoData:null};FOL=null;S=null;FEED=[];userV='';selPlan='p200';tq='';filter='all';
+  const ts=$('#tsearch');if(ts)ts.value='';clearInterval(admTimer);const rv=$('#v-reel');if(rv)rv.dataset.ready='';syncPro();drawChips()}
+function loginAs(uid){const a=accts().find(x=>x.uid===uid);if(!a)return;const rm=k=>{try{localStorage.removeItem(k)}catch(e){}};
+  LS.set('cs_uid',a.uid);LS.set('cs_profile',a.d.profile||{});LS.set('cs_hist',a.d.hist||[]);LS.set('cs_fav',a.d.fav||[]);LS.set('cs_wm',!!a.d.wm);
+  rm('cs_pro');if(a.d.plan)LS.set('cs_plan',a.d.plan);else rm('cs_plan');if(a.d.reel)LS.set('cs_reel',a.d.reel);else rm('cs_reel');
+  LS.set('cs_out',false);resetSession();profile=LS.get('cs_profile',{tag:'',contact:'',author:'',logoData:null});
+  $('#loginV').classList.remove('on');syncPro();go('home');toast('স্বাগতম, '+a.name+' ✔')}
+function showLogin(){
+  const o=$('#loginV'),l=accts();
+  o.innerHTML=`<div class="lg"><div class="lgh">${ic('layers')}<h2>${hx(CFG.appName)}</h2><p>${l.length?bnN(l.length)+'টি সেভ করা অ্যাকাউন্ট — একটিতে ট্যাপ করে লগইন করুন':'কোনো সেভ করা অ্যাকাউন্ট নেই'}</p></div>
+  ${l.map(a=>`<div class="lgc" data-u="${a.uid}">${a.av?`<img class="av" src="${a.av}">`:`<span class="av">${hx(a.name.charAt(0))}</span>`}<div><b>${hx(a.name)}</b><small>${hx(a.tag)}${a.d.plan?' • প্রো':''}${a.d.hist&&a.d.hist.length?' • '+bnN(a.d.hist.length)+'টি কার্ড':''}</small></div><button class="mini d" data-x="${a.uid}" aria-label="সরান">${ic('trash',13)}</button></div>`).join('')}
+  <button class="btn o" id="lgNew" style="margin-top:6px">${ic('user',16)} নতুন অ্যাকাউন্ট দিয়ে শুরু করুন</button></div>`;
+  o.classList.add('on');o.scrollTop=0;
+  o.querySelectorAll('.lgc').forEach(c=>c.onclick=()=>loginAs(c.dataset.u));
+  o.querySelectorAll('[data-x]').forEach(x=>x.onclick=e=>{e.stopPropagation();if(!confirm('এই সেভ করা অ্যাকাউন্টটি ডিভাইস থেকে মুছে ফেলবেন? এর হিস্টরি ও প্ল্যান-তথ্যও মুছে যাবে।'))return;
+    LS.set(ACC,accts().filter(a=>a.uid!==x.dataset.x));if(accts().length)showLogin();else{LS.set('cs_out',false);o.classList.remove('on');go('home')}});
+  $('#lgNew').onclick=()=>{LS.set('cs_out',false);o.classList.remove('on');go('home')}}
+function openLogout(){
+  const m=$('#outM'),b=m.querySelector('.mbox'),n=accts().length;
+  b.innerHTML=`<h3 style="margin-bottom:6px">${ic('logout',18)} লগ আউট</h3>
+  <p style="text-align:left;margin-bottom:10px">লগ আউট করলে আপনার অ্যাকাউন্ট (প্রোফাইল, হিস্টরি, ফেভারিট ও প্ল্যান) এই ডিভাইসে সেভ থাকবে। পরে এক ট্যাপেই আবার লগইন করতে পারবেন।</p>
+  ${n?`<p class="hint" style="text-align:left;margin-bottom:12px">এখন সেভ করা আছে: ${bnN(n)}টি অ্যাকাউন্ট</p>`:''}
+  <button class="btn red" id="outGo">লগ আউট করুন</button><div style="height:8px"></div><button class="btn o" id="outX">বাতিল</button>`;
+  m.classList.add('on');$('#outX').onclick=()=>m.classList.remove('on');
+  $('#outGo').onclick=async()=>{const g=$('#outGo');g.disabled=true;if(await doLogout()){m.classList.remove('on');go('home');showLogin()}else g.disabled=false}}
+$('#outM').onclick=e=>{if(e.target.id==='outM')e.target.classList.remove('on')};
 function drawSet(){
   const row=(i,t,sub,id)=>`<button class="srow" id="${id}"><span class="si">${ic(i,18)}</span><span style="flex:1;text-align:left"><b>${t}</b>${sub?`<small>${sub}</small>`:''}</span>${ic('chev',16)}</button>`;
   $('#v-set').innerHTML=`<div class="edhead"><button class="back" id="sBack">${ic('back')} ${L('প্রোফাইল','Profile')}</button></div><h2>${L('সেটিংস','Settings')}</h2>
@@ -1425,13 +1469,14 @@ function drawSet(){
   <div class="sgrp"><div class="sl">${ic('moon',16)} ${L('থিম','Theme')}</div><div class="seg" id="sTh"><button data-v="light">${ic('sun',15)} ${L('লাইট মোড','Light mode')}</button><button data-v="dark">${ic('moon',15)} ${L('ডার্ক মোড','Dark mode')}</button></div></div>
   ${dbOn()?`<div class="sgrp"><div class="sl">${ic('chart',16)} ${L('ব্যবহারের পরিসংখ্যান (নাম-পরিচয় ছাড়া)','Usage statistics (anonymous)')}</div><div class="seg" id="sAn"><button data-v="yes">${L('চালু','On')}</button><button data-v="no">${L('বন্ধ','Off')}</button></div></div>`:''}
   <div class="sgrp nopad">${row('shield',L('প্রাইভেসি পলিসি','Privacy Policy'),'','sPriv')}${row('key',L('অ্যাডমিন','Admin'),L('শুধু মালিকের জন্য','Owner only'),'sAdm')}${row('phone',L('যোগাযোগ','Contact'),'','sCon')}${row('info',L('অ্যাপ সম্পর্কে','About'),'','sAbt')}</div>
+  <div class="sgrp nopad"><button class="srow" id="sOut" style="color:#c62828"><span class="si" style="background:#fdecea;color:#c62828">${ic('logout',18)}</span><span style="flex:1;text-align:left"><b>${L('লগ আউট','Log out')}</b><small>${L('অ্যাকাউন্ট সেভ থাকবে, পরে আবার লগইন করা যাবে','Account stays saved — log back in anytime')}</small></span>${ic('chev',16)}</button></div>
   <p class="hint" style="text-align:center">${hx(CFG.appName)} • v${CFG.version||'2.0'}</p>`;
   $('#sBack').onclick=()=>go('prof');
   segG('sLang',()=>LS.get('cs_lang','bn'),v=>setLang(v));
   segG('sTh',()=>LS.get('cs_theme','light'),v=>setTheme(v));
   if($('#sAn'))segG('sAn',()=>consent()==='yes'?'yes':'no',v=>{LS.set('cs_notify',v);if(v==='yes'){notify('visit');startPresence()}toast(L(v==='yes'?'চালু করা হয়েছে':'বন্ধ করা হয়েছে',v==='yes'?'Turned on':'Turned off'))});
   $('#sPriv').onclick=()=>{infoKey='privacy';go('info')};$('#sCon').onclick=()=>{infoKey='contact';go('info')};$('#sAbt').onclick=()=>{infoKey='about';go('info')};
-  $('#sAdm').onclick=()=>openAdmin()}
+  $('#sAdm').onclick=()=>openAdmin();$('#sOut').onclick=openLogout}
 function drawInfo(){
   const k=infoKey,T={privacy:L('প্রাইভেসি পলিসি','Privacy Policy'),contact:L('যোগাযোগ','Contact'),about:L('অ্যাপ সম্পর্কে','About')}[k];let h='';
   if(k==='privacy')h=L(`<h3>আপনার কার্ড</h3><p>কার্ড আপনার ফোনেই তৈরি হয়। আপনার লেখা, ছবি বা লোগো কোনো সার্ভারে আপলোড হয় না।</p><h3>ফোনে সেভ থাকে যা</h3><p>প্রোফাইলের তথ্য (নাম, ট্যাগ, ফোন, লোগো, কভার ফটো), হিস্টরি, ফেভারিট, প্ল্যান, ভাষা ও থিম আপনার ব্রাউজারের লোকাল স্টোরেজে থাকে। ব্রাউজারের ডেটা মুছলে এগুলোও মুছে যায়।</p><h3>পরিসংখ্যান</h3><p>আপনি অনুমতি দিলে শুধু নামহীন সংখ্যা জমা হয়: ভিজিট, কোন টেমপ্লেট ডাউনলোড হয়েছে, নরমাল/HD, ডিভাইসের ধরন ও একটি এলোমেলো আইডি। নাম, ফোন নম্বর, কার্ডের লেখা বা ছবি পাঠানো হয় না।</p><h3>লোকেশন</h3><p>ডাউনলোডের সময় ব্রাউজার অনুমতি চাইলে এবং আপনি দিলে শুধু আনুমানিক এলাকা (প্রায় ১১ কিমি) জানা যায়। না দিলে কিছুই যায় না।</p><h3>কমিউনিটি পোস্ট</h3><p>কমিউনিটিতে আপনি যে ডিজাইন পোস্ট করেন তা (আপনার নাম, লোগো ও ক্যাপশনসহ) সবাই দেখতে পায়। পোস্ট আপনি নিজে মুছতে পারবেন। অন্যের কপিরাইট বা আপত্তিকর ছবি দেবেন না।</p><h3>তৃতীয় পক্ষ</h3><p>সংখ্যাগুলো Google Firebase-এ জমা হয়। ফন্ট Google Fonts থেকে আসে।</p><h3>আপনার নিয়ন্ত্রণ</h3><p>সেটিংস থেকে পরিসংখ্যান যেকোনো সময় বন্ধ করতে পারবেন।</p>`,`<h3>Your cards</h3><p>Cards are created on your phone. Your text, photos or logo are never uploaded to any server.</p><h3>Saved on your device</h3><p>Profile details (name, tag, phone, logo, cover photo), history, favorites, plan, language and theme are kept in your browser's local storage. Clearing browser data removes them.</p><h3>Statistics</h3><p>If you allow it, only anonymous numbers are stored: visits, which template was downloaded, normal/HD, device type and a random ID. No name, phone number, card text or photo is sent.</p><h3>Location</h3><p>If your browser asks on download and you allow it, only an approximate area (about 11 km) is known. If you decline, nothing is sent.</p><h3>Community posts</h3><p>Designs you post in the community (with your name, logo and caption) are visible to everyone. You can delete your posts. Do not post other people's copyrighted or inappropriate images.</p><h3>Third parties</h3><p>Counts are stored in Google Firebase. Fonts are loaded from Google Fonts.</p><h3>Your control</h3><p>You can turn statistics off any time in Settings.</p>`);
@@ -1687,7 +1732,7 @@ async function loadMod(){
   document.documentElement.dataset.theme=LS.get('cs_theme','light');document.documentElement.lang=LS.get('cs_lang','bn');setTheme(LS.get('cs_theme','light'));setPrivText();wireSearch();shuffleTpl();
   $('#commCard').innerHTML=`<button class="commbtn" id="commGo"><span class="ci">${ic('users')}</span><span><b>কমিউনিটি</b><small>ডিজাইন শেয়ার করুন • লাইক ও কমেন্ট করুন</small></span>${ic('chev',18)}</button>`;$('#commGo').onclick=()=>go('feed');
   $('#shuf').onclick=()=>{shuffleTpl();drawGrid();toast('নতুন ক্রমে সাজানো হয়েছে ✔')};
-  drawChips();syncPro();initPrivacy();if(LS.get('cs_lang','bn')==='en')trAll(true);if(location.hash==='#admin')openAdmin();
+  drawChips();syncPro();initPrivacy();if(LS.get('cs_out',false)){if(accts().length)showLogin();else LS.set('cs_out',false)}if(LS.get('cs_lang','bn')==='en')trAll(true);if(location.hash==='#admin')openAdmin();
 })();
 </script>
 </body>
