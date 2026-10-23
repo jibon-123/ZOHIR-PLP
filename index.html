@@ -229,12 +229,56 @@ header{position:sticky;top:0;z-index:40}
 .pstats{display:flex;justify-content:space-around;gap:0;margin:4px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 4px}
 .pstats div{flex:1;text-align:center;background:none;border:0;border-radius:0;padding:0;font-size:12px;color:var(--mut)}.pstats div+div{border-left:1px solid var(--line)}
 .pstats b{display:block;font-size:22px;font-weight:800;color:var(--tx);margin:0 0 2px}
+/* ===== প্রতিটা স্ক্রিন বদলে সিনারি ===== */
+#nsk{position:fixed;left:50%;transform:translateX(-50%);top:56px;bottom:calc(59px + env(safe-area-inset-bottom));width:100%;max-width:480px;background:var(--bg);z-index:25;overflow:hidden;padding:14px;transition:opacity .25s ease;opacity:1}#nsk.out{opacity:0;pointer-events:none}
+#nsk .ng{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}#nsk .nc{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+
+/* ===== v3: ছোট ওয়াটারমার্ক পিল, হোম কার্ড, ট্রায়াল, চ্যাট, কমেন্ট পেজ, রিলস ===== */
+.wmnote{font-size:10.5px;line-height:1.2;padding:4px 10px;border-radius:99px;text-align:center;white-space:nowrap;max-width:none;display:inline-flex;align-items:center;gap:4px;font-weight:600}
+.wmnote .ic{width:11px;height:11px}
+header h1{gap:0}
+.commrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.commrow .commbtn{margin:0;flex-direction:column;align-items:flex-start;gap:8px;padding:12px;position:relative}
+.commrow .commbtn>span:nth-child(2){flex:none;width:100%}.commrow .commbtn .ci{width:38px;height:38px;border-radius:12px}
+.commrow .commbtn small{display:flex;align-items:center;gap:5px}
+.dotst{display:inline-block;width:8px;height:8px;border-radius:50%;background:#b0b8b3;flex:none}.dotst.on{background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+.ubadge{background:#e0245e;color:#fff;font-size:11px;font-weight:700;min-width:20px;height:20px;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;padding:0 6px}
+.commbtn .ubadge{position:absolute;top:10px;right:10px}
+.trust{display:flex;gap:8px;margin:-2px 0 14px;overflow-x:auto;scrollbar-width:none}.trust::-webkit-scrollbar{display:none}
+.trust button{flex:1 0 auto;display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--tx);font:inherit;font-size:11.5px;font-weight:600;padding:8px 11px;border-radius:99px;cursor:pointer;white-space:nowrap}.trust .ic{width:14px;height:14px;color:var(--g)}
+.trialbar{display:flex;align-items:center;gap:6px;background:rgba(255,210,74,.18);border:1px solid rgba(255,210,74,.5);color:#ffe9a6;border-radius:10px;padding:5px 10px;font-size:12px;font-weight:600;margin:0 0 8px}
+.chhd{display:flex;align-items:center;gap:10px;margin:0 0 10px}.chhd .av{width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;border-radius:50%;font-weight:700}.chhd b{display:block;font-size:15px}.chhd small{display:flex;align-items:center;gap:6px;color:var(--mut);font-size:12px}
+.chb{display:flex;flex-direction:column;gap:6px;padding:10px;height:min(52vh,460px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.mg{max-width:82%;padding:8px 12px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word;white-space:pre-wrap}.mg small{display:block;font-size:10px;opacity:.65;margin-top:2px}
+.mg.me{align-self:flex-end;background:var(--g);color:#fff;border-bottom-right-radius:4px}.mg.ot{align-self:flex-start;background:var(--bg);border-bottom-left-radius:4px}
+.chq{display:flex;gap:6px;overflow-x:auto;margin:8px 0;scrollbar-width:none}.chq::-webkit-scrollbar{display:none}.chq .mini{white-space:nowrap;border-radius:99px}
+.chin{display:flex;gap:8px}.chin input{flex:1;min-width:0;padding:11px 14px;border:1.5px solid var(--line);border-radius:99px;font:inherit;font-size:16px;background:var(--card);color:var(--tx)}.chin .btn{width:auto;padding:0 16px;border-radius:99px;display:flex;align-items:center}
+.appst{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}.appst.on{background:#e6f6ec;color:#17623a}.appst.off{background:#fdecea;color:#c62828}
+#offV{position:fixed;inset:0;z-index:200;background:linear-gradient(160deg,var(--g),var(--g2));color:#fff;display:none;align-items:center;justify-content:center;text-align:center;padding:30px}#offV.on{display:flex}
+#offV .ic{width:54px;height:54px}#offV h2{margin:12px 0 8px;font-size:22px}#offV p{opacity:.9;line-height:1.7;max-width:340px;margin:0 auto 18px;white-space:pre-wrap}#offV button{border:0;font:inherit;font-weight:700;background:#fff;color:var(--g);padding:11px 22px;border-radius:99px;cursor:pointer}#offV small{display:block;margin-top:18px;opacity:.6;cursor:pointer}
+.pcap{white-space:pre-wrap}.ptag{display:inline-flex;align-items:center;gap:5px;margin:0 14px 8px;padding:3px 10px;border-radius:99px;background:rgba(15,107,58,.1);color:var(--g);font-size:11.5px;font-weight:600}.ptag .ic{width:12px;height:12px}
+.pcard{position:relative}.dotb{border:0;background:none;color:var(--mut);cursor:pointer;padding:6px;margin-left:auto;display:flex}.pmenu{display:none;position:absolute;right:12px;top:48px;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.18);overflow:hidden}.pmenu.on{display:block}.pmenu button{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;font:inherit;font-size:14px;color:var(--tx);padding:11px 16px;cursor:pointer;text-align:left}
+.cre{display:flex;gap:12px;overflow-x:auto;margin:0 0 12px;padding-bottom:4px;scrollbar-width:none}.cre::-webkit-scrollbar{display:none}.cre div{flex:none;text-align:center;font-size:11px;width:60px;cursor:pointer}.cre .av{width:52px;height:52px;font-size:20px;border:2.5px solid var(--g);margin:0 auto 3px;display:flex;align-items:center;justify-content:center;object-fit:cover}.cre span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmtpad{padding-bottom:84px}.cmbar{position:fixed;left:50%;transform:translateX(-50%);width:100%;max-width:480px;bottom:calc(59px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);padding:8px 12px;z-index:22;display:none}#v-cmt.on .cmbar{display:block}
+.cmbar .rp{display:flex;justify-content:space-between;font-size:12px;color:var(--mut);margin-bottom:6px}.cmbar .rp button{border:0;background:none;color:var(--mut);cursor:pointer}
+.cmbar .row{display:flex;gap:8px;align-items:center}.cmbar input{flex:1;min-width:0;padding:10px 14px;border:0;background:var(--bg);border-radius:99px;font:inherit;font-size:16px;color:var(--tx)}.cmbar .sendb{border:0;background:none;color:var(--g);cursor:pointer;padding:6px;display:flex}
+.cm .acts{display:flex;gap:14px;font-size:12px;color:var(--mut);margin:3px 0 0 12px;font-weight:600}.cm .acts button{border:0;background:none;font:inherit;color:inherit;cursor:pointer;padding:0}.cm .acts button.on{color:#e0245e}
+.cm .cb{background:#eceff1}html[data-theme=dark] .cm .cb{background:#223028}.cm.rp{margin:8px 0 0 0}.cm.rp .av{width:26px;height:26px;font-size:12px}.cm .cb{background:var(--bg)}.cm .lk{float:right;font-size:11px;color:#e0245e;margin-left:8px}
+.rl-st{display:flex;gap:6px;margin:0 0 12px}.rl-st span{flex:1;text-align:center;font-size:11.5px;font-weight:600;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 4px}.rl-st b{display:inline-flex;width:18px;height:18px;border-radius:50%;background:var(--g);color:#fff;align-items:center;justify-content:center;font-size:11px;margin-right:4px}
+.rl-drop{display:flex;flex-direction:column;align-items:center;gap:6px;padding:26px 14px;border:2px dashed var(--g);border-radius:20px;background:var(--card);cursor:pointer;text-align:center}.rl-drop .ic{width:38px;height:38px;color:var(--g)}.rl-drop b{font-size:16px}.rl-drop small{color:var(--mut)}.rl-drop input{display:none}
+.rlsty{border:0;gap:8px;flex-wrap:wrap;overflow:visible}.rlsty button{flex:1 1 40%;border:1.5px solid var(--line)!important;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:6px}.rlsty button.on{border-color:var(--g)!important}.rlsty i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.rl-more{margin:6px 0 12px;border:1px solid var(--line);border-radius:14px;padding:0 12px;background:var(--card)}.rl-more summary{cursor:pointer;padding:11px 0;font-weight:600;font-size:14px;color:var(--g)}.rl-more[open]{padding-bottom:6px}
+.clip{padding:10px 12px;gap:10px}.clip .cn{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}.clip .ct{flex:1;min-width:0}.clip .ct b{display:block;flex:none}.clip .ct small{color:var(--mut);font-size:11.5px}
+.rcpt{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13px}.rcpt:last-child{border:0}.rcpt small{color:var(--mut);display:block}
+.tcards{display:grid;gap:10px;margin-bottom:12px}.tcard2{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}.tcard2 .ti{width:38px;height:38px;flex:none;border-radius:12px;background:#e8f3ec;color:var(--g);display:flex;align-items:center;justify-content:center}.tcard2 b{display:block;font-size:14.5px;margin-bottom:2px}.tcard2 p{font-size:13px;color:var(--mut);line-height:1.6;margin:0}
+.tstat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.tstat div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 4px;text-align:center;font-size:11.5px;color:var(--mut)}.tstat b{display:block;font-size:19px;color:var(--tx)}
+html[data-theme=dark] .trust button,html[data-theme=dark] .tcard2 .ti{background:#17201b}
 </style>
 </head>
 <body>
 <div id="skel" aria-hidden="true"><div class="sklw"><div class="sklh"><i style="width:22px;height:22px;border-radius:50%"></i><i style="width:130px"></i></div><div class="sklb"><div class="sk" style="height:96px;border-radius:18px"></div><div class="sk" style="height:46px;border-radius:14px;margin-top:16px"></div><div style="display:flex;gap:8px;margin-top:12px"><div class="sk" style="height:34px;width:70px;border-radius:99px"></div><div class="sk" style="height:34px;width:84px;border-radius:99px"></div><div class="sk" style="height:34px;width:96px;border-radius:99px"></div><div class="sk" style="height:34px;width:70px;border-radius:99px"></div></div><div class="sklg"><div class="sklc"><div class="sk" style="height:150px;border-radius:0"></div><div style="padding:10px"><div class="sk sl" style="width:70%"></div></div></div><div class="sklc"><div class="sk" style="height:150px;border-radius:0"></div><div style="padding:10px"><div class="sk sl" style="width:70%"></div></div></div><div class="sklc"><div class="sk" style="height:150px;border-radius:0"></div><div style="padding:10px"><div class="sk sl" style="width:70%"></div></div></div><div class="sklc"><div class="sk" style="height:150px;border-radius:0"></div><div style="padding:10px"><div class="sk sl" style="width:70%"></div></div></div><div class="sklc"><div class="sk" style="height:150px;border-radius:0"></div><div style="padding:10px"><div class="sk sl" style="width:70%"></div></div></div><div class="sklc"><div class="sk" style="height:150px;border-radius:0"></div><div style="padding:10px"><div class="sk sl" style="width:70%"></div></div></div></div></div></div></div>
 <script>setTimeout(function(){var e=document.getElementById("skel");if(e)e.remove()},6000)</script>
-<header><h1><svg class="ic" viewBox="0 0 24 24" style="width:22px;height:22px"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg> <span id="appName">Zᴏʜɪʀ | PLP</span></h1><span class="badge" id="proBadge"><svg class="ic" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z"/></svg> PRO</span></header>
+<header><h1><span id="appName">Zᴏʜɪʀ | PLP</span></h1><span class="badge" id="proBadge"><svg class="ic" viewBox="0 0 24 24" style="width:13px;height:13px"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z"/></svg> PRO</span></header>
 <main>
   <section class="view on" id="v-home">
     <div id="hero"></div><div id="commCard"></div>
@@ -259,6 +303,10 @@ header{position:sticky;top:0;z-index:40}
   <section class="view" id="v-user"></section>
   <section class="view" id="v-set"></section>
   <section class="view" id="v-info"></section>
+  <section class="view" id="v-cmt"></section>
+  <section class="view" id="v-chat"></section>
+  <section class="view" id="v-achat"></section>
+  <section class="view" id="v-trust"></section>
 </main>
 <nav>
   <button data-go="home" class="on"><i><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></i>হোম</button>
@@ -277,25 +325,26 @@ header{position:sticky;top:0;z-index:40}
 <div class="modal" id="pvM"><div class="mbox" style="max-height:92vh;overflow:auto"></div></div>
 <div class="modal" id="cmM"><div class="mbox" style="text-align:left;max-height:90vh;overflow:auto"></div></div>
 <div class="modal" id="outM"><div class="mbox"></div></div>
+<div id="offV"></div>
 <div id="loginV"></div>
 <div class="toast" id="toast"></div>
 
 <script>
 /* ============ কনফিগ — এখানে নিজের তথ্য বসান ============ */
 const CFG={
-  version:'2.9',
+  version:'2.0',
   reelPlan:{id:'reel',name:'রিলস প্ল্যান',price:200,days:30,codes:['ZOHIRREEL']}, // রিলস স্টুডিও আলাদা প্ল্যান: ৳২০০ / ৩০ দিন, নিজের কোড বসান
-  telegram:'https://t.me/zohir_plp_in',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
-  email:'jibonmahmud630@gmail.com',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  telegram:'',       // টেলিগ্রাম চ্যানেল/গ্রুপ/আইডির লিংক (ফাঁকা থাকলে বাটন লুকানো থাকবে)
+  email:'',          // ইমেইল (ফাঁকা থাকলে বাটন লুকানো থাকবে)
   watermark:'Zᴏʜɪʀ | PLP',  // ফ্রি ডাউনলোডে কার্ডের ওপর যে ওয়াটারমার্ক বসবে (প্রো-তে বসবে না)
   dbUrl:'https://zohir-drive-default-rtdb.asia-southeast1.firebasedatabase.app', // Firebase লিংক (ফাঁকা করলে গণনা ও অ্যাডমিন বন্ধ)
-  adminPass:'zohirplp',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
+  adminPass:'',      // অ্যাডমিন প্যানেলের পাসওয়ার্ড — এখানে নিজের একটা পাসওয়ার্ড বসান
   appName:'Zᴏʜɪʀ | PLP',
   price:100,         // সবচেয়ে কম প্ল্যানের দাম (লক করা ডিজাইনের পপআপে দেখায়)
   plans:[ // codes: ওই প্ল্যানের কোড (নিজের মতো বদলান) • days: কত দিন চলবে (0 = লাইফটাইম) • vip: ভিআইপি ডিজাইন খোলে কি না
-    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR@@100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR@@200'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
-    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR@@500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
+    {id:'p100',name:'বেসিক',price:100,days:30,vip:false,codes:['ZOHIR100'],perks:['৩০ দিন সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p200',name:'স্ট্যান্ডার্ড',price:200,days:0,vip:false,codes:['ZOHIR630'],perks:['লাইফটাইম — একবার দিন, সারা জীবন','সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']},
+    {id:'p500',name:'ভিআইপি',price:500,days:0,vip:true,codes:['ZOHIR500'],perks:['লাইফটাইম','সব প্রো + এক্সক্লুসিভ ভিআইপি ডিজাইন','ওয়াটারমার্ক সরানো/রাখা আপনার ইচ্ছা']}
   ],
   payMethod:'বিকাশ / নগদ (Send Money)',
   payNumber:'01856591506',
@@ -1101,11 +1150,34 @@ const skRows=n=>[...Array(n)].map(()=>`<div style="display:flex;gap:10px;margin:
 const skGrid=n=>`<div class="pgrid">${[...Array(n)].map(()=>'<div class="sk" style="aspect-ratio:1;border-radius:8px"></div>').join('')}</div>`;
 const skUser=()=>`<div style="text-align:center;padding:14px 0"><div class="sk sc" style="width:78px;height:78px;margin:0 auto 10px"></div><div class="sk sl" style="width:40%;margin:0 auto"></div></div><div style="display:flex;gap:8px;margin-bottom:14px">${'<div class="sk" style="flex:1;height:56px;border-radius:14px"></div>'.repeat(3)}</div>${skGrid(6)}`;
 const skAdmin=()=>`<div class="sk" style="height:84px;border-radius:18px;margin-bottom:12px"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${'<div class="sk" style="height:96px;border-radius:16px"></div>'.repeat(6)}</div><div class="sk" style="height:170px;border-radius:18px;margin-top:12px"></div>`;
+let SKEL_HTML=(document.getElementById('skel')||{}).outerHTML||'';
+function showSplash(ms){if(!SKEL_HTML||document.getElementById('skel'))return;document.body.insertAdjacentHTML('afterbegin',SKEL_HTML);const e=document.getElementById('skel');setTimeout(()=>{e.classList.add('out');setTimeout(()=>e.remove(),400)},ms||900)}
+let hiddenAt=0;
+document.addEventListener('visibilitychange',()=>{if(document.hidden)hiddenAt=Date.now();else if(hiddenAt&&Date.now()-hiddenAt>(window.RESUME_MS??20000)){hiddenAt=0;showSplash(900)}});
+window.addEventListener('pageshow',e=>{if(e.persisted)showSplash(900)});
+const nB=(h,r,mt)=>`<div class="sk" style="height:${h}px;border-radius:${r||12}px;margin-top:${mt||0}px"></div>`;
+const nCards=n=>`<div class="ng">${[...Array(n)].map(()=>'<div class="nc"><div class="sk" style="height:140px;border-radius:0"></div><div style="padding:10px"><div class="sk sl" style="width:70%"></div></div></div>').join('')}</div>`;
+const nChips=()=>`<div style="display:flex;gap:8px;margin-top:12px">${[70,84,96,70].map(w=>`<div class="sk" style="height:34px;width:${w}px;border-radius:99px"></div>`).join('')}</div>`;
+const nRows=n=>[...Array(n)].map(()=>nB(60,16,10)).join('');
+const NSK={
+  home:()=>nB(86,18)+nB(46,14,14)+nChips()+nCards(4),
+  feed:()=>nB(36,12)+nB(40,12,10)+skPosts(2),
+  reel:()=>nB(28,8)+nB(220,18,12)+nRows(2),
+  hist:()=>nB(28,8)+nCards(4),
+  pro:()=>nB(130,22)+nB(96,18,12)+nB(96,18,10)+nB(96,18,10),
+  prof:()=>nB(118,20)+nB(64,16,12)+nB(110,18,12),
+  set:()=>nB(28,8)+nRows(5),info:()=>nB(28,8)+nB(240,18,12),
+  user:()=>skUser(),admin:()=>skAdmin(),
+  edit:()=>nB(300,18)+nB(40,12,12)+nB(52,14,10)+nB(52,14,10)+nB(52,14,10)};
+let nskT=0;
+function navSkel(v){let e=document.getElementById('nsk');if(!e){e=document.createElement('div');e.id='nsk';document.body.appendChild(e)}
+  e.style.top=document.querySelector('header').getBoundingClientRect().bottom+'px';e.style.bottom=(innerHeight-$('nav').getBoundingClientRect().top)+'px';e.innerHTML=(NSK[v]||(()=>nB(28,8)+nRows(4)))();e.classList.remove('out');clearTimeout(nskT);nskT=setTimeout(()=>{e.classList.add('out');nskT=setTimeout(()=>e.remove(),300)},450)}
 const LS={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 let profile=LS.get('cs_profile',{tag:'',contact:'',author:'',logoData:null});
-function curPlan(){let p=LS.get('cs_plan',null);if(!p&&LS.get('cs_pro',false)===true)p={id:'p200',exp:0};if(!p||(p.exp&&Date.now()>p.exp))return null;return p}
+const TRIAL_DAYS=7,TRIAL_DEF={id:'trial',name:'ফ্রি ট্রায়াল',price:0,days:TRIAL_DAYS,vip:false,perks:['সব সাধারণ প্রো ডিজাইন','ওয়াটারমার্ক ছাড়া ডাউনলোড']};
+function curPlan(){let p=LS.get('cs_plan',null);if(!p&&LS.get('cs_pro',false)===true)p={id:'p200',exp:0};if(p&&!(p.exp&&Date.now()>p.exp))return p;const t=LS.get('cs_trial0',0);if(t&&Date.now()<t+TRIAL_DAYS*864e5)return{id:'trial',exp:t+TRIAL_DAYS*864e5,trial:true};return null}
 const isPro=()=>!!curPlan();
-const planDef=()=>{const p=curPlan();return p&&CFG.plans.find(x=>x.id===p.id)};
+const planDef=()=>{const p=curPlan();return p&&(CFG.plans.find(x=>x.id===p.id)||(p.trial?TRIAL_DEF:undefined))};
 const isVip=()=>!!(planDef()&&planDef().vip);
 let selPlan='p200';const selDef=()=>CFG.plans.find(x=>x.id===selPlan)||CFG.plans[0];
 const locked=t=>(t.pro&&!isPro())||(t.vip&&!isVip());
@@ -1120,10 +1192,18 @@ function newState(t){return{tpl:t.id,ratio:t.ratio||1,title:t.sample.title||'',h
 let raf=0;function rerender(){cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(S){render($('#cv'),S,1080);watermark($('#cv'))}})}window.rerender=rerender;
 
 /* ============ ভিউ ============ */
-function go(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===({edit:'home',set:'prof',info:'prof',admin:'prof',feed:'home',user:'home'}[v]||v)));window.scrollTo(0,0);
-  if(v==='hist')drawHist();if(v==='pro')drawPro();if(v==='prof'){drawProf();addPrivacy()}if(v==='set')drawSet();if(v==='info')drawInfo();if(v==='reel')drawReel();if(v==='feed')drawFeed();if(v==='user')drawUser()}
+function go(v,fromPop){const prevV=(document.querySelector('.view.on')||{}).id;setTimeout(()=>{if(prevV&&prevV!=='v-'+v)navSkel(v)},0);$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.go===({edit:'home',set:'prof',info:'prof',admin:'prof',achat:'prof',feed:'home',user:'home',cmt:'home',chat:'home',trust:'home'}[v]||v)));window.scrollTo(0,0);
+  if(v==='hist')drawHist();if(v==='pro')drawPro();if(v==='prof'){drawProf();addPrivacy()}if(v==='set')drawSet();if(v==='info')drawInfo();if(v==='reel')drawReel();if(v==='feed')drawFeed();if(v==='user')drawUser();if(v==='cmt')drawCmtPage();if(v==='chat')drawChat();if(v==='achat')drawAChat();if(v==='trust')drawTrust();
+  if(!fromPop&&prevV&&prevV!=='v-'+v){try{history.pushState({v,n:((history.state&&history.state.n)||0)+1},'')}catch(e){}}}
+const curView=()=>((document.querySelector('.view.on')||{id:'v-home'}).id||'v-home').slice(2);
+function goBack(def){const st=history.state;if(st&&st.n>0)history.back();else go(def)}
+try{history.replaceState({v:'home',n:0},'')}catch(e){}
+window.addEventListener('popstate',e=>{
+  const open=[...document.querySelectorAll('.modal.on')];
+  if(open.length){open.forEach(m=>m.classList.remove('on'));try{history.pushState({v:curView(),n:((e.state&&e.state.n)||0)+1},'')}catch(_){}return}
+  go((e.state&&e.state.v)||'home',true)});
 $$('nav button').forEach(b=>b.onclick=()=>go(b.dataset.go));
-$('#backBtn').onclick=()=>go('home');
+$('#backBtn').onclick=()=>goBack('home');
 
 let filter='all';
 let tq='';
@@ -1147,7 +1227,8 @@ async function openEditor(t,state){
   S=state||newState(t);
   if(!state)S.logo=await loadImg(S.logoData);
   go('edit');buildPanel();setWmNote();rerender()}
-function setWmNote(){const n=$('#wmNote');if(isPro()){n.className='wmnote ok';n.innerHTML=ic('check',13)+' প্রো চালু — ওয়াটারমার্ক রাখা/সরানো আপনার ইচ্ছা';n.onclick=null}else{n.className='wmnote';n.innerHTML=ic('lock',13)+' ফ্রি কার্ডে <b>'+hx(CFG.watermark)+'</b> ওয়াটারমার্ক থাকবে<br><u>সরাতে প্রো নিন →</u>';n.onclick=()=>go('pro')}}
+function setWmNote(){const n=$('#wmNote'),cp=curPlan();if(cp){n.className='wmnote ok';n.innerHTML=ic('check',11)+(cp.trial?' ট্রায়াল চালু':' প্রো চালু');n.onclick=null}else{n.className='wmnote';n.innerHTML=ic('lock',11)+' ওয়াটারমার্ক • প্রো নিন';n.onclick=()=>go('pro')}}
+
 
 const SW=['#000000','#ffffff','#e53935','#fb8c00','#fdd835','#43a047','#1e88e5','#8e24aa','#d81b60','#795548'];
 let saved=null;
@@ -1266,7 +1347,8 @@ function drawHist(){
 const hasReel=()=>{if(isAdmin())return true;const r=LS.get('cs_reel',null);return !!(r&&(!r.exp||Date.now()<r.exp))};
 function unlockCode(code){const c=code.trim().toUpperCase();
   if(CFG.reelPlan.codes.some(k=>k.toUpperCase()===c)){LS.set('cs_reel',{exp:Date.now()+CFG.reelPlan.days*864e5});toast('রিলস প্ল্যান চালু হয়েছে');notify('pro_on');return true}
-  const pl=CFG.plans.find(x=>x.codes.some(k=>k.toUpperCase()===c));if(!pl){toast('কোডটি সঠিক নয়');return false}LS.set('cs_pro',false);LS.set('cs_plan',{id:pl.id,exp:pl.days?Date.now()+pl.days*864e5:0});syncPro();notify('pro_on');toast(pl.name+' প্ল্যান চালু হয়েছে');return true}
+  const pl=CFG.plans.find(x=>x.codes.some(k=>k.toUpperCase()===c));if(!pl){toast('কোডটি সঠিক নয়');return false}LS.set('cs_pro',false);LS.set('cs_plan',{id:pl.id,exp:pl.days?Date.now()+pl.days*864e5:0});LS.set('cs_rcpt',[{t:Date.now(),n:pl.name,p:pl.price,d:pl.days},...LS.get('cs_rcpt',[])].slice(0,12));syncPro();notify('pro_on');toast(pl.name+' প্ল্যান চালু হয়েছে');return true}
+function rcptHtml(){const r=LS.get('cs_rcpt',[]);if(!r.length)return '';return `<div class="panel" style="margin-bottom:12px"><b>${ic('file',16)} আমার অ্যাক্টিভেশন রসিদ</b><p class="hint" style="margin:4px 0 8px">কোড বসানোর পর প্ল্যান কবে চালু হয়েছে — এই ফোনে সেভ থাকে।</p>${r.map(x=>`<div class="rcpt"><span><b>${hx(x.n)}</b><small>${new Date(x.t).toLocaleDateString('bn-BD')} • ${x.d?bnN(x.d)+' দিন':'লাইফটাইম'}</small></span><b>৳${bnN(x.p)}</b></div>`).join('')}</div>`}
 function copyNum(){try{navigator.clipboard.writeText(CFG.payNumber);toast('নম্বর কপি হয়েছে')}catch(e){toast(CFG.payNumber)}}
 function openPay(mode){
   const reel=mode==='reel',m=$('#payM'),box=m.querySelector('.mbox');
@@ -1284,21 +1366,21 @@ $('#payM').onclick=e=>{if(e.target.id==='payM')e.target.classList.remove('on')};
 function drawPro(){
   const p=curPlan(),d=planDef(),v=$('#v-pro'),sd=selDef(),nPro=TPL.filter(t=>t.pro&&!t.vip).length,nVip=TPL.filter(t=>t.vip).length;
   const left=p&&p.exp?Math.max(1,Math.ceil((p.exp-Date.now())/864e5)):0,tot=d&&d.days||0;
-  v.innerHTML=`<div class="pg-hero"><div class="pg-ic">${ic('crown',34)}</div><h2>প্রো প্ল্যান</h2><p>ওয়াটারমার্ক ছাড়া কার্ড • ${nPro}টি প্রো + ${nVip}টি ভিআইপি ডিজাইন • HD ডাউনলোড</p>
+  v.innerHTML=`<div class="pg-hero"><div class="pg-ic">${ic('crown',34)}</div><h2>প্রো প্ল্যান</h2>${p&&p.trial?`<p style="color:#ffe9a6;font-weight:700">${ic('gift',14)} ৭ দিনের ফ্রি ট্রায়াল চলছে — শেষ হলে প্রো কিনে চালিয়ে যান</p>`:''}<p>ওয়াটারমার্ক ছাড়া কার্ড • ${nPro}টি প্রো + ${nVip}টি ভিআইপি ডিজাইন • HD ডাউনলোড</p>
   ${p?`<div class="pg-st"><b>${ic('check',14)} ${d?d.name:'প্রো'} সক্রিয়</b><span>${left?'আর '+left+' দিন':'লাইফটাইম'}</span>${left&&tot?`<div class="bar"><i style="width:${Math.min(100,left/tot*100)}%"></i></div>`:''}</div>`:''}</div>
   <div class="pg-plans">${CFG.plans.map(x=>`<div class="pg-plan${x.id===selPlan?' sel':''}${x.vip?' vip':''}" data-p="${x.id}">${x.vip?'<span class="pg-rib">সেরা</span>':x.id==='p200'?'<span class="pg-rib b">জনপ্রিয়</span>':''}<div class="pg-top"><span class="pg-rad"></span><b>${x.name}</b><span class="pg-price">৳${x.price}</span></div><small>${x.days?x.days+' দিন':'লাইফটাইম'}</small><ul>${x.perks.map(k=>`<li>${ic('check',14)} ${k}</li>`).join('')}</ul></div>`).join('')}</div><div class="panel" id="pgPerks" style="margin-bottom:12px"></div>
   <button class="btn gold" id="pgPay" style="margin:4px 0 14px">${ic('wallet')} পেমেন্ট করুন — <span id="pgAmt">৳${sd.price}</span></button>
   <div class="panel" style="margin-bottom:12px"><b>${ic('film',16)} রিলস প্ল্যান — ৳${CFG.reelPlan.price} / মাস</b><p class="hint" style="margin:6px 0 10px">রিলস স্টুডিও আলাদা প্ল্যান, সাধারণ প্রো দিয়ে খোলে না।${hasReel()?' <b>(সক্রিয়)</b>':''}</p><button class="btn o" id="pgReel">রিলস প্ল্যান কিনুন</button></div>
   <div class="panel" style="margin-bottom:12px"><b>${ic('lock',16)} পেমেন্ট নম্বর</b><div class="paybox"><small>${CFG.payMethod}</small><b>${CFG.payNumber}</b><button class="mini" id="pgCopy">কপি</button></div><a href="${CFG.contactLink}" target="_blank" rel="noopener" class="hint">টাকা পাঠিয়ে ট্রানজেকশন আইডি হোয়াটসঅ্যাপে জানান →</a></div>
   <div class="panel" style="margin-bottom:12px"><div class="f"><label>প্রো কোড আছে?</label><input type="text" id="code" placeholder="প্রো কোড লিখুন"></div><button class="btn" id="unlock">আনলক করুন</button></div>
-  <div class="panel faq"><details><summary>পেমেন্টের পর কত সময়ে কোড পাব?</summary><p>ট্রানজেকশন আইডি পাঠানোর পর সাধারণত অল্প সময়ের মধ্যেই কোড দেওয়া হয়।</p></details><details><summary>ওয়াটারমার্ক কি সত্যিই চলে যায়?</summary><p>হ্যাঁ, প্রো চালু থাকলে কার্ডে ওয়াটারমার্ক বসে না। চাইলে নিজে রাখতেও পারেন।</p></details><details><summary>প্রো বন্ধ করলে কী হবে?</summary><p>ডিজাইনগুলো আবার লক হবে এবং ওয়াটারমার্ক ফিরে আসবে। একই কোডে আবার চালু করতে পারবেন।</p></details></div>
-  ${p?`<button class="btn o" id="deact" style="margin-top:12px">প্রো নিষ্ক্রিয় করুন</button>`:''}`;
+  ${rcptHtml()}<div class="panel faq"><details><summary>পেমেন্টের পর কত সময়ে কোড পাব?</summary><p>ট্রানজেকশন আইডি পাঠানোর পর সাধারণত অল্প সময়ের মধ্যেই কোড দেওয়া হয়।</p></details><details><summary>ওয়াটারমার্ক কি সত্যিই চলে যায়?</summary><p>হ্যাঁ, প্রো চালু থাকলে কার্ডে ওয়াটারমার্ক বসে না। চাইলে নিজে রাখতেও পারেন।</p></details><details><summary>প্রো বন্ধ করলে কী হবে?</summary><p>ডিজাইনগুলো আবার লক হবে এবং ওয়াটারমার্ক ফিরে আসবে। একই কোডে আবার চালু করতে পারবেন।</p></details></div>
+  ${p&&!p.trial?`<button class="btn o" id="deact" style="margin-top:12px">প্রো নিষ্ক্রিয় করুন</button>`:''}`;
   const perks=()=>{$('#pgPerks').innerHTML='<b>'+hx(selDef().name)+' প্ল্যানে যা পাবেন:</b><br>'+selDef().perks.map(k=>ic('check',14)+' '+hx(k)).join('<br>')};perks();
   $$('.pg-plan').forEach(el=>el.onclick=()=>{selPlan=el.dataset.p;$$('.pg-plan').forEach(q=>q.classList.toggle('sel',q===el));$('#pgAmt').textContent='৳'+selDef().price;perks()});
   $('#pgPay').onclick=()=>openPay();$('#pgReel').onclick=()=>openPay('reel');$('#pgCopy').onclick=copyNum;
   const dz=$('#deact');if(dz)dz.onclick=()=>{if(confirm('প্রো নিষ্ক্রিয় করবেন? পরে একই কোড দিয়ে আবার চালু করতে পারবেন।')){LS.set('cs_pro',false);LS.set('cs_plan',null);syncPro();notify('pro_off');toast('প্রো নিষ্ক্রিয় করা হয়েছে');drawPro()}};
   $('#unlock').onclick=()=>{if(unlockCode($('#code').value))drawPro()}}
-function drawHero(){const h=$('#hero'),d=planDef();h.className='hero';h.innerHTML=`<div class="hrow"><h1>${ic('layers',20)} ${CFG.appName}</h1><button class="hpay" id="hPay">${ic('crown',14)} ${d?'আপগ্রেড':'প্রো নিন'}</button></div><p>মিনিটেই বানান সুন্দর ফটো কার্ড</p><div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`;$('#hPay').onclick=()=>openPay()}
+function drawHero(){const h=$('#hero'),d=planDef(),cp=curPlan(),tl=cp&&cp.trial?Math.max(1,Math.ceil((cp.exp-Date.now())/864e5)):0,tEnd=!cp&&LS.get('cs_trial0',0);h.className='hero';h.innerHTML=`<div class="hrow"><h1>${ic('layers',20)} ${CFG.appName}</h1><button class="hpay" id="hPay">${ic('crown',14)} ${d?'আপগ্রেড':'প্রো নিন'}</button></div><p>মিনিটেই বানান সুন্দর ফটো কার্ড</p>${tl?`<div class="trialbar">${ic('gift',14)} ৭ দিন ফ্রি ট্রায়াল চালু — আর ${bnN(tl)} দিন বাকি</div>`:tEnd?`<div class="trialbar">${ic('gift',14)} ফ্রি ট্রায়াল শেষ — প্রো নিয়ে চালিয়ে যান</div>`:''}<div class="hstats"><div><b>${TPL.length}</b>ডিজাইন</div><div><b>${TPL.filter(t=>!t.pro).length}</b>ফ্রি</div><div><b>${d?d.name:'ফ্রি'}</b>আপনার প্ল্যান</div></div>`;$('#hPay').onclick=()=>openPay()}
 function syncPro(){drawHero();$('#proBadge').classList.toggle('on',isPro());drawGrid()}
 
 function drawProf(){
@@ -1325,7 +1407,7 @@ function drawProf(){
 
 const IC={"wallet":"<path d=\"M3 7h16a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z\"/><path d=\"M3 7l12-3v3M17 14h2\"/>","globe":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18\"/>","moon":"<path d=\"M20 14A8 8 0 019.5 3.5 8 8 0 1020 14z\"/>","sun":"<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2\"/>","shield":"<path d=\"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z\"/><path d=\"M9 12l2 2 4-4\"/>","key":"<circle cx=\"8\" cy=\"15\" r=\"4\"/><path d=\"M11 12l9-9M16 7l3 3\"/>","info":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 11v6M12 7.5v.5\"/>","chev":"<path d=\"M9 5l7 7-7 7\"/>","dots":"<circle cx=\"12\" cy=\"5\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"12\" cy=\"12\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"12\" cy=\"19\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"/>","camera":"<path d=\"M4 8h3l2-3h6l2 3h3v11H4z\"/><circle cx=\"12\" cy=\"13\" r=\"3.5\"/>","home": "<path d=\"M3 11l9-8 9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "crown": "<path d=\"M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z\"/>", "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c0-4 4-6 8-6s8 2 8 6\"/>", "lock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 018 0v3\"/>", "download": "<path d=\"M12 4v11\"/><path d=\"M7 11l5 5 5-5\"/><path d=\"M5 20h14\"/>", "pin": "<path d=\"M12 21s7-6 7-11a7 7 0 10-14 0c0 5 7 11 7 11z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>", "bell": "<path d=\"M6 16v-5a6 6 0 1112 0v5l2 2H4l2-2z\"/><path d=\"M10 21h4\"/>", "image": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><circle cx=\"9\" cy=\"10\" r=\"1.5\"/><path d=\"M21 16l-5-5-9 9\"/>", "palette": "<path d=\"M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2.5 1.5-2.5H18a3 3 0 003-3c0-5-4-10.5-9-10.5z\"/><circle cx=\"7.5\" cy=\"11\" r=\"1\"/><circle cx=\"10\" cy=\"7\" r=\"1\"/><circle cx=\"15\" cy=\"7\" r=\"1\"/>", "pen": "<path d=\"M4 20l4-1 11-11-3-3L5 16l-1 4z\"/><path d=\"M14 6l3 3\"/>", "sparkle": "<path d=\"M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z\"/>", "back": "<path d=\"M15 5l-7 7 7 7\"/>", "chart": "<path d=\"M4 20V4\"/><path d=\"M4 20h16\"/><rect x=\"8\" y=\"12\" width=\"3\" height=\"5\"/><rect x=\"13\" y=\"8\" width=\"3\" height=\"9\"/>", "film": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M8 5v14M16 5v14M3 10h5M3 14h5M16 10h5M16 14h5\"/>", "heart": "<path d=\"M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z\"/>", "share": "<circle cx=\"6\" cy=\"12\" r=\"2.5\"/><circle cx=\"18\" cy=\"6\" r=\"2.5\"/><circle cx=\"18\" cy=\"18\" r=\"2.5\"/><path d=\"M8.2 11l7.6-4M8.2 13l7.6 4\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/>", "eye": "<path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "users": "<circle cx=\"9\" cy=\"8\" r=\"3.5\"/><path d=\"M2 20c0-3.5 3-5.5 7-5.5s7 2 7 5.5\"/><circle cx=\"17\" cy=\"9\" r=\"2.5\"/><path d=\"M17 14.5c3 0 5 1.5 5 4.5\"/>", "refresh": "<path d=\"M20 11a8 8 0 10-2.3 5.7\"/><path d=\"M20 4v7h-7\"/>", "logout": "<path d=\"M9 4H5v16h4\"/><path d=\"M16 8l4 4-4 4M20 12H9\"/>", "trash": "<path d=\"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3\"/>", "file": "<path d=\"M6 3h8l4 4v14H6z\"/><path d=\"M14 3v4h4M9 13h6M9 17h6\"/>", "layers": "<path d=\"M12 3l9 5-9 5-9-5z\"/><path d=\"M3 13l9 5 9-5\"/>", "tag": "<path d=\"M3 12V4h8l10 10-8 8z\"/><circle cx=\"7.5\" cy=\"8.5\" r=\"1\"/>", "phone": "<rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><path d=\"M11 18h2\"/>", "trend": "<path d=\"M3 17l6-6 4 4 8-8\"/><path d=\"M15 7h6v6\"/>", "check": "<path d=\"M5 12l5 5 9-10\"/>", "monitor": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 20h8M12 16v4\"/>"};
 const ic=(n,z)=>'<svg class="ic" viewBox="0 0 24 24"'+(z?` style="width:${z}px;height:${z}px"`:'')+'>'+IC[n]+'</svg>';
-IC.chat='<path d="M4 5h16v11H9l-5 4z"/>';IC.flag='<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>';
+IC.chat='<path d="M4 5h16v11H9l-5 4z"/>';IC.send='<path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>';IC.gift='<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M5 12v9h14v-9M12 8C10 3 6 4 7.5 6.5 9 8 12 8 12 8zM12 8c2-5 6-4 4.5-1.5C15 8 12 8 12 8z"/>';IC.bm='<path d="M6 3h12v18l-6-4-6 4z"/>';IC.power='<path d="M12 3v9"/><path d="M6.3 7.3a8 8 0 1011.4 0"/>';IC.flag='<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>';
 /* ============ গণনা ও অ্যাডমিন প্যানেল (গ্রাহকের অনুমতি সহ) ============ */
 const dbOn=()=>!!CFG.dbUrl;
 const dbu=p=>CFG.dbUrl.replace(/\/$/,'')+'/'+p+'.json';
@@ -1387,7 +1469,7 @@ let admTimer=null;
 function openAdmin(){
   if(!dbOn()){toast('আগে CFG-এ dbUrl বসান');return}
   if(!CFG.adminPass){toast('আগে CFG-এ adminPass বসান');return}
-  if(!isAdmin()){const p=prompt('অ্যাডমিন পাসওয়ার্ড দিন');if(p!==CFG.adminPass){toast('পাসওয়ার্ড ভুল');return}LS.set('cs_admin',true)}try{Notification.requestPermission()}catch(_){}
+  if(!isAdmin()){const p=prompt('অ্যাডমিন পাসওয়ার্ড দিন');if(p!==CFG.adminPass){toast('পাসওয়ার্ড ভুল');return}LS.set('cs_admin',true);checkApp()}try{Notification.requestPermission()}catch(_){}
   go('admin');drawAdmin();clearInterval(admTimer);
   admTimer=setInterval(()=>{if($('#v-admin').classList.contains('on'))drawAdmin();else clearInterval(admTimer)},10000);
 }
@@ -1402,10 +1484,12 @@ async function drawAdmin(){
   const v=$('#v-admin');
   if(!v.dataset.ready){v.innerHTML=skAdmin();v.dataset.ready='1'}
   const today=dayKey();
-  let [on,st,uq,du,ev]=await Promise.all([dbGet('online'),dbGet('stats'),dbGet('uniq','?shallow=true'),dbGet('dayuniq/'+today,'?shallow=true'),dbGet('events','?orderBy=%22%24key%22&limitToLast=50')]);
+  let [on,st,uq,du,ev,capp,cidx]=await Promise.all([dbGet('online'),dbGet('stats'),dbGet('uniq','?shallow=true'),dbGet('dayuniq/'+today,'?shallow=true'),dbGet('events','?orderBy=%22%24key%22&limitToLast=50'),dbGet('cfg/app'),dbGet('chatidx')]);
   const evs=Object.values(ev||{}).sort((a,b)=>b.t-a.t);
   if(window.__lt&&evs.length&&evs[0].t>window.__lt){const e=evs[0],m='নতুন ডাউনলোড: '+e.tpl+(e.lat!=null?' • '+e.lat+','+e.lon:'');toast(m);try{navigator.vibrate(250)}catch(_){}try{if(Notification.permission==='granted')new Notification('নতুন ডাউনলোড',{body:m})}catch(_){}}
   window.__lt=evs.length?evs[0].t:Date.now();
+  const appOn=!(capp&&capp.on===false),unread=Object.values(cidx&&!cidx.error?cidx:{}).reduce((a,c)=>a+(Number(c&&c.ua)||0),0);
+  if(window.__lu!=null&&unread>window.__lu){const m='নতুন চ্যাট মেসেজ';toast(m);try{navigator.vibrate(250)}catch(_){}try{if(Notification.permission==='granted')new Notification(m,{body:'ইউজার আপনাকে মেসেজ পাঠিয়েছে'})}catch(_){}}window.__lu=unread;
   const now=Date.now(),o=on||{};let online=0;
   Object.keys(o).forEach(k=>{const t=o[k]&&o[k].t||0;if(now-t<60000)online++;else if(now-t>300000)fetch(dbu('online/'+k),{method:'DELETE'}).catch(()=>{})});
   st=st||{};const days=st.days||{},n=x=>Number(x)||0;
@@ -1421,6 +1505,8 @@ async function drawAdmin(){
   v.innerHTML=`<div class="adm">
   <div class="ah"><div><h2>${ic('chart',22)} অ্যাডমিন ড্যাশবোর্ড</h2><small>${hx(CFG.appName)} • আপডেট ${new Date().toLocaleTimeString('bn-BD',{timeZone:'Asia/Dhaka',hour:'2-digit',minute:'2-digit'})}</small></div><div class="ab"><button id="aRef" aria-label="রিফ্রেশ">${ic('refresh',18)}</button><button id="aOut" aria-label="লগআউট">${ic('logout',18)}</button></div></div>
   <div class="live"><span class="dot"></span><div><b>${bnN(online)}</b><small>জন এখন অনলাইনে (গত ১ মিনিট)</small></div></div>
+  <div class="ac"><h3><span>${ic('power',16)} অ্যাপ নিয়ন্ত্রণ</span><span class="appst ${appOn?'on':'off'}">${appOn?'চালু আছে':'বন্ধ আছে'}</span></h3><button class="btn ${appOn?'red':''}" id="aApp">${appOn?'অ্যাপ বন্ধ করুন':'অ্যাপ চালু করুন'}</button><p class="hint">বন্ধ করলে আপনি ছাড়া সবাই ১ মিনিটের মধ্যে "অ্যাপ সাময়িক বন্ধ" স্ক্রিন দেখবে। চালু করলে আবার স্বাভাবিক।</p></div>
+  <div class="ac"><h3><span>${ic('chat',16)} লাইভ চ্যাট</span>${unread?`<span class="ubadge">${bnN(unread)} নতুন</span>`:''}</h3><button class="btn" id="aChat">ইউজারদের মেসেজ দেখুন ও রিপ্লাই দিন</button><div class="r2" style="margin-top:10px"><span>ইউজারদের কাছে "অনলাইন" দেখান</span><button class="mini" id="aShow">${LS.get('cs_aoff',false)?'বন্ধ':'চালু'}</button></div></div>
   <div class="kg">
    ${kc('eye','আজকের ভিজিট',bnN(td),delta===null?'':`<small class="${delta>=0?'up':'dn'}"> ${delta>=0?'▲':'▼'} ${bnN(Math.abs(delta))}% গতকালের তুলনায়</small>`)}
    ${kc('users','আজ আলাদা মানুষ',bnN(duN))}
@@ -1437,6 +1523,10 @@ async function drawAdmin(){
   <p class="hint" style="text-align:center">প্রতি ১০ সেকেন্ডে নিজে আপডেট হয় • লোকেশন আনুমানিক (প্রায় ১১ কিমি)</p></div>`;
   loadMod();
   $('#aRef').onclick=()=>{toast('রিফ্রেশ হচ্ছে');drawAdmin()};
+  $('#aApp').onclick=async()=>{let msg=(capp&&capp.msg)||'';if(appOn){const m=prompt('ইউজারদের কী মেসেজ দেখাবেন?',msg||'আমরা কিছু আপডেটের কাজ করছি। একটু পরে আবার আসুন।');if(m===null)return;msg=m}
+    try{const r=await fetch(dbu('cfg/app'),{method:'PUT',body:JSON.stringify({on:!appOn,msg,t:Date.now()})});if(!r.ok)throw 0;toast(appOn?'অ্যাপ বন্ধ করা হয়েছে':'অ্যাপ চালু করা হয়েছে ✔')}catch(e){toast('সেভ হয়নি — Firebase Rules-এ cfg লেখার অনুমতি দিন')}drawAdmin()};
+  $('#aChat').onclick=()=>{ACH.uid='';go('achat')};
+  $('#aShow').onclick=()=>{const off=!LS.get('cs_aoff',false);LS.set('cs_aoff',off);if(off)dbDel('adminOn');else adminBeat();drawAdmin()};
   $('#aOut').onclick=()=>{LS.set('cs_admin',false);clearInterval(admTimer);go('home');toast('লগআউট হয়েছে')};
   $$('#aSeg button').forEach(b=>b.onclick=()=>{admRange=+b.dataset.d;drawAdmin()});
   $('#aCsv').onclick=()=>{if(!evs.length)return toast('কোনো ডেটা নেই');exportEvents(evs)};
@@ -1494,14 +1584,14 @@ function drawSet(){
   <div class="sgrp"><div class="sl">${ic('globe',16)} ${L('ভাষা','Language')}</div><div class="seg" id="sLang"><button data-v="bn">বাংলা</button><button data-v="en">English</button></div></div>
   <div class="sgrp"><div class="sl">${ic('moon',16)} ${L('থিম','Theme')}</div><div class="seg" id="sTh"><button data-v="light">${ic('sun',15)} ${L('লাইট মোড','Light mode')}</button><button data-v="dark">${ic('moon',15)} ${L('ডার্ক মোড','Dark mode')}</button></div></div>
   ${dbOn()?`<div class="sgrp"><div class="sl">${ic('chart',16)} ${L('ব্যবহারের পরিসংখ্যান (নাম-পরিচয় ছাড়া)','Usage statistics (anonymous)')}</div><div class="seg" id="sAn"><button data-v="yes">${L('চালু','On')}</button><button data-v="no">${L('বন্ধ','Off')}</button></div></div>`:''}
-  <div class="sgrp nopad">${row('shield',L('প্রাইভেসি পলিসি','Privacy Policy'),'','sPriv')}${row('key',L('অ্যাডমিন','Admin'),L('শুধু মালিকের জন্য','Owner only'),'sAdm')}${row('phone',L('যোগাযোগ','Contact'),'','sCon')}${row('info',L('অ্যাপ সম্পর্কে','About'),'','sAbt')}</div>
+  <div class="sgrp nopad">${row('chat',L('লাইভ চ্যাট','Live chat'),L('অ্যাডমিনের সাথে কথা বলুন','Talk to the admin'),'sChat')}${row('shield',L('কেন বিশ্বাস করবেন','Why trust us'),'','sTrust')}${row('shield',L('প্রাইভেসি পলিসি','Privacy Policy'),'','sPriv')}${row('key',L('অ্যাডমিন','Admin'),L('শুধু মালিকের জন্য','Owner only'),'sAdm')}${row('phone',L('যোগাযোগ','Contact'),'','sCon')}${row('info',L('অ্যাপ সম্পর্কে','About'),'','sAbt')}</div>
   <div class="sgrp nopad"><button class="srow" id="sOut" style="color:#c62828"><span class="si" style="background:#fdecea;color:#c62828">${ic('logout',18)}</span><span style="flex:1;text-align:left"><b>${L('লগ আউট','Log out')}</b><small>${L('অ্যাকাউন্ট সেভ থাকবে, পরে আবার লগইন করা যাবে','Account stays saved — log back in anytime')}</small></span>${ic('chev',16)}</button></div>
   <p class="hint" style="text-align:center">${hx(CFG.appName)} • v${CFG.version||'2.0'}</p>`;
-  $('#sBack').onclick=()=>go('prof');
+  $('#sBack').onclick=()=>goBack('prof');
   segG('sLang',()=>LS.get('cs_lang','bn'),v=>setLang(v));
   segG('sTh',()=>LS.get('cs_theme','light'),v=>setTheme(v));
   if($('#sAn'))segG('sAn',()=>consent()==='yes'?'yes':'no',v=>{LS.set('cs_notify',v);if(v==='yes'){notify('visit');startPresence()}toast(L(v==='yes'?'চালু করা হয়েছে':'বন্ধ করা হয়েছে',v==='yes'?'Turned on':'Turned off'))});
-  $('#sPriv').onclick=()=>{infoKey='privacy';go('info')};$('#sCon').onclick=()=>{infoKey='contact';go('info')};$('#sAbt').onclick=()=>{infoKey='about';go('info')};
+  $('#sChat').onclick=()=>go('chat');$('#sTrust').onclick=()=>go('trust');$('#sPriv').onclick=()=>{infoKey='privacy';go('info')};$('#sCon').onclick=()=>{infoKey='contact';go('info')};$('#sAbt').onclick=()=>{infoKey='about';go('info')};
   $('#sAdm').onclick=()=>openAdmin();$('#sOut').onclick=openLogout}
 function drawInfo(){
   const k=infoKey,T={privacy:L('প্রাইভেসি পলিসি','Privacy Policy'),contact:L('যোগাযোগ','Contact'),about:L('অ্যাপ সম্পর্কে','About')}[k];let h='';
@@ -1510,7 +1600,7 @@ function drawInfo(){
   if(k==='contact'){const b=(href,i,t)=>`<a class="btn${i==='phone'?'':' o'}" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;margin-bottom:10px" href="${href}" target="_blank" rel="noopener">${ic(i,18)} ${t}</a>`;
     h=`<p style="margin-bottom:12px">${L('প্রো কোড, সমস্যা বা পরামর্শের জন্য যোগাযোগ করুন।','Reach out for Pro codes, problems or suggestions.')}</p>`+(CFG.contactLink?b(CFG.contactLink,'phone',L('হোয়াটসঅ্যাপে মেসেজ','Message on WhatsApp')):'')+(CFG.telegram?b(CFG.telegram,'share',L('টেলিগ্রাম','Telegram')):'')+(CFG.email?b('mailto:'+CFG.email,'file',CFG.email):'')+(CFG.payNumber?`<p class="hint">${L('পেমেন্ট নম্বর','Payment number')}: <b>${hx(CFG.payNumber)}</b></p>`:'')}
   $('#v-info').innerHTML=`<div class="edhead"><button class="back" id="iBack">${ic('back')} ${L('সেটিংস','Settings')}</button></div><h2>${T}</h2><div class="ibox">${h}</div>`;
-  $('#iBack').onclick=()=>go('set')}
+  $('#iBack').onclick=()=>goBack('set')}
 
 /* ----- ভাষা অনুবাদ (বাংলা → English) ----- */
 const EX={'হোম':'Home','হিস্টরি':'History','প্রো':'Pro','প্রোফাইল':'Profile','লেখা':'Text','ছবি':'Image','ডিজাইন':'Design','ফ্রি':'Free','নরমাল':'Normal','ছাড়া':'None','ঠিক আছে':'OK','সেভ করুন':'Save','আনলক করুন':'Unlock','এডিট':'Edit','মুছুন':'Delete','পরে':'Later','প্রো নিন':'Get Pro','দেখান':'Show','লুকান':'Hide','লোগো':'Logo','ভিআইপি':'VIP','বন্ধ':'Off','চালু':'On','ভিজিট':'Visits','মোবাইল':'Mobile','ডেস্কটপ':'Desktop','ম্যাপ':'Map','অটো':'Auto','ডিফল্ট':'Default','ফন্ট':'Font','সাইজ':'Size','রঙ':'Color','সহ':'with','লোড হচ্ছে…':'Loading…'};
@@ -1634,7 +1724,7 @@ async function captionClip(i){
   try{const k=await autoCaption(i);rlSt('✔ ক্লিপ '+(i+1)+': '+k+' লাইন ক্যাপশন তৈরি। নিচের ঘরে দেখে ঠিক করতে পারবেন, তারপর প্রিভিউ/ডাউনলোড দিন')}catch(e){rlSt('অটো ক্যাপশন হয়নি: '+e.message)}
   RL.busy=false}
 function drawClips(){
-  const b=$('#rlClips');b.innerHTML=RL.clips.map((c,i)=>`<div class="clip"><b>ক্লিপ ${i+1} • ${fmtT(c.s)}–${fmtT(c.e)}</b><button class="mini" data-c="${i}">ক্যাপশন</button><button class="mini" data-p="${i}">প্রিভিউ</button><button class="mini" data-d="${i}">${ic('download',13)} ডাউনলোড</button></div>`).join('')+`<button class="btn o" id="rlAll" style="margin-top:4px">সব ক্লিপ একে একে ডাউনলোড</button>`;
+  const b=$('#rlClips');b.innerHTML=RL.clips.map((c,i)=>`<div class="clip"><span class="cn">${bnN(i+1)}</span><div class="ct"><b>${fmtT(c.s)} – ${fmtT(c.e)}</b><small>${bnN(Math.round(c.e-c.s))} সেকেন্ডের ক্লিপ</small></div><button class="mini" data-c="${i}" title="অটো ক্যাপশন">${ic('pen',13)}</button><button class="mini" data-p="${i}" title="প্রিভিউ">${ic('eye',13)}</button><button class="mini" data-d="${i}" title="ডাউনলোড" style="background:var(--g);color:#fff;border-color:var(--g)">${ic('download',13)} ডাউনলোড</button></div>`).join('')+`<button class="btn o" id="rlAll" style="margin-top:4px">সব ক্লিপ একে একে ডাউনলোড</button>`;
   $$('#rlClips [data-c]').forEach(x=>x.onclick=()=>captionClip(+x.dataset.c));$$('#rlClips [data-p]').forEach(x=>x.onclick=()=>runClip(+x.dataset.p,false));$$('#rlClips [data-d]').forEach(x=>x.onclick=()=>runClip(+x.dataset.d,true));
   $('#rlAll').onclick=async()=>{for(let i=0;i<RL.clips.length;i++){await runClip(i,true)}}}
 function reelStatus(){const r=LS.get('cs_reel',null);if(isAdmin()&&!r)return '';return r&&r.exp?`<div class="pg-st" style="background:rgba(15,107,58,.12);color:var(--g);margin-bottom:10px"><b>${ic('check',14)} রিলস প্ল্যান সক্রিয়</b><span>আর ${Math.max(1,Math.ceil((r.exp-Date.now())/864e5))} দিন</span></div>`:''}
@@ -1643,19 +1733,23 @@ function drawReel(){
   if(!hasReel()){v.dataset.ready='';v.innerHTML=`<h2>${ic('film',20)} রিলস স্টুডিও</h2><div class="pg-hero"><div class="pg-ic">${ic('film',34)}</div><h2>রিলস প্ল্যান</h2><p>লম্বা ভিডিও থেকে ২০–৩০ সেকেন্ডের রিলস বানান</p><div style="font-size:32px;font-weight:800;color:#ffd86b;margin-top:6px">৳${CFG.reelPlan.price}<small style="font-size:13px;color:#fff"> / ${CFG.reelPlan.days} দিন</small></div></div><div class="panel"><ul class="reelul"><li>${ic('check',14)} ভিডিও নিজে নিজে ২০/২৫/৩০ সেকেন্ডের ক্লিপে কাটে</li><li>${ic('check',14)} অটো ক্যাপশন — কথা শুনে স্টাইলিশ লেখা বসায়</li><li>${ic('check',14)} নিয়ন, গোল্ড, পপ, ক্লিন ক্যাপশন স্টাইল</li><li>${ic('check',14)} ওয়াটারমার্ক ছাড়া ডাউনলোড</li></ul><button class="btn gold" id="rlBuy">${ic('wallet')} রিলস প্ল্যান কিনুন — ৳${CFG.reelPlan.price}</button><p class="hint" style="margin-top:8px;text-align:center">এটা সাধারণ প্রো প্ল্যান থেকে সম্পূর্ণ আলাদা।</p></div>`;$('#rlBuy').onclick=()=>openPay('reel');return}
   if(v.dataset.ready)return;v.dataset.ready='1';
   v.innerHTML=`<h2>${ic('film',20)} রিলস স্টুডিও</h2>${reelStatus()}
-  <div class="steps" style="margin-bottom:12px"><b>কিভাবে কাজ করে:</b> লম্বা ভিডিও দিন → ২০/২৫/৩০ সেকেন্ডের ক্লিপে নিজে কাটবে → ক্যাপশন দিলে স্টাইলিশ শব্দ-বাই-শব্দ ভেসে উঠবে (রঙিন ব্যাকগ্রাউন্ডসহ) → ক্লিপ ডাউনলোড।</div>
-  <div class="panel"><label class="file"><input type="file" accept="video/*" id="rlFile"><span class="btn" style="display:block;text-align:center">${ic('film',17)} ভিডিও বাছুন (গ্যালারি থেকে)</span></label><p class="hint" id="rlInfo" style="margin-top:8px">এখনো ভিডিও বাছা হয়নি।</p>
-  <video id="rlVid" playsinline preload="auto" controls style="display:none;width:100%;max-height:220px;border-radius:12px;background:#000;margin-top:8px"></video>
-  <div class="f" style="margin-top:12px"><label>ক্লিপের দৈর্ঘ্য</label><div class="seg" id="rlLen"><button data-v="20">২০ সেকেন্ড</button><button data-v="25">২৫ সেকেন্ড</button><button data-v="30">৩০ সেকেন্ড</button></div></div>
-  <div class="f"><label>অটো ক্যাপশন (ভয়েস থেকে নিজে লিখবে)</label><div class="seg" id="rlAuto"><button data-v="yes">চালু</button><button data-v="no">বন্ধ</button></div></div>
-  <div class="f"><label>ভিডিওর ভাষা</label><div class="seg" id="rlLang"><button data-v="bn">বাংলা</button><button data-v="en">English</button><button data-v="auto">অটো</button></div></div>
-  <div class="f"><label>ভয়েস-মডেল</label><div class="seg" id="rlModel"><button data-v="tiny">দ্রুত (~৪০MB)</button><button data-v="base">ভালো (~৮০MB)</button></div></div>
-  <div class="f"><label>ক্যাপশন স্টাইল</label><div class="seg" id="rlStyle"><button data-v="neon">নিয়ন</button><button data-v="gold">গোল্ড</button><button data-v="pop">পপ</button><button data-v="clean">ক্লিন</button></div></div>
-  <div class="f"><label>ক্যাপশনের জায়গা</label><div class="seg" id="rlPos"><button data-v="bottom">নিচে</button><button data-v="mid">মাঝখানে</button></div></div>
-  <div class="f"><label>ক্যাপশন / ট্রান্সক্রিপ্ট</label><textarea id="rlTxt" rows="4" placeholder="এখানে .srt/.vtt টেক্সট পেস্ট করুন, অথবা সাধারণ লেখা দিন (সময় ছাড়া দিলে পুরো ভিডিওতে সমানভাবে ভাগ হবে)"></textarea><label class="file" style="margin-top:6px"><input type="file" accept=".srt,.vtt,.txt" id="rlSub"><span class="btn o sm">সাবটাইটেল ফাইল (.srt / .vtt)</span></label></div>
-  <button class="btn" id="rlBuild">${ic('sparkle',17)} ক্লিপ বানান</button></div>
+  <div class="rl-st"><span><b>১</b>ভিডিও</span><span><b>২</b>স্টাইল</span><span><b>৩</b>ডাউনলোড</span></div>
+  <label class="rl-drop"><input type="file" accept="video/*" id="rlFile">${ic('film')}<b>ভিডিও বাছুন</b><small>গ্যালারি থেকে • MP4 ভিডিও</small></label>
+  <p class="hint" id="rlInfo" style="margin:8px 0 0;text-align:center">এখনো ভিডিও বাছা হয়নি।</p>
+  <video id="rlVid" playsinline preload="auto" controls style="display:none;width:100%;max-height:220px;border-radius:14px;background:#000;margin-top:10px"></video>
+  <div class="panel" style="margin-top:12px">
+  <div class="f"><label>ক্লিপের দৈর্ঘ্য</label><div class="seg" id="rlLen"><button data-v="20">২০ সেকেন্ড</button><button data-v="25">২৫ সেকেন্ড</button><button data-v="30">৩০ সেকেন্ড</button></div></div>
+  <div class="f"><label>ক্যাপশন স্টাইল</label><div class="seg rlsty" id="rlStyle"><button data-v="neon"><i style="background:#00f5d4"></i>নিয়ন</button><button data-v="gold"><i style="background:#ffd24a"></i>গোল্ড</button><button data-v="pop"><i style="background:#ff3d71"></i>পপ</button><button data-v="clean"><i style="background:#e11d48;outline:1px solid #ddd"></i>ক্লিন</button></div></div>
+  <div class="f"><label>অটো ক্যাপশন (ভয়েস শুনে নিজে লিখবে)</label><div class="seg" id="rlAuto"><button data-v="yes">চালু</button><button data-v="no">বন্ধ</button></div></div>
+  <details class="rl-more"><summary>আরও সেটিংস</summary>
+   <div class="f"><label>ভিডিওর ভাষা</label><div class="seg" id="rlLang"><button data-v="bn">বাংলা</button><button data-v="en">English</button><button data-v="auto">অটো</button></div></div>
+   <div class="f"><label>ভয়েস-মডেল</label><div class="seg" id="rlModel"><button data-v="tiny">দ্রুত (~৪০MB)</button><button data-v="base">ভালো (~৮০MB)</button></div></div>
+   <div class="f"><label>ক্যাপশনের জায়গা</label><div class="seg" id="rlPos"><button data-v="bottom">নিচে</button><button data-v="mid">মাঝখানে</button></div></div>
+   <div class="f"><label>নিজের ক্যাপশন / ট্রান্সক্রিপ্ট</label><textarea id="rlTxt" rows="4" placeholder="এখানে .srt/.vtt টেক্সট পেস্ট করুন, অথবা সাধারণ লেখা দিন (সময় ছাড়া দিলে পুরো ভিডিওতে সমানভাবে ভাগ হবে)"></textarea><label class="file" style="margin-top:6px"><input type="file" accept=".srt,.vtt,.txt" id="rlSub"><span class="btn o sm">সাবটাইটেল ফাইল (.srt / .vtt)</span></label></div>
+  </details>
+  <button class="btn" id="rlBuild">${ic('sparkle',17)} ক্লিপ তৈরি করুন</button></div>
   <div id="rlClips" style="margin-top:12px"></div><canvas id="rlCv" width="360" height="640"></canvas><div class="rlst" id="rlSt"></div><div id="rlOut"></div>
-  <div class="steps"><b>${ic('info',15)} লিংক থেকে কাটা যায় না কেন?</b><br>ইউটিউব, টিকটক, ফেসবুক বা ইনস্টাগ্রামের লিংক থেকে ভিডিও নামানো ব্রাউজারের ভেতরে সম্ভব নয় (ওই সাইটগুলো তা আটকে রাখে), আর অন্যের ভিডিও কপিরাইটের আওতায় পড়ে। তাই নিজের ভিডিও ফাইল গ্যালারি থেকে দিন।<br><br><b>অটো ক্যাপশন:</b> ভিডিওর কথা শুনে নিজে লেখে (একবার ইন্টারনেটে ভয়েস-মডেল নামে, পরে ফোনে সেভ থাকে)। বাংলায় নিখুঁত নাও হতে পারে, তাই লেখাটা ক্যাপশনের ঘরে দেখে ঠিক করে নিতে পারবেন। প্রতিটি ক্লিপ শুনতে ও বানাতে ক্লিপের সমান সময় লাগে; ক্রোমে সবচেয়ে ভালো চলে।</div>`;
+  <details class="steps"><summary style="cursor:pointer;font-weight:700">${ic('info',15)} জানার বিষয়</summary><br><b>লিংক থেকে কাটা যায় না কেন?</b><br>ইউটিউব, টিকটক, ফেসবুক বা ইনস্টাগ্রামের লিংক থেকে ভিডিও নামানো ব্রাউজারের ভেতরে সম্ভব নয় (ওই সাইটগুলো তা আটকে রাখে), আর অন্যের ভিডিও কপিরাইটের আওতায় পড়ে। তাই নিজের ভিডিও ফাইল গ্যালারি থেকে দিন।<br><br><b>অটো ক্যাপশন:</b> ভিডিওর কথা শুনে নিজে লেখে (একবার ইন্টারনেটে ভয়েস-মডেল নামে, পরে ফোনে সেভ থাকে)। বাংলায় নিখুঁত নাও হতে পারে, তাই লেখাটা "আরও সেটিংস"-এর ক্যাপশনের ঘরে দেখে ঠিক করে নিতে পারবেন। প্রতিটি ক্লিপ শুনতে ও বানাতে ক্লিপের সমান সময় লাগে; ক্রোমে সবচেয়ে ভালো চলে।</details>`;
   segG('rlLen',()=>RL.len,x=>{RL.len=+x;if(RL.dur){buildClips();drawClips()}});segG('rlStyle',()=>RL.style,x=>RL.style=x);segG('rlPos',()=>RL.pos,x=>RL.pos=x);segG('rlAuto',()=>RL.autoOn,x=>RL.autoOn=x);segG('rlLang',()=>RL.lang,x=>RL.lang=x);segG('rlModel',()=>RL.model,x=>RL.model=x);
   $('#rlFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const vid=$('#rlVid');if(RL.url)URL.revokeObjectURL(RL.url);RL.url=URL.createObjectURL(f);vid.src=RL.url;
     vid.onerror=()=>{vid.style.display='none';$('#rlInfo').textContent='এই ভিডিও ফরম্যাট ব্রাউজারে চলছে না — MP4 (H.264) ভিডিও দিন।'};
@@ -1671,8 +1765,8 @@ function shrinkImg(src,max,q){return new Promise(res=>{const i=new Image();i.onl
 let FOL=null,FEED=[],feedTab='all',userV='',PC={};
 async function loadFol(){if(!dbOn())return FOL=new Set();const r=await dbGet('following/'+myUid(),'?shallow=true');return FOL=new Set(Object.keys(r||{}))}
 async function syncUser(){const av=profile.logoData?await shrinkImg(profile.logoData,96,.7):'';await fetch(dbu('users/'+myUid()),{method:'PUT',body:JSON.stringify({name:myName(),tag:profile.tag||'',av,t:Date.now()})}).catch(()=>{});return av}
-async function publishPost(img,cap){const av=await syncUser(),id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);
-  const r=await fetch(dbu('posts/'+id),{method:'PUT',body:JSON.stringify({uid:myUid(),name:myName(),av,img,cap:(cap||'').slice(0,200),t:Date.now()})});if(!r.ok)throw new Error('post');
+async function publishPost(img,cap,meta){const av=await syncUser(),id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+  const r=await fetch(dbu('posts/'+id),{method:'PUT',body:JSON.stringify({uid:myUid(),name:myName(),av,img,cap:(cap||'').slice(0,200),t:Date.now(),...(meta||{})})});if(!r.ok)throw new Error('post');
   dbPut('counts/'+myUid()+'/posts',INC);return id}
 async function delPost(id,u){await dbDel('posts/'+id);dbDel('reports/'+id);fetch(dbu('counts/'+u+'/posts'),{method:'PUT',body:JSON.stringify({'.sv':{increment:-1}})}).catch(()=>{})}
 async function toggleFollow(u){const me=myUid();if(!FOL)await loadFol();if(FOL.has(u)){FOL.delete(u);await Promise.all([dbDel(`following/${me}/${u}`),dbDel(`followers/${u}/${me}`)])}else{FOL.add(u);syncUser();await Promise.all([dbPut(`following/${me}/${u}`,true),dbPut(`followers/${u}/${me}`,true)])}}
@@ -1680,21 +1774,29 @@ async function commData(u){const[cnt,fr,fg,ps]=await Promise.all([dbGet('counts/
   const list=Object.entries(ps||{}).map(([id,p])=>({id,...p})).sort((a,b)=>b.t-a.t);return{posts:Math.max(Number(cnt)||0,list.length),followers:Object.keys(fr||{}).length,following:Object.keys(fg||{}).length,list}}
 const avHtml=(av,n)=>av?`<img class="av" src="${av}">`:`<span class="av">${hx((n||'?').charAt(0))}</span>`;
 function viewPost(p){if(!p)return;const m=$('#pvM'),b=m.querySelector('.mbox'),own=p.uid===myUid()||isAdmin();
-  b.innerHTML=`${p.cap?`<p style="margin:0 0 8px;font-size:15px;line-height:1.6;text-align:left;white-space:pre-wrap">${hx(p.cap)}</p>`:''}<img src="${p.img}" style="width:100%;border-radius:12px;max-height:58vh;object-fit:contain"><div style="height:10px"></div><button class="btn o" id="pvSave">${ic('download',16)} ছবি সেভ করুন</button><div style="height:8px"></div>${own?'<button class="btn o" id="pvDel" style="color:#c62828;border-color:#c62828">মুছুন</button><div style="height:8px"></div>':''}<button class="btn" id="pvX">বন্ধ করুন</button>`;
-  $('#pvX').onclick=()=>m.classList.remove('on');$('#pvSave').onclick=()=>savePostImg(p);const d=$('#pvDel');if(d)d.onclick=async()=>{if(confirm('পোস্টটি মুছবেন?')){await delPost(p.id,p.uid);m.classList.remove('on');toast('মুছে ফেলা হয়েছে');if($('#v-prof').classList.contains('on'))loadMyStats();if($('#v-feed').classList.contains('on'))loadFeed();if($('#v-user').classList.contains('on'))drawUser()}};
+  b.innerHTML=`${p.cap?`<p style="margin:0 0 8px;font-size:15px;line-height:1.6;text-align:left;white-space:pre-wrap">${hx(p.cap)}</p>`:''}<img src="${p.img}" style="width:100%;border-radius:12px;max-height:58vh;object-fit:contain"><div style="height:10px"></div>${p.tpl?'<button class="btn" id="pvEdit">'+ic('pen',16)+' এই টেমপ্লেটে এডিট করুন</button><div style="height:8px"></div>':''}<button class="btn o" id="pvCm">${ic('chat',16)} কমেন্ট দেখুন ও লিখুন</button><div style="height:8px"></div><button class="btn o" id="pvSave">${ic('download',16)} ছবি সেভ করুন</button><div style="height:8px"></div>${own?'<button class="btn o" id="pvDel" style="color:#c62828;border-color:#c62828">মুছুন</button><div style="height:8px"></div>':''}<button class="btn" id="pvX">বন্ধ করুন</button>`;
+  $('#pvX').onclick=()=>m.classList.remove('on');$('#pvSave').onclick=()=>savePostImg(p);$('#pvCm').onclick=()=>{m.classList.remove('on');openComments(p.id)};const pe=$('#pvEdit');if(pe)pe.onclick=()=>{m.classList.remove('on');editFromPost(p)};const d=$('#pvDel');if(d)d.onclick=async()=>{if(confirm('পোস্টটি মুছবেন?')){await delPost(p.id,p.uid);m.classList.remove('on');toast('মুছে ফেলা হয়েছে');if($('#v-prof').classList.contains('on'))loadMyStats();if($('#v-feed').classList.contains('on'))loadFeed();if($('#v-user').classList.contains('on'))drawUser()}};
   m.classList.add('on')}
 $('#pvM').onclick=e=>{if(e.target.id==='pvM')e.target.classList.remove('on')};$('#postM').onclick=e=>{if(e.target.id==='postM')e.target.classList.remove('on')};
-function openPostSheet(img){
+function openPostSheet(img,meta){
   if(!dbOn())return toast('কমিউনিটি এখনো চালু নয় (dbUrl দিন)');
-  const m=$('#postM'),b=m.querySelector('.mbox');let cur=img||'',cap='';
-  const draw=()=>{b.innerHTML=`<h3 style="margin-bottom:6px">${ic('users',18)} নতুন পোস্ট</h3>${cur?`<img src="${cur}" style="width:100%;max-height:300px;object-fit:contain;border-radius:12px;background:#0001;margin:6px 0">`:''}<label class="file"><input type="file" accept="image/*" id="poF"><span class="btn o sm">${ic('image',15)} ${cur?'অন্য ছবি বাছুন':'গ্যালারি থেকে ডিজাইন বাছুন'}</span></label><div class="f" style="margin-top:8px"><textarea id="poC" rows="2" maxlength="200" placeholder="ক্যাপশন লিখুন (ঐচ্ছিক)">${hx(cap)}</textarea></div><p class="hint" style="margin-bottom:10px">পোস্ট সবার জন্য খোলা থাকবে (আপনার নাম ও লোগোসহ)। অন্যের ডিজাইন/কপিরাইট বা আপত্তিকর ছবি দেবেন না।</p><button class="btn" id="poGo"${cur?'':' disabled'}>পোস্ট করুন</button><div style="height:8px"></div><button class="btn o" id="poX">বন্ধ করুন</button>`;
-    $('#poC').oninput=e=>cap=e.target.value;
+  const m=$('#postM'),b=m.querySelector('.mbox');let cur=img||'',cap='',pcat=(meta&&meta.cat)||'other',allow=true;
+  const draw=()=>{b.innerHTML=`<h3 style="margin-bottom:6px">${ic('users',18)} নতুন পোস্ট</h3>${cur?`<img src="${cur}" style="width:100%;max-height:300px;object-fit:contain;border-radius:12px;background:#0001;margin:6px 0">`:''}<label class="file"><input type="file" accept="image/*" id="poF"><span class="btn o sm">${ic('image',15)} ${cur?'অন্য ছবি বাছুন':'গ্যালারি থেকে ডিজাইন বাছুন'}</span></label><div class="f" style="margin-top:8px"><textarea id="poC" rows="2" maxlength="200" placeholder="ক্যাপশন লিখুন (ঐচ্ছিক)">${hx(cap)}</textarea></div><div class="chips" id="poCat" style="margin:8px 0">${FCATS.slice(1).map(([k,l])=>`<button class="chip ${pcat===k?'on':''}" data-c="${k}">${l}</button>`).join('')}</div>${meta&&meta.tpl?`<label style="display:flex;gap:8px;align-items:center;font-size:13px;margin-bottom:8px"><input type="checkbox" id="poAllow" ${allow?'checked':''}> অন্যরা এই টেমপ্লেটে এডিট করে নিজের নামে ডাউনলোড করতে পারবে</label>`:''}<p class="hint" style="margin-bottom:10px">পোস্ট সবার জন্য খোলা থাকবে (আপনার নাম ও লোগোসহ)। অন্যের ডিজাইন/কপিরাইট বা আপত্তিকর ছবি দেবেন না।</p><button class="btn" id="poGo"${cur?'':' disabled'}>পোস্ট করুন</button><div style="height:8px"></div><button class="btn o" id="poX">বন্ধ করুন</button>`;
+    $('#poC').oninput=e=>cap=e.target.value;$$('#poCat .chip').forEach(c=>c.onclick=()=>{pcat=c.dataset.c;$$('#poCat .chip').forEach(x=>x.classList.toggle('on',x===c))});const pa=$('#poAllow');if(pa)pa.onchange=()=>allow=pa.checked;
     $('#poF').onchange=async e=>{const f=e.target.files[0];if(f){cur=await shrinkImg(await fileURL(f),800,.72);draw()}};
     $('#poX').onclick=()=>m.classList.remove('on');
-    $('#poGo').onclick=async()=>{if(!cur)return;const g=$('#poGo');g.disabled=true;g.textContent='পোস্ট হচ্ছে…';try{if(cur.length>290000)cur=await shrinkImg(cur,640,.6);await publishPost(cur,cap);m.classList.remove('on');toast('পোস্ট হয়েছে');if($('#v-feed').classList.contains('on'))loadFeed();if($('#v-prof').classList.contains('on'))loadMyStats()}catch(e){toast('পোস্ট হয়নি, আবার চেষ্টা করুন');g.disabled=false;g.textContent='পোস্ট করুন'}}};
+    $('#poGo').onclick=async()=>{if(!cur)return;const g=$('#poGo');g.disabled=true;g.textContent='পোস্ট হচ্ছে…';try{if(cur.length>290000)cur=await shrinkImg(cur,640,.6);await publishPost(cur,cap,Object.assign({cat:pcat},allow&&meta&&meta.tpl?{tpl:meta.tpl,tn:meta.tn,st:meta.st}:{}));m.classList.remove('on');toast('পোস্ট হয়েছে');if($('#v-feed').classList.contains('on'))loadFeed();if($('#v-prof').classList.contains('on'))loadMyStats()}catch(e){toast('পোস্ট হয়নি, আবার চেষ্টা করুন');g.disabled=false;g.textContent='পোস্ট করুন'}}};
   draw();m.classList.add('on')}
-async function postFromEditor(){const out=document.createElement('canvas');render(out,S,720);watermark(out);openPostSheet(await shrinkImg(out.toDataURL('image/png'),800,.78))}
-const nLikes=p=>Object.keys(p.likes||{}).length,nCm=p=>Object.keys(p.comments||{}).length,isLiked=p=>!!(p.likes&&p.likes[myUid()]);
+async function postFromEditor(){const out=document.createElement('canvas');render(out,S,720);watermark(out);const t=tplById(S.tpl),{logo,photo,product,logoData,photoData,productData,...st}=S;openPostSheet(await shrinkImg(out.toDataURL('image/png'),800,.78),{tpl:S.tpl,tn:t?t.name:'',cat:(t&&t.cat)||'other',st})}
+const FCATS=[['all','সব'],['news','নিউজ'],['thumb','থাম্বনেইল'],['sticker','স্টিকার'],['ad','বিজ্ঞাপন'],['other','অন্যান্য']];
+async function editFromPost(p){const t=tplById(p.tpl);if(!t)return toast('এই টেমপ্লেটটি আর নেই');
+  if(locked(t)){$('#mPrice').textContent=CFG.price;$('#modal').classList.add('on');return}
+  const st={...newState(t),...(p.st||{}),tpl:t.id,logo:null,photo:null,product:null,photoData:null,productData:null,logoData:profile.logoData,author:profile.author||'',tag:profile.tag||'',contact:profile.contact||''};
+  st.logo=await loadImg(st.logoData);await openEditor(t,st);toast('এডিট করে নিজের নামে ডাউনলোড করুন ✔')}
+const bmList=()=>LS.get('cs_bm',[]);
+function toggleBm(id){let l=bmList();const on=l.includes(id);l=on?l.filter(x=>x!==id):[id,...l].slice(0,60);LS.set('cs_bm',l);document.querySelectorAll('.pcard[data-pid="'+id+'"] [data-a="bm"]').forEach(b=>b.classList.toggle('on',!on));toast(on?'সেভড থেকে সরানো হয়েছে':'সেভড পোস্টে রাখা হয়েছে ✔')}
+async function sharePost(p){const url=location.href.split('#')[0],txt=(p.cap?p.cap+'\n':'')+CFG.appName+' কমিউনিটিতে দেখুন';try{if(navigator.share)await navigator.share({title:CFG.appName,text:txt,url});else{await navigator.clipboard.writeText(txt+' '+url);toast('লিংক কপি হয়েছে')}}catch(e){}}
+const nLikes=p=>Object.keys(p.likes||{}).length,nCm=p=>Object.values(p.comments||{}).reduce((a,c)=>a+1+Object.keys((c&&c.replies)||{}).length,0),isLiked=p=>!!(p.likes&&p.likes[myUid()]);
 const rulesMsg='সেভ হয়নি — Firebase Rules-এ posts-এর ভেতরে লেখার অনুমতি দিন';
 function updPost(p){document.querySelectorAll('.pcard[data-pid="'+p.id+'"]').forEach(card=>{const l=card.querySelector('[data-a="like"]'),c=card.querySelector('[data-a="cmt"]');if(l){l.classList.toggle('on',isLiked(p));l.querySelector('span').textContent=bnN(nLikes(p))}if(c)c.querySelector('span').textContent=bnN(nCm(p))})}
 async function toggleLike(id){const p=FEED.find(x=>x.id===id);if(!p)return;const me=myUid(),on=isLiked(p);p.likes=p.likes||{};
@@ -1702,42 +1804,96 @@ async function toggleLike(id){const p=FEED.find(x=>x.id===id);if(!p)return;const
   try{const r=await fetch(dbu('posts/'+id+'/likes/'+me),on?{method:'DELETE'}:{method:'PUT',body:'true'});if(!r.ok)throw 0}
   catch(e){if(on)p.likes[me]=true;else delete p.likes[me];updPost(p);toast(rulesMsg)}}
 function savePostImg(p){if(!p)return;const a=document.createElement('a');a.href=p.img;a.download='card-'+p.id+'.jpg';document.body.appendChild(a);a.click();a.remove();toast('ছবি সেভ হচ্ছে ✔')}
-async function openComments(id){const p=FEED.find(x=>x.id===id),m=$('#cmM'),b=m.querySelector('.mbox');if(!p)return;
-  b.innerHTML=`<h3 style="margin-bottom:8px">${ic('chat',18)} কমেন্ট</h3><div class="cmlist" id="cmL">${skRows(3)}</div><div style="display:flex;gap:8px"><input type="text" id="cmI" placeholder="কমেন্ট লিখুন…" maxlength="300" style="flex:1;min-width:0;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:16px;background:var(--card);color:var(--tx)"><button class="btn sm" id="cmS">পাঠান</button></div><div style="height:8px"></div><button class="btn o" id="cmX">বন্ধ করুন</button>`;
-  m.classList.add('on');$('#cmX').onclick=()=>m.classList.remove('on');
-  const draw=()=>{const L=$('#cmL');if(!L)return;const a=Object.entries(p.comments||{}).map(([k,v])=>({k,...v})).sort((x,y)=>x.t-y.t);
-    L.innerHTML=a.length?a.map(c=>`<div class="cm"><span class="av">${hx((c.name||'?').charAt(0))}</span><div class="cb"><b>${hx(c.name)}</b><small>${ago(c.t)}</small><p>${hx(c.text)}</p>${c.uid===myUid()||isAdmin()?`<button class="mini d" data-k="${c.k}" style="margin-top:4px">মুছুন</button>`:''}</div></div>`).join(''):'<div class="empty" style="padding:20px">এখনো কোনো কমেন্ট নেই — প্রথম কমেন্ট আপনার</div>';
-    L.scrollTop=L.scrollHeight;
-    L.querySelectorAll('[data-k]').forEach(x=>x.onclick=async()=>{try{const r=await fetch(dbu('posts/'+id+'/comments/'+x.dataset.k),{method:'DELETE'});if(!r.ok)throw 0;delete p.comments[x.dataset.k];draw();updPost(p)}catch(e){toast(rulesMsg)}})};
-  draw();
-  dbGet('posts/'+id+'/comments').then(r=>{if(r&&typeof r==='object'&&!r.error)p.comments=r;else if(r===null)p.comments={};draw();updPost(p)});
-  const send=async()=>{const i=$('#cmI'),t=i.value.trim();if(!t)return;const g=$('#cmS');g.disabled=true;const body={uid:myUid(),name:myName(),text:t.slice(0,300),t:Date.now()};
-    try{const r=await fetch(dbu('posts/'+id+'/comments'),{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw 0;const j=await r.json();p.comments=p.comments||{};p.comments[j.name]=body;i.value='';draw();updPost(p)}catch(e){toast(rulesMsg)}g.disabled=false};
-  $('#cmS').onclick=send;$('#cmI').onkeydown=e=>{if(e.key==='Enter')send()}}
-$('#cmM').onclick=e=>{if(e.target.id==='cmM')e.target.classList.remove('on')};
-function postCard(p,fol){const me=p.uid===myUid();
-  return `<div class="pcard" data-pid="${p.id}"><div class="ph" data-a="user" data-u="${p.uid}">${avHtml(p.av,p.name)}<div><b>${hx(p.name)}</b><small>${ago(p.t)}</small></div>${me?'':`<button class="mini ${fol.has(p.uid)?'on':''}" data-a="fol" data-u="${p.uid}">${fol.has(p.uid)?'ফলোয়িং':'+ ফলো'}</button>`}</div>${p.cap?`<div class="pcap">${hx(p.cap)}</div>`:''}<img class="pim" src="${p.img}" loading="lazy" data-a="img" data-id="${p.id}"><div class="pact"><button data-a="like" data-id="${p.id}" class="${isLiked(p)?'on':''}">${ic('heart',21)}<span>${bnN(nLikes(p))}</span></button><button data-a="cmt" data-id="${p.id}">${ic('chat',21)}<span>${bnN(nCm(p))}</span></button><button data-a="save" data-id="${p.id}">${ic('download',21)}<span>সেভ</span></button><span class="sp"></span><button data-a="rep" data-id="${p.id}" title="রিপোর্ট">${ic('flag',18)}</button>${me||isAdmin()?`<button data-a="del" data-id="${p.id}" data-u="${p.uid}" style="color:#c62828" title="মুছুন">${ic('trash',18)}</button>`:''}</div></div>`}
+let cmtId='',cmtSort='new',CP=null,cmtTimer=null,cmtReply=null;
+function openComments(id){cmtId=id;cmtReply=null;go('cmt')}
+const cPath=(k,rk)=>'posts/'+cmtId+'/comments/'+k+(rk?'/replies/'+rk:'');
+async function drawCmtPage(){
+  const v=$('#v-cmt');v.innerHTML=`<div class="edhead"><button class="back" id="cBack">${ic('back')} কমেন্ট</button></div>${skPosts(1)}`;$('#cBack').onclick=()=>goBack('feed');
+  let p=FEED.find(x=>x.id===cmtId);if(!p){const r=await dbGet('posts/'+cmtId);if(r&&!r.error)p={id:cmtId,...r}}
+  if(!$('#v-cmt').classList.contains('on'))return;
+  if(!p){v.innerHTML=`<div class="edhead"><button class="back" id="cBack">${ic('back')} ফিরুন</button></div><div class="empty">পোস্টটি পাওয়া যায়নি (মুছে ফেলা হয়ে থাকতে পারে)</div>`;$('#cBack').onclick=()=>goBack('feed');return}
+  CP=p;p.comments=p.comments||{};
+  v.innerHTML=`<div class="cmtpad"><div class="edhead"><button class="back" id="cBack">${ic('back')} কমেন্ট</button></div>
+  <div class="pcard" data-pid="${p.id}"><div class="ph" id="cmU">${avHtml(p.av,p.name)}<div><b>${hx(p.name)}</b><small>${ago(p.t)}</small></div></div>${p.cap?`<div class="pcap">${hx(p.cap)}</div>`:''}<img class="pim" src="${p.img}" style="max-height:300px"><div class="pact"><button data-a="like" class="${isLiked(p)?'on':''}" id="cLike">${ic('heart',21)}<span>${bnN(nLikes(p))}</span></button><span style="padding:0 10px;font-size:13px;color:var(--mut)" id="cCnt">${bnN(nCm(p))} কমেন্ট</span></div></div>
+  <div class="seg" id="cSort" style="margin:10px 0"><button data-v="new">নতুন আগে</button><button data-v="top">জনপ্রিয় আগে</button></div>
+  <div id="cmL"></div></div>
+  <div class="cmbar"><div class="rp" id="cRp" style="display:none"></div><div class="row">${avHtml(profile.logoData,myName())}<input type="text" id="cmI" placeholder="কমেন্ট লিখুন…" maxlength="300" autocomplete="off"><button class="sendb" id="cmS" aria-label="পাঠান">${ic('send',22)}</button></div></div>`;
+  $('#cBack').onclick=()=>goBack('feed');$('#cmU').onclick=()=>openUser(p.uid);
+  $('#cLike').onclick=()=>{toggleLike(p.id);setTimeout(()=>{const b=$('#cLike');if(b){b.classList.toggle('on',isLiked(p));b.querySelector('span').textContent=bnN(nLikes(p))}},50)};
+  segG('cSort',()=>cmtSort,x=>{cmtSort=x;drawCm()});
+  const rpUI=()=>{const r=$('#cRp'),i=$('#cmI');if(cmtReply){r.style.display='flex';r.innerHTML=`<span>${hx(cmtReply.name)}-কে রিপ্লাই দিচ্ছেন</span><button id="cRx">✕</button>`;$('#cRx').onclick=()=>{cmtReply=null;rpUI()};i.placeholder='রিপ্লাই লিখুন…';i.focus()}else{r.style.display='none';i.placeholder='কমেন্ট লিখুন…'}};
+  const cLk=c=>Object.keys(c.likes||{}).length,mine=c=>c.likes&&c.likes[myUid()];
+  const item=(c,k,rk,isRp)=>`<div class="cm ${isRp?'rp':''}" data-k="${k}"${rk?` data-r="${rk}"`:''}>${avHtml(c.av,c.name)}<div style="flex:1;min-width:0"><div class="cb"><b>${hx(c.name)}</b>${cLk(c)?`<span class="lk">${ic('heart',11)} ${bnN(cLk(c))}</span>`:''}<p>${hx(c.text)}</p></div><div class="acts"><span>${ago(c.t)}</span><button data-x="lk" class="${mine(c)?'on':''}">লাইক</button>${isRp?'':'<button data-x="rp">রিপ্লাই</button>'}${c.uid===myUid()||isAdmin()?'<button data-x="del">মুছুন</button>':''}</div>${isRp?'':Object.entries(c.replies||{}).sort((a,b)=>a[1].t-b[1].t).map(([r,x])=>item(x,k,r,true)).join('')}</div></div>`;
+  function drawCm(){const L=$('#cmL');if(!L)return;let a=Object.entries(p.comments||{}).map(([k,c])=>({k,c}));
+    a.sort(cmtSort==='top'?(x,y)=>(cLk(y.c)+Object.keys(y.c.replies||{}).length)-(cLk(x.c)+Object.keys(x.c.replies||{}).length)||y.c.t-x.c.t:(x,y)=>y.c.t-x.c.t);
+    L.innerHTML=a.length?a.map(o=>item(o.c,o.k,'',false)).join(''):'<div class="empty" style="padding:30px">এখনো কোনো কমেন্ট নেই — প্রথম কমেন্ট আপনার</div>';
+    const cc=$('#cCnt');if(cc)cc.textContent=bnN(nCm(p))+' কমেন্ট';updPost(p)}
+  drawCm();
+  $('#cmL').onclick=async e=>{const b=e.target.closest('[data-x]');if(!b)return;const w=b.closest('.cm'),k=w.dataset.k,rk=w.dataset.r||'',c=rk?p.comments[k].replies[rk]:p.comments[k],x=b.dataset.x;
+    if(x==='rp'){cmtReply={k,name:c.name};rpUI();return}
+    if(x==='lk'){const me=myUid(),on=!!(c.likes&&c.likes[me]);c.likes=c.likes||{};if(on)delete c.likes[me];else c.likes[me]=true;drawCm();
+      try{const r=await fetch(dbu(cPath(k,rk)+'/likes/'+me),on?{method:'DELETE'}:{method:'PUT',body:'true'});if(!r.ok)throw 0}catch(_){if(on)c.likes[me]=true;else delete c.likes[me];drawCm();toast(rulesMsg)}return}
+    if(x==='del'&&confirm('কমেন্টটি মুছবেন?')){try{const r=await fetch(dbu(cPath(k,rk)),{method:'DELETE'});if(!r.ok)throw 0;if(rk)delete p.comments[k].replies[rk];else delete p.comments[k];drawCm()}catch(_){toast(rulesMsg)}}};
+  const send=async()=>{const i=$('#cmI'),t=i.value.trim();if(!t)return;const g=$('#cmS');g.disabled=true;
+    const body={uid:myUid(),name:myName(),av:profile.logoData?await shrinkImg(profile.logoData,64,.6):'',text:t.slice(0,300),t:Date.now()};
+    try{const rp=cmtReply,r=await fetch(dbu(rp?cPath(rp.k)+'/replies':'posts/'+cmtId+'/comments'),{method:'POST',body:JSON.stringify(body)});if(!r.ok)throw 0;const j=await r.json();
+      if(rp){const c=p.comments[rp.k];if(c){c.replies=c.replies||{};c.replies[j.name]=body}}else p.comments[j.name]=body;
+      i.value='';cmtReply=null;rpUI();drawCm()}catch(e){toast(rulesMsg)}g.disabled=false};
+  $('#cmS').onclick=send;$('#cmI').onkeydown=e=>{if(e.key==='Enter')send()};
+  const refresh=async()=>{if(!$('#v-cmt').classList.contains('on')||document.hidden||document.activeElement===$('#cmI')&&$('#cmI').value)return;const r=await dbGet('posts/'+cmtId+'/comments');if(r&&typeof r==='object'&&!r.error)p.comments=r;else if(r===null)p.comments={};if($('#v-cmt').classList.contains('on'))drawCm()};
+  refresh();clearInterval(cmtTimer);cmtTimer=setInterval(()=>{if(!$('#v-cmt').classList.contains('on'))clearInterval(cmtTimer);else refresh()},8000)}
+function postCard(p,fol){const me=p.uid===myUid(),own=me||isAdmin(),isNew=Date.now()-p.t<864e5;
+  return `<div class="pcard" data-pid="${p.id}"><div class="ph" data-a="user" data-u="${p.uid}">${avHtml(p.av,p.name)}<div><b>${hx(p.name)}</b><small>${ago(p.t)}${isNew?' • নতুন':''}</small></div>${me?'':`<button class="mini ${fol.has(p.uid)?'on':''}" data-a="fol" data-u="${p.uid}">${fol.has(p.uid)?'ফলোয়িং':'+ ফলো'}</button>`}<button class="dotb" data-a="menu" data-id="${p.id}" aria-label="আরও">${ic('dots',20)}</button></div>
+  <div class="pmenu" id="pm-${p.id}"><button data-a="copy" data-id="${p.id}">${ic('share',16)} লিংক কপি</button><button data-a="rep" data-id="${p.id}">${ic('flag',16)} রিপোর্ট</button>${own?`<button data-a="del" data-id="${p.id}" data-u="${p.uid}" style="color:#c62828">${ic('trash',16)} মুছুন</button>`:''}</div>
+  ${p.cap?`<div class="pcap">${hx(p.cap)}</div>`:''}${p.tpl?`<div class="ptag">${ic('layers',12)} ${hx(p.tn||'টেমপ্লেট')}</div>`:''}<img class="pim" src="${p.img}" loading="lazy" data-a="img" data-id="${p.id}">
+  <div class="pact"><button data-a="like" data-id="${p.id}" class="${isLiked(p)?'on':''}">${ic('heart',21)}<span>${bnN(nLikes(p))}</span></button><button data-a="cmt" data-id="${p.id}">${ic('chat',21)}<span>${bnN(nCm(p))}</span></button>${p.tpl?`<button data-a="edit" data-id="${p.id}" style="color:var(--g)">${ic('pen',19)}<span>এডিট</span></button>`:''}<button data-a="save" data-id="${p.id}" title="ছবি ডাউনলোড">${ic('download',20)}</button><button data-a="share" data-id="${p.id}" title="শেয়ার">${ic('share',20)}</button><span class="sp"></span><button data-a="bm" data-id="${p.id}" class="${bmList().includes(p.id)?'on':''}" title="সেভ রাখুন">${ic('bm',20)}</button></div></div>`}
+let feedCat='all',feedQ='';
 function drawFeed(){
   const v=$('#v-feed');
   if(!dbOn()){v.innerHTML=`<h2>${ic('users',20)} কমিউনিটি</h2><div class="steps">কমিউনিটি চালু করতে ফাইলের শুরুতে <code>dbUrl</code> বসান।</div>`;return}
-  v.innerHTML=`<div class="edhead"><button class="back" id="fBack">${ic('back')} হোম</button></div><h2>${ic('users',20)} কমিউনিটি</h2><div style="display:flex;gap:8px;margin-bottom:10px"><div class="seg" id="fSeg" style="flex:1"><button data-v="all">সব পোস্ট</button><button data-v="fol">ফলোয়িং</button></div><button class="btn sm" id="fNew" style="white-space:nowrap">+ পোস্ট</button></div><div id="fList">${skPosts(3)}</div>`;
-  $('#fBack').onclick=()=>go('home');segG('fSeg',()=>feedTab,x=>{feedTab=x;loadFeed()});$('#fNew').onclick=()=>openPostSheet();
-  $('#fList').onclick=async e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,id=t.dataset.id,u=t.dataset.u;
-    if(a==='user')return openUser(u);if(a==='img')return viewPost(FEED.find(p=>p.id===id));if(a==='like')return toggleLike(id);if(a==='cmt')return openComments(id);if(a==='save')return savePostImg(FEED.find(p=>p.id===id));
-    if(a==='fol'){await toggleFollow(u);return loadFeed()}
+  v.innerHTML=`<div class="edhead"><button class="back" id="fBack">${ic('back')} হোম</button><button class="mini" id="fRef">${ic('refresh',14)} রিফ্রেশ</button></div><h2>${ic('users',20)} কমিউনিটি</h2>
+  <div id="fCre"></div>
+  <div class="seg" id="fSeg" style="margin-bottom:10px"><button data-v="all">সব</button><button data-v="trend">ট্রেন্ডিং</button><button data-v="fol">ফলোয়িং</button><button data-v="saved">সেভড</button></div>
+  <div style="display:flex;gap:8px;margin-bottom:8px"><div class="sbox" style="flex:1;margin:0"><svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="text" id="fQ" placeholder="পোস্ট বা নাম খুঁজুন…" value="${hx(feedQ)}" autocomplete="off"></div><button class="btn sm" id="fNew" style="white-space:nowrap;width:auto">+ পোস্ট</button></div>
+  <div class="chips" id="fCat">${FCATS.map(([k,l])=>`<button class="chip ${feedCat===k?'on':''}" data-c="${k}">${l}</button>`).join('')}</div>
+  <details class="steps" style="margin:0 0 12px;padding:10px 14px"><summary style="cursor:pointer;font-weight:700;font-size:13px">${ic('shield',14)} কমিউনিটি নিয়ম</summary><div style="font-size:12.5px;line-height:1.8;margin-top:6px">• নিজের বানানো ডিজাইন শেয়ার করুন, অন্যের কপিরাইট ভাঙবেন না।<br>• আপত্তিকর ছবি/লেখা দিলে রিপোর্ট করা যায়, অ্যাডমিন মুছে দেন।<br>• পোস্টে "এডিট" বাটন থাকলে যে কেউ ওই টেমপ্লেটে নিজের নামে বানাতে পারবে।</div></details>
+  <div id="fList">${skPosts(3)}</div>`;
+  $('#fBack').onclick=()=>goBack('home');$('#fRef').onclick=()=>{toast('রিফ্রেশ হচ্ছে');loadFeed()};$('#fNew').onclick=()=>openPostSheet();
+  segG('fSeg',()=>feedTab,x=>{feedTab=x;renderFeed()});
+  $$('#fCat .chip').forEach(c=>c.onclick=()=>{feedCat=c.dataset.c;$$('#fCat .chip').forEach(x=>x.classList.toggle('on',x===c));renderFeed()});
+  $('#fQ').oninput=e=>{feedQ=e.target.value;clearTimeout(drawFeed.t);drawFeed.t=setTimeout(renderFeed,250)};
+  $('#fList').onclick=async e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,id=t.dataset.id,u=t.dataset.u,pp=()=>FEED.find(p=>p.id===id);
+    if(a==='menu'){const m=$('#pm-'+id),on=m.classList.contains('on');$$('.pmenu.on').forEach(x=>x.classList.remove('on'));if(!on)m.classList.add('on');return}
+    $$('.pmenu.on').forEach(x=>x.classList.remove('on'));
+    if(a==='user')return openUser(u);if(a==='img')return viewPost(pp());if(a==='like')return toggleLike(id);if(a==='cmt')return openComments(id);if(a==='save')return savePostImg(pp());
+    if(a==='edit')return editFromPost(pp());if(a==='bm'){toggleBm(id);if(feedTab==='saved')renderFeed();return}if(a==='share')return sharePost(pp());
+    if(a==='copy'){try{await navigator.clipboard.writeText(location.href.split('#')[0]);toast('লিংক কপি হয়েছে')}catch(_){toast('কপি করা যায়নি')}return}
+    if(a==='fol'){await toggleFollow(u);return renderFeed()}
     if(a==='rep'){dbPut('reports/'+id+'/'+myUid(),true);return toast('রিপোর্ট করা হয়েছে, ধন্যবাদ')}
     if(a==='del'&&confirm('পোস্টটি মুছবেন?')){await delPost(id,u);loadFeed()}};
+  if(!drawFeed.once){drawFeed.once=1;document.addEventListener('click',e=>{if(!e.target.closest('.pmenu,.dotb'))$$('.pmenu.on').forEach(x=>x.classList.remove('on'))})}
   loadFeed()}
 async function loadFeed(){
-  const L=$('#fList');if(!L)return;const[ps,fol]=await Promise.all([dbGet('posts','?orderBy=%22%24key%22&limitToLast=40'),loadFol()]);
-  let a=Object.entries(ps||{}).map(([id,p])=>({id,...p})).sort((x,y)=>y.t-x.t);FEED=a;if(feedTab==='fol')a=a.filter(p=>fol.has(p.uid));
-  L.innerHTML=a.length?a.map(p=>postCard(p,fol)).join(''):`<div class="empty">${feedTab==='fol'?'আপনি যাদের ফলো করেন তাদের পোস্ট এখানে আসবে':'এখনো কোনো পোস্ট নেই — প্রথম পোস্টটা আপনিই করুন'}</div>`}
+  const L=$('#fList');if(!L)return;const[ps]=await Promise.all([dbGet('posts','?orderBy=%22%24key%22&limitToLast=40'),loadFol()]);
+  FEED=Object.entries(ps||{}).filter(([id,p])=>p&&p.img).map(([id,p])=>({id,...p})).sort((x,y)=>y.t-x.t);renderFeed()}
+async function renderFeed(){
+  const L=$('#fList');if(!L)return;const fol=FOL||new Set();let a=[...FEED];
+  if(feedTab==='saved'){const ids=bmList(),have=new Set(a.map(p=>p.id)),miss=await Promise.all(ids.filter(i=>!have.has(i)).slice(0,20).map(async i=>{const r=await dbGet('posts/'+i);return r&&r.img?{id:i,...r}:null}));miss.filter(Boolean).forEach(p=>FEED.push(p));a=FEED.filter(p=>ids.includes(p.id));if(!$('#fList'))return}
+  else if(feedTab==='fol')a=a.filter(p=>fol.has(p.uid));
+  else if(feedTab==='trend')a.sort((x,y)=>(nLikes(y)*2+nCm(y)*3)-(nLikes(x)*2+nCm(x)*3)||y.t-x.t);
+  if(feedCat!=='all')a=a.filter(p=>(p.cat||'other')===feedCat);
+  const q=feedQ.trim().toLowerCase();if(q)a=a.filter(p=>(p.name||'').toLowerCase().includes(q)||(p.cap||'').toLowerCase().includes(q)||(p.tn||'').toLowerCase().includes(q));
+  const cre=$('#fCre');if(cre){const m={};FEED.forEach(p=>{const o=m[p.uid]||(m[p.uid]={uid:p.uid,name:p.name,av:p.av,sc:0});o.sc+=1+nLikes(p)+nCm(p)});const top=Object.values(m).sort((x,y)=>y.sc-x.sc).slice(0,8);
+    cre.innerHTML=top.length>=2&&feedTab==='all'&&feedCat==='all'&&!q?`<div class="hint" style="margin:0 0 6px;font-weight:700">${ic('sparkle',13)} সক্রিয় ক্রিয়েটর</div><div class="cre">${top.map(c=>`<div data-u="${c.uid}">${avHtml(c.av,c.name)}<span>${hx(c.name)}</span></div>`).join('')}</div>`:'';
+    cre.querySelectorAll('[data-u]').forEach(x=>x.onclick=()=>openUser(x.dataset.u))}
+  const msg={fol:'আপনি যাদের ফলো করেন তাদের পোস্ট এখানে আসবে',saved:'পোস্টের নিচের বুকমার্ক চাপলে এখানে জমা থাকবে'}[feedTab]||(q||feedCat!=='all'?'এই ফিল্টারে কোনো পোস্ট নেই':'এখনো কোনো পোস্ট নেই — প্রথম পোস্টটা আপনিই করুন');
+  L.innerHTML=a.length?a.map(p=>postCard(p,fol)).join(''):`<div class="empty">${msg}</div>`}
 function openUser(u){if(u===myUid())return go('prof');userV=u;go('user')}
 async function drawUser(){
   const v=$('#v-user'),u=userV;v.innerHTML=skUser();
   const[usr,d,fol]=await Promise.all([dbGet('users/'+u),commData(u),loadFol()]),f=fol.has(u);
   v.innerHTML=`<div class="edhead"><button class="back" id="uBack">${ic('back')} কমিউনিটি</button></div><div class="uhead">${avHtml(usr&&usr.av,usr&&usr.name)}<b style="font-size:18px">${hx(usr&&usr.name||'ব্যবহারকারী')}</b><div class="hint">${hx(usr&&usr.tag||'')}</div></div><div class="pstats"><div><b>${d.posts}</b>পোস্ট</div><div><b id="uF">${d.followers}</b>ফলোয়ার</div><div><b>${d.following}</b>ফলোয়িং</div></div><button class="btn${f?' o':''}" id="uFol" style="margin-bottom:12px">${f?'ফলোয়িং ✔':'+ ফলো করুন'}</button>${d.list.length?`<div class="pgrid">${d.list.map(p=>`<img src="${p.img}" data-id="${p.id}">`).join('')}</div>`:'<div class="empty">এখনো কোনো পোস্ট নেই</div>'}`;
-  $('#uBack').onclick=()=>go('feed');$('#uFol').onclick=async()=>{await toggleFollow(u);drawUser()};
+  $('#uBack').onclick=()=>goBack('feed');$('#uFol').onclick=async()=>{await toggleFollow(u);drawUser()};
   $$('#v-user .pgrid img').forEach(i=>i.onclick=()=>viewPost(d.list.find(p=>p.id===i.dataset.id)))}
 async function loadMyStats(){
   const P=$('#pPosts');if(!P)return;if(!dbOn()){P.innerHTML='<div class="hint" style="text-align:center">কমিউনিটি এখনো চালু নয়</div>';return}
@@ -1751,14 +1907,116 @@ async function loadMod(){
   el.innerHTML=head+ids.map((id,k)=>ps[k]?`<div class="evr"><img src="${ps[k].img}" style="width:54px;height:54px;object-fit:cover;border-radius:8px"><div style="flex:1;min-width:0"><b>${hx(ps[k].name)}</b><br><small>${hx(ps[k].cap||'')}</small></div><button class="mini d" data-id="${id}" data-u="${ps[k].uid}">মুছুন</button></div>`:'').join('');
   el.querySelectorAll('[data-id]').forEach(b=>b.onclick=async()=>{await delPost(b.dataset.id,b.dataset.u);loadMod()})}
 
+/* ============ লাইভ চ্যাট (ইউজার ↔ অ্যাডমিন) ============ */
+let SKEW=null,chatTimer=null,CH={sig:'',pend:[]},ACH={uid:'',name:''},achTimer=null;
+async function getSkew(){if(SKEW!==null)return SKEW;try{const k='ping/'+vid();await fetch(dbu(k),{method:'PUT',body:JSON.stringify({'.sv':'timestamp'})});const r=await dbGet(k);SKEW=(Number(r)||Date.now())-Date.now()}catch(e){SKEW=0}return SKEW}
+async function adminOnNow(r){const k=await getSkew();return !!(r&&r.t&&Date.now()+k-r.t<55000)}
+function adminBeat(){if(!dbOn()||!isAdmin()||document.hidden||LS.get('cs_aoff',false))return;fetch(dbu('adminOn'),{method:'PUT',body:JSON.stringify({t:{'.sv':'timestamp'}})}).catch(()=>{})}
+setInterval(adminBeat,20000);
+window.addEventListener('pagehide',()=>{if(isAdmin()&&dbOn())try{fetch(dbu('adminOn'),{method:'DELETE',keepalive:true})}catch(e){}});
+const mgHtml=(m,own)=>`<div class="mg ${own?'me':'ot'}">${hx(m.x)}<small>${ago(m.t)}</small></div>`;
+function paintChat(L,list,first,empty){const near=L.scrollHeight-L.scrollTop-L.clientHeight<90;L.innerHTML=list.length?list.join(''):empty;if(near||first)L.scrollTop=L.scrollHeight}
+async function drawChat(){
+  const v=$('#v-chat');
+  if(!dbOn()){v.innerHTML=`<div class="edhead"><button class="back" id="chBack">${ic('back')} হোম</button></div><div class="empty">লাইভ চ্যাট চালু করতে dbUrl দিন</div>`;$('#chBack').onclick=()=>goBack('home');return}
+  CH={sig:'',pend:[]};
+  v.innerHTML=`<div class="edhead"><button class="back" id="chBack">${ic('back')} হোম</button></div>
+  <div class="chhd"><span class="av">${ic('chat',20)}</span><div><b>অ্যাডমিন সাপোর্ট</b><small><i class="dotst" id="chDot"></i><span id="chSt">যাচাই হচ্ছে…</span></small></div></div>
+  <div class="chb" id="chL"><div class="empty" style="padding:20px">লোড হচ্ছে…</div></div>
+  <div class="chq">${['প্রো কোড পাইনি','পেমেন্ট করেছি, কোড দিন','একটা সমস্যা হচ্ছে','একটা প্রশ্ন আছে'].map(x=>`<button class="mini">${x}</button>`).join('')}</div>
+  <div class="chin"><input type="text" id="chI" placeholder="মেসেজ লিখুন…" maxlength="500" autocomplete="off"><button class="btn sm" id="chS" aria-label="পাঠান">${ic('send',18)}</button></div>
+  <p class="hint" style="text-align:center">আপনার নাম ও মেসেজ শুধু অ্যাডমিন দেখতে পাবেন।</p>`;
+  $('#chBack').onclick=()=>goBack('home');
+  $$('.chq .mini').forEach(b=>b.onclick=()=>{$('#chI').value=b.textContent;$('#chI').focus()});
+  $('#chS').onclick=sendChat;$('#chI').onkeydown=e=>{if(e.key==='Enter')sendChat()};
+  await pollChat(true);clearInterval(chatTimer);chatTimer=setInterval(()=>{if(!$('#v-chat').classList.contains('on'))clearInterval(chatTimer);else if(!document.hidden)pollChat()},3000)}
+async function pollChat(first){
+  const me=myUid(),[ms,ad]=await Promise.all([dbGet('chats/'+me+'/msgs','?orderBy=%22%24key%22&limitToLast=100'),dbGet('adminOn')]);
+  const L=$('#chL');if(!L||!$('#v-chat').classList.contains('on'))return;
+  const on=await adminOnNow(ad),dot=$('#chDot'),st=$('#chSt');if(dot){dot.classList.toggle('on',on);st.textContent=on?'অনলাইন — এখনই উত্তর পাবেন':'অফলাইন — মেসেজ রেখে যান, অনলাইনে এসে উত্তর দেবেন'}
+  const a=Object.entries(ms&&!ms.error?ms:{}).map(([k,m])=>({k,...m})).sort((x,y)=>x.t-y.t),sig=a.map(m=>m.k).join(',')+'|'+CH.pend.length;
+  if(sig===CH.sig&&!first)return;CH.sig=sig;
+  paintChat(L,a.map(m=>mgHtml(m,m.f==='u')).concat(CH.pend.map(m=>mgHtml(m,true))),first,`<div class="mg ot">আসসালামু আলাইকুম! আপনার প্রশ্ন বা সমস্যা লিখুন। অ্যাডমিন অনলাইনে এলেই রিপ্লাই দেবেন।</div>`);
+  if(a.length&&a[a.length-1].f==='a'){fetch(dbu('chatidx/'+me+'/uu'),{method:'PUT',body:'0'}).catch(()=>{});setChatBadge(0)}}
+async function sendChat(){const i=$('#chI'),t=i.value.trim();if(!t)return;i.value='';const me=myUid(),m={f:'u',x:t.slice(0,500),t:Date.now()};
+  CH.pend.push(m);CH.sig='';pollChat(true);
+  try{const r=await fetch(dbu('chats/'+me+'/msgs'),{method:'POST',body:JSON.stringify(m)});if(!r.ok)throw 0;
+    await fetch(dbu('chatidx/'+me),{method:'PATCH',body:JSON.stringify({name:myName(),last:m.x.slice(0,60),t:m.t,f:'u'})});
+    fetch(dbu('chatidx/'+me+'/ua'),{method:'PUT',body:JSON.stringify({'.sv':{increment:1}})}).catch(()=>{})}
+  catch(e){toast('মেসেজ যায়নি — Firebase Rules-এ chats ও chatidx লেখার অনুমতি দিন')}
+  CH.pend=CH.pend.filter(x=>x!==m);CH.sig='';pollChat(true)}
+function setChatBadge(n){document.querySelectorAll('#chatGo .ubadge').forEach(b=>b.remove());if(n>0){const b=document.createElement('span');b.className='ubadge';b.textContent=bnN(n);const g=$('#chatGo');if(g)g.appendChild(b)}}
+async function refreshChatBadge(){if(!dbOn()||isAdmin())return;const[uu,ad]=await Promise.all([dbGet('chatidx/'+myUid()+'/uu'),dbGet('adminOn')]);setChatBadge(Number(uu)||0);const on=await adminOnNow(ad),st=$('#chatSub'),d=$('#chatDot');if(st)st.textContent=on?'অ্যাডমিন অনলাইন':'মেসেজ রেখে যান';if(d)d.classList.toggle('on',on)}
+setInterval(()=>{if(!document.hidden)refreshChatBadge()},30000);
+/* ----- অ্যাডমিনের চ্যাট ইনবক্স ----- */
+async function drawAChat(){const v=$('#v-achat');if(!isAdmin()){v.innerHTML='<div class="empty">শুধু অ্যাডমিনের জন্য</div>';return}ACH.uid?drawAThread():drawAList()}
+function drawAList(){
+  const v=$('#v-achat');ACH.uid='';
+  v.innerHTML=`<div class="edhead"><button class="back" id="acBack">${ic('back')} ড্যাশবোর্ড</button></div><h2>${ic('chat',20)} লাইভ চ্যাট</h2><div id="acL">${skRows(4)}</div>`;
+  $('#acBack').onclick=()=>goBack('admin');adminBeat();
+  const load=async()=>{const r=await dbGet('chatidx'),L=$('#acL');if(!L||ACH.uid)return;const a=Object.entries(r||{}).map(([u,x])=>({u,...x})).sort((x,y)=>y.t-x.t);
+    L.innerHTML=a.length?a.map(c=>`<div class="lgc" data-u="${c.u}" data-n="${hx(c.name)}"><span class="av">${hx((c.name||'?').charAt(0))}</span><div><b>${hx(c.name||'ব্যবহারকারী')}</b><small>${c.f==='a'?'আপনি: ':''}${hx(c.last||'')} • ${ago(c.t)}</small></div>${Number(c.ua)>0?`<span class="ubadge">${bnN(c.ua)}</span>`:''}</div>`).join(''):'<div class="empty">এখনো কোনো মেসেজ আসেনি</div>';
+    L.querySelectorAll('.lgc').forEach(x=>x.onclick=()=>{ACH={uid:x.dataset.u,name:x.dataset.n};drawAThread()})};
+  load();clearInterval(achTimer);achTimer=setInterval(()=>{if(!$('#v-achat').classList.contains('on')){clearInterval(achTimer);return}if(!ACH.uid&&!document.hidden)load()},5000)}
+function drawAThread(){
+  const v=$('#v-achat'),u=ACH.uid;clearInterval(achTimer);
+  v.innerHTML=`<div class="edhead"><button class="back" id="atBack">${ic('back')} সব চ্যাট</button><button class="mini d" id="atDel">${ic('trash',13)} চ্যাট মুছুন</button></div>
+  <div class="chhd"><span class="av">${hx((ACH.name||'?').charAt(0))}</span><div><b>${hx(ACH.name||'ব্যবহারকারী')}</b><small>ব্যবহারকারী</small></div></div>
+  <div class="chb" id="atL"><div class="empty" style="padding:20px">লোড হচ্ছে…</div></div>
+  <div class="chin" style="margin-top:10px"><input type="text" id="atI" placeholder="রিপ্লাই লিখুন…" maxlength="500" autocomplete="off"><button class="btn sm" id="atS" aria-label="পাঠান">${ic('send',18)}</button></div>`;
+  $('#atBack').onclick=()=>{clearInterval(achTimer);drawAList()};
+  $('#atDel').onclick=async()=>{if(confirm('এই চ্যাট মুছবেন?')){await dbDel('chats/'+u);await dbDel('chatidx/'+u);drawAList()}};
+  let sig='';
+  const load=async first=>{const ms=await dbGet('chats/'+u+'/msgs','?orderBy=%22%24key%22&limitToLast=100'),L=$('#atL');if(!L||ACH.uid!==u||!$('#v-achat').classList.contains('on'))return;
+    const a=Object.entries(ms&&!ms.error?ms:{}).map(([k,m])=>({k,...m})).sort((x,y)=>x.t-y.t),sg=a.map(m=>m.k).join(',');if(sg===sig&&!first)return;sig=sg;
+    paintChat(L,a.map(m=>mgHtml(m,m.f==='a')),first,'<div class="empty" style="padding:20px">কোনো মেসেজ নেই</div>');fetch(dbu('chatidx/'+u+'/ua'),{method:'PUT',body:'0'}).catch(()=>{})};
+  const send=async()=>{const i=$('#atI'),t=i.value.trim();if(!t)return;i.value='';const m={f:'a',x:t.slice(0,500),t:Date.now()};
+    try{const r=await fetch(dbu('chats/'+u+'/msgs'),{method:'POST',body:JSON.stringify(m)});if(!r.ok)throw 0;await fetch(dbu('chatidx/'+u),{method:'PATCH',body:JSON.stringify({last:m.x.slice(0,60),t:m.t,f:'a'})});fetch(dbu('chatidx/'+u+'/uu'),{method:'PUT',body:JSON.stringify({'.sv':{increment:1}})}).catch(()=>{})}catch(e){toast('পাঠানো যায়নি — Firebase Rules দেখুন')}
+    load(true)};
+  $('#atS').onclick=send;$('#atI').onkeydown=e=>{if(e.key==='Enter')send()};
+  load(true);achTimer=setInterval(()=>{if(!$('#v-achat').classList.contains('on')||!ACH.uid)clearInterval(achTimer);else if(!document.hidden)load()},3000)}
+/* ============ অ্যাপ চালু/বন্ধ (অ্যাডমিন প্যানেল থেকে) ============ */
+async function checkApp(){
+  if(!dbOn())return;const c=await dbGet('cfg/app'),o=$('#offV'),off=!!(c&&typeof c==='object'&&c.on===false&&!isAdmin());
+  if(off){o.innerHTML=`${ic('power')}<div><h2>অ্যাপটি সাময়িক বন্ধ আছে</h2><p>${hx(c.msg||'আমরা কিছু আপডেটের কাজ করছি। একটু পরে আবার আসুন।')}</p><button id="offRe">আবার চেষ্টা করুন</button><small id="offAd">অ্যাডমিন</small></div>`;o.classList.add('on');$('#offRe').onclick=checkApp;$('#offAd').onclick=()=>openAdmin()}
+  else o.classList.remove('on')}
+setInterval(()=>{if(!document.hidden)checkApp()},45000);
+/* ============ বিশ্বাস ও নিরাপত্তা ============ */
+async function drawTrust(){
+  const v=$('#v-trust'),cp=curPlan(),tl=cp&&cp.trial?Math.max(1,Math.ceil((cp.exp-Date.now())/864e5)):0;
+  const row=(i,t,x)=>`<div class="tcard2"><span class="ti">${ic(i,20)}</span><div><b>${t}</b><p>${x}</p></div></div>`;
+  v.innerHTML=`<div class="edhead"><button class="back" id="trBack">${ic('back')} হোম</button></div>
+  <div class="pg-hero"><div class="pg-ic">${ic('shield',34)}</div><h2>কেন ${hx(CFG.appName)} বিশ্বাস করবেন</h2><p>স্বচ্ছতা, গোপনীয়তা আর সরাসরি সাপোর্ট</p></div>
+  <div class="tstat" id="trSt"></div>
+  <div class="tcards">
+   ${row('gift','প্রথম ৭ দিন ফ্রি','প্রথমবার অ্যাপ খুললেই ৭ দিন সব সাধারণ প্রো ডিজাইন ও ওয়াটারমার্ক ছাড়া ডাউনলোড ফ্রি — কিনে নেওয়ার আগে নিজে যাচাই করুন।'+(tl?` <b>(আপনার আর ${bnN(tl)} দিন বাকি)</b>`:''))}
+   ${row('lock','আপনার ছবি ফোনেই থাকে','কার্ড বানানো ও ডাউনলোড পুরোটা আপনার ফোনের ব্রাউজারেই হয়। আপনি নিজে কমিউনিটিতে পোস্ট না করলে কোনো ছবি সার্ভারে যায় না।')}
+   ${row('key','পাসওয়ার্ড বা কার্ড নম্বর চাই না','অ্যাপে কখনো ওটিপি, পাসওয়ার্ড বা কার্ড নম্বর চাওয়া হয় না। প্রো কোড শুধু আপনার ফোনে সেভ থাকে।')}
+   ${row('wallet','পেমেন্ট স্বচ্ছ','পেমেন্ট নম্বর, প্ল্যানের দাম ও মেয়াদ প্রো পেজে খোলাখুলি দেওয়া আছে। কোড বসালে "অ্যাক্টিভেশন রসিদ" সেভ হয়ে প্রো পেজে দেখা যায়।')}
+   ${row('chat','সরাসরি অ্যাডমিন সাপোর্ট','লাইভ চ্যাটে অ্যাডমিন অনলাইন আছেন কি না নিজেই দেখতে পাবেন। অফলাইনে মেসেজ রেখে গেলে অনলাইনে এসে রিপ্লাই দেন।')}
+   ${row('shield','নিরাপদ কমিউনিটি','আপত্তিকর বা কপিরাইট ভাঙা পোস্ট রিপোর্ট করা যায়; অ্যাডমিন যাচাই করে মুছে দেন।')}
+   ${row('eye','অ্যানালিটিক্স আপনার নিয়ন্ত্রণে','নাম-পরিচয় ছাড়া শুধু সংখ্যা গোনা হয়। সেটিংস থেকে যেকোনো সময় বন্ধ করতে পারবেন।')}
+  </div>
+  <button class="btn" id="trChat">${ic('chat',16)} অ্যাডমিনের সাথে কথা বলুন</button><div style="height:8px"></div><button class="btn o" id="trPriv">প্রাইভেসি পলিসি পড়ুন</button>`;
+  $('#trBack').onclick=()=>goBack('home');$('#trChat').onclick=()=>go('chat');$('#trPriv').onclick=()=>{infoKey='privacy';go('info')};
+  if(!dbOn())return;
+  const[st,ps,ad]=await Promise.all([dbGet('stats'),dbGet('posts','?shallow=true'),dbGet('adminOn')]);const n=x=>Number(x)||0,dl=st?n(st.dlNormal)+n(st.dlHD):0,pc=ps&&!ps.error?Object.keys(ps).length:0,on=await adminOnNow(ad),box=$('#trSt');
+  if(box)box.innerHTML=`<div><b>${bnN(dl)}</b>কার্ড ডাউনলোড</div><div><b>${bnN(pc)}</b>কমিউনিটি পোস্ট</div><div><b style="color:${on?'#16a34a':'inherit'}">${on?'অনলাইন':'অফলাইন'}</b>অ্যাডমিন এখন</div>`}
+function drawHomeCards(){
+  $('#commCard').innerHTML=`<div class="commrow"><button class="commbtn" id="commGo"><span class="ci">${ic('users')}</span><span><b>কমিউনিটি</b><small>ডিজাইন শেয়ার • লাইক • কমেন্ট</small></span></button>
+  <button class="commbtn" id="chatGo"><span class="ci">${ic('chat')}</span><span><b>লাইভ চ্যাট</b><small><i class="dotst" id="chatDot"></i><span id="chatSub">অ্যাডমিন সাপোর্ট</span></small></span></button></div>
+  <div class="trust"><button data-t="1">${ic('gift')} ৭ দিন ফ্রি</button><button data-t="1">${ic('lock')} ছবি ফোনেই থাকে</button><button data-t="1">${ic('shield')} স্বচ্ছ পেমেন্ট</button><button data-t="1">${ic('check')} কেন বিশ্বাস করবেন</button></div>`;
+  $('#commGo').onclick=()=>go('feed');$('#chatGo').onclick=()=>go('chat');$$('#commCard .trust button').forEach(b=>b.onclick=()=>go('trust'));refreshChatBadge()}
+
 /* ============ শুরু ============ */
 (async function init(){
   document.title=CFG.appName+' - ফটো কার্ড ও নিউজ কার্ড মেকার';$('#appName').textContent=CFG.appName;
   try{await Promise.all(['Hind Siguri','Anek Bangla','Baloo Da 2','Noto Serif Bengali','Tiro Bangla'].map(f=>document.fonts.load(`700 40px "${f}"`,'অআক')))}catch(e){}
   document.documentElement.dataset.theme=LS.get('cs_theme','light');document.documentElement.lang=LS.get('cs_lang','bn');setTheme(LS.get('cs_theme','light'));setPrivText();wireSearch();shuffleTpl();
-  $('#commCard').innerHTML=`<button class="commbtn" id="commGo"><span class="ci">${ic('users')}</span><span><b>কমিউনিটি</b><small>ডিজাইন শেয়ার করুন • লাইক ও কমেন্ট করুন</small></span>${ic('chev',18)}</button>`;$('#commGo').onclick=()=>go('feed');
+  if(!LS.get('cs_trial0',0))LS.set('cs_trial0',Date.now());
+  checkApp();
   $('#shuf').onclick=()=>{shuffleTpl();drawGrid();toast('নতুন ক্রমে সাজানো হয়েছে ✔')};
-  drawChips();syncPro();initPrivacy();if(LS.get('cs_out',false)){if(accts().length)showLogin();else LS.set('cs_out',false)}if(LS.get('cs_lang','bn')==='en')trAll(true);if(location.hash==='#admin')openAdmin();hideSkel();
+  drawChips();syncPro();drawHomeCards();initPrivacy();if(LS.get('cs_out',false)){if(accts().length)showLogin();else LS.set('cs_out',false)}if(LS.get('cs_lang','bn')==='en')trAll(true);if(location.hash==='#admin')openAdmin();adminBeat();hideSkel();
 })();
 </script>
 </body>
